@@ -136,7 +136,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeRow</b> (i
 <div class="line">  {</div>
 <div class="line">    <span class="comment">// The TwoDimArray is created here.</span></div>
 <div class="line">    <span class="comment">// ExpTableEntry (the type above) is passed in as a type parameter to be used to create our row data from exptable.2da.</span></div>
-<div class="line">    <span class="keyword">private</span> readonly TwoDimArray&lt;ExpTableEntry&gt; expTable = NwGameTables.GetTable&lt;ExpTableEntry&gt;(<span class="stringliteral">&quot;exptable.2da&quot;</span>);</div>
+<div class="line">    <span class="keyword">private</span> readonly TwoDimArray&lt;ExpTableEntry&gt; expTable = NwGameTables.GetTable&lt;ExpTableEntry&gt;(<span class="stringliteral">&quot;exptable.2da&quot;</span>)!;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> XPReportService()</div>
 <div class="line">    {</div>

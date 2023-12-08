@@ -5,7 +5,7 @@ var classAnvil_1_1API_1_1Effect =
     [ "ACDecrease", "classAnvil_1_1API_1_1Effect.html#adaa48ce9da93ce209f605f8dbfc09d06", null ],
     [ "ACIncrease", "classAnvil_1_1API_1_1Effect.html#ad00cafca25ffd2665c3fc933686d59ac", null ],
     [ "Appear", "classAnvil_1_1API_1_1Effect.html#ad1e569caf995c67dde5df39acffa176b", null ],
-    [ "AreaOfEffect", "classAnvil_1_1API_1_1Effect.html#a54325f52eaf26cfd410d913e3cd625a2", null ],
+    [ "AreaOfEffect", "classAnvil_1_1API_1_1Effect.html#a7effad0d1e0d5c0ba260836201c3800b", null ],
     [ "AttackDecrease", "classAnvil_1_1API_1_1Effect.html#ad0fd58e9cb778cfff817768b78f6e5f2", null ],
     [ "AttackIncrease", "classAnvil_1_1API_1_1Effect.html#a6b9e903d7997a5e787310acd39420dda", null ],
     [ "Beam", "classAnvil_1_1API_1_1Effect.html#abe14157796cd1913cf4c16aa7e40a39a", null ],
@@ -61,7 +61,7 @@ var classAnvil_1_1API_1_1Effect =
     [ "Paralyze", "classAnvil_1_1API_1_1Effect.html#aad3af82fa07e5d4652c3fe73b4f4f5f7", null ],
     [ "Petrify", "classAnvil_1_1API_1_1Effect.html#adbf3e46cc5739172339649e0e4fd4c67", null ],
     [ "Poison", "classAnvil_1_1API_1_1Effect.html#a7cb4bfb5038c0fabf84b5ec5c540ef25", null ],
-    [ "Polymorph", "classAnvil_1_1API_1_1Effect.html#aed5b757b22ecb057aec8f44e6752c248", null ],
+    [ "Polymorph", "classAnvil_1_1API_1_1Effect.html#a2ca5b19fd637b507524a679d5e2f8bf0", null ],
     [ "Regenerate", "classAnvil_1_1API_1_1Effect.html#a24bdb4f109c51d36b0978a048c4f2b04", null ],
     [ "Resurrection", "classAnvil_1_1API_1_1Effect.html#a58dad2c74978245e95ed1fe8eb1e0926", null ],
     [ "RunAction", "classAnvil_1_1API_1_1Effect.html#a65e073bd208f4e1ca9bfb314347d13c8", null ],
@@ -101,6 +101,6 @@ var classAnvil_1_1API_1_1Effect =
     [ "LinkId", "classAnvil_1_1API_1_1Effect.html#a176e828a65c9713d3c73098b62ccebd8", null ],
     [ "StructureId", "classAnvil_1_1API_1_1Effect.html#a6e7048d873d64d4ec43e9795e97dec41", null ],
     [ "SubType", "classAnvil_1_1API_1_1Effect.html#ad39076673e6f3b8861ac812b711f92d3", null ],
-    [ "Tag", "classAnvil_1_1API_1_1Effect.html#a3f739eb92ec062e833eb286e71a5f264", null ],
+    [ "Tag", "classAnvil_1_1API_1_1Effect.html#a53a01f8d59b8006260cd549e968510d4", null ],
     [ "TotalDuration", "classAnvil_1_1API_1_1Effect.html#a1040e52fcbbb6c6cb352315263dcc6a8", null ]
 ];

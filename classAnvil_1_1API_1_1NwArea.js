@@ -10,7 +10,8 @@ var classAnvil_1_1API_1_1NwArea =
     [ "FindObjectsOfTypeInArea< T >", "classAnvil_1_1API_1_1NwArea.html#a85c244029d99653d7709291fcbef7147", null ],
     [ "GetAreaLightColor", "classAnvil_1_1API_1_1NwArea.html#a2c147033ab50db392a1f2fb71b1b0e61", null ],
     [ "GetAreaLightDirection", "classAnvil_1_1API_1_1NwArea.html#a70fcd6f7df3fdcccdbd62d5885bb528f", null ],
-    [ "GetTileInfo", "classAnvil_1_1API_1_1NwArea.html#a3fe088c7ae116755d7b7eef0158b4811", null ],
+    [ "GetTileInfo", "classAnvil_1_1API_1_1NwArea.html#a64d9124cadb56b17d21251232386ea6e", null ],
+    [ "GetTileInfoByIndex", "classAnvil_1_1API_1_1NwArea.html#a2edf0e63f17b3f5a2d351c79ead1885d", null ],
     [ "operator CNWSArea?", "classAnvil_1_1API_1_1NwArea.html#a07db93ed477665037868aa36a3391aae", null ],
     [ "PeekUUID", "classAnvil_1_1API_1_1NwArea.html#abeae94cb5e5f41dbd7a6c949ea694c2d", null ],
     [ "PlayAmbient", "classAnvil_1_1API_1_1NwArea.html#a083dc2171a780daa83cd52a9e91d3af5", null ],
@@ -79,6 +80,7 @@ var classAnvil_1_1API_1_1NwArea =
     [ "SunFogAmount", "classAnvil_1_1API_1_1NwArea.html#a44aeaba80377fe23e1000f8ba4bb4115", null ],
     [ "SunFogColor", "classAnvil_1_1API_1_1NwArea.html#a06e02552b4659c7b9e47b9be5c87dd16", null ],
     [ "SunShadows", "classAnvil_1_1API_1_1NwArea.html#a81909d18aa7fc08f1fb942665f8cc14e", null ],
+    [ "TileInfo", "classAnvil_1_1API_1_1NwArea.html#ad0a81f763fc694bd3d7cf5f8ea07afab", null ],
     [ "Tileset", "classAnvil_1_1API_1_1NwArea.html#abb20aacc0b90506ff88974594d76cfd6", null ],
     [ "Weather", "classAnvil_1_1API_1_1NwArea.html#a274661e51283835c17bb8d9b5506418d", null ],
     [ "WindPower", "classAnvil_1_1API_1_1NwArea.html#a97a085678872db72b29058831d9d944d", null ]

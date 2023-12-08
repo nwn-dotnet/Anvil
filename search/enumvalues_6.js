@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['recomputelighting_3308',['RecomputeLighting',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114',1,'Anvil::API']]],
-  ['reloadborder_3309',['ReloadBorder',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a105a56ac435feecdb6d291cb69346c15',1,'Anvil::API']]],
-  ['reloadgrass_3310',['ReloadGrass',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2e7fca71c3a794620bdba2b2535b2299',1,'Anvil::API']]]
+  ['mousehover_3373',['MouseHover',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a623f025e339b35b993e9a3ed2909a1c0',1,'Anvil::API']]],
+  ['mouseleft_3374',['MouseLeft',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1abce0118bd8f5bf5e7f849dff486de57f',1,'Anvil::API']]],
+  ['mousemiddle_3375',['MouseMiddle',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a9d30e0a64a4f80ad2159949d3f316626',1,'Anvil::API']]],
+  ['mouseoff_3376',['MouseOff',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a7143aca0c2dace95a6ec5024c0bfff6b',1,'Anvil::API']]],
+  ['mouseright_3377',['MouseRight',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a64be76bfebee9b86f0963be88b3de177',1,'Anvil::API']]]
 ];

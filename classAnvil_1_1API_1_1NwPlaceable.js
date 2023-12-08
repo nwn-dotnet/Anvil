@@ -13,7 +13,7 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "Serialize", "classAnvil_1_1API_1_1NwPlaceable.html#ade634620fa33a4ebcfb0acaf92f31978", null ],
     [ "SetBaseSavingThrow", "classAnvil_1_1API_1_1NwPlaceable.html#aba1e9ab57b0b6316df480c27ecd6a9fd", null ],
     [ "Appearance", "classAnvil_1_1API_1_1NwPlaceable.html#a885f5996e42b828c2a98f874fe0adb31", null ],
-    [ "DialogResRef", "classAnvil_1_1API_1_1NwPlaceable.html#ae116e8ad8c7086e02f9e66303622818f", null ],
+    [ "DialogResRef", "classAnvil_1_1API_1_1NwPlaceable.html#acf977e11dbf2804eeb5b84063e51a66f", null ],
     [ "HasInventory", "classAnvil_1_1API_1_1NwPlaceable.html#a9785bb786ee15c46df434d9d00e10a37", null ],
     [ "Illumination", "classAnvil_1_1API_1_1NwPlaceable.html#afe4da32b5703e025d863c79cfb7d81d4", null ],
     [ "Inventory", "classAnvil_1_1API_1_1NwPlaceable.html#aa112684dad0c48aaa7c16e4d0a9fdc98", null ],

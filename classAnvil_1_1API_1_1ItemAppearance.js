@@ -12,10 +12,10 @@ var classAnvil_1_1API_1_1ItemAppearance =
     [ "GetWeaponModel", "classAnvil_1_1API_1_1ItemAppearance.html#ab5bea0a44f9a20f641e449cfa3c811b0", null ],
     [ "Serialize", "classAnvil_1_1API_1_1ItemAppearance.html#a7e397fb382e608d51fee9b1d0084a7b8", null ],
     [ "SetArmorColor", "classAnvil_1_1API_1_1ItemAppearance.html#a6c1b50ffacf7ab55644d581e62cba282", null ],
-    [ "SetArmorModel", "classAnvil_1_1API_1_1ItemAppearance.html#a913588b66f5531be4b163661319fe876", null ],
+    [ "SetArmorModel", "classAnvil_1_1API_1_1ItemAppearance.html#a0fce2e6f80b67260534e0fedf168b7e5", null ],
     [ "SetArmorPieceColor", "classAnvil_1_1API_1_1ItemAppearance.html#acf1f2d2c4c3fc57d9333b920418d5c36", null ],
-    [ "SetSimpleModel", "classAnvil_1_1API_1_1ItemAppearance.html#a23f574ceded015c4e85c78b379fb7a41", null ],
+    [ "SetSimpleModel", "classAnvil_1_1API_1_1ItemAppearance.html#adeeefcd11825976a1aa39d4d5297ade6", null ],
     [ "SetWeaponColor", "classAnvil_1_1API_1_1ItemAppearance.html#a3daf298f4da2ef88b79d7d1011e5356a", null ],
-    [ "SetWeaponModel", "classAnvil_1_1API_1_1ItemAppearance.html#a0f64e5a69cd8684f47a74be84f61bd9e", null ],
+    [ "SetWeaponModel", "classAnvil_1_1API_1_1ItemAppearance.html#a1fc4ad285050332c83975e1ae992741d", null ],
     [ "FeedbackService", "classAnvil_1_1API_1_1ItemAppearance.html#ad7ba6d4bdc88c027db566edee2a5f44a", null ]
 ];

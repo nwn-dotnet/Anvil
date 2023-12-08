@@ -1,8 +1,10 @@
 var classAnvil_1_1API_1_1NuiElement =
 [
     [ "Aspect", "classAnvil_1_1API_1_1NuiElement.html#a20cc45ec9ff5c3fe6c7be64f61cb426d", null ],
+    [ "DisabledTooltip", "classAnvil_1_1API_1_1NuiElement.html#a1f83f33f702284bf07a68c2bae0f93b7", null ],
     [ "DrawList", "classAnvil_1_1API_1_1NuiElement.html#a25a6e46b13dcc0927fa0e955fc6542e1", null ],
     [ "Enabled", "classAnvil_1_1API_1_1NuiElement.html#ae6af7661220094def73c6573425fb1f0", null ],
+    [ "Encouraged", "classAnvil_1_1API_1_1NuiElement.html#aa956e52292a5ca5621f124e672181d64", null ],
     [ "ForegroundColor", "classAnvil_1_1API_1_1NuiElement.html#a7f4ec35e45f880de67b08abf688debe6", null ],
     [ "Height", "classAnvil_1_1API_1_1NuiElement.html#a1557cadef18b2e145d0e5628e3bb72b9", null ],
     [ "Id", "classAnvil_1_1API_1_1NuiElement.html#adb40a3c7e38a1633582c1fedcbce5e1c", null ],

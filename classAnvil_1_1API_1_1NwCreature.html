@@ -246,6 +246,13 @@ unsafe void&#160;</td><td class="memItemRight" valign="bottom"><b>AcquireItem</b
 <tr class="memdesc:ae3a0844c422723668e5d85f56282d31d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts the alignment of this creature and associated party members by the specified value.<br  />
  Use the <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#aff1e4f992f17dcce8e27e2d99227e420" title="Gets or sets this creature&#39;s Chaos (0) - Lawful (100) alignment value.">LawChaosValue</a> and <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#aa5a9b68b3e9060d06d8bfd21747ea147" title="Gets or sets this creature&#39;s Evil (0) - Good (100) alignment value.">GoodEvilValue</a> setters to only affect this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#ae3a0844c422723668e5d85f56282d31d">More...</a><br /></td></tr>
 <tr class="separator:ae3a0844c422723668e5d85f56282d31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad294e42e47e3f3f4ea298cdacc482fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ad294e42e47e3f3f4ea298cdacc482fb3">BroadcastSkillRoll</a> (int diceRoll, <a class="el" href="classAnvil_1_1API_1_1NwSkill.html">NwSkill</a> skill, int modifier, int difficultyClass, bool take20, SkillResult result)</td></tr>
+<tr class="memdesc:ad294e42e47e3f3f4ea298cdacc482fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes this creature to broadcast feedback for an arbitrary skill roll (pre-calculated)<br  />
+ This causes a message to be posted in the combat log, and floaty <em>skill</em> text to appear above the character.  <a href="classAnvil_1_1API_1_1NwCreature.html#ad294e42e47e3f3f4ea298cdacc482fb3">More...</a><br /></td></tr>
+<tr class="separator:ad294e42e47e3f3f4ea298cdacc482fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f352487735e11ce8831ed693044265e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a9f352487735e11ce8831ed693044265e">CalculateAbilityModifierFromScore</a> (byte abilityScore)</td></tr>
+<tr class="memdesc:a9f352487735e11ce8831ed693044265e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ability modifier from the given ability score.  <a href="classAnvil_1_1API_1_1NwCreature.html#a9f352487735e11ce8831ed693044265e">More...</a><br /></td></tr>
+<tr class="separator:a9f352487735e11ce8831ed693044265e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22cacd46bbae44aff87b4ccff9496dd6"><td class="memItemLeft" align="right" valign="top">ResistSpellResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a22cacd46bbae44aff87b4ccff9496dd6">CheckResistSpell</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:a22cacd46bbae44aff87b4ccff9496dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a spell resistance check between this creature, and the specified target object.  <a href="classAnvil_1_1API_1_1NwCreature.html#a22cacd46bbae44aff87b4ccff9496dd6">More...</a><br /></td></tr>
 <tr class="separator:a22cacd46bbae44aff87b4ccff9496dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -292,6 +299,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeQuickbar</
 <tr class="memitem:a5d2b49bb299d6cb9961df86d29972301"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a5d2b49bb299d6cb9961df86d29972301">GetActionMode</a> (ActionMode actionMode)</td></tr>
 <tr class="memdesc:a5d2b49bb299d6cb9961df86d29972301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this creature is using the specified action mode.  <a href="classAnvil_1_1API_1_1NwCreature.html#a5d2b49bb299d6cb9961df86d29972301">More...</a><br /></td></tr>
 <tr class="separator:a5d2b49bb299d6cb9961df86d29972301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884de9d73150ed503127e56232966386"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a884de9d73150ed503127e56232966386">GetArmorClassVersus</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> creature)</td></tr>
+<tr class="memdesc:a884de9d73150ed503127e56232966386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the Armor Class this creature has against another creature  <a href="classAnvil_1_1API_1_1NwCreature.html#a884de9d73150ed503127e56232966386">More...</a><br /></td></tr>
+<tr class="separator:a884de9d73150ed503127e56232966386"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10e6e85867a7b731c9d11755b07b56ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a10e6e85867a7b731c9d11755b07b56ad">GetAssociate</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a98b26a333f49df48ef4eef4425b9aa28">AssociateType</a> associateType)</td></tr>
 <tr class="memdesc:a10e6e85867a7b731c9d11755b07b56ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first associate of this creature with the matching associate type.<br  />
  See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5" title="Gets all henchmen associated with this creature.">Henchmen</a> for getting a list of all henchmen associated with this creature. See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0005cd5f66ca4093fd3989f8b647e45f" title="Gets all creatures associated with this creature.">Associates</a> for getting a list of all creatures associated with this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a10e6e85867a7b731c9d11755b07b56ad">More...</a><br /></td></tr>
@@ -456,9 +466,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeQuickbar</
 <tr class="memitem:af38bc7663509ec14c02b6425d5f6b727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#af38bc7663509ec14c02b6425d5f6b727">PlayVoiceChat</a> (VoiceChatType voiceChatType)</td></tr>
 <tr class="memdesc:af38bc7663509ec14c02b6425d5f6b727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to speak/play the specified voice chat.  <a href="classAnvil_1_1API_1_1NwCreature.html#af38bc7663509ec14c02b6425d5f6b727">More...</a><br /></td></tr>
 <tr class="separator:af38bc7663509ec14c02b6425d5f6b727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0502955154e812c6fc92d06366cd0b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0502955154e812c6fc92d06366cd0b62">RemoveFeat</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
-<tr class="memdesc:a0502955154e812c6fc92d06366cd0b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified feat from this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a0502955154e812c6fc92d06366cd0b62">More...</a><br /></td></tr>
-<tr class="separator:a0502955154e812c6fc92d06366cd0b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a347b5225b43e22e0cd3165a512e90502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a347b5225b43e22e0cd3165a512e90502">RemoveFeat</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat, bool removeFeatFromLevelList=false)</td></tr>
+<tr class="memdesc:a347b5225b43e22e0cd3165a512e90502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified feat from this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a347b5225b43e22e0cd3165a512e90502">More...</a><br /></td></tr>
+<tr class="separator:a347b5225b43e22e0cd3165a512e90502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab67a3864fa7adae1cd08886c7ac548c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ab67a3864fa7adae1cd08886c7ac548c0">RemoveSpecialAbilityAt</a> (int index)</td></tr>
 <tr class="memdesc:ab67a3864fa7adae1cd08886c7ac548c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified ability at the given index.  <a href="classAnvil_1_1API_1_1NwCreature.html#ab67a3864fa7adae1cd08886c7ac548c0">More...</a><br /></td></tr>
 <tr class="separator:ab67a3864fa7adae1cd08886c7ac548c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -550,12 +560,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetQuickBarButtons</b
 <tr class="memitem:a8bc391c044a484b5b7e1223d9b0019f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a8bc391c044a484b5b7e1223d9b0019f8">TakeGold</a> (int amount, bool showFeedback=true)</td></tr>
 <tr class="memdesc:a8bc391c044a484b5b7e1223d9b0019f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes gold away from this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a8bc391c044a484b5b7e1223d9b0019f8">More...</a><br /></td></tr>
 <tr class="separator:a8bc391c044a484b5b7e1223d9b0019f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42fa15730e6ff7b40719f3b3183f3013"><td class="memItemLeft" align="right" valign="top">TalentCategory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a42fa15730e6ff7b40719f3b3183f3013">TalentBest</a> (TalentCategory category, int maxCr)</td></tr>
-<tr class="memdesc:a42fa15730e6ff7b40719f3b3183f3013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the best talent from a group of talents.  <a href="classAnvil_1_1API_1_1NwCreature.html#a42fa15730e6ff7b40719f3b3183f3013">More...</a><br /></td></tr>
-<tr class="separator:a42fa15730e6ff7b40719f3b3183f3013"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72c522b6945d725143495e8f0689a79f"><td class="memItemLeft" align="right" valign="top">TalentCategory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a72c522b6945d725143495e8f0689a79f">TalentRandom</a> (TalentCategory category)</td></tr>
-<tr class="memdesc:a72c522b6945d725143495e8f0689a79f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a random talent from a group of talents possessed by this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a72c522b6945d725143495e8f0689a79f">More...</a><br /></td></tr>
-<tr class="separator:a72c522b6945d725143495e8f0689a79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae3d6db52b00c03e4256de8c7953ecc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Talent.html">Talent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a8ae3d6db52b00c03e4256de8c7953ecc">TalentBest</a> (TalentCategory category, int maxCr)</td></tr>
+<tr class="memdesc:a8ae3d6db52b00c03e4256de8c7953ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the best talent from a group of talents.  <a href="classAnvil_1_1API_1_1NwCreature.html#a8ae3d6db52b00c03e4256de8c7953ecc">More...</a><br /></td></tr>
+<tr class="separator:a8ae3d6db52b00c03e4256de8c7953ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9777c719ba9b2a676c676e1940132d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Talent.html">Talent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a7c9777c719ba9b2a676c676e1940132d">TalentRandom</a> (TalentCategory category)</td></tr>
+<tr class="memdesc:a7c9777c719ba9b2a676c676e1940132d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a random talent from a group of talents possessed by this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a7c9777c719ba9b2a676c676e1940132d">More...</a><br /></td></tr>
+<tr class="separator:a7c9777c719ba9b2a676c676e1940132d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a776b8978034caf725179d9f783821618"><td class="memItemLeft" align="right" valign="top">async Task&lt; TouchAttackResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a776b8978034caf725179d9f783821618">TouchAttackMelee</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:a776b8978034caf725179d9f783821618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.  <a href="classAnvil_1_1API_1_1NwCreature.html#a776b8978034caf725179d9f783821618">More...</a><br /></td></tr>
 <tr class="separator:a776b8978034caf725179d9f783821618"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -913,9 +923,9 @@ sbyte&#160;</td><td class="memItemRight" valign="bottom"><b>ArmorCheckPenalty</b
 <tr class="memitem:a6c2285a74fd848dc65f6457cead6f259"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c2285a74fd848dc65f6457cead6f259">DetectModeActive</a><code> [get]</code></td></tr>
 <tr class="memdesc:a6c2285a74fd848dc65f6457cead6f259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this creature is currently in Detect Mode.  <a href="classAnvil_1_1API_1_1NwCreature.html#a6c2285a74fd848dc65f6457cead6f259">More...</a><br /></td></tr>
 <tr class="separator:a6c2285a74fd848dc65f6457cead6f259"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af06c364180b6c09ce2f49d5f0e9048db"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#af06c364180b6c09ce2f49d5f0e9048db">DialogResRef</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:af06c364180b6c09ce2f49d5f0e9048db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the dialog ResRef for this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#af06c364180b6c09ce2f49d5f0e9048db">More...</a><br /></td></tr>
-<tr class="separator:af06c364180b6c09ce2f49d5f0e9048db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2be141f5229102e313bd9713f91d912"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ab2be141f5229102e313bd9713f91d912">DialogResRef</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab2be141f5229102e313bd9713f91d912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the dialog ResRef for this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#ab2be141f5229102e313bd9713f91d912">More...</a><br /></td></tr>
+<tr class="separator:ab2be141f5229102e313bd9713f91d912"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac07ee3fcbda9117b28c930b4c9cb32d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ac07ee3fcbda9117b28c930b4c9cb32d2">Disarmable</a><code> [get]</code></td></tr>
 <tr class="memdesc:ac07ee3fcbda9117b28c930b4c9cb32d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable).  <a href="classAnvil_1_1API_1_1NwCreature.html#ac07ee3fcbda9117b28c930b4c9cb32d2">More...</a><br /></td></tr>
 <tr class="separator:ac07ee3fcbda9117b28c930b4c9cb32d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1234,6 +1244,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnUseSkill.html">O
 <tr class="memitem:a34e880887bf89a2e6aa73933d03fbac3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwRace.html">NwRace</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a34e880887bf89a2e6aa73933d03fbac3">Race</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a34e880887bf89a2e6aa73933d03fbac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's race.  <a href="classAnvil_1_1API_1_1NwCreature.html#a34e880887bf89a2e6aa73933d03fbac3">More...</a><br /></td></tr>
 <tr class="separator:a34e880887bf89a2e6aa73933d03fbac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafaecdf847cb594536a8bfaff01637ed"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#aafaecdf847cb594536a8bfaff01637ed">RemainingSkillPoints</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aafaecdf847cb594536a8bfaff01637ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the remaining skill points this creature has to spend.  <a href="classAnvil_1_1API_1_1NwCreature.html#aafaecdf847cb594536a8bfaff01637ed">More...</a><br /></td></tr>
+<tr class="separator:aafaecdf847cb594536a8bfaff01637ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a8f6bca7bb3aeceb60a8befa710f84b"><td class="memItemLeft" align="right" valign="top"><a id="a8a8f6bca7bb3aeceb60a8befa710f84b"></a>
 sbyte&#160;</td><td class="memItemRight" valign="bottom"><b>ShieldCheckPenalty</b><code> [get]</code></td></tr>
 <tr class="separator:a8a8f6bca7bb3aeceb60a8befa710f84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1321,6 +1334,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.
 <tr class="memitem:a10348c77b57c4efade948e772127d229 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="a10348c77b57c4efade948e772127d229"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html">OnDisarmWeapon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a10348c77b57c4efade948e772127d229">OnDisarmWeapon</a></td></tr>
 <tr class="separator:a10348c77b57c4efade948e772127d229 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7939c5174f732b1d03f0867170e75eb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="aa7939c5174f732b1d03f0867170e75eb"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html">OnDispelMagicApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#aa7939c5174f732b1d03f0867170e75eb">OnDispelMagicApply</a></td></tr>
+<tr class="separator:aa7939c5174f732b1d03f0867170e75eb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedabe0904e6c916837cd8231bfb039ba inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="aedabe0904e6c916837cd8231bfb039ba"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnEffectApply.html">OnEffectApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#aedabe0904e6c916837cd8231bfb039ba">OnEffectApply</a></td></tr>
 <tr class="separator:aedabe0904e6c916837cd8231bfb039ba inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1345,9 +1361,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1On
 <tr class="memitem:ab4023ee0a741b2af13684b94db76f749 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ab4023ee0a741b2af13684b94db76f749">PlotFlag</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ab4023ee0a741b2af13684b94db76f749 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether the plot flag is enabled.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ab4023ee0a741b2af13684b94db76f749">More...</a><br /></td></tr>
 <tr class="separator:ab4023ee0a741b2af13684b94db76f749 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ce3ca8f63d806ba369e86bf63f410a inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a">PortraitId</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a14ce3ca8f63d806ba369e86bf63f410a inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the PortraitId of this (game object).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a">More...</a><br /></td></tr>
-<tr class="separator:a14ce3ca8f63d806ba369e86bf63f410a inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395cc52124f385d976b4c5946d75cb97 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1PortraitTableEntry.html">PortraitTableEntry</a>????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a395cc52124f385d976b4c5946d75cb97">PortraitId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a395cc52124f385d976b4c5946d75cb97 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the PortraitId of this (game object).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a395cc52124f385d976b4c5946d75cb97">More...</a><br /></td></tr>
+<tr class="separator:a395cc52124f385d976b4c5946d75cb97 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23f9db575c5dbdec66de41a52748e7bf inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a23f9db575c5dbdec66de41a52748e7bf">PortraitResRef</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a23f9db575c5dbdec66de41a52748e7bf inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Portrait ResRef for this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a23f9db575c5dbdec66de41a52748e7bf">More...</a><br /></td></tr>
 <tr class="separator:a23f9db575c5dbdec66de41a52748e7bf inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3041,6 +3057,116 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ad294e42e47e3f3f4ea298cdacc482fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad294e42e47e3f3f4ea298cdacc482fb3">&#9670;&nbsp;</a></span>BroadcastSkillRoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwCreature.BroadcastSkillRoll </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>diceRoll</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwSkill.html">NwSkill</a>&#160;</td>
+          <td class="paramname"><em>skill</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>modifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>difficultyClass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>take20</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SkillResult&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Causes this creature to broadcast feedback for an arbitrary skill roll (pre-calculated)<br  />
+ This causes a message to be posted in the combat log, and floaty <em>skill</em> text to appear above the character. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">diceRoll</td><td>The d20 dice value result.</td></tr>
+    <tr><td class="paramname">skill</td><td>The skill that was rolled.</td></tr>
+    <tr><td class="paramname">modifier</td><td>The modifier added to the dice roll.</td></tr>
+    <tr><td class="paramname">difficultyClass</td><td>The difficulty class/dc of the skill check.</td></tr>
+    <tr><td class="paramname">take20</td><td>If the roll was an automatic take 20 roll.</td></tr>
+    <tr><td class="paramname">result</td><td>The result of the skill check.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9f352487735e11ce8831ed693044265e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f352487735e11ce8831ed693044265e">&#9670;&nbsp;</a></span>CalculateAbilityModifierFromScore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwCreature.CalculateAbilityModifierFromScore </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>abilityScore</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the ability modifier from the given ability score. </p>
+<p>By default, this will return '(ability score - 10) / 2', however this can be different based on definitions in the ruleset.2da.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">abilityScore</td><td>The ability score to calculate the ability modifier from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ability modifier for the specified ability score.</dd></dl>
+
+</div>
+</div>
 <a id="a22cacd46bbae44aff87b4ccff9496dd6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22cacd46bbae44aff87b4ccff9496dd6">&#9670;&nbsp;</a></span>CheckResistSpell()</h2>
 
@@ -3595,6 +3721,40 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the specified action mode is currently active, otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="a884de9d73150ed503127e56232966386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884de9d73150ed503127e56232966386">&#9670;&nbsp;</a></span>GetArmorClassVersus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwCreature.GetArmorClassVersus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td>
+          <td class="paramname"><em>creature</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the Armor Class this creature has against another creature </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">creature</td><td>The creature against which the Armor Class will be checked.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -5453,8 +5613,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a0502955154e812c6fc92d06366cd0b62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0502955154e812c6fc92d06366cd0b62">&#9670;&nbsp;</a></span>RemoveFeat()</h2>
+<a id="a347b5225b43e22e0cd3165a512e90502"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a347b5225b43e22e0cd3165a512e90502">&#9670;&nbsp;</a></span>RemoveFeat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -5466,8 +5626,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">void Anvil.API.NwCreature.RemoveFeat </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a>&#160;</td>
-          <td class="paramname"><em>feat</em></td><td>)</td>
+          <td class="paramname"><em>feat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>removeFeatFromLevelList</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -5481,6 +5651,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">feat</td><td>The feat to remove.</td></tr>
+    <tr><td class="paramname">removeFeatFromLevelList</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -6444,8 +6615,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a42fa15730e6ff7b40719f3b3183f3013"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42fa15730e6ff7b40719f3b3183f3013">&#9670;&nbsp;</a></span>TalentBest()</h2>
+<a id="a8ae3d6db52b00c03e4256de8c7953ecc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ae3d6db52b00c03e4256de8c7953ecc">&#9670;&nbsp;</a></span>TalentBest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6454,7 +6625,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TalentCategory Anvil.API.NwCreature.TalentBest </td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1Talent.html">Talent</a> Anvil.API.NwCreature.TalentBest </td>
           <td>(</td>
           <td class="paramtype">TalentCategory&#160;</td>
           <td class="paramname"><em>category</em>, </td>
@@ -6489,8 +6660,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a72c522b6945d725143495e8f0689a79f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72c522b6945d725143495e8f0689a79f">&#9670;&nbsp;</a></span>TalentRandom()</h2>
+<a id="a7c9777c719ba9b2a676c676e1940132d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c9777c719ba9b2a676c676e1940132d">&#9670;&nbsp;</a></span>TalentRandom()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6499,7 +6670,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TalentCategory Anvil.API.NwCreature.TalentRandom </td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1Talent.html">Talent</a> Anvil.API.NwCreature.TalentRandom </td>
           <td>(</td>
           <td class="paramtype">TalentCategory&#160;</td>
           <td class="paramname"><em>category</em></td><td>)</td>
@@ -7388,8 +7559,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="af06c364180b6c09ce2f49d5f0e9048db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af06c364180b6c09ce2f49d5f0e9048db">&#9670;&nbsp;</a></span>DialogResRef</h2>
+<a id="ab2be141f5229102e313bd9713f91d912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2be141f5229102e313bd9713f91d912">&#9670;&nbsp;</a></span>DialogResRef</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7398,7 +7569,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Anvil.API.NwCreature.DialogResRef</td>
+          <td class="memname">string? Anvil.API.NwCreature.DialogResRef</td>
         </tr>
       </table>
   </td>
@@ -8621,6 +8792,31 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets this creature's race. </p>
+
+</div>
+</div>
+<a id="aafaecdf847cb594536a8bfaff01637ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafaecdf847cb594536a8bfaff01637ed">&#9670;&nbsp;</a></span>RemainingSkillPoints</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ushort Anvil.API.NwCreature.RemainingSkillPoints</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the remaining skill points this creature has to spend. </p>
+<p>Setting this to a greater value will cause player creatures to fail ELC, unless the corresponding level <a class="el" href="classAnvil_1_1API_1_1CreatureLevelInfo.html#aa64d0b2e382c261379189e3f852af92e" title="Gets or sets the amount of skill points unspent at this level.">CreatureLevelInfo.SkillPointsRemaining</a> values are also updated.</p>
 
 </div>
 </div>

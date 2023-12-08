@@ -7,7 +7,7 @@ var classAnvil_1_1API_1_1NwFeat =
     [ "AllClassesCanUse", "classAnvil_1_1API_1_1NwFeat.html#a59899416933877c6513c6f9a03a09cab", null ],
     [ "Description", "classAnvil_1_1API_1_1NwFeat.html#a8f40a1c8a11b1b2937466970b12a54fd", null ],
     [ "FeatType", "classAnvil_1_1API_1_1NwFeat.html#a13806aa953fe9940864429a0a39453d2", null ],
-    [ "IconResRef", "classAnvil_1_1API_1_1NwFeat.html#a4ba52fb4e19fef1f9a8e97384d14a09f", null ],
+    [ "IconResRef", "classAnvil_1_1API_1_1NwFeat.html#abce04a5d1fdc7b865ac4f9c274c8e700", null ],
     [ "Id", "classAnvil_1_1API_1_1NwFeat.html#a6da965c8f6c011499cc4372f6dd6576c", null ],
     [ "IsHostileFeat", "classAnvil_1_1API_1_1NwFeat.html#ae846681692c6e273ce0c6501f0640f09", null ],
     [ "MasterFeat", "classAnvil_1_1API_1_1NwFeat.html#aca75503a7fb50ad672d6549de3f75743", null ],

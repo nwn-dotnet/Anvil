@@ -25,6 +25,7 @@ var classAnvil_1_1API_1_1Location =
     [ "SurfaceMaterial", "classAnvil_1_1API_1_1Location.html#a0512487ff8a3e64a2e87277f7b5895ad", null ],
     [ "TileHeight", "classAnvil_1_1API_1_1Location.html#adb8a3364d51a7ddec1b6b95d5617e8b6", null ],
     [ "TileId", "classAnvil_1_1API_1_1Location.html#acd8ea07cd8ee1db658cf22353eea85ac", null ],
+    [ "TileInfo", "classAnvil_1_1API_1_1Location.html#a22c2d40835e59a6110a7e1e15a16213d", null ],
     [ "TileMainLightColorOne", "classAnvil_1_1API_1_1Location.html#ac37d9087ee8655492df6cfaaa9ea43d8", null ],
     [ "TileMainLightColorTwo", "classAnvil_1_1API_1_1Location.html#aeefd0a61670020ac444b5849e99f5016", null ],
     [ "TileRotation", "classAnvil_1_1API_1_1Location.html#a6b6cd4a5b007d61f2c5aaa933054e022", null ],

@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
  To run the query, you need to call <a class="el" href="classAnvil_1_1API_1_1SQLQuery.html#a86f0e6a340152c41a3f1c7fe8cb5c55e" title="Executes this query.">SQLQuery.Execute</a> even if you do not expect result data.<br  />
   <a href="classAnvil_1_1API_1_1NwModule.html#a69265ee4d1d0135e1cb53eefaa458cc7">More...</a><br /></td></tr>
 <tr class="separator:a69265ee4d1d0135e1cb53eefaa458cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab811976899420773e1d535da33c6deba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#ab811976899420773e1d535da33c6deba">RefreshClientObjects</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> gameObject)</td></tr>
+<tr class="memdesc:ab811976899420773e1d535da33c6deba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes all players in the module to refresh client object information about the specified game object.  <a href="classAnvil_1_1API_1_1NwModule.html#ab811976899420773e1d535da33c6deba">More...</a><br /></td></tr>
+<tr class="separator:ab811976899420773e1d535da33c6deba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73edaa08d708b66f3b6f1991e92461b2"><td class="memItemLeft" align="right" valign="top"><a id="a73edaa08d708b66f3b6f1991e92461b2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a73edaa08d708b66f3b6f1991e92461b2">SendMessageToAllDMs</a> (string message)</td></tr>
 <tr class="separator:a73edaa08d708b66f3b6f1991e92461b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -377,6 +380,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate
 <tr class="memitem:a3f43a0b8fe0f2858c0f179121edd8833"><td class="memItemLeft" align="right" valign="top"><a id="a3f43a0b8fe0f2858c0f179121edd8833"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html">OnDisarmWeapon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a3f43a0b8fe0f2858c0f179121edd8833">OnDisarmWeapon</a></td></tr>
 <tr class="separator:a3f43a0b8fe0f2858c0f179121edd8833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06bc36d734e190c2615910f8f01438e8"><td class="memItemLeft" align="right" valign="top"><a id="a06bc36d734e190c2615910f8f01438e8"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html">OnDispelMagicApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a06bc36d734e190c2615910f8f01438e8">OnDispelMagicApply</a></td></tr>
+<tr class="separator:a06bc36d734e190c2615910f8f01438e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a073490f2f80cec8d2ce252d1f9a6ef5f"><td class="memItemLeft" align="right" valign="top"><a id="a073490f2f80cec8d2ce252d1f9a6ef5f"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMAppear.html">OnDMAppear</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a073490f2f80cec8d2ce252d1f9a6ef5f">OnDMAppear</a></td></tr>
 <tr class="separator:a073490f2f80cec8d2ce252d1f9a6ef5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1213,6 +1219,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 
 </div>
 </div>
+<a id="ab811976899420773e1d535da33c6deba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab811976899420773e1d535da33c6deba">&#9670;&nbsp;</a></span>RefreshClientObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwModule.RefreshClientObjects </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>gameObject</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Causes all players in the module to refresh client object information about the specified game object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameObject</td><td>The game object to refresh.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a9822143004be2293e0db57a000d183a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9822143004be2293e0db57a000d183a9">&#9670;&nbsp;</a></span>SendMessageToAllDMs()</h2>
 
@@ -1832,6 +1872,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 <li>NWN.Anvil/src/main/API/Events/Native/PerceptionEvents/OnDoListenDetection.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/PerceptionEvents/OnDoSpotDetection.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SkillEvents/OnUseSkill.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnDispelMagicApply.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellAction.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellBroadcast.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellCast.cs</li>

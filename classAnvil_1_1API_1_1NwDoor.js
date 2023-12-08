@@ -11,7 +11,7 @@ var classAnvil_1_1API_1_1NwDoor =
     [ "operator CNWSDoor?", "classAnvil_1_1API_1_1NwDoor.html#aa56d91865e7d01d184270cc8916bfef8", null ],
     [ "Serialize", "classAnvil_1_1API_1_1NwDoor.html#a4b6fc70d2defbb5a2ea87111e1ac000e", null ],
     [ "SetBaseSavingThrow", "classAnvil_1_1API_1_1NwDoor.html#a7afa63008b131dcfc127f5c8bff81a96", null ],
-    [ "DialogResRef", "classAnvil_1_1API_1_1NwDoor.html#a69488fdc808c170a024dad8e5981304d", null ],
+    [ "DialogResRef", "classAnvil_1_1API_1_1NwDoor.html#ae67b5ec89805c6e503b0d0e50c8ae661", null ],
     [ "Door", "classAnvil_1_1API_1_1NwDoor.html#a1fd5f046f41b723721629867ad1979d0", null ],
     [ "DoorOpenState", "classAnvil_1_1API_1_1NwDoor.html#a6a631cc3c904618b69ee1c530e5c01a6", null ],
     [ "KeyAutoRemoved", "classAnvil_1_1API_1_1NwDoor.html#a53c62807ea7af22b0f43e38a06b9fdf9", null ],

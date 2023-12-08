@@ -57,6 +57,8 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "PopUpGUIPanel", "classAnvil_1_1API_1_1NwPlayer.html#a956bf0cf5d6c8aa7f0e34aaf60590ebd", null ],
     [ "PostString", "classAnvil_1_1API_1_1NwPlayer.html#ac89a3b5997d8809d11e4b4fd23d83a4e", null ],
     [ "PrepareSQLQuery", "classAnvil_1_1API_1_1NwPlayer.html#a5ac63e3a75295287cb67f8eb1711134c", null ],
+    [ "RefreshClientObject", "classAnvil_1_1API_1_1NwPlayer.html#a493f972b29c7bd024790bbb204aa59ca", null ],
+    [ "RefreshPlayerClientObject", "classAnvil_1_1API_1_1NwPlayer.html#aab8cc54a22258992b0dc8cc4495cc902", null ],
     [ "RemoveFromCurrentParty", "classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2", null ],
     [ "RestoreCameraFacing", "classAnvil_1_1API_1_1NwPlayer.html#ab8768c15e87726f16ba4022f3f86b14c", null ],
     [ "SendServerMessage", "classAnvil_1_1API_1_1NwPlayer.html#ab18c8c362954967f16cde2fd6063cce1", null ],

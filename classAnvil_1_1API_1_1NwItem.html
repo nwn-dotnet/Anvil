@@ -126,9 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4449a9cb6e4aa5acc3b177ff9ae8afb6"><td class="memItemLeft" align="right" valign="top"><a id="a4449a9cb6e4aa5acc3b177ff9ae8afb6"></a>
 unsafe void&#160;</td><td class="memItemRight" valign="bottom"><b>AcquireItem</b> (<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> item, bool displayFeedback=true)</td></tr>
 <tr class="separator:a4449a9cb6e4aa5acc3b177ff9ae8afb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b33d97b880aad90682eb4a4254b57d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a8b33d97b880aad90682eb4a4254b57d3">AddItemProperty</a> (<a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty, EffectDuration durationType, TimeSpan duration=default)</td></tr>
-<tr class="memdesc:a8b33d97b880aad90682eb4a4254b57d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the specified item property to this item.  <a href="classAnvil_1_1API_1_1NwItem.html#a8b33d97b880aad90682eb4a4254b57d3">More...</a><br /></td></tr>
-<tr class="separator:a8b33d97b880aad90682eb4a4254b57d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affe2e564e3bf49a3cad63104bd685dd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#affe2e564e3bf49a3cad63104bd685dd2">AddItemProperty</a> (<a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty, EffectDuration durationType, TimeSpan duration=default, <a class="el" href="namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625aca">AddPropPolicy</a> policy=<a class="el" href="namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625acaa1fbd46deb8b0c70cab7bd0a15e1174df">AddPropPolicy.IgnoreExisting</a>, bool ignoreDuration=false, bool ignoreSubType=false, bool ignoreTag=false)</td></tr>
+<tr class="memdesc:affe2e564e3bf49a3cad63104bd685dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an item property. Optional parameters allow for preventing unwanted stacking by removing the existing one first.  <a href="classAnvil_1_1API_1_1NwItem.html#affe2e564e3bf49a3cad63104bd685dd2">More...</a><br /></td></tr>
+<tr class="separator:affe2e564e3bf49a3cad63104bd685dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0554448c01055eab916c964e6084b4d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a0554448c01055eab916c964e6084b4d7">Clone</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, bool preserveDropFlag, string? newTag=null, bool copyLocalState=true)</td></tr>
 <tr class="memdesc:a0554448c01055eab916c964e6084b4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this item.  <a href="classAnvil_1_1API_1_1NwItem.html#a0554448c01055eab916c964e6084b4d7">More...</a><br /></td></tr>
 <tr class="separator:a0554448c01055eab916c964e6084b4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,12 +138,23 @@ unsafe void&#160;</td><td class="memItemRight" valign="bottom"><b>AcquireItem</b
 <tr class="memitem:a3c7ba2d1e8a70b0d50ddfcc40c7e9f08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a3c7ba2d1e8a70b0d50ddfcc40c7e9f08">Clone</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> targetInventory, string? newTag=null, bool copyLocalState=true, bool preserveDropFlag=true)</td></tr>
 <tr class="memdesc:a3c7ba2d1e8a70b0d50ddfcc40c7e9f08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this item.  <a href="classAnvil_1_1API_1_1NwItem.html#a3c7ba2d1e8a70b0d50ddfcc40c7e9f08">More...</a><br /></td></tr>
 <tr class="separator:a3c7ba2d1e8a70b0d50ddfcc40c7e9f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab4ab6dafdc729432fda8cb00e98b14a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#aab4ab6dafdc729432fda8cb00e98b14a">CompareItem</a> (<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> otherItem)</td></tr>
+<tr class="memdesc:aab4ab6dafdc729432fda8cb00e98b14a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare this item to another item to test if it is stackable.  <a href="classAnvil_1_1API_1_1NwItem.html#aab4ab6dafdc729432fda8cb00e98b14a">More...</a><br /></td></tr>
+<tr class="separator:aab4ab6dafdc729432fda8cb00e98b14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95115894549699b7aae17d1a4d247fa0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a95115894549699b7aae17d1a4d247fa0">GetUsesPerDayRemaining</a> (<a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a> property)</td></tr>
 <tr class="memdesc:a95115894549699b7aae17d1a4d247fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of uses per day remaining for the specified item property on this item.  <a href="classAnvil_1_1API_1_1NwItem.html#a95115894549699b7aae17d1a4d247fa0">More...</a><br /></td></tr>
 <tr class="separator:a95115894549699b7aae17d1a4d247fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34415b5cb8bf7ed2d4fec74b736f915a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a34415b5cb8bf7ed2d4fec74b736f915a">HasItemProperty</a> (<a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a>? propertyType=null, <a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>? subType=null, EffectDuration? durationType=null, string? tag=null)</td></tr>
+<tr class="memdesc:a34415b5cb8bf7ed2d4fec74b736f915a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this item has a given item property that matches the specified filters.<br  />
+ If no filters are set, returns if any item property is set on this item.  <a href="classAnvil_1_1API_1_1NwItem.html#a34415b5cb8bf7ed2d4fec74b736f915a">More...</a><br /></td></tr>
+<tr class="separator:a34415b5cb8bf7ed2d4fec74b736f915a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a986135e4576a9bef66fa007f742a1277"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a986135e4576a9bef66fa007f742a1277">HasItemProperty</a> (ItemPropertyType property)</td></tr>
 <tr class="memdesc:a986135e4576a9bef66fa007f742a1277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this item has a given item property.  <a href="classAnvil_1_1API_1_1NwItem.html#a986135e4576a9bef66fa007f742a1277">More...</a><br /></td></tr>
 <tr class="separator:a986135e4576a9bef66fa007f742a1277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1509f58e4331f705b1fdb9fb8a68d54a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#a1509f58e4331f705b1fdb9fb8a68d54a">RemoveItemProperties</a> (<a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a>? propertyType=null, <a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>? subType=null, EffectDuration? durationType=null, string? tag=null)</td></tr>
+<tr class="memdesc:a1509f58e4331f705b1fdb9fb8a68d54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all item properties from this item, using the specified filter options.<br  />
+ If no filters are set, removes all item properties from this item.  <a href="classAnvil_1_1API_1_1NwItem.html#a1509f58e4331f705b1fdb9fb8a68d54a">More...</a><br /></td></tr>
+<tr class="separator:a1509f58e4331f705b1fdb9fb8a68d54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf3b8d14f8f7859117ed7a4ea5fceb09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwItem.html#acf3b8d14f8f7859117ed7a4ea5fceb09">RemoveItemProperty</a> (<a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty)</td></tr>
 <tr class="memdesc:acf3b8d14f8f7859117ed7a4ea5fceb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified item property from this item.<br  />
  See <a class="el" href="classAnvil_1_1API_1_1NwItem.html#ac67f4a48bcafb0fcb67f328999f1aa13" title="Gets all active item properties currently applied to this object.">ItemProperties</a> to enumerate item properties on this item.  <a href="classAnvil_1_1API_1_1NwItem.html#acf3b8d14f8f7859117ed7a4ea5fceb09">More...</a><br /></td></tr>
@@ -525,6 +536,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.
 <tr class="memitem:a10348c77b57c4efade948e772127d229 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="a10348c77b57c4efade948e772127d229"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html">OnDisarmWeapon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a10348c77b57c4efade948e772127d229">OnDisarmWeapon</a></td></tr>
 <tr class="separator:a10348c77b57c4efade948e772127d229 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7939c5174f732b1d03f0867170e75eb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="aa7939c5174f732b1d03f0867170e75eb"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html">OnDispelMagicApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#aa7939c5174f732b1d03f0867170e75eb">OnDispelMagicApply</a></td></tr>
+<tr class="separator:aa7939c5174f732b1d03f0867170e75eb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedabe0904e6c916837cd8231bfb039ba inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="aedabe0904e6c916837cd8231bfb039ba"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnEffectApply.html">OnEffectApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#aedabe0904e6c916837cd8231bfb039ba">OnEffectApply</a></td></tr>
 <tr class="separator:aedabe0904e6c916837cd8231bfb039ba inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -549,9 +563,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1On
 <tr class="memitem:ab4023ee0a741b2af13684b94db76f749 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ab4023ee0a741b2af13684b94db76f749">PlotFlag</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ab4023ee0a741b2af13684b94db76f749 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether the plot flag is enabled.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ab4023ee0a741b2af13684b94db76f749">More...</a><br /></td></tr>
 <tr class="separator:ab4023ee0a741b2af13684b94db76f749 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ce3ca8f63d806ba369e86bf63f410a inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a">PortraitId</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a14ce3ca8f63d806ba369e86bf63f410a inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the PortraitId of this (game object).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a">More...</a><br /></td></tr>
-<tr class="separator:a14ce3ca8f63d806ba369e86bf63f410a inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395cc52124f385d976b4c5946d75cb97 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1PortraitTableEntry.html">PortraitTableEntry</a>????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a395cc52124f385d976b4c5946d75cb97">PortraitId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a395cc52124f385d976b4c5946d75cb97 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the PortraitId of this (game object).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a395cc52124f385d976b4c5946d75cb97">More...</a><br /></td></tr>
+<tr class="separator:a395cc52124f385d976b4c5946d75cb97 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23f9db575c5dbdec66de41a52748e7bf inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a23f9db575c5dbdec66de41a52748e7bf">PortraitResRef</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a23f9db575c5dbdec66de41a52748e7bf inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Portrait ResRef for this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a23f9db575c5dbdec66de41a52748e7bf">More...</a><br /></td></tr>
 <tr class="separator:a23f9db575c5dbdec66de41a52748e7bf inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -633,8 +647,8 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An item object that can be carried by creatures, stored in placeable containers, or dropped in an anrea. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8b33d97b880aad90682eb4a4254b57d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b33d97b880aad90682eb4a4254b57d3">&#9670;&nbsp;</a></span>AddItemProperty()</h2>
+<a id="affe2e564e3bf49a3cad63104bd685dd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affe2e564e3bf49a3cad63104bd685dd2">&#9670;&nbsp;</a></span>AddItemProperty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -658,7 +672,31 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">TimeSpan&#160;</td>
-          <td class="paramname"><em>duration</em> = <code>default</code>&#160;</td>
+          <td class="paramname"><em>duration</em> = <code>default</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625aca">AddPropPolicy</a>&#160;</td>
+          <td class="paramname"><em>policy</em> = <code><a class="el" href="namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625acaa1fbd46deb8b0c70cab7bd0a15e1174df">AddPropPolicy.IgnoreExisting</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ignoreDuration</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ignoreSubType</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ignoreTag</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -673,12 +711,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds the specified item property to this item. </p>
+<p>Add an item property. Optional parameters allow for preventing unwanted stacking by removing the existing one first. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itemProperty</td><td>The item property to add.</td></tr>
     <tr><td class="paramname">durationType</td><td>(Permanent/Temporary) - the duration of this item property.</td></tr>
     <tr><td class="paramname">duration</td><td>If DurationType is temporary, how long this item property should stay applied.</td></tr>
+    <tr><td class="paramname">policy</td><td>The policy to use when adding this item property.</td></tr>
+    <tr><td class="paramname">ignoreDuration</td><td>If set to true, an item property will be considered identical even if the DurationType is different. Be careful when using this with <a class="el" href="namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625acaa87ccd05a2655b0fafa8c9a145983572d" title="Remove and replace matching existing properties with the new property.">AddPropPolicy.ReplaceExisting</a>, as this could lead to a temporary item property removing a permanent one</td></tr>
+    <tr><td class="paramname">ignoreSubType</td><td>If set to true an item property will be considered identical even if the SubType is different.</td></tr>
+    <tr><td class="paramname">ignoreTag</td><td>If set to true an item property will be considered identical even if the tag is different.</td></tr>
   </table>
   </dd>
 </dl>
@@ -860,6 +902,41 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aab4ab6dafdc729432fda8cb00e98b14a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab4ab6dafdc729432fda8cb00e98b14a">&#9670;&nbsp;</a></span>CompareItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwItem.CompareItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td>
+          <td class="paramname"><em>otherItem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compare this item to another item to test if it is stackable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">otherItem</td><td>The other item to compare to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if both items can stack with each-other, otherwise false.</dd></dl>
+
+</div>
+</div>
 <a id="a8f57c68f13c68a8e8d67b10c587254fa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f57c68f13c68a8e8d67b10c587254fa">&#9670;&nbsp;</a></span>Create() <span class="overload">[1/2]</span></h2>
 
@@ -1022,8 +1099,69 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a34415b5cb8bf7ed2d4fec74b736f915a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34415b5cb8bf7ed2d4fec74b736f915a">&#9670;&nbsp;</a></span>HasItemProperty() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwItem.HasItemProperty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a>?&#160;</td>
+          <td class="paramname"><em>propertyType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>?&#160;</td>
+          <td class="paramname"><em>subType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EffectDuration?&#160;</td>
+          <td class="paramname"><em>durationType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string?&#160;</td>
+          <td class="paramname"><em>tag</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets whether this item has a given item property that matches the specified filters.<br  />
+ If no filters are set, returns if any item property is set on this item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">propertyType</td><td>If set, restricts the search of item properties to the specified type.</td></tr>
+    <tr><td class="paramname">subType</td><td>If set, restricts the search of item properties to the specified sub-type.</td></tr>
+    <tr><td class="paramname">durationType</td><td>If set, restricts the search of item properties to the specified duration type.</td></tr>
+    <tr><td class="paramname">tag</td><td>If set, restricts the search of item properties to the specified tag.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this item has a property matching the specified filters, otherwise false.</dd></dl>
+
+</div>
+</div>
 <a id="a986135e4576a9bef66fa007f742a1277"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a986135e4576a9bef66fa007f742a1277">&#9670;&nbsp;</a></span>HasItemProperty()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a986135e4576a9bef66fa007f742a1277">&#9670;&nbsp;</a></span>HasItemProperty() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1054,6 +1192,66 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if this item has a property of the given type, otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="a1509f58e4331f705b1fdb9fb8a68d54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1509f58e4331f705b1fdb9fb8a68d54a">&#9670;&nbsp;</a></span>RemoveItemProperties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwItem.RemoveItemProperties </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a>?&#160;</td>
+          <td class="paramname"><em>propertyType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>?&#160;</td>
+          <td class="paramname"><em>subType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EffectDuration?&#160;</td>
+          <td class="paramname"><em>durationType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string?&#160;</td>
+          <td class="paramname"><em>tag</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove all item properties from this item, using the specified filter options.<br  />
+ If no filters are set, removes all item properties from this item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">propertyType</td><td>If set, restricts the deletion of item properties to the specified type.</td></tr>
+    <tr><td class="paramname">subType</td><td>If set, restricts the deletion of item properties to the specified sub-type.</td></tr>
+    <tr><td class="paramname">durationType</td><td>If set, restricts the deletion of item properties to the specified duration type.</td></tr>
+    <tr><td class="paramname">tag</td><td>If set, restricts the deletion of item properties to the specified tag.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

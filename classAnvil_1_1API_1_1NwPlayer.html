@@ -295,6 +295,12 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
  To run the query, you need to call <a class="el" href="classAnvil_1_1API_1_1SQLQuery.html#a86f0e6a340152c41a3f1c7fe8cb5c55e" title="Executes this query.">SQLQuery.Execute</a> even if you do not expect result data.<br  />
   <a href="classAnvil_1_1API_1_1NwPlayer.html#a5ac63e3a75295287cb67f8eb1711134c">More...</a><br /></td></tr>
 <tr class="separator:a5ac63e3a75295287cb67f8eb1711134c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493f972b29c7bd024790bbb204aa59ca"><td class="memItemLeft" align="right" valign="top">unsafe void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a493f972b29c7bd024790bbb204aa59ca">RefreshClientObject</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> gameObject)</td></tr>
+<tr class="memdesc:a493f972b29c7bd024790bbb204aa59ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes this player to refresh the client object associated with the given game object.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a493f972b29c7bd024790bbb204aa59ca">More...</a><br /></td></tr>
+<tr class="separator:a493f972b29c7bd024790bbb204aa59ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8cc54a22258992b0dc8cc4495cc902"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aab8cc54a22258992b0dc8cc4495cc902">RefreshPlayerClientObject</a> ()</td></tr>
+<tr class="memdesc:aab8cc54a22258992b0dc8cc4495cc902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes this player to refresh the player client object associated with their current controlled creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aab8cc54a22258992b0dc8cc4495cc902">More...</a><br /></td></tr>
+<tr class="separator:aab8cc54a22258992b0dc8cc4495cc902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e7d529888af403d615dc1a0a682f6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2">RemoveFromCurrentParty</a> ()</td></tr>
 <tr class="memdesc:a5e7d529888af403d615dc1a0a682f6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the player from their current party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2">More...</a><br /></td></tr>
 <tr class="separator:a5e7d529888af403d615dc1a0a682f6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2646,6 +2652,67 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classAnvil_1_1API_1_1SQLQuery.html" title="A SQL Query.">SQLQuery</a> object.</dd></dl>
+
+</div>
+</div>
+<a id="a493f972b29c7bd024790bbb204aa59ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493f972b29c7bd024790bbb204aa59ca">&#9670;&nbsp;</a></span>RefreshClientObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe void Anvil.API.NwPlayer.RefreshClientObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>gameObject</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Causes this player to refresh the client object associated with the given game object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameObject</td><td>The game object to refresh.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aab8cc54a22258992b0dc8cc4495cc902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8cc54a22258992b0dc8cc4495cc902">&#9670;&nbsp;</a></span>RefreshPlayerClientObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.RefreshPlayerClientObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Causes this player to refresh the player client object associated with their current controlled creature. </p>
 
 </div>
 </div>

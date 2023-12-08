@@ -1,7 +1,7 @@
 var classAnvil_1_1API_1_1NwGameTables =
 [
-    [ "GetTable", "classAnvil_1_1API_1_1NwGameTables.html#ae277a63f2623cc2d4e87f16bbda1aca6", null ],
-    [ "GetTable< T >", "classAnvil_1_1API_1_1NwGameTables.html#a2690913d855757d0f314e2635cc314c5", null ],
+    [ "GetTable", "classAnvil_1_1API_1_1NwGameTables.html#a76a742e60aaad55caa7685f8e75ebf2a", null ],
+    [ "GetTable< T >", "classAnvil_1_1API_1_1NwGameTables.html#a330c961b92756e0c7da7c783a571ae10", null ],
     [ "AppearanceTable", "classAnvil_1_1API_1_1NwGameTables.html#a14cd11dfeabc9a684e391b2ede091e5c", null ],
     [ "ArmorTable", "classAnvil_1_1API_1_1NwGameTables.html#a9d7e70a9010655a5d9adf235011aeb39", null ],
     [ "BodyBagTable", "classAnvil_1_1API_1_1NwGameTables.html#a55a0473ab4bb90b27e636e573a016402", null ],
@@ -27,8 +27,12 @@ var classAnvil_1_1API_1_1NwGameTables =
     [ "PartsRobeTable", "classAnvil_1_1API_1_1NwGameTables.html#afe8e65110baab647b8710927338996b1", null ],
     [ "PartsShinTable", "classAnvil_1_1API_1_1NwGameTables.html#ac816b486cdb7b82837f186f7c88df7ff", null ],
     [ "PartsShoulderTable", "classAnvil_1_1API_1_1NwGameTables.html#ac5a301ae04f6b6d90984d11e90456dba", null ],
+    [ "PersistentEffectTable", "classAnvil_1_1API_1_1NwGameTables.html#a1388f6c2b2ce9a9acdb2e99e18e20d43", null ],
     [ "PlaceableSoundTable", "classAnvil_1_1API_1_1NwGameTables.html#a5407226aa8bf2d4d58b639af13b1f47c", null ],
     [ "PlaceableTable", "classAnvil_1_1API_1_1NwGameTables.html#a79967a68574eb0de0370edd2c3a4c83c", null ],
+    [ "PlaceableTypeTable", "classAnvil_1_1API_1_1NwGameTables.html#a257ad0c4b4dd45003b3cfd87a99fbf35", null ],
+    [ "PolymorphTable", "classAnvil_1_1API_1_1NwGameTables.html#a4bb9b69972c09681852e12683c60cd03", null ],
+    [ "PortraitTable", "classAnvil_1_1API_1_1NwGameTables.html#a728fd745b919541ebe13cd3ec2501e1d", null ],
     [ "ProgrammedEffectTable", "classAnvil_1_1API_1_1NwGameTables.html#a20d5ca0168bf2721e2a7c205f974495f", null ],
     [ "SkillItemCostTable", "classAnvil_1_1API_1_1NwGameTables.html#a44bac158efd757662ac02135202e4e32", null ],
     [ "VisualEffectTable", "classAnvil_1_1API_1_1NwGameTables.html#a0cddc7d4a66b9f6d0d11c888547900f7", null ]

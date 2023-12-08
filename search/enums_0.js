@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['combatlogmessage_3291',['CombatLogMessage',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182',1,'Anvil::Services']]]
+  ['addproppolicy_3354',['AddPropPolicy',['../namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625aca',1,'Anvil::API']]]
 ];

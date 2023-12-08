@@ -101,6 +101,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a42621781dedacdc15223a4785afb96d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NuiProperty.html">NuiProperty</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html#a42621781dedacdc15223a4785afb96d0">AcceptsInput</a> = true<code> [get, set]</code></td></tr>
+<tr class="memdesc:a42621781dedacdc15223a4785afb96d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to false to disable all input. All hover, clicks and keypresses will fall through.  <a href="classAnvil_1_1API_1_1NuiWindow.html#a42621781dedacdc15223a4785afb96d0">More...</a><br /></td></tr>
+<tr class="separator:a42621781dedacdc15223a4785afb96d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32f21d52d1b52ab20b5d5db0679a5d7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NuiProperty.html">NuiProperty</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html#a32f21d52d1b52ab20b5d5db0679a5d7c">Border</a> = true<code> [get, set]</code></td></tr>
 <tr class="memdesc:a32f21d52d1b52ab20b5d5db0679a5d7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether the window border should be rendered.  <a href="classAnvil_1_1API_1_1NuiWindow.html#a32f21d52d1b52ab20b5d5db0679a5d7c">More...</a><br /></td></tr>
 <tr class="separator:a32f21d52d1b52ab20b5d5db0679a5d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,7 +117,9 @@ Properties</h2></td></tr>
 <tr class="separator:ab530427a0ed13c7f90aacae8418e901d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8ff0d2cf80fc6065cee02d886f2b269"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NuiProperty.html">NuiProperty</a>&lt; <a class="el" href="structAnvil_1_1API_1_1NuiRect.html">NuiRect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html#ae8ff0d2cf80fc6065cee02d886f2b269">Geometry</a> = new <a class="el" href="structAnvil_1_1API_1_1NuiRect.html">NuiRect</a>(-1, -1, 0, 0)<code> [get, set]</code></td></tr>
 <tr class="memdesc:ae8ff0d2cf80fc6065cee02d886f2b269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the geometry and bounds of this window.<br  />
- Set x and y to -1.0 to center the window.  <a href="classAnvil_1_1API_1_1NuiWindow.html#ae8ff0d2cf80fc6065cee02d886f2b269">More...</a><br /></td></tr>
+ Set x and y to -1.0 to center the window.<br  />
+ Set x and/or y to -2.0 to position the window's top left at the mouse cursor's position of that axis<br  />
+ Set x and/or y to -3.0 to center the window on the mouse cursor's position of that axis  <a href="classAnvil_1_1API_1_1NuiWindow.html#ae8ff0d2cf80fc6065cee02d886f2b269">More...</a><br /></td></tr>
 <tr class="separator:ae8ff0d2cf80fc6065cee02d886f2b269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e89d2ac23ddc1f0a0a1a2a61c6ecb92"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html#a6e89d2ac23ddc1f0a0a1a2a61c6ecb92">Id</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a6e89d2ac23ddc1f0a0a1a2a61c6ecb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the element ID for this window.  <a href="classAnvil_1_1API_1_1NuiWindow.html#a6e89d2ac23ddc1f0a0a1a2a61c6ecb92">More...</a><br /></td></tr>
@@ -138,6 +143,30 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a NUI scriptable window container. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
+<a id="a42621781dedacdc15223a4785afb96d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42621781dedacdc15223a4785afb96d0">&#9670;&nbsp;</a></span>AcceptsInput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NuiProperty.html">NuiProperty</a>&lt;bool&gt; Anvil.API.NuiWindow.AcceptsInput = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set to false to disable all input. All hover, clicks and keypresses will fall through. </p>
+
+</div>
+</div>
 <a id="a32f21d52d1b52ab20b5d5db0679a5d7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32f21d52d1b52ab20b5d5db0679a5d7c">&#9670;&nbsp;</a></span>Border</h2>
 
@@ -233,7 +262,9 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or sets the geometry and bounds of this window.<br  />
- Set x and y to -1.0 to center the window. </p>
+ Set x and y to -1.0 to center the window.<br  />
+ Set x and/or y to -2.0 to position the window's top left at the mouse cursor's position of that axis<br  />
+ Set x and/or y to -3.0 to center the window on the mouse cursor's position of that axis </p>
 
 </div>
 </div>

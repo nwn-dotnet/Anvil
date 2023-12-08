@@ -1,6 +1,7 @@
 var classAnvil_1_1API_1_1NuiWindow =
 [
     [ "NuiWindow", "classAnvil_1_1API_1_1NuiWindow.html#ae2903fd90193a97438a004dcf8bca434", null ],
+    [ "AcceptsInput", "classAnvil_1_1API_1_1NuiWindow.html#a42621781dedacdc15223a4785afb96d0", null ],
     [ "Border", "classAnvil_1_1API_1_1NuiWindow.html#a32f21d52d1b52ab20b5d5db0679a5d7c", null ],
     [ "Closable", "classAnvil_1_1API_1_1NuiWindow.html#a08b20b84d6a3068739d938dfeb3f04ef", null ],
     [ "Collapsed", "classAnvil_1_1API_1_1NuiWindow.html#ab530427a0ed13c7f90aacae8418e901d", null ],

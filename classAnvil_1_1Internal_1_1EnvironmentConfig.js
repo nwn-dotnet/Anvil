@@ -1,5 +1,6 @@
 var classAnvil_1_1Internal_1_1EnvironmentConfig =
 [
+    [ "AdditionalPluginPaths", "classAnvil_1_1Internal_1_1EnvironmentConfig.html#ac80ceac27c54697788cbf572fda7ca7f", null ],
     [ "AnvilHome", "classAnvil_1_1Internal_1_1EnvironmentConfig.html#a7268cfb016e71b1b0bfa2e21159efaaa", null ],
     [ "Encoding", "classAnvil_1_1Internal_1_1EnvironmentConfig.html#ad5aa9f36f715ff8707af851c8603b0ed", null ],
     [ "LogMode", "classAnvil_1_1Internal_1_1EnvironmentConfig.html#a9275990201762b5247664a363ae6dafa", null ],

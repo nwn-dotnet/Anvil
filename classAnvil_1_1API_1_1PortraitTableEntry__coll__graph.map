@@ -1,0 +1,4 @@
+<map id="Anvil.API.PortraitTableEntry" name="Anvil.API.PortraitTableEntry">
+<area shape="rect" id="node1" title="A portrait table entry (portraits.2da)" alt="" coords="5,80,188,107"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html" title="Implement to decode TwoDimArrayEntry into a type using NwGameTables.GetTable&lt;T&gt;(string,..." alt="" coords="30,5,163,32"/>
+</map>

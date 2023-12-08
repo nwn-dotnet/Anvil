@@ -113,37 +113,37 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1SpellEv
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a3468e0e3addaceaf3e5a74a1fb8c1c89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a3468e0e3addaceaf3e5a74a1fb8c1c89">Caster</a><code> [get]</code></td></tr>
+<tr class="memitem:a3468e0e3addaceaf3e5a74a1fb8c1c89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a3468e0e3addaceaf3e5a74a1fb8c1c89">Caster</a> = NWScript.OBJECT_SELF.ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&gt;()<code> [get]</code></td></tr>
 <tr class="memdesc:a3468e0e3addaceaf3e5a74a1fb8c1c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the caster of this spell.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a3468e0e3addaceaf3e5a74a1fb8c1c89">More...</a><br /></td></tr>
 <tr class="separator:a3468e0e3addaceaf3e5a74a1fb8c1c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a232192d78d79a904631be71f8bfc05f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a232192d78d79a904631be71f8bfc05f1">Harmful</a><code> [get]</code></td></tr>
+<tr class="memitem:a232192d78d79a904631be71f8bfc05f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a232192d78d79a904631be71f8bfc05f1">Harmful</a> = NWScript.GetLastSpellHarmful().ToBool()<code> [get]</code></td></tr>
 <tr class="memdesc:a232192d78d79a904631be71f8bfc05f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this spell is considered harmful.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a232192d78d79a904631be71f8bfc05f1">More...</a><br /></td></tr>
 <tr class="separator:a232192d78d79a904631be71f8bfc05f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0200ff9b25d95dca8464cbe0a1c028b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a0200ff9b25d95dca8464cbe0a1c028b2">IsSpontaneousCast</a><code> [get]</code></td></tr>
+<tr class="memitem:a0200ff9b25d95dca8464cbe0a1c028b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a0200ff9b25d95dca8464cbe0a1c028b2">IsSpontaneousCast</a> = NWScript.GetSpellCastSpontaneously().ToBool()<code> [get]</code></td></tr>
 <tr class="memdesc:a0200ff9b25d95dca8464cbe0a1c028b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this spell was cast spontaneously.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a0200ff9b25d95dca8464cbe0a1c028b2">More...</a><br /></td></tr>
 <tr class="separator:a0200ff9b25d95dca8464cbe0a1c028b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1a888fe0059d9b3c3f077f1111b5b0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ac1a888fe0059d9b3c3f077f1111b5b0c">Item</a><code> [get]</code></td></tr>
+<tr class="memitem:ac1a888fe0059d9b3c3f077f1111b5b0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ac1a888fe0059d9b3c3f077f1111b5b0c">Item</a> = NWScript.GetSpellCastItem().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&gt;()<code> [get]</code></td></tr>
 <tr class="memdesc:ac1a888fe0059d9b3c3f077f1111b5b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the item that was used to cast the spell. Returns null if no item was used to cast this spell.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ac1a888fe0059d9b3c3f077f1111b5b0c">More...</a><br /></td></tr>
 <tr class="separator:ac1a888fe0059d9b3c3f077f1111b5b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79a7b0a1db9f61547fcbc1ff40d662e3"><td class="memItemLeft" align="right" valign="top">MetaMagic&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3">MetaMagicFeat</a><code> [get]</code></td></tr>
+<tr class="memitem:a79a7b0a1db9f61547fcbc1ff40d662e3"><td class="memItemLeft" align="right" valign="top">MetaMagic&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3">MetaMagicFeat</a> = (MetaMagic)NWScript.GetMetaMagicFeat()<code> [get]</code></td></tr>
 <tr class="memdesc:a79a7b0a1db9f61547fcbc1ff40d662e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of metamagic used on the last spell.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3">More...</a><br /></td></tr>
 <tr class="separator:a79a7b0a1db9f61547fcbc1ff40d662e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5988ad1f26924aeb69feffaa407e170"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#af5988ad1f26924aeb69feffaa407e170">SaveDC</a><code> [get]</code></td></tr>
+<tr class="memitem:af5988ad1f26924aeb69feffaa407e170"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#af5988ad1f26924aeb69feffaa407e170">SaveDC</a> = NWScript.GetSpellSaveDC()<code> [get]</code></td></tr>
 <tr class="memdesc:af5988ad1f26924aeb69feffaa407e170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the saving throw DC required to save against the effects of this spell.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#af5988ad1f26924aeb69feffaa407e170">More...</a><br /></td></tr>
 <tr class="separator:af5988ad1f26924aeb69feffaa407e170"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ad6db725013599d959ca8803200f98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ab0ad6db725013599d959ca8803200f98">Spell</a><code> [get]</code></td></tr>
+<tr class="memitem:ab0ad6db725013599d959ca8803200f98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ab0ad6db725013599d959ca8803200f98">Spell</a> = <a class="el" href="classAnvil_1_1API_1_1NwSpell.html#a8a695e11f3b0d6cb0b6316ffed2508bc">NwSpell.FromSpellId</a>(NWScript.GetSpellId())!<code> [get]</code></td></tr>
 <tr class="memdesc:ab0ad6db725013599d959ca8803200f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell that was cast.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ab0ad6db725013599d959ca8803200f98">More...</a><br /></td></tr>
 <tr class="separator:ab0ad6db725013599d959ca8803200f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa836e2ff14087f4c9107808206c9763b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa836e2ff14087f4c9107808206c9763b">SpellCastClass</a><code> [get]</code></td></tr>
+<tr class="memitem:aa836e2ff14087f4c9107808206c9763b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa836e2ff14087f4c9107808206c9763b">SpellCastClass</a> = <a class="el" href="classAnvil_1_1API_1_1NwClass.html#a2c3ba3981594699d6623d0132faedfbd">NwClass.FromClassId</a>(NWScript.GetLastSpellCastClass())<code> [get]</code></td></tr>
 <tr class="memdesc:aa836e2ff14087f4c9107808206c9763b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the class that the caster cast the spell as.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa836e2ff14087f4c9107808206c9763b">More...</a><br /></td></tr>
 <tr class="separator:aa836e2ff14087f4c9107808206c9763b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26913dda8a72fc3f27f86daee3915974"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a26913dda8a72fc3f27f86daee3915974">SpellLevel</a><code> [get]</code></td></tr>
+<tr class="memitem:a26913dda8a72fc3f27f86daee3915974"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a26913dda8a72fc3f27f86daee3915974">SpellLevel</a> = NWScript.GetLastSpellLevel()<code> [get]</code></td></tr>
 <tr class="memdesc:a26913dda8a72fc3f27f86daee3915974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the level of the spell that was cast.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a26913dda8a72fc3f27f86daee3915974">More...</a><br /></td></tr>
 <tr class="separator:a26913dda8a72fc3f27f86daee3915974"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a993f49cacd13a2fe04004d0f063aa3cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a993f49cacd13a2fe04004d0f063aa3cc">TargetLocation</a><code> [get]</code></td></tr>
+<tr class="memitem:a993f49cacd13a2fe04004d0f063aa3cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a993f49cacd13a2fe04004d0f063aa3cc">TargetLocation</a> = NWScript.GetSpellTargetLocation()<code> [get]</code></td></tr>
 <tr class="memdesc:a993f49cacd13a2fe04004d0f063aa3cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the targeted location of this spell.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a993f49cacd13a2fe04004d0f063aa3cc">More...</a><br /></td></tr>
 <tr class="separator:a993f49cacd13a2fe04004d0f063aa3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c6850ec70f395239ab22255246b3c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a66c6850ec70f395239ab22255246b3c1">TargetObject</a><code> [get]</code></td></tr>
+<tr class="memitem:a66c6850ec70f395239ab22255246b3c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a66c6850ec70f395239ab22255246b3c1">TargetObject</a> = NWScript.GetSpellTargetObject().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&gt;()<code> [get]</code></td></tr>
 <tr class="memdesc:a66c6850ec70f395239ab22255246b3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the object being targeted by this spell, otherwise returns null if the caster targeted the ground.  <a href="classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a66c6850ec70f395239ab22255246b3c1">More...</a><br /></td></tr>
 <tr class="separator:a66c6850ec70f395239ab22255246b3c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td colspan="2" onclick="javascript:toggleInherit('properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html">Anvil.API.Events.IEvent</a></td></tr>
@@ -162,7 +162,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>? Anvil.API.Events.SpellEvents.OnSpellCast.Caster</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>? Anvil.API.Events.SpellEvents.OnSpellCast.Caster = NWScript.OBJECT_SELF.ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&gt;()</td>
         </tr>
       </table>
   </td>
@@ -186,7 +186,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Anvil.API.Events.SpellEvents.OnSpellCast.Harmful</td>
+          <td class="memname">bool Anvil.API.Events.SpellEvents.OnSpellCast.Harmful = NWScript.GetLastSpellHarmful().ToBool()</td>
         </tr>
       </table>
   </td>
@@ -210,7 +210,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Anvil.API.Events.SpellEvents.OnSpellCast.IsSpontaneousCast</td>
+          <td class="memname">bool Anvil.API.Events.SpellEvents.OnSpellCast.IsSpontaneousCast = NWScript.GetSpellCastSpontaneously().ToBool()</td>
         </tr>
       </table>
   </td>
@@ -234,7 +234,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>? Anvil.API.Events.SpellEvents.OnSpellCast.Item</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>? Anvil.API.Events.SpellEvents.OnSpellCast.Item = NWScript.GetSpellCastItem().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&gt;()</td>
         </tr>
       </table>
   </td>
@@ -258,7 +258,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">MetaMagic Anvil.API.Events.SpellEvents.OnSpellCast.MetaMagicFeat</td>
+          <td class="memname">MetaMagic Anvil.API.Events.SpellEvents.OnSpellCast.MetaMagicFeat = (MetaMagic)NWScript.GetMetaMagicFeat()</td>
         </tr>
       </table>
   </td>
@@ -282,7 +282,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.Events.SpellEvents.OnSpellCast.SaveDC</td>
+          <td class="memname">int Anvil.API.Events.SpellEvents.OnSpellCast.SaveDC = NWScript.GetSpellSaveDC()</td>
         </tr>
       </table>
   </td>
@@ -306,7 +306,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> Anvil.API.Events.SpellEvents.OnSpellCast.Spell</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> Anvil.API.Events.SpellEvents.OnSpellCast.Spell = <a class="el" href="classAnvil_1_1API_1_1NwSpell.html#a8a695e11f3b0d6cb0b6316ffed2508bc">NwSpell.FromSpellId</a>(NWScript.GetSpellId())!</td>
         </tr>
       </table>
   </td>
@@ -330,7 +330,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a>? Anvil.API.Events.SpellEvents.OnSpellCast.SpellCastClass</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a>? Anvil.API.Events.SpellEvents.OnSpellCast.SpellCastClass = <a class="el" href="classAnvil_1_1API_1_1NwClass.html#a2c3ba3981594699d6623d0132faedfbd">NwClass.FromClassId</a>(NWScript.GetLastSpellCastClass())</td>
         </tr>
       </table>
   </td>
@@ -354,7 +354,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.Events.SpellEvents.OnSpellCast.SpellLevel</td>
+          <td class="memname">int Anvil.API.Events.SpellEvents.OnSpellCast.SpellLevel = NWScript.GetLastSpellLevel()</td>
         </tr>
       </table>
   </td>
@@ -378,7 +378,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>? Anvil.API.Events.SpellEvents.OnSpellCast.TargetLocation</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>? Anvil.API.Events.SpellEvents.OnSpellCast.TargetLocation = NWScript.GetSpellTargetLocation()</td>
         </tr>
       </table>
   </td>
@@ -402,7 +402,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>? Anvil.API.Events.SpellEvents.OnSpellCast.TargetObject</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>? Anvil.API.Events.SpellEvents.OnSpellCast.TargetObject = NWScript.GetSpellTargetObject().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&gt;()</td>
         </tr>
       </table>
   </td>

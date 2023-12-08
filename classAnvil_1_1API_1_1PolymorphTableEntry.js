@@ -1,0 +1,27 @@
+var classAnvil_1_1API_1_1PolymorphTableEntry =
+[
+    [ "InterpretEntry", "classAnvil_1_1API_1_1PolymorphTableEntry.html#adff469a3442deef72c98baf4dc16e56c", null ],
+    [ "operator PolymorphTableEntry?", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a3f39480083189428fed3011da5518456", null ],
+    [ "AppearanceType", "classAnvil_1_1API_1_1PolymorphTableEntry.html#ae0b5a095591d3683b9883d13e1ce34c1", null ],
+    [ "Constitution", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a41cae19e2c9f6384ec244590de96800d", null ],
+    [ "CreatureHideItem", "classAnvil_1_1API_1_1PolymorphTableEntry.html#aace463e1d3ff83ecb896b314216f925e", null ],
+    [ "CreatureWeapon1", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a35c280dc3b4130921e163632c730a14c", null ],
+    [ "CreatureWeapon2", "classAnvil_1_1API_1_1PolymorphTableEntry.html#aa739b3f6e3dc8464baf71a2a7fdad296", null ],
+    [ "CreatureWeapon3", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a2891ba5dcb1cc563e6ce574487ae2dbb", null ],
+    [ "Dexterity", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a59a289a466be6ad11f67d080d63120ba", null ],
+    [ "EquippedItem", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a20bcf52a59cb84a66a71b395760d02bd", null ],
+    [ "HpBonus", "classAnvil_1_1API_1_1PolymorphTableEntry.html#ac939c52ca35b8e8559dfc26c79ff9bb2", null ],
+    [ "MergeA", "classAnvil_1_1API_1_1PolymorphTableEntry.html#aa18d93a82322b439a645f22a78f7c8e4", null ],
+    [ "MergeI", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a22e39e40dfe18aa8968133680f439035", null ],
+    [ "MergeW", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a8a8934bf07242c1b0ab194be9338b904", null ],
+    [ "Name", "classAnvil_1_1API_1_1PolymorphTableEntry.html#afd1b564cfc5f9c9ea84e47c38a615102", null ],
+    [ "NaturalAcBonus", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a547efe7fb9e03f3f18e52eb54874e3b1", null ],
+    [ "PortraitCustom", "classAnvil_1_1API_1_1PolymorphTableEntry.html#ac21da602e7e41fd2a85bb59d30a4f998", null ],
+    [ "PortraitId", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a8f3b51426982e2ccdd9f8397b0bd8c17", null ],
+    [ "RacialType", "classAnvil_1_1API_1_1PolymorphTableEntry.html#aa41f8ca591f2ba4a75a6ebed15ec9622", null ],
+    [ "RowIndex", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a173a2a4002f276f1ba3b26fb4237f3c6", null ],
+    [ "Spell1", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a28b2e540909a0760443fdc1f429af302", null ],
+    [ "Spell2", "classAnvil_1_1API_1_1PolymorphTableEntry.html#aafb7dead4c55d4a5028878235e79e43c", null ],
+    [ "Spell3", "classAnvil_1_1API_1_1PolymorphTableEntry.html#aaffcc6a94140a31341bbc621bc6096bb", null ],
+    [ "Strength", "classAnvil_1_1API_1_1PolymorphTableEntry.html#a8b852c10a7aaa628ad6f1cb299c7e824", null ]
+];

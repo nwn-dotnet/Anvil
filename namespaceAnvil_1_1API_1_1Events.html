@@ -95,7 +95,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in events associated with a specific area.  <a href="classAnvil_1_1API_1_1Events_1_1AreaEvents.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents.html">AreaOfEffectEvents</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in events for effects created with Effect.AreaOfEffect(Anvil.API.PersistentVfxType,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle).  <a href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in events for effects created with <a class="el" href="classAnvil_1_1API_1_1Effect.html#a7effad0d1e0d5c0ba260836201c3800b" title="Creates an area of effect (AOE) effect.">Effect.AreaOfEffect</a>.  <a href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents.html">CreatureEvents</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in events associated with a specific creature.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents.html#details">More...</a><br /></td></tr>
@@ -196,6 +196,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html">OnDetectModeUpdate</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html">OnDisarmWeapon</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html">OnDispelMagicApply</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a <a class="el" href="classAnvil_1_1API_1_1Effect.html#a27159912288b5c60bd05d1ec472ffe6c" title="Creates an effect that attempts to strip all (Sp)ell effects on a target, up to a specified caster le...">API.Effect.DispelMagicAll</a> or <a class="el" href="classAnvil_1_1API_1_1Effect.html#a91f8af5c05185c5db68fcaf7f8bd626a" title="Creates an effect that will attempt to strip the highest level spell effect on a target,...">API.Effect.DispelMagicBest</a> effect is applied to an object.  <a href="classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMAppear.html">OnDMAppear</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -441,6 +444,13 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:aa29220f4dd0cbce7c51a380dd1c66848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd1dc798134f94b249617948c9c84a1"><td class="memItemLeft" align="right" valign="top"><a id="a4bd1dc798134f94b249617948c9c84a1"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>DispelMagicType</b> { <br />
+&#160;&#160;<b>Best</b>
+, <br />
+&#160;&#160;<b>All</b>
+<br />
+ }</td></tr>
+<tr class="separator:a4bd1dc798134f94b249617948c9c84a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4348fb1d4fdf5fe1182c0c3362bb2503"><td class="memItemLeft" align="right" valign="top"><a id="a4348fb1d4fdf5fe1182c0c3362bb2503"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>DRType</b> { <br />
 &#160;&#160;<b>DamageResistance</b>
 , <br />

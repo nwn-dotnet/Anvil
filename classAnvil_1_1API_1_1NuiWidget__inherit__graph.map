@@ -1,5 +1,5 @@
 <map id="Anvil.API.NuiWidget" name="Anvil.API.NuiWidget">
-<area shape="rect" id="node1" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="143,385,281,412"/>
+<area shape="rect" id="node1" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="143,411,281,437"/>
 <area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiButton.html" title="A clickable button with text as the label." alt="" coords="348,5,485,32"/>
 <area shape="rect" id="node4" href="$classAnvil_1_1API_1_1NuiButtonImage.html" title="A clickable button with an image as the label." alt="" coords="330,56,503,83"/>
 <area shape="rect" id="node5" href="$classAnvil_1_1API_1_1NuiButtonSelect.html" title="A clickable button with text as the label. &#160;Same as NuiButton, but this one is a toggle." alt="" coords="329,107,504,133"/>
@@ -16,5 +16,6 @@
 <area shape="rect" id="node16" href="$classAnvil_1_1API_1_1NuiSpacer.html" title="A special widget that just takes up layout space. &#160;Configure the space used with the Width and Height..." alt="" coords="347,664,487,691"/>
 <area shape="rect" id="node17" href="$classAnvil_1_1API_1_1NuiText.html" title="A non&#45;editable text field. Supports multiple lines and has a skinned border and a scrollbar if needed..." alt="" coords="355,715,479,741"/>
 <area shape="rect" id="node18" href="$classAnvil_1_1API_1_1NuiTextEdit.html" title="An editable text field. Can be optionally configured as multi&#45;line." alt="" coords="343,765,490,792"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="5,385,95,412"/>
+<area shape="rect" id="node19" href="$classAnvil_1_1API_1_1NuiToggles.html" title=" " alt="" coords="344,816,489,843"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="5,411,95,437"/>
 </map>

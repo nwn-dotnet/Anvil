@@ -20,6 +20,7 @@ var structAnvil_1_1API_1_1HitEffect =
     [ "SlayAlignment", "structAnvil_1_1API_1_1HitEffect.html#a8727f150d12188e30b08176552390b3e", null ],
     [ "SlayAlignmentGroup", "structAnvil_1_1API_1_1HitEffect.html#a51c5618214fa14fb6b1fba2d873bb57a", null ],
     [ "SlayRace", "structAnvil_1_1API_1_1HitEffect.html#a61c3fe2d541fde0366b19765f3b48e0c", null ],
+    [ "SlayRace", "structAnvil_1_1API_1_1HitEffect.html#ae22876acd4aa31abc5f667c2fefedfab", null ],
     [ "Sleep", "structAnvil_1_1API_1_1HitEffect.html#afb04c70822fd82b42f54091f7366abec", null ],
     [ "Slow", "structAnvil_1_1API_1_1HitEffect.html#a1d43c815772b1cc60add7a268010239c", null ],
     [ "Stun", "structAnvil_1_1API_1_1HitEffect.html#a5e8d6e8fb93e9fe927ea3541da0ba9cc", null ],

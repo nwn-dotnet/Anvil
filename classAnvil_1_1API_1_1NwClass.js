@@ -24,7 +24,7 @@ var classAnvil_1_1API_1_1NwClass =
     [ "HasMulticlassPenalty", "classAnvil_1_1API_1_1NwClass.html#ae732676fa222ee9e9eeccd9ec51a007b", null ],
     [ "HasSpecialization", "classAnvil_1_1API_1_1NwClass.html#a04b03066e243dd305e57ad423b0aa7c6", null ],
     [ "HitDie", "classAnvil_1_1API_1_1NwClass.html#a9c64d62e66ccb2742d275ea6f28e08dc", null ],
-    [ "IconResRef", "classAnvil_1_1API_1_1NwClass.html#ac705522e4f1410ff9f5f43fc5f05bb56", null ],
+    [ "IconResRef", "classAnvil_1_1API_1_1NwClass.html#ac07b918ab2e3ffc9ebbf6016b47b6dff", null ],
     [ "Id", "classAnvil_1_1API_1_1NwClass.html#af75aa5b6ccb42c808a13798812bcc860", null ],
     [ "InvertRestrictions", "classAnvil_1_1API_1_1NwClass.html#a7ea45fe053d94c45f6647fdc3d8674d5", null ],
     [ "IsArcaneCaster", "classAnvil_1_1API_1_1NwClass.html#a9c1d2da37dfd5070b335012d443ea508", null ],
@@ -39,7 +39,7 @@ var classAnvil_1_1API_1_1NwClass =
     [ "NamePlural", "classAnvil_1_1API_1_1NwClass.html#aa5fad9ddbaa298ea8b39ec712b239370", null ],
     [ "NaturalACGainTable", "classAnvil_1_1API_1_1NwClass.html#a732f25b3fc328b6e711e87e35eaead0b", null ],
     [ "PackageIndex", "classAnvil_1_1API_1_1NwClass.html#aa499b319cfeb810d0d657b7036d34ae5", null ],
-    [ "PreReqTable", "classAnvil_1_1API_1_1NwClass.html#ab227a7f8f21e045409de7af1dc0e476b", null ],
+    [ "PreReqTable", "classAnvil_1_1API_1_1NwClass.html#a4ffb9c5fdd9c1b3a3706b8e46672172e", null ],
     [ "PrimaryAbility", "classAnvil_1_1API_1_1NwClass.html#afd344b0f54d3abe71b7ae440ffef1bdf", null ],
     [ "Restrictions", "classAnvil_1_1API_1_1NwClass.html#a66a7c6597f95868f9c0584724d9a10ec", null ],
     [ "RestrictionTypes", "classAnvil_1_1API_1_1NwClass.html#a36ecb8a99c1dbc09f72e6fc65144fb16", null ],
@@ -48,5 +48,5 @@ var classAnvil_1_1API_1_1NwClass =
     [ "SpellCastingAbility", "classAnvil_1_1API_1_1NwClass.html#a6e810ff10d6402b68a201069c97472b0", null ],
     [ "SpellGainTable", "classAnvil_1_1API_1_1NwClass.html#a39699baf3d2ff0f31bc4f9e79bbab204", null ],
     [ "SpellKnownTable", "classAnvil_1_1API_1_1NwClass.html#a6fe701b19ee2c2665e84afb4b2a181c8", null ],
-    [ "SpellTableColumn", "classAnvil_1_1API_1_1NwClass.html#a20f3863d4de1b260eb8683a634015364", null ]
+    [ "SpellTableColumn", "classAnvil_1_1API_1_1NwClass.html#aecfef5750d83ed1afd3adcdbf04ff99d", null ]
 ];
