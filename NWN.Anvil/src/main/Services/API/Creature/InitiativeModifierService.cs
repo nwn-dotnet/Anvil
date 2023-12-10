@@ -78,22 +78,22 @@ namespace Anvil.Services
         int mod = pStats.GetDEXMod(0);
         if (pStats.HasFeat((ushort)Feat.EpicSuperiorInitiative).ToBool())
         {
-          mod += rules.GetRulesetIntEntry("EPIC_SUPERIOR_INITIATIVE_BONUS".ToExoString(), 8);
+          mod += rules.GetRulesetIntEntry(RulesetKeys.EPIC_SUPERIOR_INITIATIVE_BONUS, 8);
         }
 
         else if (pStats.HasFeat((ushort)Feat.ImprovedInitiative).ToBool())
         {
-          mod += rules.GetRulesetIntEntry("IMPROVED_INITIATIVE_BONUS".ToExoString(), 4);
+          mod += rules.GetRulesetIntEntry(RulesetKeys.IMPROVED_INITIATIVE_BONUS, 4);
         }
 
         if (pStats.HasFeat((ushort)Feat.Blooded).ToBool())
         {
-          mod += rules.GetRulesetIntEntry("BLOODED_INITIATIVE_BONUS".ToExoString(), 2);
+          mod += rules.GetRulesetIntEntry(RulesetKeys.BLOODED_INITIATIVE_BONUS, 2);
         }
 
         if (pStats.HasFeat((ushort)Feat.Thug).ToBool())
         {
-          mod += rules.GetRulesetIntEntry("THUG_INITIATIVE_BONUS".ToExoString(), 2);
+          mod += rules.GetRulesetIntEntry(RulesetKeys.THUG_INITIATIVE_BONUS, 2);
         }
 
         // Add creature bonus

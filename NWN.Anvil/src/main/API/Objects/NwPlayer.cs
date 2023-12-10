@@ -165,7 +165,7 @@ namespace Anvil.API
           return;
         }
 
-        if (!playerInfo.SatisfiesBuild(8193, 14))
+        if (!playerInfo.SatisfiesBuild(8193, 14, 0))
         {
           Log.Warn("{PlayerName} cannot toggle DM mode as the player's client does not support PlayerDM functionality", PlayerName);
           return;
@@ -1202,18 +1202,14 @@ namespace Anvil.API
     /// <param name="gameObject">The game object to refresh.</param>
     public unsafe void RefreshClientObject(NwGameObject gameObject)
     {
-      CExoLinkedListInternal lastUpdateObjects = Player.m_pActiveObjectsLastUpdate.m_pcExoLinkedListInternal;
-      for (CExoLinkedListNode node = lastUpdateObjects.pHead; node != null; node = node.pNext)
+      CExoArrayListCLastUpdateObjectPtr lastUpdateObjects = Player.m_lstActiveObjectsLastUpdate;
+      for (int i = lastUpdateObjects.Count - 1; i >= 0; i--)
       {
-        CLastUpdateObject luo = CLastUpdateObject.FromPointer(node.pObject, true);
+        CLastUpdateObject luo = lastUpdateObjects[i];
         if (luo.m_nId == gameObject.ObjectId)
         {
-          lastUpdateObjects.Remove(node);
-          luo.Dispose();
-        }
-        else
-        {
-          GC.SuppressFinalize(luo);
+          lastUpdateObjects.RemoveAt(i);
+          CLastUpdateObject.FromPointer(luo, true).Dispose();
         }
       }
     }

@@ -70,8 +70,8 @@ namespace Anvil.Native
       [NativeFunction("_ZN17CNWSCreatureStats7LevelUpEP13CNWLevelStatshhhi", "?LevelUp@CNWSCreatureStats@@QEAAXPEAVCNWLevelStats@@EEEH@Z")]
       public delegate void LevelUp(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool, int bAddStatsToList);
 
-      [NativeFunction("_ZN17CNWSCreatureStats16LevelUpAutomaticEhih", "?LevelUpAutomatic@CNWSCreatureStats@@QEAAHEHE@Z")]
-      public delegate void LevelUpAutomatic(void* pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage);
+      [NativeFunction("_ZN17CNWSCreatureStats16LevelUpAutomaticEhij", "?LevelUpAutomatic@CNWSCreatureStats@@QEAAHEHI@Z")]
+      public delegate void LevelUpAutomatic(void* pCreatureStats, byte nClass, int bReadyAllSpells, uint nPackage);
 
       [NativeFunction("_ZN17CNWSCreatureStats21SetMemorizedSpellSlotEhhjhhi", "?SetMemorizedSpellSlot@CNWSCreatureStats@@QEAAHEEIEEH@Z")]
       public delegate int SetMemorizedSpellSlot(void* pCreatureStats, byte nMultiClass, byte nSpellSlot,

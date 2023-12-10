@@ -491,7 +491,7 @@ namespace Anvil.Services
 
       if (EnableSlingGoodAimFeat && baseItem == (uint)BaseItem.Sling && stats.m_nRace != (ushort)RacialType.Halfling && stats.HasFeat((ushort)Feat.GoodAim).ToBool())
       {
-        int goodAimModifier = NWNXLib.Rules().GetRulesetIntEntry("GOOD_AIM_MODIFIER".ToExoString(), 1);
+        int goodAimModifier = NWNXLib.Rules().GetRulesetIntEntry(RulesetKeys.GOOD_AIM_MODIFIER, 1);
         attackMod += goodAimModifier;
 
         if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())

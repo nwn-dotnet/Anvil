@@ -15,7 +15,7 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly bool callOriginal;
-    private readonly FunctionHook<Functions.CNWVirtualMachineCommands.ExecuteCommandPrintString>? executeCommandPrintStringHook;
+    private readonly FunctionHook<Functions.CVirtualMachineCmdImplementer.ExecuteCommandPrintString>? executeCommandPrintStringHook;
     private readonly FunctionHook<Functions.CExoDebugInternal.WriteToErrorFile>? writeToErrorFileHook;
 
     private readonly FunctionHook<Functions.CExoDebugInternal.WriteToLogFile>? writeToLogFileHook;
@@ -37,7 +37,7 @@ namespace Anvil.Services
 
       writeToLogFileHook = hookService.RequestHook<Functions.CExoDebugInternal.WriteToLogFile>(OnWriteToLogFile, HookOrder.VeryEarly);
       writeToErrorFileHook = hookService.RequestHook<Functions.CExoDebugInternal.WriteToErrorFile>(OnWriteToErrorFile, HookOrder.VeryEarly);
-      executeCommandPrintStringHook = hookService.RequestHook<Functions.CNWVirtualMachineCommands.ExecuteCommandPrintString>(OnExecuteCommandPrintString, HookOrder.VeryEarly);
+      executeCommandPrintStringHook = hookService.RequestHook<Functions.CVirtualMachineCmdImplementer.ExecuteCommandPrintString>(OnExecuteCommandPrintString, HookOrder.VeryEarly);
     }
 
     public void Dispose()
