@@ -19,6 +19,12 @@ namespace Anvil.Services
     public ServiceContainer CoreServiceContainer { get; }
 
     /// <summary>
+    /// Invoked by the injection service. Implementation for services injected into an object at runtime.
+    /// </summary>
+    /// <param name="instance">The instance to inject.</param>
+    public void InjectProperties(object? instance);
+
+    /// <summary>
     /// Called during NWNX initialization. Core services should be initialized here.
     /// </summary>
     void Init();

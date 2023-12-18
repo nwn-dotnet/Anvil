@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Anvil.API;
+using Anvil.Internal;
 using Anvil.Plugins;
 using LightInject;
 using NLog;
@@ -30,6 +31,7 @@ namespace Anvil.Services
     private PluginManager pluginManager = null!;
 
     private bool shuttingDown;
+    private bool anvilContainerAvailable;
 
     public AnvilServiceManager()
     {
@@ -42,6 +44,18 @@ namespace Anvil.Services
     public ServiceContainer AnvilServiceContainer { get; private set; }
 
     public ServiceContainer CoreServiceContainer { get; }
+
+    public void InjectProperties(object? instance)
+    {
+      if (anvilContainerAvailable)
+      {
+        AnvilServiceContainer.InjectProperties(instance);
+      }
+      else
+      {
+        CoreServiceContainer.InjectProperties(instance);
+      }
+    }
 
     void IServiceManager.Init()
     {
@@ -66,6 +80,7 @@ namespace Anvil.Services
 
       Log.Info("Loading anvil services...");
       InstallAnvilServiceContainer();
+      anvilContainerAvailable = true;
     }
 
     void IServiceManager.Shutdown()
