@@ -61,6 +61,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Reflection.MetadataLoadContext" Version="7.0.0" />
     <PackageReference Include="LightInject" Version="6.6.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.2.5" />
