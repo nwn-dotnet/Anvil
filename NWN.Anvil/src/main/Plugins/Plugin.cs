@@ -47,6 +47,7 @@ namespace Anvil.Plugins
     {
       Path = path;
       Name = AssemblyName.GetAssemblyName(path);
+      PluginInfo = LoadPluginInfo();
     }
 
     public void Load()
@@ -81,6 +82,29 @@ namespace Anvil.Plugins
 
       pluginLoadContext = null;
       return unloadHandle;
+    }
+
+    private PluginInfoAttribute? LoadPluginInfo()
+    {
+      try
+      {
+        List<string> assemblyPaths = new List<string>(Assemblies.RuntimeAssemblies)
+        {
+          Path,
+          Assemblies.Anvil.Location,
+        };
+
+        PathAssemblyResolver resolver = new PathAssemblyResolver(assemblyPaths);
+        using MetadataLoadContext context = new MetadataLoadContext(resolver);
+        Assembly assemblyMeta = context.LoadFromAssemblyPath(Path);
+
+        return assemblyMeta.GetCustomAttributeFromMetadata<PluginInfoAttribute>();
+      }
+      catch (Exception e)
+      {
+        Log.Error(e, $"Loading metadata for plugin '{Name.Name}' failed.");
+        return null;
+      }
     }
 
     private IReadOnlyList<Type> GetPluginTypes()
