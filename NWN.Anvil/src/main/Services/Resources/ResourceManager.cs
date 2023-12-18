@@ -11,9 +11,8 @@ using ResRefType = Anvil.API.ResRefType;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(ResourceManager))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed unsafe class ResourceManager : IDisposable
+  public sealed unsafe class ResourceManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -26,19 +25,8 @@ namespace Anvil.Services
     private static readonly CExoBase ExoBase = NWNXLib.ExoBase();
     private static readonly CExoResMan ResMan = NWNXLib.ExoResMan();
 
-    private readonly CExoString tempAlias;
-
+    private CExoString? tempAlias;
     private uint currentIndex;
-
-    public ResourceManager()
-    {
-      if (Directory.Exists(HomeStorage.ResourceTemp))
-      {
-        Directory.Delete(HomeStorage.ResourceTemp, true);
-      }
-
-      tempAlias = CreateResourceDirectory(HomeStorage.ResourceTemp).ToExoString();
-    }
 
     /// <summary>
     /// Adds the specified folder as a valid resource directory for all ResMan requests.
@@ -68,6 +56,11 @@ namespace Anvil.Services
       currentIndex++;
 
       return alias;
+    }
+
+    internal void RemoveResourceDirectory(string alias)
+    {
+      ResMan.RemoveResourceDirectory(alias.ToExoString());
     }
 
     /// <summary>
@@ -211,14 +204,6 @@ namespace Anvil.Services
       WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(text));
     }
 
-    void IDisposable.Dispose()
-    {
-      if (Directory.Exists(HomeStorage.ResourceTemp))
-      {
-        Directory.Delete(HomeStorage.ResourceTemp, true);
-      }
-    }
-
     private byte[]? GetStandardResourceData(string name, ResRefType type)
     {
       if (TryGetNativeResource(name, type, out CRes? res))
@@ -260,5 +245,23 @@ namespace Anvil.Services
       res = ResMan.GetResObject(resRef, (ushort)type);
       return res != null;
     }
+
+    void ICoreService.Init() {}
+
+    void ICoreService.Load()
+    {
+      if (Directory.Exists(HomeStorage.ResourceTemp))
+      {
+        Directory.Delete(HomeStorage.ResourceTemp, true);
+      }
+
+      tempAlias = CreateResourceDirectory(HomeStorage.ResourceTemp).ToExoString();
+    }
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Unload() {}
   }
 }

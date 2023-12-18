@@ -228,9 +228,20 @@ namespace Anvil.Services
         AnvilServiceContainer.RegisterInstance(coreService.GetType(), coreService);
       }
 
-      foreach (Type type in pluginManager.LoadedTypes)
+      foreach (Type type in Assemblies.AllTypes)
       {
         TryRegisterAnvilService(type);
+      }
+
+      foreach (Plugin plugin in pluginManager.Plugins)
+      {
+        if (plugin.PluginTypes != null)
+        {
+          foreach (Type type in plugin.PluginTypes)
+          {
+            TryRegisterAnvilService(type);
+          }
+        }
       }
     }
 
@@ -246,6 +257,7 @@ namespace Anvil.Services
       RegisterCoreService<VirtualMachine>();
       RegisterCoreService<PluginManager>();
       RegisterCoreService<EncodingService>();
+      RegisterCoreService<ResourceManager>();
     }
 
     private void RegisterCoreService<T>() where T : ICoreService
