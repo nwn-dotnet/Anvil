@@ -8,7 +8,6 @@ namespace Anvil
     {
       public string? AssemblyName;
       public string? AssemblyVersion;
-      public string? ServerVersion;
       public string? CoreVersion;
       public string? NativeVersion;
     }
