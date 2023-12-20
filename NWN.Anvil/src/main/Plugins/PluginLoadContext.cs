@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Loader;
-using Anvil.Internal;
 using Anvil.Services;
 
 namespace Anvil.Plugins
@@ -18,7 +17,7 @@ namespace Anvil.Plugins
     private AssemblyDependencyResolver resolver;
     private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
 
-    public PluginLoadContext(Plugin plugin) : base(EnvironmentConfig.ReloadEnabled)
+    public PluginLoadContext(Plugin plugin, bool isCollectible) : base(isCollectible)
     {
       this.plugin = plugin;
       resolver = new AssemblyDependencyResolver(plugin.Path);

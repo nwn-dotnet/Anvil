@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using LightInject;
 
 namespace Anvil.Services
@@ -11,18 +13,25 @@ namespace Anvil.Services
     /// <summary>
     /// The container holding services for anvil and anvil plugins.
     /// </summary>
-    public ServiceContainer AnvilServiceContainer { get; }
+    ServiceContainer AnvilServiceContainer { get; }
 
     /// <summary>
     /// The container holding internal core services. (logging, function hooking, etc).
     /// </summary>
-    public ServiceContainer CoreServiceContainer { get; }
+    ServiceContainer CoreServiceContainer { get; }
 
     /// <summary>
     /// Invoked by the injection service. Implementation for services injected into an object at runtime.
     /// </summary>
     /// <param name="instance">The instance to inject.</param>
     public void InjectProperties(object? instance);
+
+    /// <summary>
+    /// Invoked by the plugin manager when loading an isolated plugin. Creates a new isolated container for the plugin.
+    /// </summary>
+    /// <param name="pluginTypes">The types to be registered with the container</param>
+    /// <returns>The created container.</returns>
+    IServiceContainer CreateIsolatedPluginContainer(IEnumerable<Type> pluginTypes);
 
     /// <summary>
     /// Called during NWNX initialization. Core services should be initialized here.

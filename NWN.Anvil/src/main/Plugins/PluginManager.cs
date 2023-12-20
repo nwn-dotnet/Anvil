@@ -53,12 +53,32 @@ namespace Anvil.Plugins
       return Plugins.Any(plugin => plugin.Assembly == assembly);
     }
 
+    [Obsolete("Use GetPlugin().IsLoaded instead.")]
     public bool IsPluginLoaded(string pluginName)
     {
-      return Plugins.Any(plugin => plugin.Name.Name == pluginName);
+      return GetPlugin(pluginName)?.IsLoaded == true;
     }
 
-    public Assembly? ResolveDependency(string pluginName, AssemblyName dependencyName)
+    /// <summary>
+    /// Gets the plugin from the specified name.
+    /// </summary>
+    /// <returns>The associated plugin, otherwise null.</returns>
+    public Plugin? GetPlugin(string pluginName)
+    {
+      return Plugins.FirstOrDefault(plugin => plugin.Name.Name == pluginName);
+    }
+
+    /// <summary>
+    /// Locates the plugin associated with the specified assembly.
+    /// </summary>
+    /// <param name="assembly">The assembly to search.</param>
+    /// <returns>The associated plugin, otherwise null.</returns>
+    public Plugin? GetPlugin(Assembly assembly)
+    {
+      return Plugins.FirstOrDefault(plugin => plugin.Assembly == assembly);
+    }
+
+    internal Assembly? ResolveDependency(string pluginName, AssemblyName dependencyName)
     {
       Assembly? assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
       if (assembly == null)
@@ -74,12 +94,15 @@ namespace Anvil.Plugins
     void ICoreService.Load()
     {
       BootstrapPlugins();
-      LoadPlugins();
+      LoadPlugins(false);
     }
 
     void ICoreService.Shutdown() {}
 
-    void ICoreService.Start() {}
+    void ICoreService.Start()
+    {
+      LoadPlugins(true);
+    }
 
     void ICoreService.Unload()
     {
@@ -178,24 +201,27 @@ namespace Anvil.Plugins
 
     private void LoadPlugin(Plugin plugin)
     {
-      Log.Info($"Loading DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+      string isolated = plugin.PluginInfo.Isolated ? " isolated " : " ";
+
+      Log.Info($"Loading{isolated}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+
       plugin.Load();
 
       if (plugin.Assembly != null)
       {
-        Log.Info($"Loaded DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+        Log.Info($"Loaded{isolated}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
       }
       else
       {
-        Log.Error($"Failed to load DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+        Log.Error($"Failed to load{isolated}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
       }
     }
 
-    private void LoadPlugins()
+    private void LoadPlugins(bool isolated)
     {
       foreach (Plugin plugin in Plugins)
       {
-        if (plugin.IsLoaded)
+        if (plugin.IsLoaded || plugin.PluginInfo.Isolated != isolated)
         {
           continue;
         }

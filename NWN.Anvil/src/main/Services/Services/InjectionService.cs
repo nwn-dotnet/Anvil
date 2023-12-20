@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Reflection;
 using Anvil.Internal;
 using Anvil.Plugins;
+using NLog;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
+  [ServiceBindingOptions(InternalBindingPriority.Highest)]
   public sealed class InjectionService : ICoreService
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
 
     [Inject]
@@ -25,7 +28,16 @@ namespace Anvil.Services
     /// <returns>The instance with injected dependencies.</returns>
     public T Inject<T>(T instance)
     {
-      ServiceManager.InjectProperties(instance);
+      Plugin? plugin = PluginManager.Value.GetPlugin(typeof(T).Assembly);
+      if (plugin?.Container != null)
+      {
+        plugin.Container.InjectProperties(instance);
+      }
+      else
+      {
+        ServiceManager.InjectProperties(instance);
+      }
+
       return instance;
     }
 

@@ -6,11 +6,15 @@ using System.Reflection;
 using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
+using LightInject;
 using NLog;
 
 namespace Anvil.Plugins
 {
-  internal sealed class Plugin
+  /// <summary>
+  /// Represents an anvil plugin. Plugins are loaded during startup, or on-demand if configured with an isolated context.
+  /// </summary>
+  public sealed class Plugin
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -20,6 +24,9 @@ namespace Anvil.Plugins
     [Inject]
     private InjectionService InjectionService { get; init; } = null!;
 
+    [Inject]
+    private IServiceManager ServiceManager { get; init; } = null!;
+
     private string? resourcePathAlias;
     private PluginLoadContext? pluginLoadContext;
 
@@ -27,7 +34,7 @@ namespace Anvil.Plugins
 
     public string Path { get; }
 
-    public PluginInfoAttribute? PluginInfo { get; }
+    public PluginInfoAttribute PluginInfo { get; }
 
     public string? ResourcePath { get; init; }
 
@@ -39,27 +46,30 @@ namespace Anvil.Plugins
 
     public bool IsLoaded => Assembly != null;
 
+    internal IServiceContainer? Container { get; private set; }
+
     internal Dictionary<string, string>? AdditionalAssemblyPaths { get; init; }
 
     internal Dictionary<string, string>? UnmanagedAssemblyPaths { get; init; }
 
-    public Plugin(string path)
+    internal Plugin(string path)
     {
       Path = path;
       Name = AssemblyName.GetAssemblyName(path);
-      PluginInfo = LoadPluginInfo();
+      PluginInfo = LoadPluginInfo() ?? new PluginInfoAttribute();
     }
 
-    public void Load()
+    internal void Load()
     {
-      pluginLoadContext = InjectionService.Inject(new PluginLoadContext(this));
+      pluginLoadContext = InjectionService.Inject(new PluginLoadContext(this, PluginInfo.Isolated || EnvironmentConfig.ReloadEnabled));
       Loading = true;
 
       try
       {
         Assembly = pluginLoadContext.LoadFromAssemblyName(Name);
         PluginTypes = GetPluginTypes();
-        AddResourceDirectory();
+        SetupResourceDirectory();
+        SetupIsolatedContainer();
       }
       finally
       {
@@ -67,9 +77,10 @@ namespace Anvil.Plugins
       }
     }
 
-    public WeakReference Unload()
+    internal WeakReference Unload()
     {
       RemoveResourceDirectory();
+      RemoveIsolatedContainer();
 
       Assembly = null;
       PluginTypes = null;
@@ -116,7 +127,7 @@ namespace Anvil.Plugins
       }
       catch (ReflectionTypeLoadException e)
       {
-        if (PluginInfo?.OptionalDependencies == null)
+        if (PluginInfo.OptionalDependencies == null)
         {
           throw;
         }
@@ -141,7 +152,7 @@ namespace Anvil.Plugins
       return assemblyTypes;
     }
 
-    private void AddResourceDirectory()
+    private void SetupResourceDirectory()
     {
       if (!Directory.Exists(ResourcePath))
       {
@@ -151,6 +162,14 @@ namespace Anvil.Plugins
       resourcePathAlias = ResourceManager.CreateResourceDirectory(ResourcePath);
     }
 
+    private void SetupIsolatedContainer()
+    {
+      if (PluginInfo.Isolated)
+      {
+        Container = ServiceManager.CreateIsolatedPluginContainer(PluginTypes!);
+      }
+    }
+
     private void RemoveResourceDirectory()
     {
       if (resourcePathAlias != null)
@@ -158,6 +177,12 @@ namespace Anvil.Plugins
         ResourceManager.RemoveResourceDirectory(resourcePathAlias);
         resourcePathAlias = null;
       }
+    }
+
+    private void RemoveIsolatedContainer()
+    {
+      Container?.Dispose();
+      Container = null;
     }
   }
 }
