@@ -26,6 +26,11 @@ namespace Anvil.Internal
       ValidateUnset("PLUGIN_PATH");
     }
 
+    public static bool GetIsPluginDisabled(string pluginName)
+    {
+      return GetAnvilVariableBool($"{pluginName.ToUpper()}_SKIP");
+    }
+
     private static bool GetAnvilVariableBool(string key, bool defaultValue = false)
     {
       string value = GetAnvilVariableString(key, defaultValue.ToString());

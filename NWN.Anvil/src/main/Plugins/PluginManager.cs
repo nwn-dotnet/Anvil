@@ -226,6 +226,12 @@ namespace Anvil.Plugins
           continue;
         }
 
+        if (EnvironmentConfig.GetIsPluginDisabled(plugin.Name.Name!))
+        {
+          Log.Info($"Skipping loading DotNET plugin due to configuration: {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+          continue;
+        }
+
         LoadPlugin(plugin);
       }
     }
