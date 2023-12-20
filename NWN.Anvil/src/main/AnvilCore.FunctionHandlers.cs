@@ -131,32 +131,5 @@ namespace Anvil
         $"{message}{nativeStackTrace}\n" +
         $"{stackTrace}");
     }
-
-    [UnmanagedCallersOnly]
-    private static void OnServerCrash(int signal, IntPtr nativeStackTracePtr)
-    {
-      string stackTrace = nativeStackTracePtr.ReadNullTerminatedString();
-      string managedTrace = new StackTrace(true).ToString();
-
-      string error = signal switch
-      {
-        4 => "Illegal instruction",
-        6 => "Program aborted",
-        8 => "Floating point exception",
-        11 => "Segmentation fault",
-        _ => "Unknown error",
-      };
-
-      string message = "\n==============================================================\n" +
-        " Please file a bug at https://github.com/nwn-dotnet/Anvil/issues\n" +
-        $" {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} has crashed. Fatal error: {error} ({signal})\n" +
-        $" Using: NWN {runtimeInfo.ServerVersion}, NWN.Core {runtimeInfo.CoreVersion}, NWN.Native {runtimeInfo.NativeVersion}\n" +
-        "==============================================================\n" +
-        "  Managed Backtrace:\n" +
-        $"{managedTrace}" +
-        $"{stackTrace}";
-
-      Console.WriteLine(message);
-    }
   }
 }

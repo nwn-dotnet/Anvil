@@ -61,7 +61,6 @@ namespace Anvil
         Closure = &OnClosure,
         MainLoop = &OnLoop,
         AssertFail = &OnAssertFail,
-        CrashHandler = &OnServerCrash,
       };
 
       return NWNCore.Init(arg, argLength, instance, eventHandles);
@@ -121,8 +120,6 @@ namespace Anvil
         Log.Fatal(e, $"Failed to load {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
         throw;
       }
-
-      runtimeInfo.ServerVersion = NwServer.Instance.ServerVersion.ToString();
 
       Log.Info($"Loading {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
       CheckServerVersion();
