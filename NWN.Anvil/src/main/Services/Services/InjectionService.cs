@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using Anvil.Internal;
 using Anvil.Plugins;
-using NLog;
 
 namespace Anvil.Services
 {
   [ServiceBindingOptions(InternalBindingPriority.Highest)]
   public sealed class InjectionService : ICoreService
   {
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
 
     [Inject]
