@@ -855,7 +855,23 @@ namespace Anvil.Services
         // Keep track of our ability values
         if (nLevel % 4 == 0)
         {
-          nAbilityAtLevel[pLevelStats.m_nAbilityGain]++;
+          if (pLevelStats.m_nAbilityGain < nAbilityAtLevel.Length && pLevelStats.m_nAbilityGain >= 0)
+          {
+            nAbilityAtLevel[pLevelStats.m_nAbilityGain]++;
+          }
+          else
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Player = nwPlayer,
+              Type = ValidationFailureType.Character,
+              SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+              StrRef = StrRefCharacterInvalidAbilityScores,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
         }
 
         // Get the stat bonus from feats
