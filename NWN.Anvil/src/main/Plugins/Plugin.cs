@@ -30,20 +30,44 @@ namespace Anvil.Plugins
     private string? resourcePathAlias;
     private PluginLoadContext? pluginLoadContext;
 
+    /// <summary>
+    /// Gets the name/id of this plugin.
+    /// </summary>
     public AssemblyName Name { get; }
 
+    /// <summary>
+    /// Gets the full path of the plugin assembly.
+    /// </summary>
     public string Path { get; }
 
+    /// <summary>
+    /// Gets additional metadata information about this plugin.
+    /// </summary>
     public PluginInfoAttribute PluginInfo { get; }
 
+    /// <summary>
+    /// Gets the path in the plugin containing additional game resources.
+    /// </summary>
     public string? ResourcePath { get; init; }
 
+    /// <summary>
+    /// If the plugin is loaded (<see cref="IsLoaded"/>), returns the loaded assembly.
+    /// </summary>
     public Assembly? Assembly { get; private set; }
 
+    /// <summary>
+    /// If the plugin is loaded (<see cref="IsLoaded"/>), returns a list containing all recognised types in the plugin assembly.
+    /// </summary>
     public IReadOnlyList<Type>? PluginTypes { get; private set; }
 
+    /// <summary>
+    /// Gets if the plugin is currently loading.
+    /// </summary>
     public bool Loading { get; private set; }
 
+    /// <summary>
+    /// Gets if this plugin has been loaded by anvil and is currently active.
+    /// </summary>
     public bool IsLoaded => Assembly != null;
 
     internal IServiceContainer? Container { get; private set; }
