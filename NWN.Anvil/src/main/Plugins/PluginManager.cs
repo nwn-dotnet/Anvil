@@ -33,6 +33,7 @@ namespace Anvil.Plugins
     /// <param name="pluginAssembly">The assembly of the plugin, e.g. typeof(MyService).Assembly</param>
     /// <returns>The install directory for the specified plugin.</returns>
     /// <exception cref="ArgumentException">Thrown if the specified assembly is not a plugin.</exception>
+    [Obsolete("Use GetPlugin().Path instead.")]
     public string? GetPluginDirectory(Assembly pluginAssembly)
     {
       if (IsPluginAssembly(pluginAssembly))
@@ -78,6 +79,90 @@ namespace Anvil.Plugins
       return Plugins.FirstOrDefault(plugin => plugin.Assembly == assembly);
     }
 
+    /// <summary>
+    /// Loads an isolated anvil plugin from the specified plugin folder at runtime.
+    /// </summary>
+    /// <param name="pluginRoot">The root folder containing the plugin assembly, and other resources.</param>
+    /// <returns>The loaded plugin.</returns>
+    /// <exception cref="ArgumentException">Thrown if the plugin folder/assembly is missing, or otherwise cannot be loaded.</exception>
+    /// <exception cref="InvalidOperationException">Thrown if the plugin is already loaded, or if the specified plugin is not configured as an isolated plugin.</exception>
+    public Plugin LoadPlugin(string pluginRoot)
+    {
+      string pluginName = new DirectoryInfo(pluginRoot).Name;
+      if (Assemblies.IsReservedName(pluginName))
+      {
+        throw new ArgumentException($"Cannot load plugin '{pluginName}' as it is a reserved name.", nameof(pluginRoot));
+      }
+
+      string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
+      if (!File.Exists(pluginPath))
+      {
+        throw new ArgumentException($"Cannot find plugin assembly at path '{pluginPath}'", nameof(pluginRoot));
+      }
+
+      Plugin? plugin = GetPlugin(pluginName);
+      if (plugin == null)
+      {
+        plugin = InjectionService.Inject(new Plugin(pluginPath)
+        {
+          ResourcePath = Path.Combine(pluginRoot, Path.Combine(pluginRoot, "resources")),
+        });
+
+        Plugins.Add(plugin);
+      }
+      else
+      {
+        if (plugin.Path != pluginPath)
+        {
+          throw new ArgumentException($"Found conflicting plugin with same name in path '{plugin.Path}'.", nameof(pluginRoot));
+        }
+
+        if (plugin.IsLoaded)
+        {
+          throw new InvalidOperationException($"Plugin {pluginName} is already loaded.");
+        }
+      }
+
+      if (!plugin.PluginInfo.Isolated)
+      {
+        throw new InvalidOperationException($"Non-isolated plugin {pluginName} may not be loaded at runtime.");
+      }
+
+      LoadPluginInternal(plugin);
+      return plugin;
+    }
+
+    /// <summary>
+    /// Unloads an isolated anvil plugin at runtime.
+    /// </summary>
+    /// <param name="plugin">The plugin to unload - see <see cref="GetPlugin(string)"/>.</param>
+    /// <param name="waitForUnload">If true, the server will block the current main thread until the plugin has been unloaded.</param>
+    /// <returns>A weak reference to the unloading plugin assembly. Query the <see cref="WeakReference.IsAlive"/> property to confirm the plugin has unloaded.</returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    public WeakReference UnloadPlugin(Plugin plugin, bool waitForUnload = true)
+    {
+      if (!plugin.IsLoaded)
+      {
+        throw new InvalidOperationException($"Plugin {plugin.Name} is not loaded.");
+      }
+
+      if (!plugin.PluginInfo.Isolated)
+      {
+        throw new InvalidOperationException($"Non-isolated plugin {plugin.Name} may not be unloaded at runtime.");
+      }
+
+      WeakReference pluginRef = UnloadPluginInternal(plugin);
+      if (waitForUnload)
+      {
+        WaitForPendingUnloads(new Dictionary<WeakReference, string>
+        {
+          [pluginRef] = plugin.Name.Name!,
+        });
+      }
+
+      return pluginRef;
+    }
+
     internal Assembly? ResolveDependency(string pluginName, AssemblyName dependencyName)
     {
       Assembly? assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
@@ -107,11 +192,11 @@ namespace Anvil.Plugins
     void ICoreService.Unload()
     {
       Log.Info("Unloading plugins...");
+
       Dictionary<WeakReference, string> pendingUnloads = new Dictionary<WeakReference, string>();
       foreach (Plugin plugin in Plugins)
       {
-        Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-        pendingUnloads.Add(plugin.Unload(), plugin.Name.Name!);
+        pendingUnloads.Add(UnloadPluginInternal(plugin), plugin.Name.Name!);
       }
 
       Plugins.Clear();
@@ -119,16 +204,7 @@ namespace Anvil.Plugins
 
       if (EnvironmentConfig.ReloadEnabled)
       {
-        for (int unloadAttempt = 1; !IsUnloadComplete(pendingUnloads, unloadAttempt); unloadAttempt++)
-        {
-          GC.Collect();
-          GC.WaitForPendingFinalizers();
-
-          if (unloadAttempt > PluginUnloadAttempts)
-          {
-            Thread.Sleep(PluginUnloadSleepMs);
-          }
-        }
+        WaitForPendingUnloads(pendingUnloads);
       }
     }
 
@@ -170,7 +246,7 @@ namespace Anvil.Plugins
         {
           if (attempt > PluginUnloadAttempts)
           {
-            Log.Warn("Plugin {PluginName} is preventing unload", pluginName);
+            Log.Warn($"Plugin '{pluginName}' is preventing unload, attempt {attempt}");
           }
 
           retVal = false;
@@ -199,22 +275,28 @@ namespace Anvil.Plugins
       return true;
     }
 
-    private void LoadPlugin(Plugin plugin)
+    private void LoadPluginInternal(Plugin plugin)
     {
-      string isolated = plugin.PluginInfo.Isolated ? " isolated " : " ";
+      string isolatedString = plugin.PluginInfo.Isolated ? " isolated " : " ";
 
-      Log.Info($"Loading{isolated}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+      Log.Info($"Loading{isolatedString}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
 
       plugin.Load();
 
       if (plugin.Assembly != null)
       {
-        Log.Info($"Loaded{isolated}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+        Log.Info($"Loaded{isolatedString}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
       }
       else
       {
-        Log.Error($"Failed to load{isolated}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
+        Log.Error($"Failed to load{isolatedString}DotNET plugin {plugin.Name.Name} {plugin.Name.Version} - {plugin.Path}");
       }
+    }
+
+    private WeakReference UnloadPluginInternal(Plugin plugin)
+    {
+      Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
+      return plugin.Unload();
     }
 
     private void LoadPlugins(bool isolated)
@@ -232,7 +314,7 @@ namespace Anvil.Plugins
           continue;
         }
 
-        LoadPlugin(plugin);
+        LoadPluginInternal(plugin);
       }
     }
 
@@ -266,13 +348,27 @@ namespace Anvil.Plugins
 
         if (!plugin.IsLoaded)
         {
-          LoadPlugin(plugin);
+          LoadPluginInternal(plugin);
         }
 
         return plugin.Assembly;
       }
 
       return null;
+    }
+
+    private void WaitForPendingUnloads(Dictionary<WeakReference, string> pendingUnloads)
+    {
+      for (int unloadAttempt = 1; !IsUnloadComplete(pendingUnloads, unloadAttempt); unloadAttempt++)
+      {
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
+        if (unloadAttempt > PluginUnloadAttempts)
+        {
+          Thread.Sleep(PluginUnloadSleepMs);
+        }
+      }
     }
   }
 }
