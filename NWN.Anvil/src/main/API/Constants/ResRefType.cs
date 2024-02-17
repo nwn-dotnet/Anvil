@@ -1,3 +1,5 @@
+// ReSharper disable InconsistentNaming
+
 namespace Anvil.API
 {
   public enum ResRefType
