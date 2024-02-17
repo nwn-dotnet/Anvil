@@ -1,6 +1,7 @@
 var classAnvil_1_1API_1_1NwSpell =
 [
     [ "FromSpellId", "classAnvil_1_1API_1_1NwSpell.html#a8a695e11f3b0d6cb0b6316ffed2508bc", null ],
+    [ "FromSpellId", "classAnvil_1_1API_1_1NwSpell.html#a1e179a42844f3ac8158f0e35dff4e29c", null ],
     [ "FromSpellType", "classAnvil_1_1API_1_1NwSpell.html#a3a0b097fcc772dc41ad60a8d9d814ac4", null ],
     [ "GetConjureSound", "classAnvil_1_1API_1_1NwSpell.html#a8abebc46e1ce055ffd853e4b1517c02a", null ],
     [ "GetSpellLevelForClass", "classAnvil_1_1API_1_1NwSpell.html#a1a3c2091e1563c49fb5b230c207481de", null ],

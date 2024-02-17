@@ -1,7 +1,7 @@
 var classAnvil_1_1API_1_1NwGameObject =
 [
-    [ "ActionCastSpellAt", "classAnvil_1_1API_1_1NwGameObject.html#abc478994a082486081964a2a83facf70", null ],
-    [ "ActionCastSpellAt", "classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037", null ],
+    [ "ActionCastSpellAt", "classAnvil_1_1API_1_1NwGameObject.html#a8fc489ed52411eb320e392d403f110a5", null ],
+    [ "ActionCastSpellAt", "classAnvil_1_1API_1_1NwGameObject.html#af10f6793ea96d90161c527b0139f3bde", null ],
     [ "ActionJumpToLocation", "classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3", null ],
     [ "ActionWait", "classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638", null ],
     [ "AddToArea", "classAnvil_1_1API_1_1NwGameObject.html#a6bbd1c4042addbe9cc62610c84b834fc", null ],
@@ -46,6 +46,7 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "ActiveEffects", "classAnvil_1_1API_1_1NwGameObject.html#a4c6e7244d5d4998baa85da93e94593f1", null ],
     [ "AnimationState", "classAnvil_1_1API_1_1NwGameObject.html#aceb342be2f4131f00ad7826e01461a4a", null ],
     [ "Area", "classAnvil_1_1API_1_1NwGameObject.html#ab3bc831372671eb57d54f93e922437ef", null ],
+    [ "CasterLevel", "classAnvil_1_1API_1_1NwGameObject.html#a3b966e9583aa5549f2433d4d271905b3", null ],
     [ "GameObject", "classAnvil_1_1API_1_1NwGameObject.html#ab3713a8b74d575c5d0a7ed4f8a029c2d", null ],
     [ "HighlightColor", "classAnvil_1_1API_1_1NwGameObject.html#a0b80ffa72cb2f757f20af71e2def03ab", null ],
     [ "HP", "classAnvil_1_1API_1_1NwGameObject.html#a17365e46cca5b03c807ad48e7c1975da", null ],

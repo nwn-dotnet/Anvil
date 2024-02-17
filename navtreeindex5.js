@@ -1,5 +1,11 @@
 var NAVTREEINDEX5 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html":[0,0,0,0,110,0],
+"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html#a1aa0f1b3352a10409fa573ff848b2508":[0,0,0,0,110,0,0],
+"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html#ac8c5e01b0509b2ef7ecc7de757a4ee5f":[0,0,0,0,110,0,1],
+"classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html":[0,0,0,0,111],
+"classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a10b398f9341dc28a295044282f78e39b":[0,0,0,0,111,1],
+"classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a22bf988ff7e18dcce1e3b688648ac893":[0,0,0,0,111,3],
 "classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a246dfcd45a19ad3bd307e88af0197bd3":[0,0,0,0,111,2],
 "classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a3ffa5936a87c7f32585a7ad1b467d690":[0,0,0,0,111,5],
 "classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a596836c45008870bdf0312cc9daa8fa6":[0,0,0,0,111,4],
@@ -243,11 +249,5 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisarm.html#aba2cd574e1f8885e34c0436ba78b457a":[0,0,0,0,131,4,1],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html":[0,0,0,0,131,5],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a0f78bab1ace4465f287557e083f889cc":[0,0,0,0,131,5,4],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a3e4740c89d45b26f004c508d501fbbba":[0,0,0,0,131,5,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a470c624baac7f6b627a935ec36801007":[0,0,0,0,131,5,2],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a6bb687d1673a63ee1ee026d45458f743":[0,0,0,0,131,5,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#aefa1c204622291362a4fe69c6ba98266":[0,0,0,0,131,5,3],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html":[0,0,0,0,131,6],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html#a01af057ee169298ca63df2e0ac57328b":[0,0,0,0,131,6,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html#af3e24df0a85b671502b7b472cf719e1b":[0,0,0,0,131,6,0]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a3e4740c89d45b26f004c508d501fbbba":[0,0,0,0,131,5,0]
 };

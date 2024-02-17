@@ -35,5 +35,6 @@ var classAnvil_1_1API_1_1NwGameTables =
     [ "PortraitTable", "classAnvil_1_1API_1_1NwGameTables.html#a728fd745b919541ebe13cd3ec2501e1d", null ],
     [ "ProgrammedEffectTable", "classAnvil_1_1API_1_1NwGameTables.html#a20d5ca0168bf2721e2a7c205f974495f", null ],
     [ "SkillItemCostTable", "classAnvil_1_1API_1_1NwGameTables.html#a44bac158efd757662ac02135202e4e32", null ],
+    [ "SurfaceMaterialTable", "classAnvil_1_1API_1_1NwGameTables.html#aaea84cbe91eac81b6b82857594e884da", null ],
     [ "VisualEffectTable", "classAnvil_1_1API_1_1NwGameTables.html#a0cddc7d4a66b9f6d0d11c888547900f7", null ]
 ];

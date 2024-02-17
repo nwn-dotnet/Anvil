@@ -171,18 +171,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyEnvironmentPrese
 <tr class="memdesc:a60756d5c6729d6d678d755ca1a8b560f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies all clients in this area to recalculate grass.<br  />
  This can be used to update the grass of an area after changing a tile with SetTile() that will have or used to have grass.  <a href="classAnvil_1_1API_1_1NwArea.html#a60756d5c6729d6d678d755ca1a8b560f">More...</a><br /></td></tr>
 <tr class="separator:a60756d5c6729d6d678d755ca1a8b560f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd3e1f62692ded8181131a46d9aab32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a7dd3e1f62692ded8181131a46d9aab32">RemoveAreaGrassOverride</a> (<a class="el" href="classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html">SurfaceMaterialTableEntry</a> material)</td></tr>
+<tr class="memdesc:a7dd3e1f62692ded8181131a46d9aab32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a grass override from this area that was set with <a class="el" href="classAnvil_1_1API_1_1NwArea.html#a0c22282a0d4b1e3df78fb88b26f03066" title="Sets a grass override for a specific material in this area.">SetAreaGrassOverride</a>.  <a href="classAnvil_1_1API_1_1NwArea.html#a7dd3e1f62692ded8181131a46d9aab32">More...</a><br /></td></tr>
+<tr class="separator:a7dd3e1f62692ded8181131a46d9aab32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b64aafb1685e654b06246db7617c9f2"><td class="memItemLeft" align="right" valign="top"><a id="a7b64aafb1685e654b06246db7617c9f2"></a>
 unsafe? byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>SerializeARE</b> (string? areaName=null, string? resRef=null)</td></tr>
 <tr class="separator:a7b64aafb1685e654b06246db7617c9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66baf55fd450a94677df1958d0650e7"><td class="memItemLeft" align="right" valign="top"><a id="ae66baf55fd450a94677df1958d0650e7"></a>
 byte?[]&#160;</td><td class="memItemRight" valign="bottom"><b>SerializeGIT</b> (ObjectTypes objectFilter=ObjectTypes.All, ICollection&lt; <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt;? exclusionList=null, bool exportVarTable=true, bool exportUUID=true, string? resRef=null)</td></tr>
 <tr class="separator:ae66baf55fd450a94677df1958d0650e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26da8422707444a88fc90359bae7bb15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a26da8422707444a88fc90359bae7bb15">SetAreaDefaultGrassDisabled</a> (bool disabled)</td></tr>
+<tr class="memdesc:a26da8422707444a88fc90359bae7bb15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set if the default grass of this area should be disabled.  <a href="classAnvil_1_1API_1_1NwArea.html#a26da8422707444a88fc90359bae7bb15">More...</a><br /></td></tr>
+<tr class="separator:a26da8422707444a88fc90359bae7bb15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c22282a0d4b1e3df78fb88b26f03066"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a0c22282a0d4b1e3df78fb88b26f03066">SetAreaGrassOverride</a> (<a class="el" href="classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html">SurfaceMaterialTableEntry</a> material, string texture, float density, float height, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> ambientColor, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> diffuseColor)</td></tr>
+<tr class="memdesc:a0c22282a0d4b1e3df78fb88b26f03066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a grass override for a specific material in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a0c22282a0d4b1e3df78fb88b26f03066">More...</a><br /></td></tr>
+<tr class="separator:a0c22282a0d4b1e3df78fb88b26f03066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9652a78df5a212b3eff1c9703d31a7b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a9652a78df5a212b3eff1c9703d31a7b5">SetAreaLightColor</a> (AreaLightColor colorType, int color, TimeSpan fadeTime=default)</td></tr>
 <tr class="memdesc:a9652a78df5a212b3eff1c9703d31a7b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a light color in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a9652a78df5a212b3eff1c9703d31a7b5">More...</a><br /></td></tr>
 <tr class="separator:a9652a78df5a212b3eff1c9703d31a7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1963c3b390a0278b5810386ab7fdf246"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a1963c3b390a0278b5810386ab7fdf246">SetAreaLightDirection</a> (AreaLightDirection lightType, Vector3 direction, TimeSpan fadeTime=default)</td></tr>
 <tr class="memdesc:a1963c3b390a0278b5810386ab7fdf246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the light direction for the specified light type.  <a href="classAnvil_1_1API_1_1NwArea.html#a1963c3b390a0278b5810386ab7fdf246">More...</a><br /></td></tr>
 <tr class="separator:a1963c3b390a0278b5810386ab7fdf246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad58ed006dcbab51e64a925b131f73add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ad58ed006dcbab51e64a925b131f73add">SetAreaTileBorderDisabled</a> (bool disabled)</td></tr>
+<tr class="memdesc:ad58ed006dcbab51e64a925b131f73add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true to disable the inaccessible tile border in this area. Requires clients to reload the area to take effect.  <a href="classAnvil_1_1API_1_1NwArea.html#ad58ed006dcbab51e64a925b131f73add">More...</a><br /></td></tr>
+<tr class="separator:ad58ed006dcbab51e64a925b131f73add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab72581a8e70a1493969dd80e69e7fd56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ab72581a8e70a1493969dd80e69e7fd56">SetAreaWind</a> (Vector3 direction, float magnitude, float yaw, float pitch)</td></tr>
 <tr class="memdesc:ab72581a8e70a1493969dd80e69e7fd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the detailed wind data for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#ab72581a8e70a1493969dd80e69e7fd56">More...</a><br /></td></tr>
 <tr class="separator:ab72581a8e70a1493969dd80e69e7fd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1087,6 +1099,147 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 
 </div>
 </div>
+<a id="a7dd3e1f62692ded8181131a46d9aab32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dd3e1f62692ded8181131a46d9aab32">&#9670;&nbsp;</a></span>RemoveAreaGrassOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.RemoveAreaGrassOverride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html">SurfaceMaterialTableEntry</a>&#160;</td>
+          <td class="paramname"><em>material</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove a grass override from this area that was set with <a class="el" href="classAnvil_1_1API_1_1NwArea.html#a0c22282a0d4b1e3df78fb88b26f03066" title="Sets a grass override for a specific material in this area.">SetAreaGrassOverride</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">material</td><td>The modified material to reset.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26da8422707444a88fc90359bae7bb15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26da8422707444a88fc90359bae7bb15">&#9670;&nbsp;</a></span>SetAreaDefaultGrassDisabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetAreaDefaultGrassDisabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>disabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set if the default grass of this area should be disabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">disabled</td><td>The new disabled state.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0c22282a0d4b1e3df78fb88b26f03066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c22282a0d4b1e3df78fb88b26f03066">&#9670;&nbsp;</a></span>SetAreaGrassOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetAreaGrassOverride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html">SurfaceMaterialTableEntry</a>&#160;</td>
+          <td class="paramname"><em>material</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td>
+          <td class="paramname"><em>ambientColor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td>
+          <td class="paramname"><em>diffuseColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a grass override for a specific material in this area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">material</td><td>The material to override.</td></tr>
+    <tr><td class="paramname">texture</td><td>The replacement grass texture</td></tr>
+    <tr><td class="paramname">density</td><td>The density of the grass.</td></tr>
+    <tr><td class="paramname">height</td><td>The height of the grass.</td></tr>
+    <tr><td class="paramname">ambientColor</td><td>The ambient color of the grass. Alpha channel is ignored.</td></tr>
+    <tr><td class="paramname">diffuseColor</td><td>The diffuse color of the grass. Alpha channel is ignored.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a9652a78df5a212b3eff1c9703d31a7b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9652a78df5a212b3eff1c9703d31a7b5">&#9670;&nbsp;</a></span>SetAreaLightColor()</h2>
 
@@ -1189,6 +1342,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Vector3 representing the light direction.</dd></dl>
+
+</div>
+</div>
+<a id="ad58ed006dcbab51e64a925b131f73add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad58ed006dcbab51e64a925b131f73add">&#9670;&nbsp;</a></span>SetAreaTileBorderDisabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetAreaTileBorderDisabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>disabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set to true to disable the inaccessible tile border in this area. Requires clients to reload the area to take effect. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">disabled</td><td>True to disable tile borders, false to enable.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

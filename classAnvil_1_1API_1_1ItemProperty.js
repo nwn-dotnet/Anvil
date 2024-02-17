@@ -57,6 +57,7 @@ var classAnvil_1_1API_1_1ItemProperty =
     [ "Light", "classAnvil_1_1API_1_1ItemProperty.html#aa6c70a2429591d2e900f34b96c67d9b7", null ],
     [ "LimitUseByAlign", "classAnvil_1_1API_1_1ItemProperty.html#a2e8ddc09507c121b06e6e9a1e7067fa6", null ],
     [ "LimitUseByClass", "classAnvil_1_1API_1_1ItemProperty.html#a9ada172118fbe4a82ac7d3e122ba5421", null ],
+    [ "LimitUseByClass", "classAnvil_1_1API_1_1ItemProperty.html#a124c207e94785089788395da2c75f2a1", null ],
     [ "LimitUseByRace", "classAnvil_1_1API_1_1ItemProperty.html#ae34bb027c84f3b42ff0c0b3e46174963", null ],
     [ "LimitUseByRace", "classAnvil_1_1API_1_1ItemProperty.html#afb074cfd3c6e411dec05563e3d993dbb", null ],
     [ "LimitUseBySAlign", "classAnvil_1_1API_1_1ItemProperty.html#a1a7a14e6ea3fcaab3b6967bbe1775336", null ],

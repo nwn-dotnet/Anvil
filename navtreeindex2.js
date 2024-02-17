@@ -1,5 +1,11 @@
 var NAVTREEINDEX2 =
 {
+"classAnvil_1_1API_1_1Events_1_1DMEvent.html#a5561c4f7dd6009bedd1b0b1326199c83":[0,0,0,0,6,0],
+"classAnvil_1_1API_1_1Events_1_1DMEvent.html#ae63f073963efadad798c8fad952f2ce5":[0,0,0,0,6,1],
+"classAnvil_1_1API_1_1Events_1_1DMEvent.html#af2fb59abf567581fa31d26ff99a79ccc":[0,0,0,0,6,2],
+"classAnvil_1_1API_1_1Events_1_1DMEventFactory.html":[0,0,0,0,7],
+"classAnvil_1_1API_1_1Events_1_1DMEventFactory.html#a127c9e447560ba4acca723547ae0358a":[0,0,0,0,7,1],
+"classAnvil_1_1API_1_1Events_1_1DMEventFactory.html#aea8b2fa0bf0894e36f5c70d8a0070dc0":[0,0,0,0,7,0],
 "classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html":[0,0,0,0,8],
 "classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html#a8654d049c21b4a5ec8037629131e4298":[0,0,0,0,8,0],
 "classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html#abaa1e4801dc692ce20d49b6a9ed2c5a4":[0,0,0,0,8,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#a4267310c608e2298590c79d0fabd64f3":[0,0,0,0,20,17,3],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#ac73fdadc436349a38fbe5d663823603d":[0,0,0,0,20,17,2],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#ad777514ac295337ff0b04e63977b2138":[0,0,0,0,20,17,1],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html":[0,0,0,0,20,18],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a0b12de98d4dc665d8337e2e5766d4865":[0,0,0,0,20,18,1],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a302c9000c0676235d9ec47a6136cb925":[0,0,0,0,20,18,3],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a89f371d27f8ccac14e853d257de33f00":[0,0,0,0,20,18,2],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#ad68cc1e71dfff55022149117138e3b6c":[0,0,0,0,20,18,0],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html":[0,0,0,0,20,19],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html#a1977d9df3c33018a7f466601ce255ab9":[0,0,0,0,20,19,1]
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html":[0,0,0,0,20,18]
 };

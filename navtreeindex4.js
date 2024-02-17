@@ -1,5 +1,11 @@
 var NAVTREEINDEX4 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#ab2d22d38a94131d64ed111999e100df0":[0,0,0,0,42,1],
+"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate_1_1Factory.html":[0,0,0,0,42,0],
+"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate_1_1Factory.html#a00c57eee1e726cf2703f9b25696ff7e5":[0,0,0,0,42,0,1],
+"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate_1_1Factory.html#aecc20ab6d6cccfbcef79303737506a3b":[0,0,0,0,42,0,0],
+"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html":[0,0,0,0,43],
+"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a0d3e486b2df0b1b142c22b65dfe488b6":[0,0,0,0,43,4],
 "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a29469c2ea749caa90dbcb12b8ae20007":[0,0,0,0,43,2],
 "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a5e087078408beb6a0f1b2eb1ce26a9f0":[0,0,0,0,43,6],
 "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a7cde30ee11af2010088b26beef8e714b":[0,0,0,0,43,5],
@@ -243,11 +249,5 @@ var NAVTREEINDEX4 =
 "classAnvil_1_1API_1_1Events_1_1OnLevelUp_1_1Factory.html#af96af334c0f4b71406b0af3795a970af":[0,0,0,0,108,0,0],
 "classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish.html":[0,0,0,0,110],
 "classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish.html#a199b8e4210987ece669eadf3c01b64a4":[0,0,0,0,110,2],
-"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish.html#a833e7ed5694f614a56711afab41b7b36":[0,0,0,0,110,1],
-"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html":[0,0,0,0,110,0],
-"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html#a1aa0f1b3352a10409fa573ff848b2508":[0,0,0,0,110,0,0],
-"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html#ac8c5e01b0509b2ef7ecc7de757a4ee5f":[0,0,0,0,110,0,1],
-"classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html":[0,0,0,0,111],
-"classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a10b398f9341dc28a295044282f78e39b":[0,0,0,0,111,1],
-"classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html#a22bf988ff7e18dcce1e3b688648ac893":[0,0,0,0,111,3]
+"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish.html#a833e7ed5694f614a56711afab41b7b36":[0,0,0,0,110,1]
 };

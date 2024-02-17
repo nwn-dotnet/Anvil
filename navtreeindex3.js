@@ -1,5 +1,11 @@
 var NAVTREEINDEX3 =
 {
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a0b12de98d4dc665d8337e2e5766d4865":[0,0,0,0,20,18,1],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a302c9000c0676235d9ec47a6136cb925":[0,0,0,0,20,18,3],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a89f371d27f8ccac14e853d257de33f00":[0,0,0,0,20,18,2],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#ad68cc1e71dfff55022149117138e3b6c":[0,0,0,0,20,18,0],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html":[0,0,0,0,20,19],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html#a1977d9df3c33018a7f466601ce255ab9":[0,0,0,0,20,19,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html#a48b35bc012b06911eb9e6e032acedcfd":[0,0,0,0,20,19,2],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html#af25015fd60900d8cc283f14d1e7c62d7":[0,0,0,0,20,19,3],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html#afead3f39199d5e23135d8968cfd5dee2":[0,0,0,0,20,19,0],
@@ -243,11 +249,5 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html":[0,0,0,0,42],
 "classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#a3dc25d82d700c9939ac85b4e2657eb69":[0,0,0,0,42,4],
 "classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#a5c954dca553503b1fea4f19735e0a038":[0,0,0,0,42,2],
-"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#a5c9e37f082edcd435f6fc8bc5af5ce30":[0,0,0,0,42,3],
-"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#ab2d22d38a94131d64ed111999e100df0":[0,0,0,0,42,1],
-"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate_1_1Factory.html":[0,0,0,0,42,0],
-"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate_1_1Factory.html#a00c57eee1e726cf2703f9b25696ff7e5":[0,0,0,0,42,0,1],
-"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate_1_1Factory.html#aecc20ab6d6cccfbcef79303737506a3b":[0,0,0,0,42,0,0],
-"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html":[0,0,0,0,43],
-"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a0d3e486b2df0b1b142c22b65dfe488b6":[0,0,0,0,43,4]
+"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#a5c9e37f082edcd435f6fc8bc5af5ce30":[0,0,0,0,42,3]
 };

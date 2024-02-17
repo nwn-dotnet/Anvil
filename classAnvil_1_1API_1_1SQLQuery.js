@@ -8,6 +8,7 @@ var classAnvil_1_1API_1_1SQLQuery =
     [ "Execute", "classAnvil_1_1API_1_1SQLQuery.html#a86f0e6a340152c41a3f1c7fe8cb5c55e", null ],
     [ "operator SQLQuery", "classAnvil_1_1API_1_1SQLQuery.html#af8aa8acf9893a9ff635fb95f096c87ea", null ],
     [ "Reset", "classAnvil_1_1API_1_1SQLQuery.html#a4d491745fe37e40f98ca8f346f4b70b5", null ],
+    [ "Columns", "classAnvil_1_1API_1_1SQLQuery.html#a889a1a2e23a8f031a4f0b0cb5884c092", null ],
     [ "Error", "classAnvil_1_1API_1_1SQLQuery.html#a9fccb548543692ce25fab0aa0b60ad8d", null ],
     [ "Result", "classAnvil_1_1API_1_1SQLQuery.html#aa4a94a6572ad02620d82ae3d4ebad006", null ],
     [ "Results", "classAnvil_1_1API_1_1SQLQuery.html#a5ca58c65256ada2ed86156f23d278a99", null ],

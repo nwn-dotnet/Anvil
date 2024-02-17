@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ondevastatingcriticalhit_4365',['OnDevastatingCriticalHit',['../classAnvil_1_1Services_1_1WeaponService.html#ad967a77434b23bad0028a3d020ab6f06',1,'Anvil::Services::WeaponService']]]
+  ['ondevastatingcriticalhit_4407',['OnDevastatingCriticalHit',['../classAnvil_1_1Services_1_1WeaponService.html#ad967a77434b23bad0028a3d020ab6f06',1,'Anvil::Services::WeaponService']]]
 ];

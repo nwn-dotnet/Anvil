@@ -202,12 +202,12 @@ override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (
 <tr class="memitem:a9b3588d97d548134eca7b3894f7b724e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e">FadeToBlack</a> (float fadeSpeed)</td></tr>
 <tr class="memdesc:a9b3588d97d548134eca7b3894f7b724e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fades the screen for a given player from a regular screen to black.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e">More...</a><br /></td></tr>
 <tr class="separator:a9b3588d97d548134eca7b3894f7b724e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab82d6bc19467d7a9ec2ec7ede60fdcd6">FloatingTextString</a> (string message, bool broadcastToParty=true)</td></tr>
-<tr class="memdesc:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab82d6bc19467d7a9ec2ec7ede60fdcd6">More...</a><br /></td></tr>
-<tr class="separator:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb2026176f2a997894f47bc06dbee509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">FloatingTextStrRef</a> (int strRef, bool broadcastToParty=true)</td></tr>
-<tr class="memdesc:abb2026176f2a997894f47bc06dbee509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head using the specified string reference.  <a href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">More...</a><br /></td></tr>
-<tr class="separator:abb2026176f2a997894f47bc06dbee509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96362ad48d6da10e1001c22421de3826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a96362ad48d6da10e1001c22421de3826">FloatingTextString</a> (string message, bool broadcastToParty=true, bool chatWindow=true)</td></tr>
+<tr class="memdesc:a96362ad48d6da10e1001c22421de3826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a96362ad48d6da10e1001c22421de3826">More...</a><br /></td></tr>
+<tr class="separator:a96362ad48d6da10e1001c22421de3826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae105947d5af80a18df2cf75366d27ba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae105947d5af80a18df2cf75366d27ba8">FloatingTextStrRef</a> (int strRef, bool broadcastToParty=true, bool chatWindow=true)</td></tr>
+<tr class="memdesc:ae105947d5af80a18df2cf75366d27ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head using the specified string reference.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae105947d5af80a18df2cf75366d27ba8">More...</a><br /></td></tr>
+<tr class="separator:ae105947d5af80a18df2cf75366d27ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7253885384aba0c0cf603e9a0dba8808"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7253885384aba0c0cf603e9a0dba8808">ForceAreaReload</a> ()</td></tr>
 <tr class="memdesc:a7253885384aba0c0cf603e9a0dba8808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this player to reload their current area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a7253885384aba0c0cf603e9a0dba8808">More...</a><br /></td></tr>
 <tr class="separator:a7253885384aba0c0cf603e9a0dba8808"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,6 +308,9 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 <tr class="memdesc:ab8768c15e87726f16ba4022f3f86b14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the camera mode and facing to what they where when StoreCameraFacing was last called.<br  />
  RestoreCameraFacing can only be used once, and must correspond to a previous call to StoreCameraFacing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab8768c15e87726f16ba4022f3f86b14c">More...</a><br /></td></tr>
 <tr class="separator:ab8768c15e87726f16ba4022f3f86b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3493d33b33206e4e004fa16feff0c130"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3493d33b33206e4e004fa16feff0c130">SeekAudioStream</a> (AudioStreamIdentifier streamIdentifier, float seekOffset)</td></tr>
+<tr class="memdesc:a3493d33b33206e4e004fa16feff0c130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeks the audio stream with the specified identifier to a new position on the currently playing audio track.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3493d33b33206e4e004fa16feff0c130">More...</a><br /></td></tr>
+<tr class="separator:a3493d33b33206e4e004fa16feff0c130"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab18c8c362954967f16cde2fd6063cce1"><td class="memItemLeft" align="right" valign="top"><a id="ab18c8c362954967f16cde2fd6063cce1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab18c8c362954967f16cde2fd6063cce1">SendServerMessage</a> (string message)</td></tr>
 <tr class="separator:ab18c8c362954967f16cde2fd6063cce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -326,6 +329,12 @@ byte?[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (boo
 <tr class="memitem:aa705667979e0e117305226a3b7a55798"><td class="memItemLeft" align="right" valign="top">unsafe void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa705667979e0e117305226a3b7a55798">SetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area, byte[] newState)</td></tr>
 <tr class="memdesc:aa705667979e0e117305226a3b7a55798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this player's area exploration state for the specified area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aa705667979e0e117305226a3b7a55798">More...</a><br /></td></tr>
 <tr class="separator:aa705667979e0e117305226a3b7a55798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a487db3b739bf2b6d3fc34552bde1eab7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a487db3b739bf2b6d3fc34552bde1eab7">SetAudioStreamPaused</a> (AudioStreamIdentifier streamIdentifier, bool paused, TimeSpan fadeTime=default)</td></tr>
+<tr class="memdesc:a487db3b739bf2b6d3fc34552bde1eab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses/Unpauses the audio stream on the specified identifier.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a487db3b739bf2b6d3fc34552bde1eab7">More...</a><br /></td></tr>
+<tr class="separator:a487db3b739bf2b6d3fc34552bde1eab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a391d4eb81b1f2472e0674c2e1ec3cabb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a391d4eb81b1f2472e0674c2e1ec3cabb">SetAudioStreamVolume</a> (AudioStreamIdentifier streamIdentifier, float volume=1.0f, TimeSpan fadeTime=default)</td></tr>
+<tr class="memdesc:a391d4eb81b1f2472e0674c2e1ec3cabb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the volume of the audio stream with the specified identifier.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a391d4eb81b1f2472e0674c2e1ec3cabb">More...</a><br /></td></tr>
+<tr class="separator:a391d4eb81b1f2472e0674c2e1ec3cabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">SetCameraFacing</a> (float direction, float pitch=-1.0f, float distance=-1.0f, CameraTransitionType transitionType=CameraTransitionType.Snap)</td></tr>
 <tr class="memdesc:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the direction the player's camera is facing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">More...</a><br /></td></tr>
 <tr class="separator:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -384,6 +393,13 @@ byte?[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (boo
 <tr class="memitem:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">ShowVisualEffect</a> (VfxType effectType, Vector3 position)</td></tr>
 <tr class="memdesc:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified VFX at the target position in the current area for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">More...</a><br /></td></tr>
 <tr class="separator:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6a5c09b91d16d42760dba79c757d16c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#af6a5c09b91d16d42760dba79c757d16c">StartAudioStream</a> (AudioStreamIdentifier streamIdentifier, string resRef, bool looping=false, TimeSpan fadeTime=default, float seekOffset=-1f, float volume=1f)</td></tr>
+<tr class="memdesc:af6a5c09b91d16d42760dba79c757d16c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign one of the available audio streams to play a specific file. This mechanism can be used<br  />
+ to replace regular music playback, and synchronize it between clients.  <a href="classAnvil_1_1API_1_1NwPlayer.html#af6a5c09b91d16d42760dba79c757d16c">More...</a><br /></td></tr>
+<tr class="separator:af6a5c09b91d16d42760dba79c757d16c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabce82cfc62566511dd2f0be26b562fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aabce82cfc62566511dd2f0be26b562fc">StopAudioStream</a> (AudioStreamIdentifier streamIdentifier, TimeSpan fadeTime=default)</td></tr>
+<tr class="memdesc:aabce82cfc62566511dd2f0be26b562fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the audio stream playing on the specified identifier.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aabce82cfc62566511dd2f0be26b562fc">More...</a><br /></td></tr>
+<tr class="separator:aabce82cfc62566511dd2f0be26b562fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afef613e21654d7bd4a06c340ec5904c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7">StopFade</a> ()</td></tr>
 <tr class="memdesc:afef613e21654d7bd4a06c340ec5904c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes any current fading effects or black screen from the monitor of the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7">More...</a><br /></td></tr>
 <tr class="separator:afef613e21654d7bd4a06c340ec5904c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1636,8 +1652,8 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
-<a id="ab82d6bc19467d7a9ec2ec7ede60fdcd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab82d6bc19467d7a9ec2ec7ede60fdcd6">&#9670;&nbsp;</a></span>FloatingTextString()</h2>
+<a id="a96362ad48d6da10e1001c22421de3826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96362ad48d6da10e1001c22421de3826">&#9670;&nbsp;</a></span>FloatingTextString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1655,7 +1671,13 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>broadcastToParty</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>broadcastToParty</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>chatWindow</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1675,14 +1697,15 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
   <table class="params">
     <tr><td class="paramname">message</td><td>The message to display.</td></tr>
     <tr><td class="paramname">broadcastToParty</td><td>If true, shows the floating message to all players in the same party.</td></tr>
+    <tr><td class="paramname">chatWindow</td><td>If true, the floating text will be shown in the player's chat window.</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="abb2026176f2a997894f47bc06dbee509"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb2026176f2a997894f47bc06dbee509">&#9670;&nbsp;</a></span>FloatingTextStrRef()</h2>
+<a id="ae105947d5af80a18df2cf75366d27ba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae105947d5af80a18df2cf75366d27ba8">&#9670;&nbsp;</a></span>FloatingTextStrRef()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1700,7 +1723,13 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>broadcastToParty</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>broadcastToParty</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>chatWindow</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1720,6 +1749,7 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
   <table class="params">
     <tr><td class="paramname">strRef</td><td>The string ref index to use.</td></tr>
     <tr><td class="paramname">broadcastToParty</td><td>If true, shows the floating message to all players in the same party.</td></tr>
+    <tr><td class="paramname">chatWindow</td><td>If true, the floating text will be shown in the player's chat window.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2771,6 +2801,51 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="a3493d33b33206e4e004fa16feff0c130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3493d33b33206e4e004fa16feff0c130">&#9670;&nbsp;</a></span>SeekAudioStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SeekAudioStream </td>
+          <td>(</td>
+          <td class="paramtype">AudioStreamIdentifier&#160;</td>
+          <td class="paramname"><em>streamIdentifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>seekOffset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Seeks the audio stream with the specified identifier to a new position on the currently playing audio track. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamIdentifier</td><td>The stream identifier to update.</td></tr>
+    <tr><td class="paramname">seekOffset</td><td>The new position on the audio track</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae14cb89e1a327b83e2bce6c964718096"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae14cb89e1a327b83e2bce6c964718096">&#9670;&nbsp;</a></span>SendServerMessage()</h2>
 
@@ -2959,6 +3034,110 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
   <table class="params">
     <tr><td class="paramname">area</td><td>The area to modify.</td></tr>
     <tr><td class="paramname">newState</td><td>A byte array representing the tiles explored for the area, as returned by <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aca633db2fb50960b3b4a0b0a9743cb10" title="Gets this player&#39;s area exploration state for the specified area.">GetAreaExplorationState</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a487db3b739bf2b6d3fc34552bde1eab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a487db3b739bf2b6d3fc34552bde1eab7">&#9670;&nbsp;</a></span>SetAudioStreamPaused()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetAudioStreamPaused </td>
+          <td>(</td>
+          <td class="paramtype">AudioStreamIdentifier&#160;</td>
+          <td class="paramname"><em>streamIdentifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>paused</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pauses/Unpauses the audio stream on the specified identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamIdentifier</td><td>The stream identifier to pause/unpause.</td></tr>
+    <tr><td class="paramname">paused</td><td>The new pause state.</td></tr>
+    <tr><td class="paramname">fadeTime</td><td>The time to fade out/fade in before pausing/unpausing the stream.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a391d4eb81b1f2472e0674c2e1ec3cabb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a391d4eb81b1f2472e0674c2e1ec3cabb">&#9670;&nbsp;</a></span>SetAudioStreamVolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetAudioStreamVolume </td>
+          <td>(</td>
+          <td class="paramtype">AudioStreamIdentifier&#160;</td>
+          <td class="paramname"><em>streamIdentifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>volume</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Changes the volume of the audio stream with the specified identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamIdentifier</td><td>The stream identifier to receive the new volume level.</td></tr>
+    <tr><td class="paramname">volume</td><td>The new volume level (0.0-1.0)</td></tr>
+    <tr><td class="paramname">fadeTime</td><td>The time to fade in to the new volume level.</td></tr>
   </table>
   </dd>
 </dl>
@@ -3656,6 +3835,125 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
   <table class="params">
     <tr><td class="paramname">effectType</td><td>The effect to play.</td></tr>
     <tr><td class="paramname">position</td><td>Where to play the effect.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6a5c09b91d16d42760dba79c757d16c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6a5c09b91d16d42760dba79c757d16c">&#9670;&nbsp;</a></span>StartAudioStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.StartAudioStream </td>
+          <td>(</td>
+          <td class="paramtype">AudioStreamIdentifier&#160;</td>
+          <td class="paramname"><em>streamIdentifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>resRef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>looping</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>seekOffset</em> = <code>-1f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>volume</em> = <code>1f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assign one of the available audio streams to play a specific file. This mechanism can be used<br  />
+ to replace regular music playback, and synchronize it between clients. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamIdentifier</td><td>The audio stream/channel to use for playing audio.</td></tr>
+    <tr><td class="paramname">resRef</td><td>The audio resref to play.</td></tr>
+    <tr><td class="paramname">looping</td><td>If the audio should loop.</td></tr>
+    <tr><td class="paramname">fadeTime</td><td>An optional fade in time for the audio.</td></tr>
+    <tr><td class="paramname">seekOffset</td><td>The offset to seek in the audio track. If this is greater than the length of the track, it will loop back to the start.</td></tr>
+    <tr><td class="paramname">volume</td><td>The volume to set on the audio stream.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aabce82cfc62566511dd2f0be26b562fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabce82cfc62566511dd2f0be26b562fc">&#9670;&nbsp;</a></span>StopAudioStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.StopAudioStream </td>
+          <td>(</td>
+          <td class="paramtype">AudioStreamIdentifier&#160;</td>
+          <td class="paramname"><em>streamIdentifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stops the audio stream playing on the specified identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">streamIdentifier</td><td>The stream identifier to stop.</td></tr>
+    <tr><td class="paramname">fadeTime</td><td>The fade out time.</td></tr>
   </table>
   </dd>
 </dl>
