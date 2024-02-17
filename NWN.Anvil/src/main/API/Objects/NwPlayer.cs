@@ -816,9 +816,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="message">The message to display.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
-    public void FloatingTextString(string message, bool broadcastToParty = true)
+    /// <param name="chatWindow">If true, the floating text will be shown in the player's chat window.</param>
+    public void FloatingTextString(string message, bool broadcastToParty = true, bool chatWindow = true)
     {
-      NWScript.FloatingTextStringOnCreature(message, ControlledCreature, broadcastToParty.ToInt());
+      NWScript.FloatingTextStringOnCreature(message, ControlledCreature, broadcastToParty.ToInt(), chatWindow.ToInt());
     }
 
     /// <summary>
@@ -826,9 +827,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="strRef">The string ref index to use.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
-    public void FloatingTextStrRef(int strRef, bool broadcastToParty = true)
+    /// <param name="chatWindow">If true, the floating text will be shown in the player's chat window.</param>
+    public void FloatingTextStrRef(int strRef, bool broadcastToParty = true, bool chatWindow = true)
     {
-      NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
+      NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt(), chatWindow.ToInt());
     }
 
     /// <summary>
@@ -1528,6 +1530,63 @@ namespace Anvil.API
 
       ObjectVisualTransformData visualTransformData = new ObjectVisualTransformData();
       message.SendServerToPlayerArea_VisualEffect(Player, (ushort)effectType, position.ToNativeVector(), visualTransformData);
+    }
+
+    /// <summary>
+    /// Assign one of the available audio streams to play a specific file. This mechanism can be used<br/>
+    /// to replace regular music playback, and synchronize it between clients.
+    /// </summary>
+    /// <param name="streamIdentifier">The audio stream/channel to use for playing audio.</param>
+    /// <param name="resRef">The audio resref to play.</param>
+    /// <param name="looping">If the audio should loop.</param>
+    /// <param name="fadeTime">An optional fade in time for the audio.</param>
+    /// <param name="seekOffset">The offset to seek in the audio track. If this is greater than the length of the track, it will loop back to the start.</param>
+    /// <param name="volume">The volume to set on the audio stream.</param>
+    public void StartAudioStream(AudioStreamIdentifier streamIdentifier, string resRef, bool looping = false, TimeSpan fadeTime = default, float seekOffset = -1f, float volume = 1f)
+    {
+      NWScript.StartAudioStream(ControlledCreature, (int)streamIdentifier, resRef, looping.ToInt(), (float)fadeTime.TotalSeconds, seekOffset, volume);
+    }
+
+    /// <summary>
+    /// Stops the audio stream playing on the specified identifier.
+    /// </summary>
+    /// <param name="streamIdentifier">The stream identifier to stop.</param>
+    /// <param name="fadeTime">The fade out time.</param>
+    public void StopAudioStream(AudioStreamIdentifier streamIdentifier, TimeSpan fadeTime = default)
+    {
+      NWScript.StopAudioStream(ControlledCreature, (int)streamIdentifier, (float)fadeTime.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Pauses/Unpauses the audio stream on the specified identifier.
+    /// </summary>
+    /// <param name="streamIdentifier">The stream identifier to pause/unpause.</param>
+    /// <param name="paused">The new pause state.</param>
+    /// <param name="fadeTime">The time to fade out/fade in before pausing/unpausing the stream.</param>
+    public void SetAudioStreamPaused(AudioStreamIdentifier streamIdentifier, bool paused, TimeSpan fadeTime = default)
+    {
+      NWScript.SetAudioStreamPaused(ControlledCreature, (int)streamIdentifier, paused.ToInt(), (float)fadeTime.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Changes the volume of the audio stream with the specified identifier.
+    /// </summary>
+    /// <param name="streamIdentifier">The stream identifier to receive the new volume level.</param>
+    /// <param name="volume">The new volume level (0.0-1.0)</param>
+    /// <param name="fadeTime">The time to fade in to the new volume level.</param>
+    public void SetAudioStreamVolume(AudioStreamIdentifier streamIdentifier, float volume = 1.0f, TimeSpan fadeTime = default)
+    {
+      NWScript.SetAudioStreamVolume(ControlledCreature, (int)streamIdentifier, volume, (float)fadeTime.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Seeks the audio stream with the specified identifier to a new position on the currently playing audio track.
+    /// </summary>
+    /// <param name="streamIdentifier">The stream identifier to update.</param>
+    /// <param name="seekOffset">The new position on the audio track</param>
+    public void SeekAudioStream(AudioStreamIdentifier streamIdentifier, float seekOffset)
+    {
+      NWScript.SeekAudioStream(ControlledCreature, (int)streamIdentifier, seekOffset);
     }
 
     /// <summary>

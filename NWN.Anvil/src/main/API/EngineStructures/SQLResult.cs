@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using NWN.Core;
 
@@ -26,6 +27,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the float result for the specified column.
+    /// </summary>
+    /// <param name="columnName">The name of the column to fetch the result.</param>
+    /// <returns>The float result. Returns 0.0f on an error.</returns>
+    public float GetFloat(string columnName)
+    {
+      return NWScript.SqlGetFloat(query, Array.IndexOf(query.Columns, columnName));
+    }
+
+    /// <summary>
     /// Gets the int result for the specified column.
     /// </summary>
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
@@ -33,6 +44,16 @@ namespace Anvil.API
     public int GetInt(int columnIndex)
     {
       return NWScript.SqlGetInt(query, columnIndex);
+    }
+
+    /// <summary>
+    /// Gets the int result for the specified column.
+    /// </summary>
+    /// <param name="columnName">The name of the column to fetch the result.</param>
+    /// <returns>The int result. Returns 0.0f on an error.</returns>
+    public float GetInt(string columnName)
+    {
+      return NWScript.SqlGetInt(query, Array.IndexOf(query.Columns, columnName));
     }
 
     /// <summary>
@@ -48,6 +69,18 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the serialized object result for the specified column, and spawns the object at the specified location and inventory.
+    /// </summary>
+    /// <param name="columnName">The name of the column to fetch the result.</param>
+    /// <param name="spawnLocation">The location to spawn the object.</param>
+    /// <param name="targetInventory">(Items only) The target inventory for the item.</param>
+    /// <returns>The deserialized object. Returns null on an error.</returns>
+    public T? GetObject<T>(string columnName, Location spawnLocation, NwGameObject? targetInventory = null) where T : NwObject
+    {
+      return NWScript.SqlGetObject(query, Array.IndexOf(query.Columns, columnName), spawnLocation, targetInventory).ToNwObject<T>();
+    }
+
+    /// <summary>
     /// Gets the string result for the specified column.
     /// </summary>
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
@@ -58,6 +91,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the string result for the specified column.
+    /// </summary>
+    /// <param name="columnName">The name of the column to fetch the result.</param>
+    /// <returns>The string result. Returns "" on an error.</returns>
+    public string GetString(string columnName)
+    {
+      return NWScript.SqlGetString(query, Array.IndexOf(query.Columns, columnName));
+    }
+
+    /// <summary>
     /// Gets the <see cref="Vector3"/> result for the specified column.
     /// </summary>
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
@@ -65,6 +108,16 @@ namespace Anvil.API
     public Vector3 GetVector3(int columnIndex)
     {
       return NWScript.SqlGetVector(query, columnIndex);
+    }
+
+    /// <summary>
+    /// Gets the <see cref="Vector3"/> result for the specified column.
+    /// </summary>
+    /// <param name="columnName">The name of the column to fetch the result.</param>
+    /// <returns>The <see cref="Vector3"/> result. Returns <see cref="Vector3.Zero"/> on an error.</returns>
+    public Vector3 GetVector3(string columnName)
+    {
+      return NWScript.SqlGetVector(query, Array.IndexOf(query.Columns, columnName));
     }
   }
 }
