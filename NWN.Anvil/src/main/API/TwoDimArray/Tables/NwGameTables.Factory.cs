@@ -148,6 +148,7 @@ namespace Anvil.API
         DamageLevelTable = GetTable<DamageLevelEntry>("damagelevels.2da")!; // arrays.m_pDamageLevelTable does not exist in nwserver.
         ExpTable = GetTable<ExpTableEntry>("exptable.2da")!;
         SkillItemCostTable = GetTable<SkillItemCostTableEntry>(arrays.GetSkillVsItemCostTable());
+        SurfaceMaterialTable = GetTable<SurfaceMaterialTableEntry>(arrays.GetSurfaceMaterialTable())!;
       }
 
       private void OnReloadAll(void* pRules)
