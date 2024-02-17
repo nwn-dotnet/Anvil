@@ -2,7 +2,7 @@
 
 namespace Anvil.API
 {
-  internal static class RulesetKeys
+  public static class RulesetKeys
   {
     public static readonly CRulesKeyHash CALLED_SHOT_TO_HIT_MODIFIER = new CRulesKeyHash("CALLED_SHOT_TO_HIT_MODIFIER");
     public static readonly CRulesKeyHash CALLED_SHOT_EFFECT_DURATION = new CRulesKeyHash("CALLED_SHOT_EFFECT_DURATION");
