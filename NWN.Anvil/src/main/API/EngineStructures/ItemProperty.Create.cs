@@ -289,9 +289,15 @@ namespace Anvil.API
       return NWScript.ItemPropertyLimitUseByAlign((int)alignmentGroup)!;
     }
 
+    [Obsolete("Use the NwClass/IPClass overload instead.")]
     public static ItemProperty LimitUseByClass(IPClass classType)
     {
       return NWScript.ItemPropertyLimitUseByClass((int)classType)!;
+    }
+
+    public static ItemProperty LimitUseByClass(NwClass classType)
+    {
+      return NWScript.ItemPropertyLimitUseByClass(classType.Id)!;
     }
 
     [Obsolete("Use the NwRace/RacialType overload instead.")]
