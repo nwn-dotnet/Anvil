@@ -31,7 +31,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the type of this effect.
     /// </summary>
-    public EffectType EffectType => (EffectType)NWScript.GetEffectType(this);
+    public EffectType EffectType => (EffectType)NWScript.GetEffectType(this, true.ToInt());
 
     /// <summary>
     /// Gets or sets the subtype of this effect.

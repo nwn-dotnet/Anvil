@@ -64,6 +64,23 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Gets the name of the columns declared as a part of this query.
+    /// </summary>
+    public string[] Columns
+    {
+      get
+      {
+        string[] columns = new string[NWScript.SqlGetColumnCount(this)];
+        for (int i = 0; i < columns.Length; i++)
+        {
+          columns[i] = NWScript.SqlGetColumnName(this, i);
+        }
+
+        return columns;
+      }
+    }
+
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_SQLQUERY;
 
     public static implicit operator SQLQuery(IntPtr intPtr)

@@ -561,11 +561,6 @@ namespace Anvil.API
     public SpecialAttack LastSpecialAttackType => (SpecialAttack)NWScript.GetLastAttackType(this);
 
     /// <summary>
-    /// Gets the caster level of the last spell this creature casted.
-    /// </summary>
-    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
-
-    /// <summary>
     /// Gets the last trap detected by this creature.
     /// </summary>
     public NwTrappable? LastTrapDetected => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
@@ -784,6 +779,20 @@ namespace Anvil.API
     {
       get => Creature.m_nSoundSet;
       set => Creature.m_nSoundSet = value;
+    }
+
+    /// <summary>
+    /// Gets a list of spell abilities usable by this creature.
+    /// </summary>
+    public IEnumerable<CreatureSpellAbility> SpellAbilities
+    {
+      get
+      {
+        for (int i = 0; i < NWScript.GetSpellAbilityCount(this); i++)
+        {
+          yield return new CreatureSpellAbility(this, i);
+        }
+      }
     }
 
     /// <summary>
