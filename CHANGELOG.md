@@ -3,6 +3,62 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.36.1
+https://github.com/nwn-dotnet/Anvil/compare/v8193.35.3...v8193.36.1
+
+### Added
+- EffectType: Added new 8193.36 constants
+- GuiEventType: Added new 8193.36 constants
+- PlayerDeviceProperty: Added new 8193.36 constants
+- ResRefType: Added new 8193.36 constants and missing constants for 8193.35
+- Effect: Added `EnemyAttackBonus` method.
+- SQLQuery: Added `Columns` property.
+- SQLResult: Added overloads with column name parameters.
+- OnPlayerGuiEvent: Added missing documentation for `EventObject` event types.
+- NwArea: Added `SetAreaTileBorderDisabled` method.
+- NwArea: Added `SetAreaGrassOverride` method.
+- NwArea: Added `RemoveAreaGrassOverride` method.
+- NwArea: Added `SetAreaDefaultGrassDisabled` method.
+- NwGameObject: Added `CasterLevel` property. This replaces `LastSpellCasterLevel` from NwCreature.
+- NwCreature: Added `SpellAbilities` property for managing creature spell-like abilities.
+- NwPlayer: Added `StartAudioStream` method.
+- NwPlayer: Added `StopAudioStream` method.
+- NwPlayer: Added `SetAudioStreamPaused` method.
+- NwPlayer: Added `SetAudioStreamVolume` method.
+- NwPlayer: Added `SeekAudioStream` method.
+- CRulesKeyHash: New structure to support working with the new hash-based ruleset key labels.
+- RulesetKeys: New constants class with hashed keys for all known ruleset definitions.
+- NwGameTables: Added `SurfaceMaterialTable`.
+
+### Package Updates
+- NWNX: 51162c5 -> 9865013
+- NWN.Core: 8193.35.21 -> 8193.36.1
+- NWN.Native: 8193.35.9 -> 8193.36.2
+- NLog: 5.2.5 -> 5.2.8
+
+### Changed
+- Effect: `DamageReduction` now supports an optional `rangedOnly` parameter.
+- Effect: `DamageResistance` now supports an optional `rangedOnly` parameter.
+- Effect: `EffectType` will return the new types introduced in 8193.36.
+- NwDoor: `Clone` now uses the shared `CloneInternal` behaviour.
+- NwEncounter: `Clone` is now supported.
+- NwGameObject: `ActionCastSpellAt` now supports optional `spellClass` and `spontaneousCast` parameters.
+- NwPlayer: `FloatingTextString` now supports an optional `chatWindow` parameter.
+- NwPlayer: `FloatingTextStrRef` now supports an optional `chatWindow` parameter.
+- CampaignVariableObject: Tightened generic constraint to only allow `NwGameObject` instead of `NwObject` to match base game behaviour.
+
+### Deprecated
+- ItemProperty: `LimitUseByClass(IPClass)` - Use the `LimitUseByClass(NwClass)` overload instead.
+
+### Fixed
+- Fixed `Possessor` not correctly returning bags/containers.
+
+## 8193.35.3
+https://github.com/nwn-dotnet/Anvil/compare/v8193.35.2...v8193.35.3
+
+### Removed
+- Removed custom crash handler due to preventing dotnet from collecting a crash dump.
+
 ## 8193.35.2
 https://github.com/nwn-dotnet/Anvil/compare/v8193.35.1...v8193.35.2
 

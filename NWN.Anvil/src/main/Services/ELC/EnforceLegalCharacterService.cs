@@ -84,12 +84,12 @@ namespace Anvil.Services
       skills = CNWSkillArray.FromPointer(pRules.m_lstSkills);
       feats = CNWFeatArray.FromPointer(pRules.m_lstFeats);
 
-      epicGreatStatBonus = pRules.GetRulesetIntEntry("CRULES_EPIC_GREAT_STAT_BONUS".ToExoString(), 1);
-      charGenBaseAbilityMin = pRules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MIN".ToExoString(), 8);
-      charGenBaseAbilityMax = pRules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MAX".ToExoString(), 18);
-      abilityCostIncrement2 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT2".ToExoString(), 14);
-      abilityCostIncrement3 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
-      skillMaxLevel1Bonus = pRules.GetRulesetIntEntry("CHARGEN_SKILL_MAX_LEVEL_1_BONUS".ToExoString(), 3);
+      epicGreatStatBonus = pRules.GetRulesetIntEntry(RulesetKeys.EPIC_GREAT_STAT_BONUS, 1);
+      charGenBaseAbilityMin = pRules.GetRulesetIntEntry(RulesetKeys.CHARGEN_BASE_ABILITY_MIN, 8);
+      charGenBaseAbilityMax = pRules.GetRulesetIntEntry(RulesetKeys.CHARGEN_BASE_ABILITY_MAX, 18);
+      abilityCostIncrement2 = pRules.GetRulesetIntEntry(RulesetKeys.CHARGEN_ABILITY_COST_INCREMENT2, 14);
+      abilityCostIncrement3 = pRules.GetRulesetIntEntry(RulesetKeys.CHARGEN_ABILITY_COST_INCREMENT3, 16);
+      skillMaxLevel1Bonus = pRules.GetRulesetIntEntry(RulesetKeys.CHARGEN_SKILL_MAX_LEVEL_1_BONUS, 3);
     }
 
     public event Action<OnELCCustomCheck>? OnCustomCheck;
@@ -325,7 +325,7 @@ namespace Anvil.Services
       }
       // **********************************************************************************************************************
 
-      if (pCreatureStats.m_nNumMultiClasses > Math.Clamp(NWNXLib.Rules().GetRulesetIntEntry("MULTICLASS_LIMIT".ToExoString(), 3), 1, 8))
+      if (pCreatureStats.m_nNumMultiClasses > Math.Clamp(NWNXLib.Rules().GetRulesetIntEntry(RulesetKeys.MULTICLASS_LIMIT, 3), 1, 8))
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
@@ -1764,7 +1764,7 @@ namespace Anvil.Services
               if (nSchool != 0)
               {
                 int nOppositionSchool;
-                if (pRules.m_p2DArrays.m_pSpellSchoolTable.GetINTEntry(nSchool, "Opposition".ToExoString(), &nOppositionSchool).ToBool())
+                if (pRules.m_p2DArrays.GetSpellSchoolTable().GetINTEntry(nSchool, "Opposition".ToExoString(), &nOppositionSchool).ToBool())
                 {
                   if (pSpell.m_nSchool == nOppositionSchool)
                   {

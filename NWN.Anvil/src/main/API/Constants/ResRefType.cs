@@ -1,3 +1,5 @@
+// ReSharper disable InconsistentNaming
+
 namespace Anvil.API
 {
   public enum ResRefType
@@ -84,6 +86,11 @@ namespace Anvil.API
     TML = NWN.Native.API.ResRefType.TML,
     SQ3 = NWN.Native.API.ResRefType.SQ3,
     LOD = NWN.Native.API.ResRefType.LOD,
+    GIF = NWN.Native.API.ResRefType.GIF,
+    PNG = NWN.Native.API.ResRefType.PNG,
+    JPG = NWN.Native.API.ResRefType.JPG,
+    CAF = NWN.Native.API.ResRefType.CAF,
+    JUI = NWN.Native.API.ResRefType.JUI,
     IDS = NWN.Native.API.ResRefType.IDS,
     ERF = NWN.Native.API.ResRefType.ERF,
     BIF = NWN.Native.API.ResRefType.BIF,

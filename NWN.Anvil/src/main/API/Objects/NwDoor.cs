@@ -130,7 +130,7 @@ namespace Anvil.API
 
     public override NwDoor Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
-      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty, bCopyLocalState: copyLocalState.ToInt()).ToNwObject<NwDoor>()!;
+      return CloneInternal<NwDoor>(location, newTag, copyLocalState);
     }
 
     /// <summary>

@@ -61,6 +61,9 @@ namespace Anvil.API
     public static readonly PlayerDeviceProperty UiSpellbookSortSpells = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_SPELLBOOK_SORT_SPELLS);
     public static readonly PlayerDeviceProperty UiRadialSpellcastingAlwaysSubradial = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_RADIAL_SPELLCASTING_ALWAYS_SUBRADIAL);
     public static readonly PlayerDeviceProperty UiRadialClassAbilitiesAlwaysSubradial = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_RADIAL_CLASS_ABILITIES_ALWAYS_SUBRADIAL);
+    public static readonly PlayerDeviceProperty UiDisplayLoadscreenHintsInChatlog = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_DISPLAY_LOADSCREEN_HINTS_IN_CHATLOG);
+    public static readonly PlayerDeviceProperty UiMouseScale = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_MOUSE_SCALE);
+    public static readonly PlayerDeviceProperty UiMouseScaleValue = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_MOUSE_SCALE_VALUE);
     public static readonly PlayerDeviceProperty CameraMode = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_CAMERA_MODE);
     public static readonly PlayerDeviceProperty CameraEdgeTurning = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_CAMERA_EDGE_TURNING);
     public static readonly PlayerDeviceProperty CameraDialogZoom = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_CAMERA_DIALOG_ZOOM);

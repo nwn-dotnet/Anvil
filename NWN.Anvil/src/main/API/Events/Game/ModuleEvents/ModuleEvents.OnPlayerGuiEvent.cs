@@ -33,8 +33,15 @@ namespace Anvil.API.Events
       /// Gets the object data associated with this GUI event.
       /// </summary>
       /// <remarks>
-      /// <see cref="GuiEventType.ChatBarFocus"/>: The selected chat channel. Does not indicate the actual used channel. 0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
-      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="NwSkill"/>
+      /// <see cref="GuiEventType.MinimapMapPinClick"/>: The waypoint the map note is attached to.
+      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The owner of the character sheet.<br/>
+      /// <see cref="GuiEventType.CharacterSheetFeatClick"/>: The owner of the character sheet.<br/>
+      /// <see cref="GuiEventType.PlayerListPlayerClick"/>: The player that was clicked.<br/>
+      /// <see cref="GuiEventType.PartyBarPortraitClick"/>: The creature that was clicked.<br/>
+      /// <see cref="GuiEventType.DisabledPanelAttemptOpen"/>: For <see cref="GUIPanel.CharacterSheet"/>, the owner of the character sheet. For GUIPanel.Examine*, the object being examined.<br/>
+      /// <see cref="GuiEventType.ExamineObject"/>: The object being examined.<br/>
+      /// <see cref="GuiEventType.ChatlogPortraitClick"/>: The owner of the portrait that was clicked.<br/>
+      /// <see cref="GuiEventType.PlayerlistPlayerTell"/>: The selected player.<br/>
       /// </remarks>
       public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject()!;
 

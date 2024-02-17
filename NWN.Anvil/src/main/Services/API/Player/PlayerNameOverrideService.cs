@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Internal;
@@ -257,22 +258,7 @@ namespace Anvil.Services
         return true;
       }
 
-      CExoLinkedListInternal partyObjectsList = nwPlayer.m_pActivePartyObjectsLastUpdate.m_pcExoLinkedListInternal;
-      if (partyObjectsList == null)
-      {
-        return false;
-      }
-
-      for (CExoLinkedListNode head = partyObjectsList.pHead; head != null; head = head.pNext)
-      {
-        CLastUpdatePartyObject partyMember = CLastUpdatePartyObject.FromPointer(head.pObject);
-        if (partyMember != null && partyMember.m_nPlayerId == target.ControlledCreature?.ObjectId)
-        {
-          return true;
-        }
-      }
-
-      return false;
+      return nwPlayer.m_lstActivePartyObjectsLastUpdate.Any(partyObject => partyObject.m_nPlayerId == target.ControlledCreature?.ObjectId);
     }
 
     private bool IsValidCreature(CNWSCreature? creature)
