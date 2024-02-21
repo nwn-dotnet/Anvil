@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Anvil.API;
 using NLog;
+using NWN.Core;
 using NWN.Native.API;
 using ResRefType = Anvil.API.ResRefType;
 
@@ -122,20 +123,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="scriptName">The name of the script to get the contents of.</param>
     /// <returns>The script file contents or "" on error.</returns>
-    public string? GetNSSContents(CExoString scriptName)
+    public string GetNSSContents(string scriptName)
     {
-      CScriptSourceFile scriptSourceFile = new CScriptSourceFile();
-      byte* data;
-      uint size = 0;
-
-      if (scriptSourceFile.LoadScript(scriptName, &data, &size) == 0)
-      {
-        string retVal = StringHelper.ReadFixedLengthString(data, (int)size);
-        scriptSourceFile.UnloadScript();
-        return retVal;
-      }
-
-      return null;
+      return NWScript.ResManGetFileContents(scriptName, NWScript.RESTYPE_NSS);
     }
 
     /// <summary>
@@ -149,8 +139,8 @@ namespace Anvil.Services
       switch (type)
       {
         case ResRefType.NSS:
-          string? source = GetNSSContents(name.ToExoString());
-          return source != null ? StringHelper.Encoding.GetBytes(source) : null;
+          string source = GetNSSContents(name);
+          return StringHelper.Encoding.GetBytes(source);
         case ResRefType.NCS:
           return null;
         default:
@@ -169,7 +159,7 @@ namespace Anvil.Services
       switch (type)
       {
         case ResRefType.NSS:
-          return GetNSSContents(name.ToExoString());
+          return GetNSSContents(name);
         case ResRefType.NCS:
           return null;
         default:

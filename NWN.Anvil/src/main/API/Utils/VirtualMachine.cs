@@ -181,7 +181,7 @@ namespace Anvil.API
 
     private int PopScriptContext()
     {
-      CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
+      CNWSVirtualMachineCommands cmd = CNWSVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
 
       if (--virtualMachine.m_nRecursionLevel != -1)
       {
@@ -194,7 +194,7 @@ namespace Anvil.API
 
     private int PushScriptContext(uint oid, int scriptEventId)
     {
-      CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
+      CNWSVirtualMachineCommands cmd = CNWSVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
       bool valid = LowLevel.ServerExoApp.GetGameObject(oid) != null;
 
       if (virtualMachine.m_nRecursionLevel++ == -1)

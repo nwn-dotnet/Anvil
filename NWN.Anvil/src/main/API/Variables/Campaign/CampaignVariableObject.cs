@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public sealed class CampaignVariableObject<T> : CampaignVariable<T> where T : NwObject
+  public sealed class CampaignVariableObject<T> : CampaignVariable<T> where T : NwGameObject
   {
     public override T Value
     {

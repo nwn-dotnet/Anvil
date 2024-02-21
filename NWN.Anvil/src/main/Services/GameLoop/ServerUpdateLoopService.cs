@@ -11,25 +11,25 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private IUpdateable[] updateables;
+    private IUpdateable[] updateItems;
 
-    public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
+    public ServerUpdateLoopService(IEnumerable<IUpdateable> updateItems)
     {
-      this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
+      this.updateItems = updateItems.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
     }
 
     public void Dispose()
     {
-      updateables = Array.Empty<IUpdateable>();
+      updateItems = Array.Empty<IUpdateable>();
     }
 
     internal void Update()
     {
-      for (int i = 0; i < updateables.Length; i++)
+      for (int i = 0; i < updateItems.Length; i++)
       {
         try
         {
-          updateables[i].Update();
+          updateItems[i].Update();
         }
         catch (Exception e)
         {

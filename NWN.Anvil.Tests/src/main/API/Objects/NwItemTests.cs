@@ -419,6 +419,90 @@ namespace Anvil.Tests.API
       Assert.That(item.Appearance.GetSimpleModel(), Is.EqualTo(model));
     }
 
+    [Test(Description = "An item stored in an item container returns the correct possessing object.")]
+    public void ItemInContainerOnGroundReturnsCorrectPossessor()
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwItem? container = NwItem.Create(StandardResRef.Item.nw_it_contain006, startLocation);
+      NwItem? item = NwItem.Create(StandardResRef.Item.nw_it_gem013, startLocation);
+
+      Assert.That(container, Is.Not.Null, "Item nw_it_contain006 was null after creation.");
+      Assert.That(container!.IsValid, Is.True, "Item nw_it_contain006 was invalid after creation.");
+
+      createdTestObjects.Add(container);
+
+      Assert.That(item, Is.Not.Null, "Item nw_it_gem013 was null after creation.");
+      Assert.That(item!.IsValid, Is.True, "Item nw_it_gem013 was invalid after creation.");
+
+      createdTestObjects.Add(item);
+
+      container.AcquireItem(item);
+
+      Assert.That(item.Possessor, Is.EqualTo(container), "Item possessor does not match expected container.");
+      Assert.That(item.RootPossessor, Is.Null, "Root possessor is not null.");
+    }
+
+    [Test(Description = "An item stored in an item container on a creature returns the correct possessing object.")]
+    public void ItemInContainerOnCreatureReturnsCorrectPossessor()
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwItem? container = NwItem.Create(StandardResRef.Item.nw_it_contain006, startLocation);
+      NwItem? item = NwItem.Create(StandardResRef.Item.nw_it_gem013, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
+
+      Assert.That(container, Is.Not.Null, "Item nw_it_contain006 was null after creation.");
+      Assert.That(container!.IsValid, Is.True, "Item nw_it_contain006 was invalid after creation.");
+
+      createdTestObjects.Add(container);
+
+      Assert.That(item, Is.Not.Null, "Item nw_it_gem013 was null after creation.");
+      Assert.That(item!.IsValid, Is.True, "Item nw_it_gem013 was invalid after creation.");
+
+      createdTestObjects.Add(item);
+
+      Assert.That(creature, Is.Not.Null, "Creature nw_bandit001 was null after creation.");
+      Assert.That(creature!.IsValid, Is.True, "Creature nw_bandit001 was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+
+      container.AcquireItem(item);
+      creature.AcquireItem(container);
+
+      Assert.That(item.Possessor, Is.EqualTo(container), "Item possessor does not match expected container.");
+      Assert.That(item.RootPossessor, Is.EqualTo(creature), "Root possessor is not the expected creature.");
+    }
+
+    [Test(Description = "An item stored in an item container on a placeable returns the correct possessing object.")]
+    public void ItemInContainerOnPlaceableReturnsCorrectPossessor()
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwItem? container = NwItem.Create(StandardResRef.Item.nw_it_contain006, startLocation);
+      NwItem? item = NwItem.Create(StandardResRef.Item.nw_it_gem013, startLocation);
+      NwPlaceable? placeable = NwPlaceable.Create(StandardResRef.Placeable.plc_chest1, startLocation);
+
+      Assert.That(container, Is.Not.Null, "Item nw_it_contain006 was null after creation.");
+      Assert.That(container!.IsValid, Is.True, "Item nw_it_contain006 was invalid after creation.");
+
+      createdTestObjects.Add(container);
+
+      Assert.That(item, Is.Not.Null, "Item nw_it_gem013 was null after creation.");
+      Assert.That(item!.IsValid, Is.True, "Item nw_it_gem013 was invalid after creation.");
+
+      createdTestObjects.Add(item);
+
+      Assert.That(placeable, Is.Not.Null, "Placeable plc_chest1 was null after creation.");
+      Assert.That(placeable!.IsValid, Is.True, "Placeable plc_chest1 was invalid after creation.");
+
+      createdTestObjects.Add(placeable);
+      placeable.HasInventory = true;
+
+      container.AcquireItem(item);
+      placeable.AcquireItem(container);
+
+      Assert.That(item.Possessor, Is.EqualTo(container), "Item possessor does not match expected container.");
+      Assert.That(item.RootPossessor, Is.EqualTo(placeable), "Root possessor is not the expected placeable.");
+    }
+
     [TearDown]
     public void CleanupTestObjects()
     {

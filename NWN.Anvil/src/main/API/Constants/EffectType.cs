@@ -86,5 +86,17 @@ namespace Anvil.API
     BonusFeat = NWScript.EFFECT_TYPE_BONUS_FEAT,
     TimeStopImmunity = NWScript.EFFECT_TYPE_TIMESTOP_IMMUNITY,
     ForceWalk = NWScript.EFFECT_TYPE_FORCE_WALK,
+    Appear = NWScript.EFFECT_TYPE_APPEAR,
+    CutsceneDominated = NWScript.EFFECT_TYPE_CUTSCENE_DOMINATED,
+    Damage = NWScript.EFFECT_TYPE_DAMAGE,
+    Death = NWScript.EFFECT_TYPE_DEATH,
+    Disappear = NWScript.EFFECT_TYPE_DISAPPEAR,
+    Heal = NWScript.EFFECT_TYPE_HEAL,
+    HitpointChangeWhenDying = NWScript.EFFECT_TYPE_HITPOINTCHANGEWHENDYING,
+    Knockdown = NWScript.EFFECT_TYPE_KNOCKDOWN,
+    ModifyAttacks = NWScript.EFFECT_TYPE_MODIFY_ATTACKS,
+    SummonCreature = NWScript.EFFECT_TYPE_SUMMON_CREATURE,
+    Taunt = NWScript.EFFECT_TYPE_TAUNT,
+    Wounding = NWScript.EFFECT_TYPE_WOUNDING,
   }
 }
