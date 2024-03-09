@@ -1,22 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Anvil.Internal;
 using Anvil.Plugins;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
+  [ServiceBindingOptions(InternalBindingPriority.Highest)]
   public sealed class InjectionService : ICoreService
   {
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
-    private readonly PluginManager pluginManager;
-    private readonly IServiceManager serviceManager;
 
-    public InjectionService(IServiceManager serviceManager, PluginManager pluginManager)
-    {
-      this.serviceManager = serviceManager;
-      this.pluginManager = pluginManager;
-    }
+    [Inject]
+    private IServiceManager ServiceManager { get; init; } = null!;
+
+    [Inject]
+    private Lazy<PluginManager> PluginManager { get; init; } = null!;
 
     /// <summary>
     /// Injects all properties with <see cref="InjectAttribute"/> in the specified object.
@@ -26,7 +25,16 @@ namespace Anvil.Services
     /// <returns>The instance with injected dependencies.</returns>
     public T Inject<T>(T instance)
     {
-      serviceManager.AnvilServiceContainer.InjectProperties(instance);
+      Plugin? plugin = PluginManager.Value.GetPlugin(typeof(T).Assembly);
+      if (plugin?.Container != null)
+      {
+        plugin.Container.InjectProperties(instance);
+      }
+      else
+      {
+        ServiceManager.InjectProperties(instance);
+      }
+
       return instance;
     }
 
@@ -38,7 +46,14 @@ namespace Anvil.Services
 
     void ICoreService.Start()
     {
-      InjectStaticProperties(pluginManager.LoadedTypes);
+      InjectStaticProperties(Assemblies.AllTypes);
+      foreach (Plugin plugin in PluginManager.Value.Plugins)
+      {
+        if (plugin.PluginTypes != null)
+        {
+          InjectStaticProperties(plugin.PluginTypes);
+        }
+      }
     }
 
     // We clear injected properties as they can hold invalid references when reloading Anvil.
@@ -61,7 +76,7 @@ namespace Anvil.Services
 
         foreach (PropertyInfo propertyInfo in injectableTypes)
         {
-          object value = serviceManager.AnvilServiceContainer.TryGetInstance(propertyInfo.PropertyType);
+          object value = ServiceManager.AnvilServiceContainer.TryGetInstance(propertyInfo.PropertyType);
           propertyInfo.SetValue(null, value);
           injectedStaticProperties.Add(propertyInfo);
         }

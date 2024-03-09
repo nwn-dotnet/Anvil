@@ -19,19 +19,16 @@ namespace Anvil.Plugins
     // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
     private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
 
+    [Inject]
+    private InjectionService InjectionService { get; init; } = null!;
+
     private readonly FSharpList<string> frameworks = ListModule.OfArray(Assemblies.TargetFrameworks);
     private readonly string linkFilePathFormat = Path.Combine(HomeStorage.Paket, ".paket/load/{0}/main.group.csx");
     private readonly string packagesFolderPath = Path.Combine(HomeStorage.Paket, "packages");
 
     private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
 
-    private readonly PluginManager pluginManager;
     private readonly FSharpList<string> scriptTypes = ListModule.OfArray(new[] { "csx" });
-
-    public PaketPluginSource(PluginManager pluginManager)
-    {
-      this.pluginManager = pluginManager;
-    }
 
     public IEnumerable<Plugin> Bootstrap()
     {
@@ -93,11 +90,11 @@ namespace Anvil.Plugins
           continue;
         }
 
-        Plugin plugin = new Plugin(pluginManager, pluginPath)
+        Plugin plugin = InjectionService.Inject(new Plugin(pluginPath)
         {
           AdditionalAssemblyPaths = loadFile.AssemblyPaths,
           UnmanagedAssemblyPaths = nativeAssemblyPaths,
-        };
+        });
 
         plugins.Add(plugin);
       }

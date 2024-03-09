@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Anvil.Services;
@@ -67,6 +68,49 @@ namespace Anvil.API
       bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
 
       return bindingPriority;
+    }
+
+    internal static T? GetCustomAttributeFromMetadata<T>(this Assembly metadataAssembly) where T : Attribute, new()
+    {
+      Type attributeType = typeof(T);
+      CustomAttributeData? attributeData = metadataAssembly.GetCustomAttributesData().FirstOrDefault(data => data.AttributeType.FullName == attributeType.FullName);
+      if (attributeData == null)
+      {
+        return null;
+      }
+
+      T attribute = new T();
+      foreach (CustomAttributeNamedArgument argument in attributeData.NamedArguments)
+      {
+        object? value;
+        if (argument.TypedValue.Value is IReadOnlyList<CustomAttributeTypedArgument> collection)
+        {
+          Type elementType = Type.GetType(argument.TypedValue.ArgumentType.GetElementType()!.FullName!)!;
+          Array array = Array.CreateInstance(elementType, collection.Count);
+
+          for (int i = 0; i < array.Length; i++)
+          {
+            array.SetValue(collection[i].Value, i);
+          }
+
+          value = array;
+        }
+        else
+        {
+          value = argument.TypedValue.Value;
+        }
+
+        if (argument.IsField)
+        {
+          attributeType.GetField(argument.MemberName)?.SetValue(attribute, value);
+        }
+        else
+        {
+          attributeType.GetProperty(argument.MemberName)?.SetValue(attribute, value);
+        }
+      }
+
+      return attribute;
     }
   }
 }
