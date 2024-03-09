@@ -28,7 +28,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool PreventRemove { get; set; }
 
-    NwObject? IEvent.Context => Creature;
+    NwObject IEvent.Context => Creature;
 
     public sealed unsafe class Factory : HookEventFactory
     {
