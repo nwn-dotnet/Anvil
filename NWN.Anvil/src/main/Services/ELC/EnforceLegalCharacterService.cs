@@ -855,22 +855,19 @@ namespace Anvil.Services
         // Keep track of our ability values
         if (nLevel % 4 == 0)
         {
-          if (pLevelStats.m_nAbilityGain < nAbilityAtLevel.Length && pLevelStats.m_nAbilityGain >= 0)
+          if (pLevelStats.m_nAbilityGain < nAbilityAtLevel.Length)
           {
             nAbilityAtLevel[pLevelStats.m_nAbilityGain]++;
           }
-          else
+          else if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
-            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
-            {
-              Player = nwPlayer,
-              Type = ValidationFailureType.Character,
-              SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
-              StrRef = StrRefCharacterInvalidAbilityScores,
-            }))
-            {
-              return strRefFailure;
-            }
+            Player = nwPlayer,
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+            StrRef = StrRefCharacterInvalidAbilityScores,
+          }))
+          {
+            return strRefFailure;
           }
         }
 
