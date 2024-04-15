@@ -56,12 +56,11 @@ jobs:
             analysis-cache
 
       - name: Code Analysis
-        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
-
-      - name: Parse Analysis Results
-        uses: glassechidna/resharper-action@master
+        uses: JetBrains/ReSharper-InspectCode@v0.3
         with:
-          report: results.xml
+          solution: ./NWN.Anvil.sln
+          format: xml
+          output: results.xml
 
       - name: Analysis Result
         run: |
