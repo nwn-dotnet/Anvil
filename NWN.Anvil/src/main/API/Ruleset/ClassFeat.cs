@@ -1,4 +1,5 @@
 using NWN.Native.API;
+using System;
 
 namespace Anvil.API
 {
