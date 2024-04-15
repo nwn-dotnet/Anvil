@@ -63,6 +63,11 @@ jobs:
           format: xml
           output: results.xml
 
+      - name: Parse Analysis Results
+        uses: glassechidna/resharper-action@master
+        with:
+          report: results.xml
+
       - name: Analysis Result
         run: |
           ! grep "<Issue TypeId=" results.xml
