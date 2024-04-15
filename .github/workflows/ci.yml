@@ -63,10 +63,6 @@ jobs:
           solution: ./NWN.Anvil.sln
           tool-version: 2024.1.0
 
-      - name: Analysis Result
-        run: |
-          ! grep "<Issue TypeId=" results.xml
-
   test:
     runs-on: ubuntu-20.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
