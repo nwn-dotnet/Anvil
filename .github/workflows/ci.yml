@@ -62,8 +62,6 @@ jobs:
         with:
           solution: ./NWN.Anvil.sln
           tool-version: 2024.1.0
-          format: xml
-          output: results.xml
 
       - name: Analysis Result
         run: |
