@@ -15,7 +15,7 @@ namespace Anvil.API
 
     public sbyte LevelGranted => classFeat.nLevelGranted.AsSByte();
 
-    public ClassFeatListType ListType => (ClassFeatListType)classFeat.nListType;
+    public ClassFeatListTypes ListTypes => (ClassFeatListTypes)classFeat.nListType;
 
     public bool OnMenu => classFeat.nOnClassRadial.ToBool();
   }
