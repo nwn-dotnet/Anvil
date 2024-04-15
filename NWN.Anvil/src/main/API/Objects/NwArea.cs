@@ -946,6 +946,50 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Set to true to disable the inaccessible tile border in this area. Requires clients to reload the area to take effect.
+    /// </summary>
+    /// <param name="disabled">True to disable tile borders, false to enable.</param>
+    public void SetAreaTileBorderDisabled(bool disabled)
+    {
+      NWScript.SetAreaTileBorderDisabled(this, disabled.ToInt());
+    }
+
+    /// <summary>
+    /// Sets a grass override for a specific material in this area.
+    /// </summary>
+    /// <param name="material">The material to override.</param>
+    /// <param name="texture">The replacement grass texture</param>
+    /// <param name="density">The density of the grass.</param>
+    /// <param name="height">The height of the grass.</param>
+    /// <param name="ambientColor">The ambient color of the grass. Alpha channel is ignored.</param>
+    /// <param name="diffuseColor">The diffuse color of the grass. Alpha channel is ignored.</param>
+    public void SetAreaGrassOverride(SurfaceMaterialTableEntry material, string texture, float density, float height, Color ambientColor, Color diffuseColor)
+    {
+      Vector3 ambientColorVec = new Vector3(ambientColor.RedF, ambientColor.GreenF, ambientColor.BlueF);
+      Vector3 diffuseColorVec = new Vector3(diffuseColor.RedF, diffuseColor.GreenF, diffuseColor.BlueF);
+
+      NWScript.SetAreaGrassOverride(this, material.RowIndex, texture, density, height, ambientColorVec, diffuseColorVec);
+    }
+
+    /// <summary>
+    /// Remove a grass override from this area that was set with <see cref="SetAreaGrassOverride"/>.
+    /// </summary>
+    /// <param name="material">The modified material to reset.</param>
+    public void RemoveAreaGrassOverride(SurfaceMaterialTableEntry material)
+    {
+      NWScript.RemoveAreaGrassOverride(this, material.RowIndex);
+    }
+
+    /// <summary>
+    /// Set if the default grass of this area should be disabled.
+    /// </summary>
+    /// <param name="disabled">The new disabled state.</param>
+    public void SetAreaDefaultGrassDisabled(bool disabled)
+    {
+      NWScript.SetAreaDefaultGrassDisabled(this, disabled.ToInt());
+    }
+
+    /// <summary>
     /// Gets a light color in this area.
     /// </summary>
     /// <param name="colorType">The color type to get.</param>

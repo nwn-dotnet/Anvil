@@ -30,6 +30,12 @@ namespace Anvil.Native
 
       [NativeFunction("_ZN21CNWSEffectListHandler26OnRemoveLimitMovementSpeedEP10CNWSObjectP11CGameEffect", "?OnRemoveLimitMovementSpeed@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@@Z")]
       public delegate int OnRemoveLimitMovementSpeed(void* pEffectListHandler, void* pObject, void* pEffect);
+
+      [NativeFunction("_ZN21CNWSEffectListHandler16OnApplyPolymorphEP10CNWSObjectP11CGameEffecti", "?OnApplyPolymorph@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@H@Z")]
+      public delegate int OnApplyPolymorph(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+
+      [NativeFunction("_ZN21CNWSEffectListHandler17OnRemovePolymorphEP10CNWSObjectP11CGameEffect", "?OnRemovePolymorph@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@@Z")]
+      public delegate int OnRemovePolymorph(void* pEffectListHandler, void* pObject, void* pEffect);
     }
   }
 }

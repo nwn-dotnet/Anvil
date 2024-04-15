@@ -148,6 +148,11 @@ namespace Anvil.API
     public static TwoDimArray<SkillItemCostTableEntry> SkillItemCostTable { get; private set; } = null!;
 
     /// <summary>
+    /// Gets surface material table (surfacemat.2da)
+    /// </summary>
+    public static TwoDimArray<SurfaceMaterialTableEntry> SurfaceMaterialTable { get; private set; } = null!;
+
+    /// <summary>
     /// Gets the visual effect table (visualeffects.2da)
     /// </summary>
     public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; } = null!;

@@ -24,6 +24,8 @@ jobs:
   compile:
     runs-on: ubuntu-20.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
+    permissions:
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -56,16 +58,10 @@ jobs:
             analysis-cache
 
       - name: Code Analysis
-        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
-
-      - name: Parse Analysis Results
-        uses: glassechidna/resharper-action@master
+        uses: JetBrains/ReSharper-InspectCode@v0.3
         with:
-          report: results.xml
-
-      - name: Analysis Result
-        run: |
-          ! grep "<Issue TypeId=" results.xml
+          solution: ./NWN.Anvil.sln
+          tool-version: 2024.1.0
 
   test:
     runs-on: ubuntu-20.04
