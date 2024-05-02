@@ -15,17 +15,17 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that damaged the <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature DamagedBy { get; } = NWScript.GetLastDamager().ToNwObject<NwCreature>()!;
+      public NwCreature DamagedBy { get; }
 
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that was damaged.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
+      public NwDoor Door { get; }
 
       /// <summary>
       /// Gets the total damage dealt to the <see cref="NwDoor"/>.
       /// </summary>
-      public int TotalDamageDealt { get; } = NWScript.GetTotalDamageDealt();
+      public int TotalDamageDealt { get; }
 
       NwObject IEvent.Context => Door;
 
@@ -35,6 +35,14 @@ namespace Anvil.API.Events
       public int GetDamageDealtByType(DamageType damageType)
       {
         return NWScript.GetDamageDealtByType((int)damageType);
+      }
+
+      public OnDamaged()
+      {
+        uint objSelf = NWScript.OBJECT_SELF;
+        Door = objSelf.ToNwObject<NwDoor>()!;
+        TotalDamageDealt = NWScript.GetTotalDamageDealt();
+        DamagedBy = NWScript.GetLastDamager(objSelf).ToNwObject<NwCreature>()!;
       }
     }
   }
