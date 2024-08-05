@@ -341,6 +341,12 @@ namespace Anvil.API
       return NWScript.ItemPropertyNoDamage()!;
     }
 
+    public static ItemProperty OnHitCastSpell(IPCastSpell spell, int casterLevel)
+    {
+      return NWScript.ItemPropertyOnHitCastSpell((int)spell, casterLevel)!;
+    }
+
+    [Obsolete("Use the OnHitCastSpell(IPCastSpell, int) overload instead.")]
     public static ItemProperty OnHitCastSpell(IPCastSpell spell, IPSpellLevel spellLevel)
     {
       return NWScript.ItemPropertyOnHitCastSpell((int)spell, (int)spellLevel)!;
