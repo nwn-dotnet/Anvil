@@ -245,6 +245,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Creates an effect that applies a bonus to a specified damage type.
+    /// </summary>
+    /// <param name="bonus">The damage bonus to apply.</param>
+    /// <param name="damageType">The damage type to apply the bonus to.</param>
+    public static Effect DamageIncrease(DamageBonus bonus, DamageType damageType = DamageType.Magical)
+    {
+      return NWScript.EffectDamageIncrease((int) bonus, (int)damageType)!;
+    }
+
+    /// <summary>
     /// Creates an effect that resists a constant amount of damage from a physical attack with a certain magical power.
     /// </summary>
     /// <param name="amount">The damage to remove from each attack.</param>
