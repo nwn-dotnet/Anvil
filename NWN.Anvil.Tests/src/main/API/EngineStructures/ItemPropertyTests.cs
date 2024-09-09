@@ -692,7 +692,7 @@ namespace Anvil.Tests.API
     {
       protected override ItemProperty ItemProperty => ItemProperty.UnlimitedAmmo(IPUnlimitedAmmoType.Fire1d6);
       protected override ItemPropertyType PropertyType => ItemPropertyType.UnlimitedAmmunition;
-      protected override int SubType => 0; // ???
+      protected override int SubType => 0;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(14);
       protected override int CostTableValue => (int)IPUnlimitedAmmoType.Fire1d6;
     }
