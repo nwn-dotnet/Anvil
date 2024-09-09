@@ -251,7 +251,7 @@ namespace Anvil.API
     /// <param name="damageType">The damage type to apply the bonus to.</param>
     public static Effect DamageIncrease(DamageBonus bonus, DamageType damageType = DamageType.Magical)
     {
-      return NWScript.EffectDamageIncrease((int) bonus, (int)damageType)!;
+      return NWScript.EffectDamageIncrease((int)bonus, (int)damageType)!;
     }
 
     /// <summary>
