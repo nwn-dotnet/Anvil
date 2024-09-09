@@ -75,7 +75,7 @@ namespace Anvil.Tests.API
       }
     }
 
-    public class AbilityBonusTest : ItemPropertyTest
+    public sealed class AbilityBonusTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.AbilityBonus(IPAbility.Intelligence, 5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AbilityBonus;
@@ -84,7 +84,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 5;
     }
 
-    public class AcBonusTest : ItemPropertyTest
+    public sealed class AcBonusTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ACBonus(5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AcBonus;
@@ -92,7 +92,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 5;
     }
 
-    public class AcBonusVsAlignmentGroupTest : ItemPropertyTest
+    public sealed class AcBonusVsAlignmentGroupTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ACBonusVsAlign(IPAlignmentGroup.Good, 3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AcBonusVsAlignmentGroup;
@@ -101,7 +101,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class AcBonusVsDamageTypeTest : ItemPropertyTest
+    public sealed class AcBonusVsDamageTypeTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ACBonusVsDmgType(IPDamageType.Bludgeoning, 3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AcBonusVsDamageType;
@@ -110,7 +110,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class AcBonusVsRaceTest : ItemPropertyTest
+    public sealed class AcBonusVsRaceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ACBonusVsRace(NwRace.FromRacialType(RacialType.Outsider)!, 3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AcBonusVsRacialGroup;
@@ -119,7 +119,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class AcBonusVsSpecificAlignmentTest : ItemPropertyTest
+    public sealed class AcBonusVsSpecificAlignmentTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ACBonusVsSAlign(IPAlignment.NeutralEvil, 3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AcBonusVsSpecificAlignment;
@@ -128,7 +128,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class AdditionalTest : ItemPropertyTest
+    public sealed class AdditionalTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Additional(IPAdditional.Cursed);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Additional;
@@ -136,7 +136,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPAdditional.Cursed;
     }
 
-    public class ArcaneSpellFailureTest : ItemPropertyTest
+    public sealed class ArcaneSpellFailureTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ArcaneSpellFailure(IPArcaneSpellFailure.Minus20Pct);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ArcaneSpellFailure;
@@ -144,7 +144,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPArcaneSpellFailure.Minus20Pct;
     }
 
-    public class AttackBonusTest : ItemPropertyTest
+    public sealed class AttackBonusTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.AttackBonus(7);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AttackBonus;
@@ -152,7 +152,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 7;
     }
 
-    public class AttackBonusVsAlignmentGroupTest : ItemPropertyTest
+    public sealed class AttackBonusVsAlignmentGroupTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.AttackBonusVsAlign(IPAlignmentGroup.Neutral, 8);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AttackBonusVsAlignmentGroup;
@@ -161,7 +161,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 8;
     }
 
-    public class AttackBonusVsRaceTest : ItemPropertyTest
+    public sealed class AttackBonusVsRaceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.AttackBonusVsRace(NwRace.FromRacialType(RacialType.Halfling)!, 9);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AttackBonusVsRacialGroup;
@@ -170,7 +170,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 9;
     }
 
-    public class AttackBonusVsSpecificAlignmentTest : ItemPropertyTest
+    public sealed class AttackBonusVsSpecificAlignmentTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.AttackBonusVsSAlign(IPAlignment.LawfulGood, 10);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AttackBonusVsSpecificAlignment;
@@ -179,7 +179,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 10;
     }
 
-    public class AttackPenaltyTest : ItemPropertyTest
+    public sealed class AttackPenaltyTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.AttackPenalty(2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedAttackModifier;
@@ -187,7 +187,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 2;
     }
 
-    public class BonusFeatTest : ItemPropertyTest
+    public sealed class BonusFeatTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.BonusFeat(IPFeat.Disarm);
       protected override ItemPropertyType PropertyType => ItemPropertyType.BonusFeat;
@@ -195,7 +195,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class BonusLevelTest : ItemPropertyTest
+    public sealed class BonusLevelTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.BonusLevelSpell(IPClass.Cleric, IPSpellLevel.SL5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.BonusSpellSlotOfLevelN;
@@ -204,7 +204,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPSpellLevel.SL5;
     }
 
-    public class BonusSavingThrowTest : ItemPropertyTest
+    public sealed class BonusSavingThrowTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.BonusSavingThrow(IPSaveBaseType.Reflex, 2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.SavingThrowBonusSpecific;
@@ -213,7 +213,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 2;
     }
 
-    public class BonusSavingThrowVsXTest : ItemPropertyTest
+    public sealed class BonusSavingThrowVsXTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.BonusSavingThrowVsX(IPSaveVs.Divine, 5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.SavingThrowBonus;
@@ -222,7 +222,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 5;
     }
 
-    public class SpellResistanceTest : ItemPropertyTest
+    public sealed class SpellResistanceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.BonusSpellResistance(IPSpellResistanceBonus.Plus22);
       protected override ItemPropertyType PropertyType => ItemPropertyType.SpellResistance;
@@ -230,7 +230,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPSpellResistanceBonus.Plus22;
     }
 
-    public class CastSpellTest : ItemPropertyTest
+    public sealed class CastSpellTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.CastSpell(IPCastSpell.Harm11, IPCastSpellNumUses.ChargesPerUse3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.CastSpell;
@@ -239,7 +239,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPCastSpellNumUses.ChargesPerUse3;
     }
 
-    public class ContainerReducedWeightTest : ItemPropertyTest
+    public sealed class ContainerReducedWeightTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ContainerReducedWeight(IPContainerWeightReduction.Reduction60Pct);
       protected override ItemPropertyType PropertyType => ItemPropertyType.EnhancedContainerReducedWeight;
@@ -247,7 +247,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPContainerWeightReduction.Reduction60Pct;
     }
 
-    public class DamageBonusTest : ItemPropertyTest
+    public sealed class DamageBonusTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageBonus(IPDamageType.Electrical, IPDamageBonus.Plus1d12);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageBonus;
@@ -256,7 +256,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPDamageBonus.Plus1d12;
     }
 
-    public class DamageBonusVsAlignmentGroupTest : ItemPropertyTest
+    public sealed class DamageBonusVsAlignmentGroupTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageBonusVsAlign(IPAlignmentGroup.Chaotic, IPDamageType.Fire, IPDamageBonus.Plus2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageBonusVsAlignmentGroup;
@@ -266,7 +266,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => (int)IPDamageType.Fire;
     }
 
-    public class DamageBonusVsRaceTest : ItemPropertyTest
+    public sealed class DamageBonusVsRaceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageBonusVsRace(NwRace.FromRacialType(RacialType.Elemental)!, IPDamageType.Bludgeoning, IPDamageBonus.Plus2d6);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageBonusVsRacialGroup;
@@ -276,7 +276,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => (int)IPDamageType.Bludgeoning;
     }
 
-    public class DamageBonusVsSpecificAlignmentTest : ItemPropertyTest
+    public sealed class DamageBonusVsSpecificAlignmentTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageBonusVsSAlign(IPAlignment.TrueNeutral, IPDamageType.Sonic, IPDamageBonus.Plus2d12);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageBonusVsSpecificAlignment;
@@ -286,7 +286,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => (int)IPDamageType.Sonic;
     }
 
-    public class DamageImmunityTest : ItemPropertyTest
+    public sealed class DamageImmunityTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageImmunity(IPDamageType.Acid, IPDamageImmunityType.Immunity25Pct);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ImmunityDamageType;
@@ -295,7 +295,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPDamageImmunityType.Immunity25Pct;
     }
 
-    public class DamagePenaltyTest : ItemPropertyTest
+    public sealed class DamagePenaltyTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamagePenalty(3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedDamage;
@@ -303,7 +303,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class DamageReductionTest : ItemPropertyTest
+    public sealed class DamageReductionTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageReduction(IPDamageReduction.DR5, IPDamageSoak.HP30);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageReduction;
@@ -312,7 +312,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPDamageSoak.HP30;
     }
 
-    public class DamageResistanceTest : ItemPropertyTest
+    public sealed class DamageResistanceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageResistance(IPDamageType.Divine, IPDamageResist.Resist20);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageResistance;
@@ -321,7 +321,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPDamageResist.Resist20;
     }
 
-    public class DamageVulnerabilityTest : ItemPropertyTest
+    public sealed class DamageVulnerabilityTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DamageVulnerability(IPDamageType.Negative, IPDamageVulnerabilityType.Vulnerable90Pct);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageVulnerability;
@@ -330,14 +330,14 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPDamageVulnerabilityType.Vulnerable90Pct;
     }
 
-    public class DarkvisionTest : ItemPropertyTest
+    public sealed class DarkvisionTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Darkvision();
       protected override ItemPropertyType PropertyType => ItemPropertyType.Darkvision;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class DecreaseAbilityTest : ItemPropertyTest
+    public sealed class DecreaseAbilityTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DecreaseAbility(IPAbility.Intelligence, 3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedAbilityScore;
@@ -346,7 +346,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class DecreaseACTest : ItemPropertyTest
+    public sealed class DecreaseACTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DecreaseAC(IPACModifierType.Dodge, 7);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedAc;
@@ -355,7 +355,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 7;
     }
 
-    public class DecreaseSkillTest : ItemPropertyTest
+    public sealed class DecreaseSkillTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.DecreaseSkill(NwSkill.FromSkillType(Skill.Discipline)!, 5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedSkillModifier;
@@ -364,7 +364,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 5;
     }
 
-    public class EnhancementBonusTest : ItemPropertyTest
+    public sealed class EnhancementBonusTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.EnhancementBonus(4);
       protected override ItemPropertyType PropertyType => ItemPropertyType.EnhancementBonus;
@@ -372,7 +372,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 4;
     }
 
-    public class EnhancementBonusVsAlignmentGroupTest : ItemPropertyTest
+    public sealed class EnhancementBonusVsAlignmentGroupTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.EnhancementBonusVsAlign(IPAlignmentGroup.Chaotic, 7);
       protected override ItemPropertyType PropertyType => ItemPropertyType.EnhancementBonusVsAlignmentGroup;
@@ -381,7 +381,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 7;
     }
 
-    public class EnhancementBonusVsRaceTest : ItemPropertyTest
+    public sealed class EnhancementBonusVsRaceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.EnhancementBonusVsRace(NwRace.FromRacialType(RacialType.Dragon)!, 2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.EnhancementBonusVsRacialGroup;
@@ -390,7 +390,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 2;
     }
 
-    public class EnhancementBonusVsSpecificAlignmentTest : ItemPropertyTest
+    public sealed class EnhancementBonusVsSpecificAlignmentTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.EnhancementBonusVsSAlign(IPAlignment.ChaoticNeutral, 9);
       protected override ItemPropertyType PropertyType => ItemPropertyType.EnhancementBonusVsSpecificAlignment;
@@ -399,7 +399,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 9;
     }
 
-    public class EnhancementPenaltyTest : ItemPropertyTest
+    public sealed class EnhancementPenaltyTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.EnhancementPenalty(6);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedEnhancementModifier;
@@ -407,7 +407,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 6;
     }
 
-    public class ExtraMeleeDamageTypeTest : ItemPropertyTest
+    public sealed class ExtraMeleeDamageTypeTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ExtraMeleeDamageType(IPDamageType.Slashing);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ExtraMeleeDamageType;
@@ -415,7 +415,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class ExtraRangeDamageTypeTest : ItemPropertyTest
+    public sealed class ExtraRangeDamageTypeTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ExtraRangeDamageType(IPDamageType.Bludgeoning);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ExtraRangedDamageType;
@@ -423,21 +423,21 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class FreeActionTest : ItemPropertyTest
+    public sealed class FreeActionTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.FreeAction();
       protected override ItemPropertyType PropertyType => ItemPropertyType.FreedomOfMovement;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class HasteTest : ItemPropertyTest
+    public sealed class HasteTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Haste();
       protected override ItemPropertyType PropertyType => ItemPropertyType.Haste;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class HealersKitTest : ItemPropertyTest
+    public sealed class HealersKitTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.HealersKit(4);
       protected override ItemPropertyType PropertyType => ItemPropertyType.HealersKit;
@@ -445,14 +445,14 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 4;
     }
 
-    public class HolyAvengerTest : ItemPropertyTest
+    public sealed class HolyAvengerTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.HolyAvenger();
       protected override ItemPropertyType PropertyType => ItemPropertyType.HolyAvenger;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class ImmunityMiscTest : ItemPropertyTest
+    public sealed class ImmunityMiscTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ImmunityMisc(IPMiscImmunity.DeathMagic);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ImmunityMiscellaneous;
@@ -460,7 +460,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class ImmunityToSpellLevelTest : ItemPropertyTest
+    public sealed class ImmunityToSpellLevelTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ImmunityToSpellLevel(IPSpellLevel.SL5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ImmunitySpellsByLevel;
@@ -468,21 +468,21 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPSpellLevel.SL5;
     }
 
-    public class ImprovedEvasionTest : ItemPropertyTest
+    public sealed class ImprovedEvasionTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ImprovedEvasion();
       protected override ItemPropertyType PropertyType => ItemPropertyType.ImprovedEvasion;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class KeenTest : ItemPropertyTest
+    public sealed class KeenTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Keen();
       protected override ItemPropertyType PropertyType => ItemPropertyType.Keen;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class LightTest : ItemPropertyTest
+    public sealed class LightTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Light(IPLightBrightness.Normal, IPLightColor.Purple);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Light;
@@ -491,7 +491,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => (int)IPLightColor.Purple;
     }
 
-    public class LimitUseByAlignTest : ItemPropertyTest
+    public sealed class LimitUseByAlignTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.LimitUseByAlign(IPAlignmentGroup.Good);
       protected override ItemPropertyType PropertyType => ItemPropertyType.UseLimitationAlignmentGroup;
@@ -499,7 +499,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class LimitUseByClassTest : ItemPropertyTest
+    public sealed class LimitUseByClassTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.LimitUseByClass(NwClass.FromClassType(ClassType.Bard)!);
       protected override ItemPropertyType PropertyType => ItemPropertyType.UseLimitationClass;
@@ -507,7 +507,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class LimitUseByRaceTest : ItemPropertyTest
+    public sealed class LimitUseByRaceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.LimitUseByRace(NwRace.FromRacialType(RacialType.Undead)!);
       protected override ItemPropertyType PropertyType => ItemPropertyType.UseLimitationRacialType;
@@ -515,7 +515,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class LimitUseBySAlignTest : ItemPropertyTest
+    public sealed class LimitUseBySAlignTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.LimitUseBySAlign(IPAlignment.NeutralGood);
       protected override ItemPropertyType PropertyType => ItemPropertyType.UseLimitationSpecificAlignment;
@@ -523,7 +523,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class MassiveCriticalTest : ItemPropertyTest
+    public sealed class MassiveCriticalTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.MassiveCritical(IPDamageBonus.Plus2d8);
       protected override ItemPropertyType PropertyType => ItemPropertyType.MassiveCriticals;
@@ -531,7 +531,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPDamageBonus.Plus2d8;
     }
 
-    public class MaterialTest : ItemPropertyTest
+    public sealed class MaterialTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Material(3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Material;
@@ -539,7 +539,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 3;
     }
 
-    public class MaxRangeStrengthModTest : ItemPropertyTest
+    public sealed class MaxRangeStrengthModTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.MaxRangeStrengthMod(2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Mighty;
@@ -547,7 +547,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 2;
     }
 
-    public class MonsterDamageTest : ItemPropertyTest
+    public sealed class MonsterDamageTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.MonsterDamage(IPMonsterDamage.Damage1d4);
       protected override ItemPropertyType PropertyType => ItemPropertyType.MonsterDamage;
@@ -555,14 +555,14 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPMonsterDamage.Damage1d4;
     }
 
-    public class NoDamageTest : ItemPropertyTest
+    public sealed class NoDamageTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.NoDamage();
       protected override ItemPropertyType PropertyType => ItemPropertyType.NoDamage;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class OnHitCastSpellTest : ItemPropertyTest
+    public sealed class OnHitCastSpellTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.OnHitCastSpell(IPCastSpell.InflictSeriousWounds9, 20);
       protected override ItemPropertyType PropertyType => ItemPropertyType.OnHitCastSpell;
@@ -571,7 +571,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 20 - 1;
     }
 
-    public class OnHitEffectTest : ItemPropertyTest
+    public sealed class OnHitEffectTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.OnHitEffect(IPOnHitSaveDC.DC26, HitEffect.AbilityDrain(IPAbility.Wisdom));
       protected override ItemPropertyType PropertyType => ItemPropertyType.OnHitProperties;
@@ -581,7 +581,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => HitEffect.AbilityDrain(IPAbility.Wisdom).Special;
     }
 
-    public class OnMonsterHitEffectTest : ItemPropertyTest
+    public sealed class OnMonsterHitEffectTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.OnMonsterHitProperties(MonsterHitEffect.Stun(IPOnHitDuration.Duration50Pct2Rounds));
       protected override ItemPropertyType PropertyType => ItemPropertyType.OnMonsterHit;
@@ -589,7 +589,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => HitEffect.AbilityDrain(IPAbility.Wisdom).Special;
     }
 
-    public class QualityTest : ItemPropertyTest
+    public sealed class QualityTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Quality(IPQuality.Masterwork);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Quality;
@@ -597,7 +597,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPQuality.Masterwork;
     }
 
-    public class ReducedSavingThrowTest : ItemPropertyTest
+    public sealed class ReducedSavingThrowTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ReducedSavingThrow(IPSaveBaseType.Reflex, 5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedSavingThrowsSpecific;
@@ -606,7 +606,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 5;
     }
 
-    public class ReducedSavingThrowVsXTest : ItemPropertyTest
+    public sealed class ReducedSavingThrowVsXTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ReducedSavingThrowVsX(IPSaveVs.MindAffecting, 2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedSavingThrows;
@@ -615,7 +615,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 2;
     }
 
-    public class RegenerationTest : ItemPropertyTest
+    public sealed class RegenerationTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Regeneration(12);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Regeneration;
@@ -623,7 +623,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 12;
     }
 
-    public class SkillBonusTest : ItemPropertyTest
+    public sealed class SkillBonusTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.SkillBonus(NwSkill.FromSkillType(Skill.Persuade)!, 9);
       protected override ItemPropertyType PropertyType => ItemPropertyType.SkillBonus;
@@ -632,7 +632,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 9;
     }
 
-    public class SpecialWalkTest : ItemPropertyTest
+    public sealed class SpecialWalkTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.SpecialWalk();
       protected override ItemPropertyType PropertyType => ItemPropertyType.SpecialWalk;
@@ -640,7 +640,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class SpellImmunitySchoolTest : ItemPropertyTest
+    public sealed class SpellImmunitySchoolTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.SpellImmunitySchool(IPSpellSchool.Necromancy);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ImmunitySpellSchool;
@@ -648,7 +648,7 @@ namespace Anvil.Tests.API
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class SpellImmunitySpecificTest : ItemPropertyTest
+    public sealed class SpellImmunitySpecificTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.SpellImmunitySpecific(IPSpellImmunity.Dismissal);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ImmunitySpecificSpell;
@@ -656,7 +656,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPSpellImmunity.Dismissal;
     }
 
-    public class ThievesToolsTest : ItemPropertyTest
+    public sealed class ThievesToolsTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.ThievesTools(10);
       protected override ItemPropertyType PropertyType => ItemPropertyType.ThievesTools;
@@ -664,7 +664,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 10;
     }
 
-    public class TrapTest : ItemPropertyTest
+    public sealed class TrapTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.Trap(IPTrapStrength.Deadly, IPTrapType.Fire);
       protected override ItemPropertyType PropertyType => ItemPropertyType.Trap;
@@ -673,14 +673,14 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPTrapType.Fire;
     }
 
-    public class TrueSeeingTest : ItemPropertyTest
+    public sealed class TrueSeeingTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.TrueSeeing();
       protected override ItemPropertyType PropertyType => ItemPropertyType.TrueSeeing;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
-    public class TurnResistanceTest : ItemPropertyTest
+    public sealed class TurnResistanceTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.TurnResistance(20);
       protected override ItemPropertyType PropertyType => ItemPropertyType.TurnResistance;
@@ -688,7 +688,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 20;
     }
 
-    public class UnlimitedAmmoTest : ItemPropertyTest
+    public sealed class UnlimitedAmmoTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.UnlimitedAmmo(IPUnlimitedAmmoType.Fire1d6);
       protected override ItemPropertyType PropertyType => ItemPropertyType.UnlimitedAmmunition;
@@ -697,7 +697,7 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => (int)IPUnlimitedAmmoType.Fire1d6;
     }
 
-    public class VampiricRegenerationTest : ItemPropertyTest
+    public sealed class VampiricRegenerationTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.VampiricRegeneration(13);
       protected override ItemPropertyType PropertyType => ItemPropertyType.RegenerationVampiric;
@@ -705,14 +705,14 @@ namespace Anvil.Tests.API
       protected override int CostTableValue => 13;
     }
 
-    public class VisualEffectTest : ItemPropertyTest
+    public sealed class VisualEffectTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.VisualEffect(ItemVisual.Holy);
       protected override ItemPropertyType PropertyType => ItemPropertyType.VisualEffect;
       protected override int SubType => (int)ItemVisual.Holy;
     }
 
-    public class WeightIncreaseTest : ItemPropertyTest
+    public sealed class WeightIncreaseTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.WeightIncrease(IPWeightIncrease.Plus50Lbs);
       protected override ItemPropertyType PropertyType => ItemPropertyType.WeightIncrease;
@@ -720,7 +720,7 @@ namespace Anvil.Tests.API
       protected override int Param1TableValue => (int)IPWeightIncrease.Plus50Lbs;
     }
 
-    public class WeightReductionTest : ItemPropertyTest
+    public sealed class WeightReductionTest : ItemPropertyTest
     {
       protected override ItemProperty ItemProperty => ItemProperty.WeightReduction(IPReducedWeight.Minus60Pct);
       protected override ItemPropertyType PropertyType => ItemPropertyType.BaseItemWeightReduction;
