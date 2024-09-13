@@ -586,7 +586,7 @@ namespace Anvil.Tests.API
       protected override ItemProperty ItemProperty => ItemProperty.OnMonsterHitProperties(MonsterHitEffect.Stun(IPOnHitDuration.Duration50Pct2Rounds));
       protected override ItemPropertyType PropertyType => ItemPropertyType.OnMonsterHit;
       protected override int SubType => MonsterHitEffect.Stun(IPOnHitDuration.Duration50Pct2Rounds).Property;
-      protected override int Param1TableValue => HitEffect.AbilityDrain(IPAbility.Wisdom).Special;
+      protected override int Param1TableValue => MonsterHitEffect.Stun(IPOnHitDuration.Duration50Pct2Rounds).Special;
     }
 
     public sealed class QualityTest : ItemPropertyTest
