@@ -359,7 +359,10 @@ namespace Anvil.API
 
     public static ItemProperty OnMonsterHitProperties(MonsterHitEffect effect)
     {
-      return NWScript.ItemPropertyCustom((int)ItemPropertyType.OnMonsterHit, effect.Property, -1, effect.Special)!;
+      ItemProperty property = NWScript.ItemPropertyCustom((int)ItemPropertyType.OnMonsterHit, effect.Property, -1, effect.Special)!;
+      property.IntParams[2] = -1;
+
+      return property;
     }
 
     public static ItemProperty Quality(IPQuality quality)
