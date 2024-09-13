@@ -344,10 +344,10 @@ namespace Anvil.API
         case AddPropPolicy.IgnoreExisting:
           break;
         case AddPropPolicy.ReplaceExisting:
-          RemoveItemProperties(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : itemProperty.DurationType, ignoreTag ? null : itemProperty.Tag);
+          RemoveItemProperties(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : durationType, ignoreTag ? null : itemProperty.Tag);
           break;
         case AddPropPolicy.KeepExisting:
-          if (HasItemProperty(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : itemProperty.DurationType, ignoreTag ? null : itemProperty.Tag))
+          if (HasItemProperty(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : durationType, ignoreTag ? null : itemProperty.Tag))
           {
             return;
           }

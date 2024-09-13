@@ -56,7 +56,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
@@ -70,7 +70,7 @@
 
   <ItemGroup>
     <PackageReference Include="NWN.Core" Version="8193.36.1" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.36.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.36.4" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

@@ -24,6 +24,8 @@ jobs:
   compile:
     runs-on: ubuntu-20.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
+    permissions:
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -56,16 +58,10 @@ jobs:
             analysis-cache
 
       - name: Code Analysis
-        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
-
-      - name: Parse Analysis Results
-        uses: glassechidna/resharper-action@master
+        uses: JetBrains/ReSharper-InspectCode@v0.3
         with:
-          report: results.xml
-
-      - name: Analysis Result
-        run: |
-          ! grep "<Issue TypeId=" results.xml
+          solution: ./NWN.Anvil.sln
+          tool-version: 2024.1.0
 
   test:
     runs-on: ubuntu-20.04
@@ -90,8 +86,8 @@ jobs:
 
       - name: Run Tests
         run: |
-          docker-compose build --build-arg NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} --build-arg BINARY_PATH=NWN.Anvil/bin/Release/net7.0
-          docker-compose up
+          docker compose build --build-arg NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} --build-arg BINARY_PATH=NWN.Anvil/bin/Release/net7.0
+          docker compose up
         working-directory: NWN.Anvil.Tests/bin/Release/
 
       - name: Install NUnit
@@ -109,14 +105,14 @@ jobs:
         shell: pwsh
 
       - name: Upload Event File
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Event File
           path: ${{ github.event_path }}
 
       - name: Upload Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Test Results
@@ -172,7 +168,7 @@ jobs:
           echo "::set-output name=created::$(echo date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Upload NuGet Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: NuGet Packages
           path: |
@@ -183,7 +179,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload Build Artifacts (Anvil)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Binaries
           path: |
@@ -193,7 +189,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload Build Artifacts (Test Runner)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Binaries (Test Runner)
           path: |
@@ -208,7 +204,7 @@ jobs:
     needs: build
     steps:
       - name: Download Release Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: Binaries
           path: binaries
@@ -250,7 +246,7 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: Download Release Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: NuGet Packages
           path: binaries
@@ -272,7 +268,7 @@ jobs:
           submodules: recursive
 
       - name: Download Release Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: Binaries
           path: binaries

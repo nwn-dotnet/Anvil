@@ -341,6 +341,12 @@ namespace Anvil.API
       return NWScript.ItemPropertyNoDamage()!;
     }
 
+    public static ItemProperty OnHitCastSpell(IPCastSpell spell, int casterLevel)
+    {
+      return NWScript.ItemPropertyOnHitCastSpell((int)spell, casterLevel)!;
+    }
+
+    [Obsolete("Use the OnHitCastSpell(IPCastSpell, int) overload instead.")]
     public static ItemProperty OnHitCastSpell(IPCastSpell spell, IPSpellLevel spellLevel)
     {
       return NWScript.ItemPropertyOnHitCastSpell((int)spell, (int)spellLevel)!;
@@ -353,7 +359,10 @@ namespace Anvil.API
 
     public static ItemProperty OnMonsterHitProperties(MonsterHitEffect effect)
     {
-      return NWScript.ItemPropertyOnMonsterHitProperties(effect.Property, effect.Special)!;
+      ItemProperty property = NWScript.ItemPropertyCustom((int)ItemPropertyType.OnMonsterHit, effect.Property, -1, effect.Special)!;
+      property.IntParams[2] = -1;
+
+      return property;
     }
 
     public static ItemProperty Quality(IPQuality quality)
