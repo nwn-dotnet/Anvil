@@ -40,7 +40,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Build
         run: dotnet build --configuration Debug
@@ -75,7 +75,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Build
         run: dotnet build --configuration Release
@@ -86,7 +86,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          docker compose build --build-arg NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} --build-arg BINARY_PATH=NWN.Anvil/bin/Release/net7.0
+          docker compose build --build-arg NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} --build-arg BINARY_PATH=NWN.Anvil/bin/Release/net8.0
           docker compose up
         working-directory: NWN.Anvil.Tests/bin/Release/
 
@@ -138,7 +138,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Tag Commit
         if: github.event.inputs.tag != ''
@@ -243,7 +243,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Download Release Artifacts
         uses: actions/download-artifact@v4
@@ -299,7 +299,7 @@ jobs:
           push: true
           build-args: |
               NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }}
-              BINARY_PATH=/binaries/net7.0
+              BINARY_PATH=/binaries/net8.0
           labels: |
               org.opencontainers.image.title=Anvil
               org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.

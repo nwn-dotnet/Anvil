@@ -6,7 +6,7 @@
     - ci.yml: BINARY_PATH
     - NWN.Anvil.Tests/docker-compose.yml
     -->
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
