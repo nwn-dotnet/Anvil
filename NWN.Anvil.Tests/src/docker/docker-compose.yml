@@ -2,11 +2,11 @@ version: '3'
 services:
   anvil:
     build:
-      context: ${PWD-.}/../../../
-      dockerfile: ${PWD-.}/../../../dockerfile
+      context: .
+      dockerfile: dockerfile
     env_file:
-      - ${PWD-.}/config/nwserver.env
+      - ./NWN.Anvil.Tests/bin/Release/config/nwserver.env
     volumes:
-      - ${PWD-.}/NWN.Anvil.Tests:/nwn/run/anvil/Plugins/NWN.Anvil.Tests
-      - ${PWD-.}/../../../NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner:/nwn/run/anvil/Plugins/NWN.Anvil.TestRunner
-      - ${PWD-.}/results:/nwn/run/anvil/PluginData/NWN.Anvil.TestRunner
+      - ./NWN.Anvil.Tests/bin/Release/NWN.Anvil.Tests:/nwn/run/anvil/Plugins/NWN.Anvil.Tests
+      - ./NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner:/nwn/run/anvil/Plugins/NWN.Anvil.TestRunner
+      - ./NWN.Anvil.Tests/bin/Release/results:/nwn/run/anvil/PluginData/NWN.Anvil.TestRunner
