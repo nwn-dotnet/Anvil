@@ -19,7 +19,7 @@ New to Anvil and want to know how to get a server running? Have a look through o
 Want to write some scripts in C# or develop a new plugin? Have a look through our plugin development guides: https://github.com/nwn-dotnet/Anvil/wiki/Plugin-Development
 
 ## Compiling Anvil
-Anvil is a [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) project, and you will need the appropriate SDKs to compile and build the project.
+Anvil is a [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) project, and you will need the appropriate SDKs to compile and build the project.
 
 `git` must also be available from the command line for build versioning.
 
