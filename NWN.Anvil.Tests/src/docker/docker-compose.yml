@@ -7,6 +7,7 @@ services:
     env_file:
       - ./NWN.Anvil.Tests/bin/Release/config/nwserver.env
     volumes:
+      - ./NWN.Anvil.Tests/bin/Release/config/nlog.config:/nwn/run/anvil/nlog.config
       - ./NWN.Anvil.Tests/bin/Release/NWN.Anvil.Tests:/nwn/run/anvil/Plugins/NWN.Anvil.Tests
       - ./NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner:/nwn/run/anvil/Plugins/NWN.Anvil.TestRunner
       - ./NWN.Anvil.Tests/bin/Release/results:/nwn/run/anvil/PluginData/NWN.Anvil.TestRunner
