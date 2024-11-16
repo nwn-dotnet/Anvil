@@ -59,7 +59,7 @@ namespace Anvil.API.Events
       string scriptName = message.PeekMessageString(offset);
       offset += scriptName.Length + 4;
 
-      uint oidTarget = player?.Player.SatisfiesBuild(8193, 14).ToBool() == true ? message.PeekMessage<uint>(offset) : NwObject.Invalid;
+      uint oidTarget = player?.Player.SatisfiesBuild(8193, 14, 0).ToBool() == true ? message.PeekMessage<uint>(offset) : NwObject.Invalid;
       if (oidTarget == NwObject.Invalid)
       {
         oidTarget = player?.ControlledCreature;

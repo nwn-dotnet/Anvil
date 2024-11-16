@@ -27,10 +27,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="delay">How long to wait.</param>
     /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
-    public static async Task Delay(TimeSpan delay, CancellationToken? cancellationToken = null)
+    public static Task Delay(TimeSpan delay, CancellationToken? cancellationToken = null)
     {
       Stopwatch stopwatch = Stopwatch.StartNew();
-      await RunAndAwait(() => delay < stopwatch.Elapsed, cancellationToken);
+      return RunAndAwait(() => delay < stopwatch.Elapsed, cancellationToken);
     }
 
     /// <summary>
@@ -38,9 +38,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="frames">The number of frames to wait.</param>
     /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
-    public static async Task DelayFrame(int frames, CancellationToken? cancellationToken = null)
+    public static Task DelayFrame(int frames, CancellationToken? cancellationToken = null)
     {
-      await RunAndAwait(() =>
+      return RunAndAwait(() =>
       {
         bool retVal = frames <= 0;
         frames--;
@@ -51,9 +51,9 @@ namespace Anvil.API
     /// <summary>
     /// Waits until the next server frame/loop.
     /// </summary>
-    public static async Task NextFrame()
+    public static Task NextFrame()
     {
-      await DelayFrame(1);
+      return DelayFrame(1);
     }
 
     /// <summary>
@@ -88,9 +88,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="test">The test expression.</param>
     /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
-    public static async Task WaitUntil(Func<bool> test, CancellationToken? cancellationToken = null)
+    public static Task WaitUntil(Func<bool> test, CancellationToken? cancellationToken = null)
     {
-      await RunAndAwait(test, cancellationToken);
+      return RunAndAwait(test, cancellationToken);
     }
 
     /// <summary>
@@ -98,10 +98,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="valueSource">The watched value source.</param>
     /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
-    public static async Task WaitUntilValueChanged<T>(Func<T> valueSource, CancellationToken? cancellationToken = null)
+    public static Task WaitUntilValueChanged<T>(Func<T> valueSource, CancellationToken? cancellationToken = null)
     {
       T currentVal = valueSource();
-      await RunAndAwait(() => !Equals(currentVal, valueSource()), cancellationToken);
+      return RunAndAwait(() => !Equals(currentVal, valueSource()), cancellationToken);
     }
 
     /// <summary>

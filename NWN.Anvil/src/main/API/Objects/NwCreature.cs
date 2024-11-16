@@ -561,11 +561,6 @@ namespace Anvil.API
     public SpecialAttack LastSpecialAttackType => (SpecialAttack)NWScript.GetLastAttackType(this);
 
     /// <summary>
-    /// Gets the caster level of the last spell this creature casted.
-    /// </summary>
-    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
-
-    /// <summary>
     /// Gets the last trap detected by this creature.
     /// </summary>
     public NwTrappable? LastTrapDetected => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
@@ -784,6 +779,20 @@ namespace Anvil.API
     {
       get => Creature.m_nSoundSet;
       set => Creature.m_nSoundSet = value;
+    }
+
+    /// <summary>
+    /// Gets a list of spell abilities usable by this creature.
+    /// </summary>
+    public IEnumerable<CreatureSpellAbility> SpellAbilities
+    {
+      get
+      {
+        for (int i = 0; i < NWScript.GetSpellAbilityCount(this); i++)
+        {
+          yield return new CreatureSpellAbility(this, i);
+        }
+      }
     }
 
     /// <summary>
@@ -1084,18 +1093,18 @@ namespace Anvil.API
     /// Instructs this creature to approach and lock the specified door.
     /// </summary>
     /// <param name="door">The door to lock.</param>
-    public async Task ActionLockObject(NwDoor door)
+    public Task ActionLockObject(NwDoor door)
     {
-      await DoActionLockObject(door);
+      return DoActionLockObject(door);
     }
 
     /// <summary>
     /// Instructs this creature to approach and lock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to lock.</param>
-    public async Task ActionLockObject(NwPlaceable placeable)
+    public Task ActionLockObject(NwPlaceable placeable)
     {
-      await DoActionLockObject(placeable);
+      return DoActionLockObject(placeable);
     }
 
     /// <summary>
@@ -1216,18 +1225,18 @@ namespace Anvil.API
     /// Instructs this creature to approach and unlock the specified door.
     /// </summary>
     /// <param name="door">The door to unlock.</param>
-    public async Task ActionUnlockObject(NwDoor door)
+    public Task ActionUnlockObject(NwDoor door)
     {
-      await DoActionUnlockObject(door);
+      return DoActionUnlockObject(door);
     }
 
     /// <summary>
     /// Instructs this creature to approach and unlock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to unlock.</param>
-    public async Task ActionUnlockObject(NwPlaceable placeable)
+    public Task ActionUnlockObject(NwPlaceable placeable)
     {
-      await DoActionUnlockObject(placeable);
+      return DoActionUnlockObject(placeable);
     }
 
     /// <summary>
@@ -1536,7 +1545,7 @@ namespace Anvil.API
     /// <returns>The ability modifier for the specified ability score.</returns>
     public int CalculateAbilityModifierFromScore(byte abilityScore)
     {
-      return creature.m_pStats.CalcStatModifier(abilityScore);
+      return creature.m_pStats.CalcStatModifier(abilityScore).AsSByte();
     }
 
     /// <summary>
@@ -2688,6 +2697,15 @@ namespace Anvil.API
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)
     {
       Creature.AddToArea(area, x, y, z, true.ToInt());
+    }
+
+    /// <summary>
+    /// Return the Armor Class this creature has against another creature
+    /// </summary>
+    /// <param name="creature">The creature against which the Armor Class will be checked.</param>
+    public int GetArmorClassVersus(NwCreature creature)
+    {
+      return Creature.m_pStats.GetArmorClassVersus(creature);
     }
   }
 }

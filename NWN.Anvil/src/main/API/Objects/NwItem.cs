@@ -196,7 +196,7 @@ namespace Anvil.API
     /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
     /// </summary>
     /// <remarks>This can be a creature, a placeable, or an item container (e.g magic bag). Use <see cref="RootPossessor"/> to get the root possessor of this item.</remarks>
-    public NwGameObject? Possessor => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
+    public NwGameObject? Possessor => NWScript.GetItemPossessor(this, true.ToInt()).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the number of stacked items attached to this item.
@@ -230,19 +230,7 @@ namespace Anvil.API
     /// Gets the root possessor of this item.
     /// </summary>
     /// <remarks>If this item is in a container, this is the creature/placeable holding the container that holds this item. Otherwise, this returns the same object as <see cref="Possessor"/>.</remarks>
-    public NwGameObject? RootPossessor
-    {
-      get
-      {
-        NwGameObject? possessor = Possessor;
-        if (possessor is NwItem item)
-        {
-          return item.Possessor as NwCreature;
-        }
-
-        return possessor as NwCreature;
-      }
-    }
+    public NwGameObject? RootPossessor => NWScript.GetItemPossessor(this, false.ToInt()).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the weight of this item, in pounds.
@@ -356,10 +344,10 @@ namespace Anvil.API
         case AddPropPolicy.IgnoreExisting:
           break;
         case AddPropPolicy.ReplaceExisting:
-          RemoveItemProperties(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : itemProperty.DurationType, ignoreTag ? null : itemProperty.Tag);
+          RemoveItemProperties(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : durationType, ignoreTag ? null : itemProperty.Tag);
           break;
         case AddPropPolicy.KeepExisting:
-          if (HasItemProperty(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : itemProperty.DurationType, ignoreTag ? null : itemProperty.Tag))
+          if (HasItemProperty(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : durationType, ignoreTag ? null : itemProperty.Tag))
           {
             return;
           }

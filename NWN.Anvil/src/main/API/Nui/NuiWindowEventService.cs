@@ -24,13 +24,9 @@ namespace Anvil.API
         eventHandlers[token.Player] = playerHandlers;
       }
 
-      if (playerHandlers.ContainsKey(token.Token))
+      if (!playerHandlers.TryAdd(token.Token, handler))
       {
         playerHandlers[token.Token] += handler;
-      }
-      else
-      {
-        playerHandlers[token.Token] = handler;
       }
     }
 

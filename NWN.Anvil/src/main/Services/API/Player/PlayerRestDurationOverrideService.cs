@@ -49,7 +49,7 @@ namespace Anvil.Services
         byte creatureLevel = creature.m_pStats.GetLevel(0);
         int originalValue;
 
-        C2DA durationTable = NWNXLib.Rules().m_p2DArrays.m_pRestDurationTable;
+        C2DA durationTable = NWNXLib.Rules().m_p2DArrays.GetRestDurationTable();
 
         durationTable.GetINTEntry(creatureLevel, DurationTableKey, &originalValue);
         durationTable.SetINTEntry(creatureLevel, DurationTableKey, durationOverride);

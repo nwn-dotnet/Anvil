@@ -150,5 +150,14 @@ namespace Anvil.API
     {
       return raceInfo.IsFirstLevelGrantedFeat(feat.Id).ToBool();
     }
+
+    /// <summary>
+    /// Gets that race favored enemy feat.
+    /// </summary>
+    /// <returns>The default favored enemy feat for that race, otherwise null.</returns>
+    public NwFeat? GetFavoredEnemyFeat()
+    {
+      return NwFeat.FromFeatId(raceInfo.m_nFavoredEnemyFeat);
+    }
   }
 }

@@ -30,5 +30,7 @@ namespace Anvil.API
     OptionsOpen = NWScript.GUIEVENT_OPTIONS_OPEN,
     OptionsClose = NWScript.GUIEVENT_OPTIONS_CLOSE,
     RadialOpen = NWScript.GUIEVENT_RADIAL_OPEN,
+    ChatlogPortraitClick = NWScript.GUIEVENT_CHATLOG_PORTRAIT_CLICK,
+    PlayerlistPlayerTell = NWScript.GUIEVENT_PLAYERLIST_PLAYER_TELL,
   }
 }

@@ -58,6 +58,17 @@ namespace Anvil.API
     public NwArea? Area => GameObject.GetArea().ToNwObject<NwArea>();
 
     /// <summary>
+    /// Gets the caster level of this object.
+    /// </summary>
+    /// <remarks>
+    /// A creature will return the caster level of their currently cast spell or ability, or the item's caster level if an item was used.<br/>
+    /// A placeable will return an automatic caster level: floor(10, (spell innate level * 2) - 1)<br/>
+    /// An Area of Effect object will return the caster level that was used to create the Area of Effect.<br/>
+    /// Otherwise, returns 0
+    /// </remarks>
+    public int CasterLevel => NWScript.GetCasterLevel(this);
+
+    /// <summary>
     /// Gets or sets the highlight color of this object.
     /// </summary>
     public Color HighlightColor
@@ -247,15 +258,17 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spell">The spell to cast.</param>
     /// <param name="target">The target for the spell.</param>
-    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
-    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
+    /// <param name="metaMagic">Metamagic that should be applied to the spell. If class is specified, cannot be <see cref="MetaMagic.Any"/>.</param>
+    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell. Ignored if class is specified.</param>
     /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
     /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(NwSpell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    /// <param name="spellClass">If specified, the spell will be cast using that class specifically. Null will use spell abilities instead.</param>
+    /// <param name="spontaneousCast">If true, the creature will attempt to cast the given spell spontaneously. Requires class parameter is set to a valid class with spontaneous cast spells.</param>
+    public async Task ActionCastSpellAt(NwSpell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false, NwClass? spellClass = null, bool spontaneousCast = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject(spell.Id, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject(spell.Id, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt(), spellClass?.Id ?? -1, spontaneousCast.ToInt());
     }
 
     /// <summary>
@@ -267,10 +280,13 @@ namespace Anvil.API
     /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
     /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(NwSpell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    /// <param name="spellClass">If specified, the spell will be cast using that class specifically. Null will use spell abilities instead.</param>
+    /// <param name="spontaneousCast">If true, the creature will attempt to cast the given spell spontaneously. Requires class parameter is set to a valid class with spontaneous cast spells.</param>
+    /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
+    public async Task ActionCastSpellAt(NwSpell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false, NwClass? spellClass = null, bool spontaneousCast = false, int domainLevel = 0)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation(spell.Id, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation(spell.Id, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt(), spellClass?.Id ?? -1, spontaneousCast.ToInt(), domainLevel);
     }
 
     /// <summary>
@@ -366,9 +382,9 @@ namespace Anvil.API
     /// Rotates this object to face towards target.
     /// </summary>
     /// <param name="target">The target object to face.</param>
-    public async Task FaceToObject(NwGameObject target)
+    public Task FaceToObject(NwGameObject target)
     {
-      await FaceToPoint(target.Position);
+      return FaceToPoint(target.Position);
     }
 
     /// <summary>

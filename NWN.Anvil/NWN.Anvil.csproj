@@ -6,7 +6,7 @@
     - ci.yml: BINARY_PATH
     - NWN.Anvil.Tests/docker-compose.yml
     -->
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
@@ -63,10 +63,10 @@
   <ItemGroup>
     <PackageReference Include="LightInject" Version="6.6.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NLog" Version="5.2.4" />
-    <PackageReference Include="Paket.Core" Version="7.2.1" PrivateAssets="all" />
-    <PackageReference Include="NWN.Core" Version="8193.35.15" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.35.9" PrivateAssets="compile" />
+    <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="Paket.Core" Version="8.0.3" PrivateAssets="all" />
+    <PackageReference Include="NWN.Core" Version="8193.36.5" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.36.7" PrivateAssets="compile" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
 

@@ -86,10 +86,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the associated spell for this effect/item property.
     /// </summary>
-    public NwSpell Spell
+    public NwSpell? Spell
     {
-      get => NwSpell.FromSpellId(Effect.m_nSpellId.AsInt())!;
-      set => Effect.m_nSpellId = value.Id.AsUInt();
+      get => NwSpell.FromSpellId(Effect.m_nSpellId.AsInt());
+      set => Effect.m_nSpellId = value?.Id.AsUInt() ?? 0xFFFFFFFF;
     }
 
     /// <summary>

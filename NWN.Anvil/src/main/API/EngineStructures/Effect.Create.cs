@@ -245,14 +245,25 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Creates an effect that applies a bonus to a specified damage type.
+    /// </summary>
+    /// <param name="bonus">The damage bonus to apply.</param>
+    /// <param name="damageType">The damage type to apply the bonus to.</param>
+    public static Effect DamageIncrease(DamageBonus bonus, DamageType damageType = DamageType.Magical)
+    {
+      return NWScript.EffectDamageIncrease((int)bonus, (int)damageType)!;
+    }
+
+    /// <summary>
     /// Creates an effect that resists a constant amount of damage from a physical attack with a certain magical power.
     /// </summary>
     /// <param name="amount">The damage to remove from each attack.</param>
     /// <param name="damagePower">The max enchantment/power bonus of the weapon this effect will resist.</param>
     /// <param name="totalAbsorb">The total amount of damage to absorb, before the effect is removed (0 = infinite).</param>
-    public static Effect DamageReduction(int amount, DamagePower damagePower, int totalAbsorb = 0)
+    /// <param name="rangedOnly">Set to true to have this damage reduction effect only apply to ranged attacks.</param>
+    public static Effect DamageReduction(int amount, DamagePower damagePower, int totalAbsorb = 0, bool rangedOnly = false)
     {
-      return NWScript.EffectDamageReduction(amount, (int)damagePower, totalAbsorb)!;
+      return NWScript.EffectDamageReduction(amount, (int)damagePower, totalAbsorb, rangedOnly.ToInt())!;
     }
 
     /// <summary>
@@ -261,9 +272,10 @@ namespace Anvil.API
     /// <param name="damageType">The type of damage to resist.</param>
     /// <param name="amount">The damage to remove from each attack.</param>
     /// <param name="totalAbsorb">The total amount of damage to absorb, before the effect is removed (0 = infinite).</param>
-    public static Effect DamageResistance(DamageType damageType, int amount, int totalAbsorb = 0)
+    /// <param name="rangedOnly">Set to true to have this damage resistance effect only apply to ranged attacks.</param>
+    public static Effect DamageResistance(DamageType damageType, int amount, int totalAbsorb = 0, bool rangedOnly = false)
     {
-      return NWScript.EffectDamageResistance((int)damageType, amount, totalAbsorb)!;
+      return NWScript.EffectDamageResistance((int)damageType, amount, totalAbsorb, rangedOnly.ToInt())!;
     }
 
     /// <summary>
@@ -894,6 +906,15 @@ namespace Anvil.API
     public static Effect VisualEffect(VisualEffectTableEntry visualEffect, bool missEffect = false, float fScale = 1.0f, System.Numerics.Vector3 vTranslate = default, System.Numerics.Vector3 vRotate = default)
     {
       return NWScript.EffectVisualEffect(visualEffect.RowIndex, missEffect.ToInt(), fScale, vTranslate, vRotate)!;
+    }
+
+    /// <summary>
+    /// Creates an effect that gives a creature with melee/ranged/touched attacks a bonus to hit.
+    /// </summary>
+    /// <param name="bonus">The additional attack bonus.</param>
+    public static Effect EnemyAttackBonus(int bonus)
+    {
+      return NWScript.EffectEnemyAttackBonus(bonus)!;
     }
   }
 }

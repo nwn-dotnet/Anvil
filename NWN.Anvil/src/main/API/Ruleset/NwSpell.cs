@@ -289,6 +289,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Resolves a <see cref="NwSpell"/> from a spell id.
+    /// </summary>
+    /// <param name="spellId">The id of the spell to resolve.</param>
+    /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell id is invalid.</returns>
+    public static NwSpell? FromSpellId(uint? spellId)
+    {
+      return spellId != null ? NwRuleset.Spells.ElementAtOrDefault((int)spellId.Value) : null;
+    }
+
+    /// <summary>
     /// Resolves a <see cref="NwSpell"/> from a <see cref="Anvil.API.Spell"/>.
     /// </summary>
     /// <param name="spellType">The spell type to resolve.</param>

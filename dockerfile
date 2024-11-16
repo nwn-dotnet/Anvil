@@ -27,8 +27,8 @@ RUN apt-get update \
     inotify-tools \
     patch \
     unzip \
-    dotnet-runtime-7.0 \
-    dotnet-apphost-pack-7.0 \
+    dotnet-runtime-8.0 \
+    dotnet-apphost-pack-8.0 \
 && rm -rf /var/cache/apt /var/lib/apt/lists/*
 
 # Copy Anvil Binaries
@@ -65,6 +65,14 @@ ENV NWNX_SERVERLOGREDIRECTOR_LOG_LEVEL=6
 
 # Disable all other plugins by default.
 ENV NWNX_CORE_SKIP_ALL=y
+
+# Enable minidump generation
+ENV DOTNET_DbgEnableMiniDump=1
+ENV DOTNET_DbgMiniDumpType=3
+ENV DOTNET_CreateDumpDiagnostics=1
+ENV DOTNET_CreateDumpVerboseDiagnostics=1
+ENV DOTNET_DbgMiniDumpName=/nwn/run/logs.0/anvil-crash-%t.dmp
+ENV DOTNET_CreateDumpLogToFile=/nwn/run/logs.0/anvil-crash.log
 
 # Entrypoint & Executable
 EXPOSE ${NWN_PORT:-5121}/udp
