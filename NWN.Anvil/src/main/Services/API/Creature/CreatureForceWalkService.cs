@@ -38,11 +38,7 @@ namespace Anvil.Services
       else
       {
         alwaysWalk.Delete();
-
-        if (creature.ActiveEffects.Any(activeEffect => activeEffect.EffectType == EffectType.MovementSpeedDecrease))
-        {
-          return;
-        }
+        nativeCreature.m_bForcedWalk = creature.ActiveEffects.Any(activeEffect => activeEffect.EffectType == EffectType.MovementSpeedDecrease).ToInt();
 
         if (!nativeCreature.m_bForcedWalk.ToBool())
         {
