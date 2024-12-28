@@ -6,7 +6,6 @@ using Anvil.Plugins;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.Highest)]
   public sealed class InjectionService : ICoreService
   {
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();

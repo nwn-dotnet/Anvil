@@ -14,7 +14,6 @@ namespace Anvil.Plugins
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
-  [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
   public sealed class PluginManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

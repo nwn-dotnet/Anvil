@@ -3,7 +3,6 @@ using NLog;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.High)]
   internal sealed class UnhandledExceptionLogger : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

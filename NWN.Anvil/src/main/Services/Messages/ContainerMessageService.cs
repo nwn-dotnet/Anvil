@@ -5,7 +5,6 @@ using LightInject;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.Highest)]
   internal sealed class ContainerMessageService : ICoreService
   {
     private readonly List<IUpdateable> updateTargets = new List<IUpdateable>();

@@ -12,7 +12,6 @@ using ResRefType = Anvil.API.ResRefType;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed unsafe class ResourceManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Anvil.API;
 using Anvil.Internal;
 using Anvil.Plugins;
 using LightInject;
@@ -14,9 +13,8 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private List<ICoreService> coreServices = null!;
-
     private readonly AnvilContainerFactory anvilContainerFactory;
+    private readonly AnvilCoreServiceManager anvilCoreServiceManager;
     private PluginManager pluginManager = null!;
 
     private bool shuttingDown;
@@ -32,10 +30,11 @@ namespace Anvil.Services
     public AnvilServiceManager()
     {
       anvilContainerFactory = new AnvilContainerFactory(this);
+
       CoreServiceContainer = anvilContainerFactory.CreateContainer();
       AnvilServiceContainer = anvilContainerFactory.CreateContainer(CoreServiceContainer);
 
-      InstallCoreContainer();
+      anvilCoreServiceManager = new AnvilCoreServiceManager(CoreServiceContainer);
     }
 
     public void InjectProperties(object? instance)
@@ -72,23 +71,12 @@ namespace Anvil.Services
     void IServiceManager.Init()
     {
       pluginManager = CoreServiceContainer.GetInstance<PluginManager>();
-      coreServices = CoreServiceContainer.GetAllInstances<ICoreService>().ToList();
-
-      foreach (ICoreService coreService in coreServices)
-      {
-        Log.Info("Initialising core service {CoreService}", coreService.GetType().FullName);
-        coreService.Init();
-      }
+      anvilCoreServiceManager.Init();
     }
 
     void IServiceManager.Load()
     {
-      Log.Info("Loading core services...");
-      foreach (ICoreService coreService in coreServices)
-      {
-        Log.Info("Loading core service {CoreService}", coreService.GetType().FullName);
-        coreService.Load();
-      }
+      anvilCoreServiceManager.Load();
 
       Log.Info("Loading anvil services...");
       InstallAnvilServiceContainer();
@@ -104,20 +92,12 @@ namespace Anvil.Services
       }
 
       shuttingDown = true;
-
-      for (int i = coreServices.Count - 1; i >= 0; i--)
-      {
-        coreServices[i].Shutdown();
-      }
+      anvilCoreServiceManager.Shutdown();
     }
 
     void IServiceManager.Start()
     {
-      foreach (ICoreService coreService in coreServices)
-      {
-        coreService.Start();
-      }
-
+      anvilCoreServiceManager.Start();
       AnvilServiceContainer.ConstructAllServices();
       OnContainerCreate?.Invoke(AnvilServiceContainer);
     }
@@ -125,7 +105,7 @@ namespace Anvil.Services
     void IServiceManager.Unload()
     {
       UnloadAnvilServices();
-      UnloadCoreServices();
+      anvilCoreServiceManager.Unload();
     }
 
     private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute? options)
@@ -152,22 +132,6 @@ namespace Anvil.Services
       }
     }
 
-    private void InstallCoreContainer()
-    {
-      CoreServiceContainer.RegisterCoreService<NwServer>();
-      CoreServiceContainer.RegisterCoreService<LoggerManager>();
-      CoreServiceContainer.RegisterCoreService<UnhandledExceptionLogger>();
-      CoreServiceContainer.RegisterCoreService<UnobservedTaskExceptionLogger>();
-      CoreServiceContainer.RegisterCoreService<InjectionService>();
-      CoreServiceContainer.RegisterCoreService<ModuleLoadTracker>();
-      CoreServiceContainer.RegisterCoreService<HookService>();
-      CoreServiceContainer.RegisterCoreService<VirtualMachine>();
-      CoreServiceContainer.RegisterCoreService<PluginManager>();
-      CoreServiceContainer.RegisterCoreService<EncodingService>();
-      CoreServiceContainer.RegisterCoreService<ResourceManager>();
-      CoreServiceContainer.RegisterCoreService<ContainerMessageService>();
-    }
-
     private void TryRegisterAnvilService(IServiceContainer container, Type bindToType)
     {
       if (bindToType.IsAnvilService(out ServiceBindingAttribute[]? bindings, out ServiceBindingOptionsAttribute? options) && IsServiceRequirementsMet(pluginManager, options))
@@ -185,18 +149,6 @@ namespace Anvil.Services
       OnContainerDispose?.Invoke(AnvilServiceContainer);
       AnvilServiceContainer.Dispose();
       AnvilServiceContainer = anvilContainerFactory.CreateContainer(CoreServiceContainer);
-    }
-
-    private void UnloadCoreServices()
-    {
-      Log.Info("Unloading core services...");
-      for (int i = coreServices.Count - 1; i >= 0; i--)
-      {
-        ICoreService coreService = coreServices[i];
-
-        Log.Info("Unloading core service {CoreService}", coreService.GetType().FullName);
-        coreService.Unload();
-      }
     }
   }
 }

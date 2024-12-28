@@ -4,7 +4,6 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  [ServiceBindingOptions(InternalBindingPriority.Highest)]
   public sealed unsafe class NwServer : ICoreService
   {
     public static NwServer Instance { get; private set; } = null!;
