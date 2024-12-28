@@ -27,8 +27,8 @@ RUN apt-get update \
     inotify-tools \
     patch \
     unzip \
-    dotnet-runtime-7.0 \
-    dotnet-apphost-pack-7.0 \
+    dotnet-runtime-8.0 \
+    dotnet-apphost-pack-8.0 \
 && rm -rf /var/cache/apt /var/lib/apt/lists/*
 
 # Copy Anvil Binaries

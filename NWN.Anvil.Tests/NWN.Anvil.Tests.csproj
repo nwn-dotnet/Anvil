@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
@@ -42,8 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NWN.Core" Version="8193.36.1" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.36.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Core" Version="8193.36.5" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.36.7" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

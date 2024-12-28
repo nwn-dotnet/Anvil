@@ -39,6 +39,14 @@ namespace Anvil.API.Events
       {
         return NWScript.GetDamageDealtByType((int)damageType);
       }
+
+      public OnDamaged()
+      {
+        uint objSelf = NWScript.OBJECT_SELF;
+        DamagedObject = objSelf.ToNwObject<NwPlaceable>()!;
+        TotalDamageDealt = NWScript.GetTotalDamageDealt();
+        Damager = NWScript.GetLastDamager(objSelf).ToNwObject<NwCreature>()!;
+      }
     }
   }
 }
