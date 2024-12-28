@@ -190,7 +190,7 @@ namespace Anvil.Plugins
     {
       if (PluginInfo.Isolated)
       {
-        Container = ServiceManager.CreateIsolatedPluginContainer(PluginTypes!);
+        Container = ServiceManager.CreatePluginContainer(PluginTypes!);
       }
     }
 
@@ -205,8 +205,11 @@ namespace Anvil.Plugins
 
     private void RemoveIsolatedContainer()
     {
-      Container?.Dispose();
-      Container = null;
+      if (Container != null)
+      {
+        ServiceManager.DisposePluginContainer(Container);
+        Container = null;
+      }
     }
   }
 }

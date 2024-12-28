@@ -15,7 +15,6 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private List<ICoreService> coreServices = null!;
-    private List<ILateDisposable>? lateDisposableServices;
 
     private readonly AnvilContainerFactory anvilContainerFactory;
     private PluginManager pluginManager = null!;
@@ -26,6 +25,9 @@ namespace Anvil.Services
     public ServiceContainer AnvilServiceContainer { get; private set; }
 
     public ServiceContainer CoreServiceContainer { get; }
+
+    public event Action<IServiceContainer>? OnContainerCreate;
+    public event Action<IServiceContainer>? OnContainerDispose;
 
     public AnvilServiceManager()
     {
@@ -48,7 +50,7 @@ namespace Anvil.Services
       }
     }
 
-    IServiceContainer IServiceManager.CreateIsolatedPluginContainer(IEnumerable<Type> pluginTypes)
+    IServiceContainer IServiceManager.CreatePluginContainer(IEnumerable<Type> pluginTypes)
     {
       ServiceContainer pluginContainer = anvilContainerFactory.CreateContainer(AnvilServiceContainer);
       foreach (Type type in pluginTypes)
@@ -57,7 +59,14 @@ namespace Anvil.Services
       }
 
       pluginContainer.ConstructAllServices();
+      OnContainerCreate?.Invoke(pluginContainer);
       return pluginContainer;
+    }
+
+    void IServiceManager.DisposePluginContainer(IServiceContainer container)
+    {
+      OnContainerDispose?.Invoke(container);
+      container.Dispose();
     }
 
     void IServiceManager.Init()
@@ -96,20 +105,10 @@ namespace Anvil.Services
 
       shuttingDown = true;
 
-      if (lateDisposableServices != null)
-      {
-        foreach (ILateDisposable lateDisposable in lateDisposableServices)
-        {
-          lateDisposable.LateDispose();
-        }
-      }
-
       for (int i = coreServices.Count - 1; i >= 0; i--)
       {
         coreServices[i].Shutdown();
       }
-
-      lateDisposableServices = null;
     }
 
     void IServiceManager.Start()
@@ -120,6 +119,7 @@ namespace Anvil.Services
       }
 
       AnvilServiceContainer.ConstructAllServices();
+      OnContainerCreate?.Invoke(AnvilServiceContainer);
     }
 
     void IServiceManager.Unload()
@@ -165,6 +165,7 @@ namespace Anvil.Services
       CoreServiceContainer.RegisterCoreService<PluginManager>();
       CoreServiceContainer.RegisterCoreService<EncodingService>();
       CoreServiceContainer.RegisterCoreService<ResourceManager>();
+      CoreServiceContainer.RegisterCoreService<ContainerMessageService>();
     }
 
     private void TryRegisterAnvilService(IServiceContainer container, Type bindToType)
@@ -181,9 +182,9 @@ namespace Anvil.Services
       Log.Info("Unloading anvil services...");
 
       // This must always happen in a separate scope/method, otherwise in Debug and some Release configurations, AnvilServiceContainer will hold a strong reference and prevent plugin unload.
-      lateDisposableServices = AnvilServiceContainer.GetAllInstances<ILateDisposable>().ToList();
+      OnContainerDispose?.Invoke(AnvilServiceContainer);
       AnvilServiceContainer.Dispose();
-      AnvilServiceContainer = anvilContainerFactory.CreateContainer();
+      AnvilServiceContainer = anvilContainerFactory.CreateContainer(CoreServiceContainer);
     }
 
     private void UnloadCoreServices()

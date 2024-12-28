@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Reflection;
 using Anvil.API;
 using LightInject;
@@ -47,7 +46,7 @@ namespace Anvil.Services
 
       bool CanResolveFromParentContainer(Type serviceType, string serviceName)
       {
-        return !IsLifecycleType(serviceType) && parent.CanGetInstance(serviceType, serviceName);
+        return !IsContainerMessageType(serviceType) && parent.CanGetInstance(serviceType, serviceName);
       }
 
       object ResolveFromParentContainer(ServiceRequest request)
@@ -59,10 +58,6 @@ namespace Anvil.Services
     public static void ConstructAllServices(this IServiceContainer container)
     {
       container.GetAllInstances<object>();
-      foreach (IInitializable service in container.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
-      {
-        service.Init();
-      }
     }
 
     public static bool IsAnvilService(this Type type, [NotNullWhen(true)] out ServiceBindingAttribute[]? bindings, out ServiceBindingOptionsAttribute? options)
@@ -99,6 +94,7 @@ namespace Anvil.Services
     {
       serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
 
+      // Message types
       if (bindTo.IsAssignableTo(typeof(IInitializable)))
       {
         serviceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
@@ -110,10 +106,11 @@ namespace Anvil.Services
       }
     }
 
-    private static bool IsLifecycleType(Type type)
+    private static bool IsContainerMessageType(Type type)
     {
       return type == typeof(IInitializable) ||
-        type == typeof(IUpdateable);
+        type == typeof(IUpdateable) ||
+        type == typeof(ILateDisposable);
     }
   }
 }

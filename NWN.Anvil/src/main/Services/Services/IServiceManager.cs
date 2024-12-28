@@ -21,17 +21,33 @@ namespace Anvil.Services
     ServiceContainer CoreServiceContainer { get; }
 
     /// <summary>
+    /// Called when a service container is created.
+    /// </summary>
+    event Action<IServiceContainer> OnContainerCreate;
+
+    /// <summary>
+    /// Called when a service container is disposed.
+    /// </summary>
+    event Action<IServiceContainer> OnContainerDispose;
+
+    /// <summary>
     /// Invoked by the injection service. Implementation for services injected into an object at runtime.
     /// </summary>
     /// <param name="instance">The instance to inject.</param>
-    public void InjectProperties(object? instance);
+    void InjectProperties(object? instance);
 
     /// <summary>
     /// Invoked by the plugin manager when loading an isolated plugin. Creates a new isolated container for the plugin.
     /// </summary>
     /// <param name="pluginTypes">The types to be registered with the container</param>
     /// <returns>The created container.</returns>
-    IServiceContainer CreateIsolatedPluginContainer(IEnumerable<Type> pluginTypes);
+    IServiceContainer CreatePluginContainer(IEnumerable<Type> pluginTypes);
+
+    /// <summary>
+    /// Invoked by the plugin manager when unloading an isolated plugin. Disposes/shutdowns plugin services.
+    /// </summary>
+    /// <param name="container">The container to dispose.</param>
+    void DisposePluginContainer(IServiceContainer container);
 
     /// <summary>
     /// Called during NWNX initialization. Core services should be initialized here.
