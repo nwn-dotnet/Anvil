@@ -372,7 +372,7 @@ namespace Anvil.API
     /// <summary>
     /// Immediately ends this GameObject's current conversation.
     /// </summary>
-    public async void EndConversation()
+    public async Task EndConversation()
     {
       await NwTask.NextFrame();
       GameObject.StopDialog();
