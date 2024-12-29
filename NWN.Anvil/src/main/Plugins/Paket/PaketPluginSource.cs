@@ -12,7 +12,7 @@ using Paket;
 
 namespace Anvil.Plugins
 {
-  internal sealed class PaketPluginSource : IPluginSource
+  internal sealed class PaketPluginSource(PluginManager pluginManager) : IPluginSource
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -25,13 +25,7 @@ namespace Anvil.Plugins
 
     private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
 
-    private readonly PluginManager pluginManager;
     private readonly FSharpList<string> scriptTypes = ListModule.OfArray(["csx"]);
-
-    public PaketPluginSource(PluginManager pluginManager)
-    {
-      this.pluginManager = pluginManager;
-    }
 
     public IEnumerable<Plugin> Bootstrap()
     {

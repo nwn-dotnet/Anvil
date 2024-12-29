@@ -10,14 +10,12 @@ namespace Anvil.Services
   /// Allows combat log, feedback and journal update messages to be hidden globally or per player.
   /// </summary>
   [ServiceBinding(typeof(FeedbackService))]
-  public sealed unsafe class FeedbackService : IDisposable
+  public sealed unsafe class FeedbackService(HookService hookService) : IDisposable
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
     private readonly HashSet<CombatLogMessage> globalFilterListCombatMessage = [];
     private readonly HashSet<FeedbackMessage> globalFilterListFeedbackMessage = [];
-
-    private readonly HookService hookService;
 
     private readonly Dictionary<uint, HashSet<CombatLogMessage>> playerFilterListCombatMessage = new Dictionary<uint, HashSet<CombatLogMessage>>();
     private readonly Dictionary<uint, HashSet<FeedbackMessage>> playerFilterListFeedbackMessage = new Dictionary<uint, HashSet<FeedbackMessage>>();
@@ -28,11 +26,6 @@ namespace Anvil.Services
     private FunctionHook<Functions.CNWSCreature.SendFeedbackMessage>? sendFeedbackMessageHook;
     private FunctionHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>? sendServerToPlayerCCMessageHook;
     private FunctionHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>? sendServerToPlayerJournalUpdatedHook;
-
-    public FeedbackService(HookService hookService)
-    {
-      this.hookService = hookService;
-    }
 
     public FilterMode CombatMessageFilterMode
     {
