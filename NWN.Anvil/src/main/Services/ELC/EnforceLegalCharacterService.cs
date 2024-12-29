@@ -905,23 +905,16 @@ namespace Anvil.Services
         // Calculate the skillpoints we gained this level
         int GetSkillPointAbilityAdjust()
         {
-          switch ((Ability)pRace.m_nSkillPointModifierAbility)
+          return (Ability)pRace.m_nSkillPointModifierAbility switch
           {
-            case Ability.Strength:
-              return pRace.m_nSTRAdjust;
-            case Ability.Dexterity:
-              return pRace.m_nDEXAdjust;
-            case Ability.Constitution:
-              return pRace.m_nCONAdjust;
-            case Ability.Intelligence:
-              return pRace.m_nINTAdjust;
-            case Ability.Wisdom:
-              return pRace.m_nWISAdjust;
-            case Ability.Charisma:
-              return pRace.m_nCHAAdjust;
-            default:
-              return 0;
-          }
+            Ability.Strength => pRace.m_nSTRAdjust,
+            Ability.Dexterity => pRace.m_nDEXAdjust,
+            Ability.Constitution => pRace.m_nCONAdjust,
+            Ability.Intelligence => pRace.m_nINTAdjust,
+            Ability.Wisdom => pRace.m_nWISAdjust,
+            Ability.Charisma => pRace.m_nCHAAdjust,
+            _ => 0,
+          };
         }
 
         int numSkillPoints = pRace != null && pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= AbilityMax

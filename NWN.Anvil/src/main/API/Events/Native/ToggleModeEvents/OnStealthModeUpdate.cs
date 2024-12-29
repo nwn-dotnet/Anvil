@@ -108,17 +108,17 @@ namespace Anvil.API.Events
         bool willBeStealthed = nStealthMode != 0;
         bool currentlyStealthed = creature.m_nStealthMode != 0;
 
-        if (!currentlyStealthed && willBeStealthed)
+        switch (currentlyStealthed)
         {
-          HandleEnterStealth(creature, nStealthMode);
-        }
-        else if (currentlyStealthed && !willBeStealthed)
-        {
-          HandleExitStealth(creature, nStealthMode);
-        }
-        else
-        {
-          Hook.CallOriginal(pCreature, nStealthMode);
+          case false when willBeStealthed:
+            HandleEnterStealth(creature, nStealthMode);
+            break;
+          case true when !willBeStealthed:
+            HandleExitStealth(creature, nStealthMode);
+            break;
+          default:
+            Hook.CallOriginal(pCreature, nStealthMode);
+            break;
         }
       }
 

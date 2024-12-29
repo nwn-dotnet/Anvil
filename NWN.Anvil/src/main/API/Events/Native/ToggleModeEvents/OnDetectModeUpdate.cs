@@ -79,17 +79,17 @@ namespace Anvil.API.Events
         bool willBeDetecting = nDetectMode != 0;
         bool currentlyDetecting = creature.m_nDetectMode != 0;
 
-        if (!currentlyDetecting && willBeDetecting)
+        switch (currentlyDetecting)
         {
-          HandleEnter(creature, nDetectMode);
-        }
-        else if (currentlyDetecting && !willBeDetecting)
-        {
-          HandleExit(creature, nDetectMode);
-        }
-        else
-        {
-          Hook.CallOriginal(pCreature, nDetectMode);
+          case false when willBeDetecting:
+            HandleEnter(creature, nDetectMode);
+            break;
+          case true when !willBeDetecting:
+            HandleExit(creature, nDetectMode);
+            break;
+          default:
+            Hook.CallOriginal(pCreature, nDetectMode);
+            break;
         }
       }
     }
