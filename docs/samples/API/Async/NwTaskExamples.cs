@@ -17,7 +17,7 @@ namespace NWN.Anvil.Samples
     public NwTaskExamples()
     {
       _ = DoAsyncStuff();
-      CancellationTokenExample();
+      _ = CancellationTokenExample();
     }
 
     private async Task DoAsyncStuff()
@@ -69,7 +69,7 @@ namespace NWN.Anvil.Samples
       await NwTask.WhenAll(task1, task2, task3);
     }
 
-    private async void CancellationTokenExample()
+    private async Task CancellationTokenExample()
     {
       // Create a token that will be used to cancel the other tasks.
       CancellationTokenSource tokenSource = new CancellationTokenSource();

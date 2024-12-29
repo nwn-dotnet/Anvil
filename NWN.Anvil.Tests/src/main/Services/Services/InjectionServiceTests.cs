@@ -60,9 +60,9 @@ namespace Anvil.Tests.Services
     }
 
     [ServiceBinding(typeof(InjectionTestService))]
-    internal sealed class InjectionTestService
+    internal sealed class InjectionTestService(ResourceManager resourceManager)
     {
-      public ResourceManager? ResourceManager { get; }
+      public ResourceManager? ResourceManager { get; } = resourceManager;
 
       // Not injected with attribute or initialized from constructor, expected to be null.
       // ReSharper disable once UnassignedGetOnlyAutoProperty
@@ -73,11 +73,6 @@ namespace Anvil.Tests.Services
 
       [Inject]
       internal HookService? HookService { get; init; }
-
-      public InjectionTestService(ResourceManager resourceManager)
-      {
-        ResourceManager = resourceManager;
-      }
     }
   }
 }

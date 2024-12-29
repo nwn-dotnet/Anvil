@@ -177,7 +177,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(waypoint);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwWaypoint clone = waypoint.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Waypoint {waypointResRef} was null after clone.");

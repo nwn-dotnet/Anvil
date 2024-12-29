@@ -7,22 +7,17 @@ using NLog;
 
 namespace Anvil.Tests.Generators
 {
-  internal sealed class Palette
+  internal sealed class Palette(string palettePrefix)
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const string StandardPaletteSuffix = "std";
-    private readonly string standardPaletteResRef;
+    private readonly string standardPaletteResRef = palettePrefix + StandardPaletteSuffix;
 
     [Inject]
     public ResourceManager ResourceManager { private get; init; } = null!;
 
     private readonly List<PaletteEntry> blueprints = [];
-
-    public Palette(string palettePrefix)
-    {
-      standardPaletteResRef = palettePrefix + StandardPaletteSuffix;
-    }
 
     public List<PaletteEntry> GetBlueprints()
     {
@@ -52,12 +47,14 @@ namespace Anvil.Tests.Generators
 
     private void ProcessList(GffResourceField? field, string path)
     {
-      if (field != null)
+      if (field == null)
       {
-        foreach (GffResourceField child in field.Values)
-        {
-          ProcessStruct(child, path);
-        }
+        return;
+      }
+
+      foreach (GffResourceField child in field.Values)
+      {
+        ProcessStruct(child, path);
       }
     }
 

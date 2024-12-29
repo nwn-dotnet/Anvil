@@ -17,13 +17,14 @@ namespace Anvil.Tests.API
     [Test(Description = "A user-specified 2da resource returns correct values.")]
     public void Custom2daReturnsValidValues()
     {
-      string twoDimArray =
-        @"2DA V2.0
+      const string twoDimArray = """
+                                 2DA V2.0
 
-    LABEL    TESTSTR      TESTINT          TESTFLOAT
-0   Test0    ""Test 0""   0                0.0f
-1   Test1    ""Test 1""   0x1              1.0f
-2   Test2    ""Test 2""   0x00000002       2.0f";
+                                     LABEL    TESTSTR      TESTINT          TESTFLOAT
+                                 0   Test0    "Test 0"   0                0.0f
+                                 1   Test1    "Test 1"   0x1              1.0f
+                                 2   Test2    "Test 2"   0x00000002       2.0f
+                                 """;
 
       string resourceName = "testtemp.2da";
       ResourceManager.WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(twoDimArray));

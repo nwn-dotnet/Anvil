@@ -163,7 +163,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(creature);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwCreature clone = creature.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Creature {creatureResRef} was null after clone.");

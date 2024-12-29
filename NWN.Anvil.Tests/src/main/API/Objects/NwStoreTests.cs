@@ -177,7 +177,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(store);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwStore clone = store.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Store {storeResRef} was null after clone.");

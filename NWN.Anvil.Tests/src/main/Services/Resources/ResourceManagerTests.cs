@@ -16,13 +16,14 @@ namespace Anvil.Tests.Services
     [Test(Description = "A created temporary resource is available as a game resource.")]
     public void CreateTemporary2daResourceIsAvailable()
     {
-      string resourceContents =
-        @"2DA V2.0
+      const string resourceContents = """
+                                2DA V2.0
 
-    LABEL    TEST";
+                                    LABEL    TEST
+                                """;
 
-      string baseResourceName = "testres";
-      string resourceName = baseResourceName + ".2da";
+      const string baseResourceName = "testres";
+      const string resourceName = baseResourceName + ".2da";
 
       ResourceManager.WriteTempResource(resourceName, resourceContents);
       createdTempResources.Add(resourceName);
