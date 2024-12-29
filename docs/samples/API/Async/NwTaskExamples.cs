@@ -16,11 +16,11 @@ namespace NWN.Anvil.Samples
   {
     public NwTaskExamples()
     {
-      DoAsyncStuff();
+      _ = DoAsyncStuff();
       CancellationTokenExample();
     }
 
-    private async void DoAsyncStuff()
+    private async Task DoAsyncStuff()
     {
       // Do some heavy work on another thread using a standard task, then return to a safe script context.
       await Task.Run(() => Thread.Sleep(1000));
