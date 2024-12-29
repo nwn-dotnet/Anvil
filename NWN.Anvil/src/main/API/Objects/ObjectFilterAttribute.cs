@@ -3,13 +3,8 @@ using System;
 namespace Anvil.API
 {
   [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-  internal sealed class ObjectFilterAttribute : Attribute
+  internal sealed class ObjectFilterAttribute(ObjectTypes objectFilter) : Attribute
   {
-    public readonly ObjectTypes ObjectFilter;
-
-    public ObjectFilterAttribute(ObjectTypes objectFilter)
-    {
-      ObjectFilter = objectFilter;
-    }
+    public readonly ObjectTypes ObjectFilter = objectFilter;
   }
 }

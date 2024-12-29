@@ -3,20 +3,14 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public sealed class NuiToggles : NuiWidget
+  public sealed class NuiToggles(NuiDirection direction, List<string> elements) : NuiWidget
   {
     public override string Type => "tabbar";
 
-    public NuiToggles(NuiDirection direction, List<string> elements)
-    {
-      Direction = direction;
-      Elements = elements;
-    }
-
     [JsonProperty("direction")]
-    public NuiDirection Direction { get; set; }
+    public NuiDirection Direction { get; set; } = direction;
 
     [JsonProperty("elements")]
-    public List<string> Elements { get; set; }
+    public List<string> Elements { get; set; } = elements;
   }
 }

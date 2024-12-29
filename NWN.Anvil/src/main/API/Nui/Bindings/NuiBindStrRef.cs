@@ -4,16 +4,11 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public sealed class NuiBindStrRef : NuiProperty<string>
+  [method: JsonConstructor]
+  public sealed class NuiBindStrRef(string key) : NuiProperty<string>
   {
-    [JsonConstructor]
-    public NuiBindStrRef(string key)
-    {
-      Key = key;
-    }
-
     [JsonProperty("bind")]
-    public string Key { get; init; }
+    public string Key { get; init; } = key;
 
     /// <summary>
     /// Queries the specified player for the value of this binding.

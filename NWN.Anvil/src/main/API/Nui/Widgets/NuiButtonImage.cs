@@ -5,16 +5,11 @@ namespace Anvil.API
   /// <summary>
   /// A clickable button with an image as the label.
   /// </summary>
-  public sealed class NuiButtonImage : NuiWidget
+  [method: JsonConstructor]
+  public sealed class NuiButtonImage(NuiProperty<string> resRef) : NuiWidget
   {
-    [JsonConstructor]
-    public NuiButtonImage(NuiProperty<string> resRef)
-    {
-      ResRef = resRef;
-    }
-
     [JsonProperty("label")]
-    public NuiProperty<string> ResRef { get; set; }
+    public NuiProperty<string> ResRef { get; set; } = resRef;
 
     public override string Type => "button_image";
   }

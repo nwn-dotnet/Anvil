@@ -4,20 +4,14 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public readonly struct NuiVector : IEquatable<NuiVector>
+  [method: JsonConstructor]
+  public readonly struct NuiVector(float x, float y) : IEquatable<NuiVector>
   {
     [JsonProperty("x")]
-    public readonly float X;
+    public readonly float X = x;
 
     [JsonProperty("y")]
-    public readonly float Y;
-
-    [JsonConstructor]
-    public NuiVector(float x, float y)
-    {
-      X = x;
-      Y = y;
-    }
+    public readonly float Y = y;
 
     public static NuiVector operator +(NuiVector a, NuiVector b)
     {

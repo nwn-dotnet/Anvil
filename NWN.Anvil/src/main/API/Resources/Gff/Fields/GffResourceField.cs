@@ -9,14 +9,9 @@ namespace Anvil.API
   /// <summary>
   /// A property/field in a <see cref="GffResource"/>.
   /// </summary>
-  public abstract unsafe class GffResourceField
+  public abstract unsafe class GffResourceField(CResGFF resGff)
   {
-    protected readonly CResGFF ResGff;
-
-    protected GffResourceField(CResGFF resGff)
-    {
-      ResGff = resGff;
-    }
+    protected readonly CResGFF ResGff = resGff;
 
     /// <summary>
     /// Gets the number of child fields.

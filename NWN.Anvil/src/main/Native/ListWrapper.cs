@@ -4,21 +4,10 @@ using System.Collections.Generic;
 
 namespace Anvil.Native
 {
-  internal sealed class ListWrapper<T1, T2> : IList<T2>
+  internal sealed class ListWrapper<T1, T2>(IList<T1> list, Func<T1, T2> get, Func<T2, T1> set) : IList<T2>
   {
-    private readonly IList<T1> list;
-    private readonly Func<T1, T2> get;
-    private readonly Func<T2, T1> set;
-
     public int Count => list.Count;
     public bool IsReadOnly => list.IsReadOnly;
-
-    public ListWrapper(IList<T1> list, Func<T1, T2> get, Func<T2, T1> set)
-    {
-      this.list = list;
-      this.get = get;
-      this.set = set;
-    }
 
     public IEnumerator<T2> GetEnumerator()
     {

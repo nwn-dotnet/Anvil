@@ -6,18 +6,9 @@ using Anvil.Internal;
 
 namespace Anvil.Plugins
 {
-  internal sealed class Plugin
+  internal sealed class Plugin(PluginManager pluginManager, string path)
   {
-    private readonly PluginManager pluginManager;
-
     private PluginLoadContext? pluginLoadContext;
-
-    public Plugin(PluginManager pluginManager, string path)
-    {
-      this.pluginManager = pluginManager;
-      Path = path;
-      Name = AssemblyName.GetAssemblyName(path);
-    }
 
     public Dictionary<string, string>? AdditionalAssemblyPaths { get; init; }
 
@@ -29,9 +20,9 @@ namespace Anvil.Plugins
 
     public bool Loading { get; private set; }
 
-    public AssemblyName Name { get; }
+    public AssemblyName Name { get; } = AssemblyName.GetAssemblyName(path);
 
-    public string Path { get; }
+    public string Path { get; } = path;
 
     public string? ResourcePath { get; init; }
 

@@ -6,20 +6,14 @@ namespace Anvil.API
   /// A clickable button with text as the label.<br/>
   /// Same as <see cref="NuiButton"/>, but this one is a toggle.
   /// </summary>
-  public sealed class NuiButtonSelect : NuiWidget
+  [method: JsonConstructor]
+  public sealed class NuiButtonSelect(NuiProperty<string> label, NuiProperty<bool> selected) : NuiWidget
   {
-    [JsonConstructor]
-    public NuiButtonSelect(NuiProperty<string> label, NuiProperty<bool> selected)
-    {
-      Label = label;
-      Selected = selected;
-    }
-
     [JsonProperty("label")]
-    public NuiProperty<string> Label { get; set; }
+    public NuiProperty<string> Label { get; set; } = label;
 
     [JsonProperty("value")]
-    public NuiProperty<bool> Selected { get; set; }
+    public NuiProperty<bool> Selected { get; set; } = selected;
 
     public override string Type => "button_select";
   }
