@@ -11,7 +11,7 @@ namespace Anvil.Tests.Services
     [Inject]
     private static ResourceManager ResourceManager { get; set; } = null!;
 
-    private readonly List<string> createdTempResources = new List<string>();
+    private readonly List<string> createdTempResources = [];
 
     [Test(Description = "A created temporary resource is available as a game resource.")]
     public void CreateTemporary2daResourceIsAvailable()

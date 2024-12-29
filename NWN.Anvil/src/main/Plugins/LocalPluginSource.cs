@@ -30,7 +30,7 @@ namespace Anvil.Plugins
 
     private IEnumerable<Plugin> CreatePluginsFromPaths(IEnumerable<string> pluginPaths)
     {
-      List<Plugin> plugins = new List<Plugin>();
+      List<Plugin> plugins = [];
       foreach (string pluginRoot in pluginPaths)
       {
         string pluginName = new DirectoryInfo(pluginRoot).Name;

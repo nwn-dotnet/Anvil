@@ -26,7 +26,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, uint*, int, int, int, void*, int> pHook = &OnCanEquipItem;
         Hook = HookService.RequestHook<Functions.CNWSCreature.CanEquipItem>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

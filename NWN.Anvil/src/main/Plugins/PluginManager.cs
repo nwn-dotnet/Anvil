@@ -22,8 +22,8 @@ namespace Anvil.Plugins
     private const int PluginUnloadAttempts = 10;
     private const int PluginUnloadSleepMs = 5000;
 
-    private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
-    private readonly List<Plugin> plugins = new List<Plugin>();
+    private readonly HashSet<Assembly> loadedAssemblies = [];
+    private readonly List<Plugin> plugins = [];
 
     internal IReadOnlyCollection<Type> LoadedTypes { get; private set; } = null!;
 
@@ -121,11 +121,11 @@ namespace Anvil.Plugins
 
     private void BootstrapPlugins()
     {
-      List<IPluginSource> pluginSources = new List<IPluginSource>
-      {
+      List<IPluginSource> pluginSources =
+      [
         new PaketPluginSource(this),
         new LocalPluginSource(this, HomeStorage.Plugins),
-      };
+      ];
 
       foreach (string pluginPath in EnvironmentConfig.AdditionalPluginPaths)
       {
@@ -150,7 +150,7 @@ namespace Anvil.Plugins
 
     private IReadOnlyCollection<Type> GetLoadedTypes()
     {
-      List<Type> loadedTypes = new List<Type>();
+      List<Type> loadedTypes = [];
       foreach (Assembly assembly in loadedAssemblies)
       {
         loadedTypes.AddRange(GetTypesFromAssembly(assembly));
@@ -161,7 +161,7 @@ namespace Anvil.Plugins
 
     private IReadOnlyCollection<string> GetResourcePaths()
     {
-      List<string> resourcePaths = new List<string>();
+      List<string> resourcePaths = [];
       foreach (Plugin plugin in plugins)
       {
         if (plugin.HasResourceDirectory)

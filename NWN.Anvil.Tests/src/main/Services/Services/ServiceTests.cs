@@ -11,8 +11,8 @@ namespace Anvil.Tests.Services
     [Test(Description = "Plugin services are sorted based on binding priority.")]
     public void PluginServicesSortedByPriority()
     {
-      List<string> serviceNames = new List<string>
-      {
+      List<string> serviceNames =
+      [
         typeof(LowestPriorityService).GetInternalServiceName(),
         typeof(VeryLowPriorityService).GetInternalServiceName(),
         typeof(LowPriorityService).GetInternalServiceName(),
@@ -22,7 +22,7 @@ namespace Anvil.Tests.Services
         typeof(HighPriorityService).GetInternalServiceName(),
         typeof(VeryHighPriorityService).GetInternalServiceName(),
         typeof(HighestPriorityService).GetInternalServiceName(),
-      };
+      ];
 
       serviceNames.Sort();
 
@@ -43,8 +43,8 @@ namespace Anvil.Tests.Services
     [Test(Description = "Anvil services are sorted based on internal binding priority.")]
     public void InternalServicesSortedByPriority()
     {
-      List<string> serviceNames = new List<string>
-      {
+      List<string> serviceNames =
+      [
         typeof(InternalLowestPriorityService).GetInternalServiceName(),
         typeof(InternalVeryLowPriorityService).GetInternalServiceName(),
         typeof(InternalLowPriorityService).GetInternalServiceName(),
@@ -54,7 +54,7 @@ namespace Anvil.Tests.Services
         typeof(InternalHighPriorityService).GetInternalServiceName(),
         typeof(InternalVeryHighPriorityService).GetInternalServiceName(),
         typeof(InternalHighestPriorityService).GetInternalServiceName(),
-      };
+      ];
 
       serviceNames.Sort();
 

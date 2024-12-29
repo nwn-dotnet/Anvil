@@ -8,7 +8,7 @@ namespace Anvil.Plugins
 {
   internal sealed class PluginLoadContext : AssemblyLoadContext, IDisposable
   {
-    private static readonly string[] NativeLibPrefixes = { "lib" };
+    private static readonly string[] NativeLibPrefixes = ["lib"];
     private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
 
     private Plugin? plugin;

@@ -14,8 +14,8 @@ namespace Anvil.Services
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
-    private readonly HashSet<CombatLogMessage> globalFilterListCombatMessage = new HashSet<CombatLogMessage>();
-    private readonly HashSet<FeedbackMessage> globalFilterListFeedbackMessage = new HashSet<FeedbackMessage>();
+    private readonly HashSet<CombatLogMessage> globalFilterListCombatMessage = [];
+    private readonly HashSet<FeedbackMessage> globalFilterListFeedbackMessage = [];
 
     private readonly HookService hookService;
 

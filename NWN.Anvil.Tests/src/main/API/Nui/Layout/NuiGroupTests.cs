@@ -26,10 +26,10 @@ namespace Anvil.Tests.API
         Visible = false,
         Layout = new NuiColumn
         {
-          Children = new List<NuiElement>
-          {
+          Children =
+          [
             new NuiLabel("Test"),
-          },
+          ],
         },
       };
 

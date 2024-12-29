@@ -31,7 +31,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnOpenInventory;
         Hook = HookService.RequestHook<Functions.CNWSItem.OpenInventory>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

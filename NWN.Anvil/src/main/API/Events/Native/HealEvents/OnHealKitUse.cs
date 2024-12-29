@@ -57,7 +57,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, uint> pHook = &OnAIActionHeal;
         Hook = HookService.RequestHook<Functions.CNWSCreature.AIActionHeal>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

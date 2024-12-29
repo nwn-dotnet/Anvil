@@ -28,7 +28,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetDetectMode;
         Hook = HookService.RequestHook<Functions.CNWSCreature.SetDetectMode>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       private static void HandleEnter(CNWSCreature creature, byte nDetectMode)

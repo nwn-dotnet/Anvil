@@ -54,7 +54,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Serializing a NuiDrawListPolyLine creates a valid JSON structure.")]
     public void SerializeNuiDrawListPolyLineReturnsValidJsonStructure()
     {
-      NuiDrawListPolyLine drawListPolyLine = new NuiDrawListPolyLine(ColorConstants.Pink, true, 2.0f, new List<float> { 2.0f, 4.0f, 6.0f, 11.0f })
+      NuiDrawListPolyLine drawListPolyLine = new NuiDrawListPolyLine(ColorConstants.Pink, true, 2.0f, [2.0f, 4.0f, 6.0f, 11.0f])
       {
         Enabled = false,
       };

@@ -97,7 +97,7 @@ namespace Anvil.API
       {
         NwSpell? counter1 = FromSpellId((int)spellInfo.m_nCounterSpell1);
         NwSpell? counter2 = FromSpellId((int)spellInfo.m_nCounterSpell2);
-        List<NwSpell> retVal = new List<NwSpell>();
+        List<NwSpell> retVal = [];
 
         if (counter1 != null)
         {

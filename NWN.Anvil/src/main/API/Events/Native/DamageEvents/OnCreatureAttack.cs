@@ -62,7 +62,7 @@ namespace Anvil.API.Events
         delegate* unmanaged<void*, void*, int, void> pSignalRangedDamageHook = &OnSignalRangedDamage;
         signalRangedDamageHook = HookService.RequestHook<Functions.CNWSCreature.SignalRangedDamage>(pSignalRangedDamageHook, HookOrder.Late);
 
-        return new IDisposable[] { signalMeleeDamageHook, signalRangedDamageHook };
+        return [signalMeleeDamageHook, signalRangedDamageHook];
       }
 
       private static OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
@@ -72,7 +72,7 @@ namespace Anvil.API.Events
 
         if (creature == null || target == null)
         {
-          return Array.Empty<OnCreatureAttack>();
+          return [];
         }
 
         NwCreature nwCreature = creature.ToNwObject<NwCreature>()!;

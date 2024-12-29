@@ -12,7 +12,7 @@ namespace Anvil.Internal
     internal static readonly Assembly Native = typeof(NWN.Native.API.NWNXLib).Assembly;
 
     public static readonly Assembly[] AllAssemblies =
-    {
+    [
       Anvil,
       Core,
       Native,
@@ -20,7 +20,7 @@ namespace Anvil.Internal
       typeof(LightInject.ServiceContainer).Assembly,
       typeof(Newtonsoft.Json.JsonConvert).Assembly,
       typeof(Paket.Dependencies).Assembly,
-    };
+    ];
 
     public static readonly List<string> ReservedNames = AllAssemblies
       .Select(assembly => assembly.GetName().Name)

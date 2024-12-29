@@ -17,7 +17,7 @@ namespace Anvil.Tests.Generators
     [Inject]
     public ResourceManager ResourceManager { private get; init; } = null!;
 
-    private readonly List<PaletteEntry> blueprints = new List<PaletteEntry>();
+    private readonly List<PaletteEntry> blueprints = [];
 
     public Palette(string palettePrefix)
     {

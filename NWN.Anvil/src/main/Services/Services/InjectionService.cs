@@ -8,7 +8,7 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
   public sealed class InjectionService : ICoreService
   {
-    private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
+    private readonly List<PropertyInfo> injectedStaticProperties = [];
     private readonly PluginManager pluginManager;
     private readonly IServiceManager serviceManager;
 

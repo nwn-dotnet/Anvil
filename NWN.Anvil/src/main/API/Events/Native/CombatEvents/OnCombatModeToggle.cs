@@ -29,7 +29,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, int, void> pHook = &OnSetCombatMode;
         Hook = HookService.RequestHook<Functions.CNWSCreature.SetCombatMode>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

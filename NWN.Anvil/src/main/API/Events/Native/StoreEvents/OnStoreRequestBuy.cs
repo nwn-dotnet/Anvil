@@ -30,7 +30,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, uint, uint, int> pHook = &OnRequestBuy;
         Hook = HookService.RequestHook<Functions.CNWSCreature.RequestBuy>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

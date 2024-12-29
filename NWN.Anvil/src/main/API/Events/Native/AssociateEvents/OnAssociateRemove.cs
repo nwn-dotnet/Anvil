@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnRemoveAssociate;
         Hook = HookService.RequestHook<Functions.CNWSCreature.RemoveAssociate>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

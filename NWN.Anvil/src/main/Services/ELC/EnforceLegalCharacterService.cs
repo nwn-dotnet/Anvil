@@ -112,7 +112,7 @@ namespace Anvil.Services
     {
       int[] abilityMods = new int[6];
 
-      HashSet<Feat> creatureFeats = new HashSet<Feat>();
+      HashSet<Feat> creatureFeats = [];
       foreach (ushort nFeat in lstFeats)
       {
         creatureFeats.Add((Feat)nFeat);
@@ -768,16 +768,16 @@ namespace Anvil.Services
       byte[] nMultiClassLevel = new byte[NumMultiClass];
       int nSkillPointsRemaining = 0;
       byte[] listSkillRanks = new byte[pRules.m_nNumSkills];
-      HashSet<ushort> listFeats = new HashSet<ushort>();
-      HashSet<ushort> listChosenFeats = new HashSet<ushort>();
+      HashSet<ushort> listFeats = [];
+      HashSet<ushort> listChosenFeats = [];
       // [nMultiClass][nSpellLevel] . {SpellIDs}
-      List<Dictionary<uint, HashSet<uint>>> listSpells = new List<Dictionary<uint, HashSet<uint>>>();
+      List<Dictionary<uint, HashSet<uint>>> listSpells = [];
       for (int i = 0; i < NumMultiClass; i++)
       {
         listSpells.Add(new Dictionary<uint, HashSet<uint>>());
         for (uint j = 0; j < NumSpellLevels; j++)
         {
-          listSpells[i][j] = new HashSet<uint>();
+          listSpells[i][j] = [];
         }
       }
 
@@ -1520,7 +1520,7 @@ namespace Anvil.Services
         }
 
         // List to hold moved chosen feats
-        List<ushort> listMovedFeats = new List<ushort>();
+        List<ushort> listMovedFeats = [];
 
         foreach (ushort nFeatIndex in listChosenFeats)
         {

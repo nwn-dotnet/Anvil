@@ -33,7 +33,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetStealthMode;
         Hook = HookService.RequestHook<Functions.CNWSCreature.SetStealthMode>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)

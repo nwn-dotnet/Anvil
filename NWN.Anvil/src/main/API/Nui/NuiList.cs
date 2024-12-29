@@ -11,7 +11,7 @@ namespace Anvil.API
     [JsonConstructor]
     public NuiList(IReadOnlyCollection<NuiListTemplateCell> rowTemplate, NuiProperty<int> rowCount)
     {
-      RowTemplate = new List<NuiListTemplateCell>(rowTemplate);
+      RowTemplate = [..rowTemplate];
       RowCount = rowCount;
     }
 

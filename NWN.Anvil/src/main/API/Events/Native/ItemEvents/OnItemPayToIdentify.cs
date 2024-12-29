@@ -26,7 +26,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, uint, void> pHook = &OnPayToIdentifyItem;
         Hook = HookService.RequestHook<Functions.CNWSCreature.PayToIdentifyItem>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

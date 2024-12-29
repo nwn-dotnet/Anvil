@@ -20,7 +20,7 @@ namespace Anvil.Services
 
     public void Dispose()
     {
-      updateItems = Array.Empty<IUpdateable>();
+      updateItems = [];
     }
 
     internal void Update()

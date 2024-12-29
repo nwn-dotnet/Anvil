@@ -66,7 +66,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
         Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCharList>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       private static async void DelayDisconnectPlayer(uint playerId, string kickMessage)

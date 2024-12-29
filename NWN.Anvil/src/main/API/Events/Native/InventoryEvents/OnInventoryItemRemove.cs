@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnRemoveItem;
         Hook = HookService.RequestHook<Functions.CItemRepository.RemoveItem>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

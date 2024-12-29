@@ -18,8 +18,8 @@ namespace Anvil.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly List<QueuedTask> currentWork = new List<QueuedTask>();
-    private readonly List<QueuedTask> queuedTasks = new List<QueuedTask>();
+    private readonly List<QueuedTask> currentWork = [];
+    private readonly List<QueuedTask> queuedTasks = [];
 
     public IAwaiter GetAwaiter()
     {

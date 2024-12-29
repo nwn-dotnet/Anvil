@@ -11,13 +11,13 @@ namespace Anvil.API
   public sealed unsafe class GffResourceFieldStruct : GffResourceField, IReadOnlyDictionary<string, GffResourceField>
   {
     private readonly Dictionary<string, GffResourceField> fieldLookup = new Dictionary<string, GffResourceField>();
-    private readonly List<string> keys = new List<string>();
-    private readonly List<GffResourceField> values = new List<GffResourceField>();
+    private readonly List<string> keys = [];
+    private readonly List<GffResourceField> values = [];
 
     internal GffResourceFieldStruct(CResGFF resGff, CResStruct resStruct) : base(resGff)
     {
       int fieldCount = (int)resGff.GetFieldCount(resStruct);
-      List<KeyValuePair<string, GffResourceField>> entrySet = new List<KeyValuePair<string, GffResourceField>>();
+      List<KeyValuePair<string, GffResourceField>> entrySet = [];
 
       for (uint i = 0; i < fieldCount; i++)
       {
