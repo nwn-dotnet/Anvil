@@ -292,7 +292,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(item);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwItem clone = item.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Item {itemResRef} was null after clone.");

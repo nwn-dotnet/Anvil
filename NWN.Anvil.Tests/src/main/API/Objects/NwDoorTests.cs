@@ -202,7 +202,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(door);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwDoor clone = door.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Door {doorResRef} was null after clone.");

@@ -162,7 +162,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(trigger);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwTrigger clone = trigger.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Trigger {triggerResRef} was null after clone.");

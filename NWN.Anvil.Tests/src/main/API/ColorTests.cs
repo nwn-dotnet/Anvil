@@ -41,9 +41,9 @@ namespace Anvil.Tests.API
 
     [Test]
     [Description("Deserializing a NUI color json structure creates the correct color.")]
-    [TestCase(@"{""r"":255,""g"":0,""b"":0,""a"":0}", 255, 0, 0, 0)]
-    [TestCase(@"{""r"":255,""g"":100,""b"":0,""a"":0}", 255, 100, 0, 0)]
-    [TestCase(@"{""r"":255,""g"":100,""b"":10,""a"":30}", 255, 100, 10, 30)]
+    [TestCase("""{"r":255,"g":0,"b":0,"a":0}""", 255, 0, 0, 0)]
+    [TestCase("""{"r":255,"g":100,"b":0,"a":0}""", 255, 100, 0, 0)]
+    [TestCase("""{"r":255,"g":100,"b":10,"a":30}""", 255, 100, 10, 30)]
     public void DeserializeColorCreatesCorrectColor(string json, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
     {
       Color color = JsonConvert.DeserializeObject<Color>(json);

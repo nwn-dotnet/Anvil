@@ -16,8 +16,7 @@ namespace Anvil.API
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
-      JsonObjectContract? contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
-      if (contract == null)
+      if (serializer.ContractResolver.ResolveContract(objectType) is not JsonObjectContract contract)
       {
         throw new JsonSerializationException($"invalid type {objectType.FullName}.");
       }

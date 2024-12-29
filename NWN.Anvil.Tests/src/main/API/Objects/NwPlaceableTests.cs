@@ -167,7 +167,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(placeable);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwPlaceable clone = placeable.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Placeable {placeableResRef} was null after clone.");
