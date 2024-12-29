@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnHandleMapPinDestroyMapPinMessage;
         Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerMapPinDestroyMapPin>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

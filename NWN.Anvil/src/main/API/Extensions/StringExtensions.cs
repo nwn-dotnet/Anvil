@@ -175,7 +175,7 @@ namespace Anvil.API
 
     public static string ReadUntilChar(this StringReader stringReader, char character)
     {
-      List<char> retVal = new List<char>();
+      List<char> retVal = [];
 
       int next;
       while ((next = stringReader.Peek()) >= 0)

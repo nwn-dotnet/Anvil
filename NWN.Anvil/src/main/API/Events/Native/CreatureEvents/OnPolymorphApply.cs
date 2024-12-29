@@ -38,7 +38,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, void*, int> pHook = &OnRemovePolymorph;
         Hook = HookService.RequestHook<Functions.CNWSEffectListHandler.OnRemovePolymorph>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

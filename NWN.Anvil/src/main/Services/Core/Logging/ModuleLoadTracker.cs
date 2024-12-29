@@ -4,18 +4,11 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  internal sealed unsafe class ModuleLoadTracker : ICoreService
+  internal sealed unsafe class ModuleLoadTracker(HookService hookService) : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly HookService hookService;
-
     private FunctionHook<Functions.CNWSModule.LoadModuleInProgress> loadModuleInProgressHook = null!;
-
-    public ModuleLoadTracker(HookService hookService)
-    {
-      this.hookService = hookService;
-    }
 
     void ICoreService.Init()
     {

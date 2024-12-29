@@ -96,7 +96,7 @@ namespace Anvil.API
     {
       int spellCount = GetMemorizedSpellSlotCountByLevel(spellLevel);
 
-      List<MemorizedSpellSlot> memorizedSpells = new List<MemorizedSpellSlot>();
+      List<MemorizedSpellSlot> memorizedSpells = [];
       for (byte i = 0; i < spellCount; i++)
       {
         memorizedSpells.Add(new MemorizedSpellSlot(classInfo, spellLevel, i));

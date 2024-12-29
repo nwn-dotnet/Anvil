@@ -9,7 +9,7 @@ namespace Anvil.API
   public sealed class NuiColumn : NuiLayout
   {
     [JsonIgnore]
-    public List<NuiElement> Children { get; set; } = new List<NuiElement>();
+    public List<NuiElement> Children { get; set; } = [];
 
     public override string Type => "col";
 

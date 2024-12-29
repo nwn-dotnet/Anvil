@@ -11,7 +11,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Variable")]
   public sealed class ObjectStorageVariableTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Getting a non-existing variable on an object returns a variable object with the correct properties.")]
     [TestCase("aaabbb")]

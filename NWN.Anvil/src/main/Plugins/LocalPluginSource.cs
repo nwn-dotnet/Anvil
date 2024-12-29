@@ -5,20 +5,11 @@ using NLog;
 
 namespace Anvil.Plugins
 {
-  internal sealed class LocalPluginSource : IPluginSource
+  internal sealed class LocalPluginSource(PluginManager pluginManager, string rootPath) : IPluginSource
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const string PluginResourceDir = "resources";
-
-    private readonly PluginManager pluginManager;
-    private readonly string rootPath;
-
-    public LocalPluginSource(PluginManager pluginManager, string rootPath)
-    {
-      this.pluginManager = pluginManager;
-      this.rootPath = rootPath;
-    }
 
     public IEnumerable<Plugin> Bootstrap()
     {
@@ -30,7 +21,7 @@ namespace Anvil.Plugins
 
     private IEnumerable<Plugin> CreatePluginsFromPaths(IEnumerable<string> pluginPaths)
     {
-      List<Plugin> plugins = new List<Plugin>();
+      List<Plugin> plugins = [];
       foreach (string pluginRoot in pluginPaths)
       {
         string pluginName = new DirectoryInfo(pluginRoot).Name;

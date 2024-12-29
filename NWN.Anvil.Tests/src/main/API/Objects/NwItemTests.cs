@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwItemTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing an item generates valid gff data, and a new valid item.")]
     [TestCase(StandardResRef.Item.nw_cloth027)]

@@ -4,16 +4,10 @@ namespace Anvil.API.Events
 {
   public sealed partial class GameEventFactory
   {
-    private readonly struct EventKey : IEquatable<EventKey>
+    private readonly struct EventKey(EventScriptType eventScriptType, uint gameObject) : IEquatable<EventKey>
     {
-      public readonly EventScriptType EventScriptType;
-      public readonly uint GameObject;
-
-      public EventKey(EventScriptType eventScriptType, uint gameObject)
-      {
-        EventScriptType = eventScriptType;
-        GameObject = gameObject;
-      }
+      public readonly EventScriptType EventScriptType = eventScriptType;
+      public readonly uint GameObject = gameObject;
 
       public static bool operator ==(EventKey left, EventKey right)
       {

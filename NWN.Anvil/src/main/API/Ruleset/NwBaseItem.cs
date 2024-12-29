@@ -328,18 +328,12 @@ namespace Anvil.API
       {
         return BaseItemInfo.m_nWeaponType switch
         {
-          1 => DamageType.Piercing.Yield(),
-          2 => DamageType.Bludgeoning.Yield(),
-          3 => DamageType.Slashing.Yield(),
-          4 => new[]
-          {
-            DamageType.Slashing, DamageType.Piercing,
-          },
-          5 => new[]
-          {
-            DamageType.Piercing, DamageType.Bludgeoning,
-          },
-          _ => Enumerable.Empty<DamageType>(),
+          1 => [DamageType.Piercing],
+          2 => [DamageType.Bludgeoning],
+          3 => [DamageType.Slashing],
+          4 => [DamageType.Slashing, DamageType.Piercing],
+          5 => [DamageType.Piercing, DamageType.Bludgeoning],
+          _ => [],
         };
       }
     }

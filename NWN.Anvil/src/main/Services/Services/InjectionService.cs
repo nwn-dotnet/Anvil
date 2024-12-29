@@ -6,17 +6,9 @@ using Anvil.Plugins;
 namespace Anvil.Services
 {
   [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
-  public sealed class InjectionService : ICoreService
+  public sealed class InjectionService(IServiceManager serviceManager, PluginManager pluginManager) : ICoreService
   {
-    private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
-    private readonly PluginManager pluginManager;
-    private readonly IServiceManager serviceManager;
-
-    public InjectionService(IServiceManager serviceManager, PluginManager pluginManager)
-    {
-      this.serviceManager = serviceManager;
-      this.pluginManager = pluginManager;
-    }
+    private readonly List<PropertyInfo> injectedStaticProperties = [];
 
     /// <summary>
     /// Injects all properties with <see cref="InjectAttribute"/> in the specified object.

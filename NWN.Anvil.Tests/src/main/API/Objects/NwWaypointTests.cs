@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwWaypointTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing a waypoint generates valid gff data, and a new valid waypoint.")]
     [TestCase(StandardResRef.Waypoint.x2_wp_behexit)]

@@ -18,8 +18,8 @@ namespace Anvil.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly List<QueuedTask> currentWork = new List<QueuedTask>();
-    private readonly List<QueuedTask> queuedTasks = new List<QueuedTask>();
+    private readonly List<QueuedTask> currentWork = [];
+    private readonly List<QueuedTask> queuedTasks = [];
 
     public IAwaiter GetAwaiter()
     {
@@ -67,17 +67,8 @@ namespace Anvil.API
       }
     }
 
-    private readonly struct QueuedTask
+    private readonly struct QueuedTask(SendOrPostCallback callback, object? state)
     {
-      private readonly SendOrPostCallback callback;
-      private readonly object? state;
-
-      public QueuedTask(SendOrPostCallback callback, object? state)
-      {
-        this.callback = callback;
-        this.state = state;
-      }
-
       public void Invoke()
       {
         try

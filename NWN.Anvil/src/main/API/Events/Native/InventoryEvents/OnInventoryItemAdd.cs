@@ -27,7 +27,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void**, byte, byte, byte, int, int, int> pHook = &OnAddItem;
         Hook = HookService.RequestHook<Functions.CItemRepository.AddItem>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

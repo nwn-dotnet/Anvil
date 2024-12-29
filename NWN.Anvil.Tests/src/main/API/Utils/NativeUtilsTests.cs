@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Utils")]
   public class NativeUtilsTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Creating a creature with a valid ResRef creates a valid creature.")]
     public void ExtractLocStringReturnsValidData()

@@ -5,16 +5,10 @@ namespace Anvil.API
   /// <summary>
   /// A vector with two 32 bit integer values.
   /// </summary>
-  public readonly struct Vector2Int : IEquatable<Vector2Int>
+  public readonly struct Vector2Int(int x = 0, int y = 0) : IEquatable<Vector2Int>
   {
-    public readonly int X;
-    public readonly int Y;
-
-    public Vector2Int(int x = 0, int y = 0)
-    {
-      X = x;
-      Y = y;
-    }
+    public readonly int X = x;
+    public readonly int Y = y;
 
     public static Vector2Int operator +(Vector2Int a, Vector2Int b)
     {

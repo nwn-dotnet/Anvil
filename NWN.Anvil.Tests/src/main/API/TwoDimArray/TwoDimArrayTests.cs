@@ -12,7 +12,7 @@ namespace Anvil.Tests.API
     [Inject]
     private static ResourceManager ResourceManager { get; set; } = null!;
 
-    private readonly List<string> createdTempResources = new List<string>();
+    private readonly List<string> createdTempResources = [];
 
     [Test(Description = "A user-specified 2da resource returns correct values.")]
     public void Custom2daReturnsValidValues()

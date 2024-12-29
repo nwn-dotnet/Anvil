@@ -6,23 +6,15 @@ using Anvil.Internal;
 
 namespace Anvil.Plugins
 {
-  internal sealed class PluginLoadContext : AssemblyLoadContext, IDisposable
+  internal sealed class PluginLoadContext(PluginManager pluginManager, Plugin plugin) : AssemblyLoadContext(EnvironmentConfig.ReloadEnabled), IDisposable
   {
-    private static readonly string[] NativeLibPrefixes = { "lib" };
+    private static readonly string[] NativeLibPrefixes = ["lib"];
     private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
 
-    private Plugin? plugin;
+    private Plugin? plugin = plugin;
 
-    private PluginManager pluginManager;
-    private AssemblyDependencyResolver resolver;
-
-    public PluginLoadContext(PluginManager pluginManager, Plugin plugin) : base(EnvironmentConfig.ReloadEnabled)
-    {
-      this.pluginManager = pluginManager;
-      this.plugin = plugin;
-
-      resolver = new AssemblyDependencyResolver(plugin.Path);
-    }
+    private PluginManager pluginManager = pluginManager;
+    private AssemblyDependencyResolver resolver = new AssemblyDependencyResolver(plugin.Path);
 
     public void Dispose()
     {

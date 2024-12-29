@@ -97,7 +97,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Serializing a NuiValue<List<int>> creates a valid JSON structure.")]
     public void SerializeNuiValueIntListReturnsValidJsonStructure()
     {
-      NuiValue<List<int>> test = new NuiValue<List<int>>(new List<int> { 1, 2, 3 });
+      NuiValue<List<int>> test = new NuiValue<List<int>>([1, 2, 3]);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(@"[1,2,3]"));
     }
 
@@ -194,7 +194,7 @@ namespace Anvil.Tests.API
     public void DeserializeNuiValueIntListReturnsValidJsonStructure()
     {
       NuiValue<List<int>>? test = JsonUtility.FromJson<NuiValue<List<int>>>(@"[1,2,3]");
-      List<int> expected = new List<int> { 1, 2, 3 };
+      List<int> expected = [1, 2, 3];
 
       Assert.That(test?.Value, Is.EqualTo(expected));
     }

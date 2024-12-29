@@ -10,15 +10,8 @@ namespace Anvil.Services
   /// Use this service to get a path for reading and writing configs or data for your plugin.
   /// </summary>
   [ServiceBinding(typeof(PluginStorageService))]
-  public sealed class PluginStorageService
+  public sealed class PluginStorageService(PluginManager pluginManager)
   {
-    private readonly PluginManager pluginManager;
-
-    public PluginStorageService(PluginManager pluginManager)
-    {
-      this.pluginManager = pluginManager;
-    }
-
     /// <summary>
     /// Gets the storage path for the specified plugin.
     /// </summary>

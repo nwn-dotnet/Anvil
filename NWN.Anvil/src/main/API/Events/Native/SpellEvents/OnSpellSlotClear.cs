@@ -28,7 +28,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, byte, byte, void> pHook = &OnClearMemorizedSpellSlot;
         Hook = HookService.RequestHook<Functions.CNWSCreatureStats.ClearMemorizedSpellSlot>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

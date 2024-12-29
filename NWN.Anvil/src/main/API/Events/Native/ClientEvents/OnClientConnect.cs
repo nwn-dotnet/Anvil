@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Anvil.API.Events;
 using Anvil.Internal;
 using Anvil.Native;
@@ -66,10 +67,10 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
         Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCharList>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
-      private static async void DelayDisconnectPlayer(uint playerId, string kickMessage)
+      private static async Task DelayDisconnectPlayer(uint playerId, string kickMessage)
       {
         await NwTask.NextFrame();
 
@@ -110,7 +111,7 @@ namespace Anvil.API.Events
         }
 
         string kickMessage = eventData.KickMessage ?? string.Empty;
-        DelayDisconnectPlayer(playerId, kickMessage);
+        _ = DelayDisconnectPlayer(playerId, kickMessage);
 
         int retVal = Hook.CallOriginal(pMessage, pPlayer);
         ProcessEvent(EventCallbackType.After, eventData);
