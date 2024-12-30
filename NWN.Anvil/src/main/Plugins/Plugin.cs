@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -68,6 +69,8 @@ namespace Anvil.Plugins
     /// <summary>
     /// Gets if this plugin has been loaded by anvil and is currently active.
     /// </summary>
+    [MemberNotNullWhen(true, nameof(PluginTypes))]
+    [MemberNotNullWhen(true, nameof(Assembly))]
     public bool IsLoaded => Assembly != null;
 
     internal IServiceContainer? Container { get; private set; }
