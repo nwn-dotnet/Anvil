@@ -5,10 +5,8 @@ using LogLevel = LightInject.LogLevel;
 
 namespace Anvil.Services
 {
-  internal sealed class AnvilContainerFactory
+  internal sealed class AnvilContainerFactory(IServiceManager serviceManager)
   {
-    private readonly IServiceManager serviceManager;
-
     private readonly ContainerOptions containerOptions = new ContainerOptions
     {
       EnablePropertyInjection = true,
@@ -17,11 +15,6 @@ namespace Anvil.Services
       DefaultServiceSelector = SelectHighestPriorityService,
       LogFactory = CreateLogHandler,
     };
-
-    public AnvilContainerFactory(IServiceManager serviceManager)
-    {
-      this.serviceManager = serviceManager;
-    }
 
     public ServiceContainer CreateContainer(IServiceContainer? parentContainer = null)
     {
