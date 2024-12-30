@@ -6,7 +6,7 @@ using LightInject;
 
 namespace Anvil.Services
 {
-  internal sealed class ContainerMessageService : ICoreService
+  internal sealed class AnvilMessageService : ICoreService
   {
     private readonly List<IUpdateable> updateTargets = new List<IUpdateable>();
     private readonly HashSet<ILateDisposable> lateDisposeTargets = new HashSet<ILateDisposable>();

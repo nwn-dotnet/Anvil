@@ -46,7 +46,7 @@ namespace Anvil.Services
 
       bool CanResolveFromParentContainer(Type serviceType, string serviceName)
       {
-        return !IsContainerMessageType(serviceType) && parent.CanGetInstance(serviceType, serviceName);
+        return !IsMessageType(serviceType) && parent.CanGetInstance(serviceType, serviceName);
       }
 
       object ResolveFromParentContainer(ServiceRequest request)
@@ -106,7 +106,7 @@ namespace Anvil.Services
       }
     }
 
-    private static bool IsContainerMessageType(Type type)
+    private static bool IsMessageType(Type type)
     {
       return type == typeof(IInitializable) ||
         type == typeof(IUpdateable) ||

@@ -21,7 +21,7 @@ namespace Anvil.Services
     private readonly PluginManager pluginManager;
     private readonly EncodingService encodingService;
     private readonly ResourceManager resourceManager;
-    private readonly ContainerMessageService containerMessageService;
+    private readonly AnvilMessageService anvilMessageService;
 
     public AnvilCoreServiceManager(IServiceContainer container)
     {
@@ -36,7 +36,7 @@ namespace Anvil.Services
       container.RegisterCoreService<PluginManager>();
       container.RegisterCoreService<EncodingService>();
       container.RegisterCoreService<ResourceManager>();
-      container.RegisterCoreService<ContainerMessageService>();
+      container.RegisterCoreService<AnvilMessageService>();
 
       container.Compile();
 
@@ -44,7 +44,7 @@ namespace Anvil.Services
       loggerManager = container.GetInstance<LoggerManager>();
       unhandledExceptionLogger = container.GetInstance<UnhandledExceptionLogger>();
       unobservedTaskExceptionLogger = container.GetInstance<UnobservedTaskExceptionLogger>();
-      containerMessageService = container.GetInstance<ContainerMessageService>();
+      anvilMessageService = container.GetInstance<AnvilMessageService>();
       resourceManager = container.GetInstance<ResourceManager>();
       pluginManager = container.GetInstance<PluginManager>();
       injectionService = container.GetInstance<InjectionService>();
@@ -64,7 +64,7 @@ namespace Anvil.Services
       InitService(resourceManager);
       InitService(pluginManager);
       InitService(injectionService);
-      InitService(containerMessageService);
+      InitService(anvilMessageService);
       InitService(virtualMachine);
       InitService(encodingService);
       InitService(hookService);
@@ -81,7 +81,7 @@ namespace Anvil.Services
       LoadService(resourceManager);
       LoadService(pluginManager);
       LoadService(injectionService);
-      LoadService(containerMessageService);
+      LoadService(anvilMessageService);
       LoadService(virtualMachine);
       LoadService(encodingService);
       LoadService(hookService);
@@ -98,7 +98,7 @@ namespace Anvil.Services
       StartService(resourceManager);
       StartService(pluginManager);
       StartService(injectionService);
-      StartService(containerMessageService);
+      StartService(anvilMessageService);
       StartService(virtualMachine);
       StartService(encodingService);
       StartService(hookService);
@@ -112,7 +112,7 @@ namespace Anvil.Services
       UnloadService(hookService);
       UnloadService(encodingService);
       UnloadService(virtualMachine);
-      UnloadService(containerMessageService);
+      UnloadService(anvilMessageService);
       UnloadService(injectionService);
       UnloadService(pluginManager);
       UnloadService(resourceManager);
@@ -128,7 +128,7 @@ namespace Anvil.Services
       ShutdownService(hookService);
       ShutdownService(encodingService);
       ShutdownService(virtualMachine);
-      ShutdownService(containerMessageService);
+      ShutdownService(anvilMessageService);
       ShutdownService(injectionService);
       ShutdownService(pluginManager);
       ShutdownService(resourceManager);
