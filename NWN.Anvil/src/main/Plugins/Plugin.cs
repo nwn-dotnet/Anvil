@@ -89,7 +89,7 @@ namespace Anvil.Plugins
 
     internal void Load()
     {
-      pluginLoadContext = InjectionService.Inject(new PluginLoadContext(this, PluginInfo.Isolated || EnvironmentConfig.ReloadEnabled));
+      pluginLoadContext = InjectionService.Inject(new PluginLoadContext(this, EnvironmentConfig.ReloadEnabled || PluginInfo.Isolated));
       Loading = true;
 
       try
@@ -114,7 +114,7 @@ namespace Anvil.Plugins
       PluginTypes = null;
 
       WeakReference unloadHandle = new WeakReference(pluginLoadContext, true);
-      if (EnvironmentConfig.ReloadEnabled)
+      if (EnvironmentConfig.ReloadEnabled || PluginInfo.Isolated)
       {
         pluginLoadContext?.Dispose();
       }

@@ -197,18 +197,22 @@ namespace Anvil.Plugins
       Log.Info("Unloading plugins...");
 
       Dictionary<WeakReference, string> pendingUnloads = new Dictionary<WeakReference, string>();
+
       foreach (Plugin plugin in Plugins)
       {
-        pendingUnloads.Add(UnloadPluginInternal(plugin), plugin.Name.Name!);
+        bool waitForUnload = EnvironmentConfig.ReloadEnabled || plugin.PluginInfo.Isolated;
+        WeakReference pluginRef = UnloadPluginInternal(plugin);
+
+        if (waitForUnload)
+        {
+          pendingUnloads.Add(pluginRef, plugin.Name.Name!);
+        }
       }
 
       Plugins.Clear();
       Plugins.TrimExcess();
 
-      if (EnvironmentConfig.ReloadEnabled)
-      {
-        WaitForPendingUnloads(pendingUnloads);
-      }
+      WaitForPendingUnloads(pendingUnloads);
     }
 
     private void BootstrapPlugins()
