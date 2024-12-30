@@ -18,7 +18,7 @@ namespace Anvil.Internal
     public static readonly string[] RuntimeAssemblies;
 
     public static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location)!;
-    public static readonly string[] TargetFrameworks = ["net8.0"];
+    public static readonly string[] TargetFrameworks = [$"net{Environment.Version.ToString(2)}"];
 
     static Assemblies()
     {
