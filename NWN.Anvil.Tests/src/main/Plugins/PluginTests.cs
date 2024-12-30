@@ -50,6 +50,7 @@ namespace Anvil.Tests.Plugins
 
       string source = PluginTestUtils.GenerateServiceClass(serviceName,
         [nameof(System), $"{nameof(Anvil)}.{nameof(Anvil.Services)}"],
+        [nameof(IUpdateable)],
         [nameof(IInitializable), nameof(IUpdateable), nameof(IDisposable)],
         implementation);
 
@@ -69,6 +70,7 @@ namespace Anvil.Tests.Plugins
 
       Assert.That(plugin, Is.Not.Null);
       Assert.That(plugin.IsLoaded, Is.True);
+      Assert.That(plugin.PluginInfo, Is.Not.Null);
       Assert.That(plugin.Assembly, Is.Not.Null);
 
       Type pluginServiceType = plugin.Assembly!.GetType(serviceName)!;

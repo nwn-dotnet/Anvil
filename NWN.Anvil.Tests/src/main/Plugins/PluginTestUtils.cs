@@ -6,15 +6,15 @@ namespace Anvil.Tests.Plugins
   {
     private const string PluginInfo = "[assembly: Anvil.Plugins.PluginInfo(Isolated = true)]";
 
-    public static string GenerateServiceClass(string serviceName, string[]? imports, string[]? baseTypes, string implementation)
+    public static string GenerateServiceClass(string serviceName, string[] imports, string[] bindings, string[] baseTypes, string implementation)
     {
       StringBuilder source = new StringBuilder();
-      source.AppendLine(PluginInfo);
-      source.AppendLine();
       AppendImports(source, imports);
       source.AppendLine();
+      source.AppendLine(PluginInfo);
+      source.AppendLine();
 
-      AppendClassDefinition(source, serviceName, baseTypes);
+      AppendClassDefinition(source, serviceName, bindings, baseTypes);
 
       source.AppendLine("{");
       source.Append(implementation);
@@ -24,12 +24,16 @@ namespace Anvil.Tests.Plugins
       return source.ToString();
     }
 
-    private static void AppendClassDefinition(StringBuilder source, string serviceName, string[]? baseTypes)
+    private static void AppendClassDefinition(StringBuilder source, string serviceName, string[] bindings, string[] baseTypes)
     {
       source.AppendLine($"[Anvil.Services.ServiceBinding(typeof({serviceName}))]");
-      source.Append($"public class {serviceName}");
+      foreach (string binding in bindings)
+      {
+        source.AppendLine($"[Anvil.Services.ServiceBinding(typeof({binding}))]");
+      }
 
-      if (baseTypes != null && baseTypes.Length > 0)
+      source.Append($"public class {serviceName}");
+      if (baseTypes.Length > 0)
       {
         source.Append($" : {string.Join(", ", baseTypes)}");
       }
