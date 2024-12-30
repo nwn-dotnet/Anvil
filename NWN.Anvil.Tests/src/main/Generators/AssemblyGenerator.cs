@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Anvil.Tests.Generators
 {
-  internal class AssemblyGenerator
+  internal sealed class AssemblyGenerator
   {
     public static void GenerateAssembly(Stream writeAssemblyStream, string assemblyName, string sourceCode)
     {

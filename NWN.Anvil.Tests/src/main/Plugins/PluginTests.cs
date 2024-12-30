@@ -178,7 +178,7 @@ namespace Anvil.Tests.Plugins
         """;
 
       string source = PluginTestUtils.GenerateServiceClass(serviceName,
-        [nameof(System), $"{nameof(Anvil)}.{nameof(Anvil.Services)}", $"{nameof(Anvil)}.{nameof(Anvil.API)}", $"{nameof(Anvil)}.{nameof(Anvil.Plugins)}", $"{nameof(Anvil)}.{nameof(Anvil.Tests)}.{nameof(Anvil.Tests.Plugins)}"],
+        [nameof(System), $"{nameof(Anvil)}.{nameof(Anvil.Services)}", $"{nameof(Anvil)}.{nameof(Anvil.API)}", $"{nameof(Anvil)}.{nameof(Anvil.Plugins)}", $"{nameof(Anvil)}.{nameof(Tests)}.{nameof(Plugins)}"],
         [],
         [nameof(IInitializable)],
         implementation);
