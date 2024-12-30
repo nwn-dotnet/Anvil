@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using Anvil.Internal;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
@@ -29,8 +31,7 @@ namespace Anvil.Tests.Generators
 
       MetadataReference[] references =
       [
-        MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-        MetadataReference.CreateFromFile(typeof(Console).Assembly.Location),
+        ..Assemblies.RuntimeAssemblies.Select(assemblyPath => MetadataReference.CreateFromFile(assemblyPath)),
         MetadataReference.CreateFromFile(typeof(AnvilCore).Assembly.Location),
       ];
 
