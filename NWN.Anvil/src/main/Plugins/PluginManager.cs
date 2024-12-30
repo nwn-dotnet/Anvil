@@ -294,8 +294,13 @@ namespace Anvil.Plugins
 
     private WeakReference UnloadPluginInternal(Plugin plugin)
     {
-      Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-      return plugin.Unload();
+      if (plugin.IsLoaded)
+      {
+        Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
+        return plugin.Unload();
+      }
+
+      return new WeakReference(null);
     }
 
     private void LoadPlugins(bool isolated)
