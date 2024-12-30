@@ -71,10 +71,10 @@ namespace Anvil.Plugins
         return null;
       }
 
-      // Resolve this plugin's assembly locally.
+      // Resolve the plugin's own assembly from our known path
       if (assemblyName.Name == plugin.Name.Name)
       {
-        return ResolveLocal(assemblyName);
+        return LoadFromAssemblyPath(plugin.Path);
       }
 
       // Resolve the dependency with the bundled assemblies (NWN.Core/Anvil), then check if other plugins can provide the dependency.
