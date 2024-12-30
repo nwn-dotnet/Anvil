@@ -23,7 +23,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnStartCombatRound;
         Hook = HookService.RequestHook<Functions.CNWSCombatRound.StartCombatRound>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

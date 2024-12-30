@@ -45,7 +45,7 @@ namespace Anvil.API
     {
       get
       {
-        List<NwCreature> customers = new List<NwCreature>();
+        List<NwCreature> customers = [];
         CExoArrayListCStoreCustomerPtr customersPtr = Store.m_aCurrentCustomers;
 
         foreach (CStoreCustomer storeCustomer in customersPtr)

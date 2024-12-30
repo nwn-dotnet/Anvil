@@ -34,7 +34,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, byte, uint, byte, byte, int, int> pHook = &OnSetMemorizedSpellSlot;
         Hook = HookService.RequestHook<Functions.CNWSCreatureStats.SetMemorizedSpellSlot>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

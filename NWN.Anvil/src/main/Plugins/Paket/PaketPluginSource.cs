@@ -17,7 +17,7 @@ namespace Anvil.Plugins
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
-    private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
+    private static readonly string[] NativeDllPackagePaths = ["runtimes/linux-x64/native"];
 
     [Inject]
     private InjectionService InjectionService { get; init; } = null!;
@@ -28,14 +28,14 @@ namespace Anvil.Plugins
 
     private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
 
-    private readonly FSharpList<string> scriptTypes = ListModule.OfArray(new[] { "csx" });
+    private readonly FSharpList<string> scriptTypes = ListModule.OfArray(["csx"]);
 
     public IEnumerable<Plugin> Bootstrap()
     {
       Dependencies? dependencies = GetDependencies();
       if (dependencies == null)
       {
-        return Enumerable.Empty<Plugin>();
+        return [];
       }
 
       Logging.@event.Publish.AddHandler(OnLogEvent);
@@ -66,7 +66,7 @@ namespace Anvil.Plugins
 
       Dictionary<string, string> nativeAssemblyPaths = GetNativeAssemblyPaths();
 
-      List<Plugin> plugins = new List<Plugin>();
+      List<Plugin> plugins = [];
       FSharpList<Tuple<string, string, string>> entries = dependencies.GetDirectDependencies();
 
       Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", entries.Length, HomeStorage.Paket);

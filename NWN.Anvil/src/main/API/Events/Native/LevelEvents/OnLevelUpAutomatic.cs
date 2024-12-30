@@ -21,7 +21,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, int, byte, void> pHook = &OnLevelUpAutomatic;
         Hook = HookService.RequestHook<Functions.CNWSCreatureStats.LevelUpAutomatic>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

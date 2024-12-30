@@ -2,15 +2,8 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed class WorldTimer
+  public sealed class WorldTimer(CWorldTimer worldTimer)
   {
-    private readonly CWorldTimer worldTimer;
-
-    public WorldTimer(CWorldTimer worldTimer)
-    {
-      this.worldTimer = worldTimer;
-    }
-
     /// <summary>
     /// Gets or sets the module's real life minutes per in game hour.
     /// </summary>

@@ -12,7 +12,7 @@ namespace Anvil.Tests.Services.API.Creature
     [Inject]
     private static DamageLevelOverrideService DamageLevelOverrideService { get; set; } = null!;
 
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "A created temporary resource is available as a game resource.")]
     [TestCase(1)]

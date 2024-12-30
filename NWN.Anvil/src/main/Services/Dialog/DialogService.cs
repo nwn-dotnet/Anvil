@@ -45,19 +45,14 @@ namespace Anvil.Services
           return null;
         }
 
-        switch (stateStack.Peek())
+        return stateStack.Peek() switch
         {
-          case DialogState.Start:
-            return dialog.m_pStartingEntries.ToArray()[CurrentNodeIndex].m_nIndex;
-          case DialogState.SendEntry:
-            return indexEntry;
-          case DialogState.HandleReply:
-            return indexReply == 0xFFFFFFFF ? null : dialog.m_pEntries.ToArray()[(int)indexEntry].m_pReplies.ToArray()[(int)indexReply].m_nIndex;
-          case DialogState.SendReplies:
-            return dialog.m_pEntries.ToArray()[(int)dialog.m_currentEntryIndex].m_pReplies.ToArray()[CurrentNodeIndex].m_nIndex;
-          default:
-            return null;
-        }
+          DialogState.Start => dialog.m_pStartingEntries.ToArray()[CurrentNodeIndex].m_nIndex,
+          DialogState.SendEntry => indexEntry,
+          DialogState.HandleReply => indexReply == 0xFFFFFFFF ? null : dialog.m_pEntries.ToArray()[(int)indexEntry].m_pReplies.ToArray()[(int)indexReply].m_nIndex,
+          DialogState.SendReplies => dialog.m_pEntries.ToArray()[(int)dialog.m_currentEntryIndex].m_pReplies.ToArray()[CurrentNodeIndex].m_nIndex,
+          _ => null,
+        };
       }
     }
 
@@ -67,18 +62,13 @@ namespace Anvil.Services
     {
       get
       {
-        switch (stateStack.Peek())
+        return stateStack.Peek() switch
         {
-          case DialogState.Start:
-            return NodeType.StartingNode;
-          case DialogState.SendEntry:
-            return NodeType.EntryNode;
-          case DialogState.SendReplies:
-          case DialogState.HandleReply:
-            return NodeType.ReplyNode;
-          default:
-            return NodeType.Invalid;
-        }
+          DialogState.Start => NodeType.StartingNode,
+          DialogState.SendEntry => NodeType.EntryNode,
+          DialogState.SendReplies or DialogState.HandleReply => NodeType.ReplyNode,
+          _ => NodeType.Invalid,
+        };
       }
     }
 

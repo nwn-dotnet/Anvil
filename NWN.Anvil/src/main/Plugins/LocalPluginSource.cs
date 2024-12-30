@@ -6,7 +6,7 @@ using NLog;
 
 namespace Anvil.Plugins
 {
-  internal sealed class LocalPluginSource : IPluginSource
+  internal sealed class LocalPluginSource(string rootPath) : IPluginSource
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -14,13 +14,6 @@ namespace Anvil.Plugins
 
     [Inject]
     private InjectionService InjectionService { get; init; } = null!;
-
-    private readonly string rootPath;
-
-    public LocalPluginSource(string rootPath)
-    {
-      this.rootPath = rootPath;
-    }
 
     public IEnumerable<Plugin> Bootstrap()
     {

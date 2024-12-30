@@ -5,16 +5,11 @@ namespace Anvil.API
   /// <summary>
   /// A simple color picker, with no borders or spacing.
   /// </summary>
-  public sealed class NuiColorPicker : NuiWidget
+  [method: JsonConstructor]
+  public sealed class NuiColorPicker(NuiProperty<Color> color) : NuiWidget
   {
-    [JsonConstructor]
-    public NuiColorPicker(NuiProperty<Color> color)
-    {
-      Color = color;
-    }
-
     [JsonProperty("value")]
-    public NuiProperty<Color> Color { get; set; }
+    public NuiProperty<Color> Color { get; set; } = color;
 
     public override string Type => "color_picker";
   }

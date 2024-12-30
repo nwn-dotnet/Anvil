@@ -10,11 +10,11 @@ namespace Anvil.API.Events
     public NwGameObject Target { get; internal init; } = null!;
   }
 
-  public sealed class OnDMGiveXP : DMGiveEvent {}
+  public sealed class OnDMGiveXP : DMGiveEvent;
 
-  public sealed class OnDMGiveLevel : DMGiveEvent {}
+  public sealed class OnDMGiveLevel : DMGiveEvent;
 
-  public sealed class OnDMGiveGold : DMGiveEvent {}
+  public sealed class OnDMGiveGold : DMGiveEvent;
 }
 
 namespace Anvil.API

@@ -23,7 +23,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnStartBarter;
         Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerBarter_StartBarter>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

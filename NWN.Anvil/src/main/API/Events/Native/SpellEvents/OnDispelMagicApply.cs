@@ -57,7 +57,7 @@ namespace Anvil.API.Events
         ApplyDispelBestMagic = HookService.RequestHook<Functions.CNWSEffectListHandler.OnApplyDispelBestMagic>(pApplyDispelBestMagicHook, HookOrder.Early);
         SendServerToPlayerCCMessageHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(pSendServerToPlayerCCMessageHook, HookOrder.Early);
 
-        return new IDisposable[] { ApplyDispelAllMagicHook, ApplyDispelBestMagic };
+        return [ApplyDispelAllMagicHook, ApplyDispelBestMagic];
       }
 
       [UnmanagedCallersOnly]

@@ -209,11 +209,11 @@ namespace Anvil.Plugins
 
     private void BootstrapPlugins()
     {
-      List<IPluginSource> pluginSources = new List<IPluginSource>
-      {
+      List<IPluginSource> pluginSources =
+      [
         InjectionService.Inject(new PaketPluginSource()),
         InjectionService.Inject(new LocalPluginSource(HomeStorage.Plugins)),
-      };
+      ];
 
       foreach (string pluginPath in EnvironmentConfig.AdditionalPluginPaths)
       {

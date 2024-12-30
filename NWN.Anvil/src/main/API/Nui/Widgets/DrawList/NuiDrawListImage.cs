@@ -2,15 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public sealed class NuiDrawListImage : NuiDrawListItem
+  [method: JsonConstructor]
+  public sealed class NuiDrawListImage(NuiProperty<string> resRef, NuiProperty<NuiRect> rect) : NuiDrawListItem
   {
-    [JsonConstructor]
-    public NuiDrawListImage(NuiProperty<string> resRef, NuiProperty<NuiRect> rect)
-    {
-      ResRef = resRef;
-      Rect = rect;
-    }
-
     [JsonProperty("image_aspect")]
     public NuiProperty<NuiAspect> Aspect { get; set; } = NuiAspect.Exact;
 
@@ -18,10 +12,10 @@ namespace Anvil.API
     public NuiProperty<NuiHAlign> HorizontalAlign { get; set; } = NuiHAlign.Left;
 
     [JsonProperty("rect")]
-    public NuiProperty<NuiRect> Rect { get; set; }
+    public NuiProperty<NuiRect> Rect { get; set; } = rect;
 
     [JsonProperty("image")]
-    public NuiProperty<string> ResRef { get; set; }
+    public NuiProperty<string> ResRef { get; set; } = resRef;
 
     /// <summary>
     /// Optionally render a subregion of the image.<br/>

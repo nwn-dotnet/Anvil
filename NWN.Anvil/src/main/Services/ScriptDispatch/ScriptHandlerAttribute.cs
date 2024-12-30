@@ -11,13 +11,8 @@ namespace Anvil.Services
   /// </summary>
   [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
   [MeansImplicitUse]
-  public sealed class ScriptHandlerAttribute : Attribute
+  public sealed class ScriptHandlerAttribute(string scriptName) : Attribute
   {
-    public readonly string ScriptName;
-
-    public ScriptHandlerAttribute(string scriptName)
-    {
-      ScriptName = scriptName;
-    }
+    public readonly string ScriptName = scriptName;
   }
 }

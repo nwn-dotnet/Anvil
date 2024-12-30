@@ -9,7 +9,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwCreatureTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing a creature generates valid gff data, and a new valid creature.")]
     [TestCase(StandardResRef.Creature.nw_bandit001)]
@@ -163,7 +163,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(creature);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwCreature clone = creature.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Creature {creatureResRef} was null after clone.");

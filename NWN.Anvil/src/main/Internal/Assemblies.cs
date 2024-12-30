@@ -18,12 +18,12 @@ namespace Anvil.Internal
     public static readonly string[] RuntimeAssemblies;
 
     public static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location)!;
-    public static readonly string[] TargetFrameworks = { "net8.0" };
+    public static readonly string[] TargetFrameworks = ["net8.0"];
 
     static Assemblies()
     {
-      AllAssemblies = new[]
-      {
+      AllAssemblies =
+      [
         Anvil,
         Core,
         Native,
@@ -31,7 +31,7 @@ namespace Anvil.Internal
         typeof(LightInject.ServiceContainer).Assembly,
         typeof(Newtonsoft.Json.JsonConvert).Assembly,
         typeof(Paket.Dependencies).Assembly,
-      };
+      ];
 
       AllTypes = AllAssemblies.SelectMany(assembly => assembly.GetTypes()).ToArray();
       ReservedNames = AllAssemblies.Select(assembly => assembly.GetName().Name).ToArray()!;

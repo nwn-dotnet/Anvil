@@ -4,15 +4,8 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed class ClassSpellGainList : IReadOnlyList<byte>
+  public sealed class ClassSpellGainList(NativeArray<byte> array) : IReadOnlyList<byte>
   {
-    private readonly NativeArray<byte> array;
-
-    public ClassSpellGainList(NativeArray<byte> array)
-    {
-      this.array = array;
-    }
-
     public int Count => array.Length;
 
     public byte this[int index] => GetGainAmount(index);

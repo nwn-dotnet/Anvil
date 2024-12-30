@@ -15,7 +15,7 @@ namespace Anvil.Plugins
     /// By default, an exception will be thrown at startup if a plugin references a type from another plugin, and the plugin is not loaded.<br/>
     /// Adding a plugin name to this list will instead cause these types to be skipped if the plugin is not loaded.<br/>
     /// </remarks>
-    public string[] OptionalDependencies { get; init; } = Array.Empty<string>();
+    public string[] OptionalDependencies { get; init; } = [];
 
     /// <summary>
     /// Gets or sets if this is an isolated plugin.

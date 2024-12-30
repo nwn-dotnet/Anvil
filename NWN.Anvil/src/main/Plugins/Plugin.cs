@@ -123,11 +123,12 @@ namespace Anvil.Plugins
     {
       try
       {
-        List<string> assemblyPaths = new List<string>(Assemblies.RuntimeAssemblies)
-        {
+        List<string> assemblyPaths =
+        [
+          ..Assemblies.RuntimeAssemblies,
           Path,
           Assemblies.Anvil.Location,
-        };
+        ];
 
         PathAssemblyResolver resolver = new PathAssemblyResolver(assemblyPaths);
         using MetadataLoadContext context = new MetadataLoadContext(resolver);

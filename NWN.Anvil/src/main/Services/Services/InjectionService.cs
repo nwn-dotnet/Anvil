@@ -8,7 +8,7 @@ namespace Anvil.Services
 {
   public sealed class InjectionService : ICoreService
   {
-    private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
+    private readonly List<PropertyInfo> injectedStaticProperties = [];
 
     [Inject]
     private IServiceManager ServiceManager { get; init; } = null!;

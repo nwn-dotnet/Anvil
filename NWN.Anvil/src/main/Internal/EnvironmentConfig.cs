@@ -10,7 +10,7 @@ namespace Anvil.Internal
   /// </summary>
   public static class EnvironmentConfig
   {
-    private static readonly string[] VariablePrefixes = { "ANVIL_", "NWM_" };
+    private static readonly string[] VariablePrefixes = ["ANVIL_", "NWM_"];
 
     public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil");
     public static readonly string Encoding = GetAnvilVariableString("ENCODING", "windows-1252");
@@ -60,7 +60,7 @@ namespace Anvil.Internal
 
     private static string[] GetAnvilVariableArrayString(string key, string[]? defaultValue = null)
     {
-      defaultValue ??= Array.Empty<string>();
+      defaultValue ??= [];
       string? value = GetAnvilVariableString(key);
 
       return value != null ? value.Split(Path.PathSeparator) : defaultValue;

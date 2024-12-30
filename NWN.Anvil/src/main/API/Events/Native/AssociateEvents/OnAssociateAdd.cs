@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, ushort, void> pHook = &OnAddAssociate;
         Hook = HookService.RequestHook<Functions.CNWSCreature.AddAssociate>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

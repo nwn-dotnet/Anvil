@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwDoorTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing a door generates valid gff data, and a new valid door.")]
     [TestCase(StandardResRef.Door.nw_door_grate)]
@@ -202,7 +202,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(door);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwDoor clone = door.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Door {doorResRef} was null after clone.");

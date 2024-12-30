@@ -8,15 +8,15 @@ namespace Anvil.API.Events
     public NwObject Target { get; internal init; } = null!;
   }
 
-  public sealed class OnDMGoTo : DMSingleTargetEvent {}
+  public sealed class OnDMGoTo : DMSingleTargetEvent;
 
-  public sealed class OnDMPossess : DMSingleTargetEvent {}
+  public sealed class OnDMPossess : DMSingleTargetEvent;
 
-  public sealed class OnDMPossessFullPower : DMSingleTargetEvent {}
+  public sealed class OnDMPossessFullPower : DMSingleTargetEvent;
 
-  public sealed class OnDMToggleLock : DMSingleTargetEvent {}
+  public sealed class OnDMToggleLock : DMSingleTargetEvent;
 
-  public sealed class OnDMDisableTrap : DMSingleTargetEvent {}
+  public sealed class OnDMDisableTrap : DMSingleTargetEvent;
 }
 
 namespace Anvil.API

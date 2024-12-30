@@ -2,17 +2,8 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed class EncounterListEntry
+  public sealed class EncounterListEntry(CNWSEncounter encounter, CEncounterListEntry encounterListEntry)
   {
-    private readonly CNWSEncounter encounter;
-    private readonly CEncounterListEntry encounterListEntry;
-
-    public EncounterListEntry(CNWSEncounter encounter, CEncounterListEntry encounterListEntry)
-    {
-      this.encounter = encounter;
-      this.encounterListEntry = encounterListEntry;
-    }
-
     public bool AlreadyUsed
     {
       get => encounterListEntry.m_bAlreadyUsed.ToBool();
