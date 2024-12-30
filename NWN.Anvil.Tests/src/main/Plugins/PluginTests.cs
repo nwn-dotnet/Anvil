@@ -109,11 +109,10 @@ namespace Anvil.Tests.Plugins
 
       Directory.CreateDirectory(pluginRoot);
 
-      string pluginAssemblyName = $"{pluginName}.dll";
       string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
 
       using FileStream assemblyStream = File.Create(pluginPath);
-      AssemblyGenerator.GenerateAssembly(assemblyStream, pluginAssemblyName, source);
+      AssemblyGenerator.GenerateAssembly(assemblyStream, pluginName, source);
 
       return pluginRoot;
     }
