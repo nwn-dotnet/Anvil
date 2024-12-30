@@ -11,12 +11,15 @@ using Paket;
 
 namespace Anvil.Plugins
 {
-  internal sealed class PaketPluginSource(PluginManager pluginManager) : IPluginSource
+  internal sealed class PaketPluginSource : IPluginSource
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
     private static readonly string[] NativeDllPackagePaths = ["runtimes/linux-x64/native"];
+
+    [Inject]
+    private InjectionService InjectionService { get; init; } = null!;
 
     private readonly FSharpList<string> frameworks = ListModule.OfArray(Assemblies.TargetFrameworks);
     private readonly string linkFilePathFormat = Path.Combine(HomeStorage.Paket, ".paket/load/{0}/main.group.csx");
@@ -86,11 +89,11 @@ namespace Anvil.Plugins
           continue;
         }
 
-        Plugin plugin = new Plugin(pluginManager, pluginPath)
+        Plugin plugin = InjectionService.Inject(new Plugin(pluginPath)
         {
           AdditionalAssemblyPaths = loadFile.AssemblyPaths,
           UnmanagedAssemblyPaths = nativeAssemblyPaths,
-        };
+        });
 
         plugins.Add(plugin);
       }

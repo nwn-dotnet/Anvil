@@ -1,15 +1,19 @@
 using System.Collections.Generic;
 using System.IO;
 using Anvil.Internal;
+using Anvil.Services;
 using NLog;
 
 namespace Anvil.Plugins
 {
-  internal sealed class LocalPluginSource(PluginManager pluginManager, string rootPath) : IPluginSource
+  internal sealed class LocalPluginSource(string rootPath) : IPluginSource
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const string PluginResourceDir = "resources";
+
+    [Inject]
+    private InjectionService InjectionService { get; init; } = null!;
 
     public IEnumerable<Plugin> Bootstrap()
     {
@@ -21,7 +25,7 @@ namespace Anvil.Plugins
 
     private IEnumerable<Plugin> CreatePluginsFromPaths(IEnumerable<string> pluginPaths)
     {
-      List<Plugin> plugins = [];
+      List<Plugin> plugins = new List<Plugin>();
       foreach (string pluginRoot in pluginPaths)
       {
         string pluginName = new DirectoryInfo(pluginRoot).Name;
@@ -39,10 +43,10 @@ namespace Anvil.Plugins
           continue;
         }
 
-        Plugin plugin = new Plugin(pluginManager, pluginPath)
+        Plugin plugin = InjectionService.Inject(new Plugin(pluginPath)
         {
           ResourcePath = Path.Combine(pluginRoot, Path.Combine(pluginRoot, PluginResourceDir)),
-        };
+        });
 
         plugins.Add(plugin);
       }
