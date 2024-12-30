@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Anvil.Internal;
 using Anvil.Plugins;
+using LightInject;
 
 namespace Anvil.Services
 {
   public sealed class InjectionService : ICoreService
   {
     private readonly List<PropertyInfo> injectedStaticProperties = [];
+    private readonly Dictionary<Plugin, List<PropertyInfo>> pluginInjectedProperties = new Dictionary<Plugin, List<PropertyInfo>>();
 
     [Inject]
     private IServiceManager ServiceManager { get; init; } = null!;
@@ -37,7 +40,40 @@ namespace Anvil.Services
       return instance;
     }
 
-    void ICoreService.Init() {}
+    void ICoreService.Init()
+    {
+      ServiceManager.OnContainerCreate += OnContainerCreate;
+      ServiceManager.OnContainerPostDispose += OnContainerPostDispose;
+    }
+
+    private void OnContainerCreate(IServiceContainer container, Plugin? plugin)
+    {
+      if (plugin?.PluginTypes == null)
+      {
+        return;
+      }
+
+      pluginInjectedProperties.TryGetValue(plugin, out List<PropertyInfo>? propertyList);
+      propertyList ??= [];
+      pluginInjectedProperties[plugin] = propertyList;
+      InjectStaticProperties(container, propertyList, plugin.PluginTypes);
+    }
+
+    private void OnContainerPostDispose(IServiceContainer container, Plugin? plugin)
+    {
+      if (plugin == null)
+      {
+        return;
+      }
+
+      if (pluginInjectedProperties.Remove(plugin, out List<PropertyInfo>? propertyList))
+      {
+        foreach (PropertyInfo propertyInfo in propertyList)
+        {
+          propertyInfo.SetValue(null, default);
+        }
+      }
+    }
 
     void ICoreService.Load() {}
 
@@ -45,12 +81,25 @@ namespace Anvil.Services
 
     void ICoreService.Start()
     {
-      InjectStaticProperties(Assemblies.AllTypes);
+      InjectStaticProperties(ServiceManager.AnvilServiceContainer, injectedStaticProperties, Assemblies.AllTypes);
       foreach (Plugin plugin in PluginManager.Value.Plugins)
       {
-        if (plugin.PluginTypes != null)
+        if (plugin.PluginTypes == null)
         {
-          InjectStaticProperties(plugin.PluginTypes);
+          continue;
+        }
+
+        if (plugin.Container == null)
+        {
+          InjectStaticProperties(ServiceManager.AnvilServiceContainer, injectedStaticProperties, plugin.PluginTypes);
+        }
+        else
+        {
+          pluginInjectedProperties.TryGetValue(plugin, out List<PropertyInfo>? propertyList);
+          propertyList ??= [];
+          pluginInjectedProperties[plugin] = propertyList;
+
+          InjectStaticProperties(plugin.Container, propertyList, plugin.PluginTypes);
         }
       }
     }
@@ -63,10 +112,16 @@ namespace Anvil.Services
         propertyInfo.SetValue(null, default);
       }
 
+      foreach (PropertyInfo propertyInfo in pluginInjectedProperties.SelectMany(pair => pair.Value))
+      {
+        propertyInfo.SetValue(null, default);
+      }
+
       injectedStaticProperties.Clear();
+      pluginInjectedProperties.Clear();
     }
 
-    private void InjectStaticProperties(IEnumerable<Type> types)
+    private void InjectStaticProperties(IServiceContainer container, List<PropertyInfo> propertyList, IEnumerable<Type> types)
     {
       InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.StaticOnly);
       foreach (Type type in types)
@@ -75,9 +130,9 @@ namespace Anvil.Services
 
         foreach (PropertyInfo propertyInfo in injectableTypes)
         {
-          object value = ServiceManager.AnvilServiceContainer.TryGetInstance(propertyInfo.PropertyType);
+          object value = container.TryGetInstance(propertyInfo.PropertyType);
           propertyInfo.SetValue(null, value);
-          injectedStaticProperties.Add(propertyInfo);
+          propertyList.Add(propertyInfo);
         }
       }
     }

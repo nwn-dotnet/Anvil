@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Anvil.API;
+using Anvil.Plugins;
 using LightInject;
 
 namespace Anvil.Services
@@ -13,11 +14,8 @@ namespace Anvil.Services
     private readonly List<IUpdateable> pendingAddTargets = new List<IUpdateable>();
     private readonly List<IUpdateable> pendingRemoveTargets = new List<IUpdateable>();
 
-    public ContainerMessageService(IServiceManager serviceManager)
-    {
-      serviceManager.OnContainerCreate += OnContainerCreate;
-      serviceManager.OnContainerDispose += OnContainerDispose;
-    }
+    [Inject]
+    private IServiceManager ServiceManager { get; init; } = null!;
 
     internal void RunServerLoop()
     {
@@ -48,7 +46,7 @@ namespace Anvil.Services
       pendingRemoveTargets.Clear();
     }
 
-    private void OnContainerCreate(IServiceContainer container)
+    private void OnContainerCreate(IServiceContainer container, Plugin? plugin)
     {
       foreach (IInitializable service in container.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
       {
@@ -58,7 +56,7 @@ namespace Anvil.Services
       pendingAddTargets.AddRange(container.GetAllInstances<IUpdateable>().OrderBy(service => service.GetType().GetServicePriority()));
     }
 
-    private void OnContainerDispose(IServiceContainer container)
+    private void OnContainerDispose(IServiceContainer container, Plugin? plugin)
     {
       pendingRemoveTargets.AddRange(container.GetAllInstances<IUpdateable>());
 
@@ -68,7 +66,11 @@ namespace Anvil.Services
       }
     }
 
-    void ICoreService.Init() {}
+    void ICoreService.Init()
+    {
+      ServiceManager.OnContainerCreate += OnContainerCreate;
+      ServiceManager.OnContainerDispose += OnContainerDispose;
+    }
 
     void ICoreService.Load() {}
 
