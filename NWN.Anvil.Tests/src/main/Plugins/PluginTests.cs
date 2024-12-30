@@ -98,6 +98,8 @@ namespace Anvil.Tests.Plugins
 
       Assert.That(disposeCalledField.GetValue(null), Is.True);
 
+      await NwTask.NextFrame();
+
       return pluginRef;
     }
 
