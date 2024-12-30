@@ -43,7 +43,7 @@ namespace Anvil.Plugins
     /// <summary>
     /// Gets additional metadata information about this plugin.
     /// </summary>
-    public PluginInfoAttribute PluginInfo { get; }
+    public PluginInfoAttribute PluginInfo { get; private set; } = null!;
 
     /// <summary>
     /// Gets the path in the plugin containing additional game resources.
@@ -80,7 +80,11 @@ namespace Anvil.Plugins
     {
       Path = path;
       Name = AssemblyName.GetAssemblyName(path);
-      PluginInfo = LoadPluginInfo() ?? new PluginInfoAttribute();
+    }
+
+    internal void Init(List<string> assemblyPaths)
+    {
+      PluginInfo = LoadPluginInfo(assemblyPaths) ?? new PluginInfoAttribute();
     }
 
     internal void Load()
@@ -119,17 +123,10 @@ namespace Anvil.Plugins
       return unloadHandle;
     }
 
-    private PluginInfoAttribute? LoadPluginInfo()
+    private PluginInfoAttribute? LoadPluginInfo(List<string> assemblyPaths)
     {
       try
       {
-        List<string> assemblyPaths =
-        [
-          ..Assemblies.RuntimeAssemblies,
-          Path,
-          Assemblies.Anvil.Location,
-        ];
-
         PathAssemblyResolver resolver = new PathAssemblyResolver(assemblyPaths);
         using MetadataLoadContext context = new MetadataLoadContext(resolver);
         Assembly assemblyMeta = context.LoadFromAssemblyPath(Path);

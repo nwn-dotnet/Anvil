@@ -107,6 +107,10 @@ namespace Anvil.Plugins
           ResourcePath = Path.Combine(pluginRoot, Path.Combine(pluginRoot, "resources")),
         });
 
+        List<string> assemblyPaths = GetReferenceAssemblyPaths();
+        assemblyPaths.Add(plugin.Path);
+
+        plugin.Init(assemblyPaths);
         Plugins.Add(plugin);
       }
       else
@@ -227,6 +231,12 @@ namespace Anvil.Plugins
       foreach (IPluginSource pluginSource in pluginSources)
       {
         Plugins.AddRange(pluginSource.Bootstrap());
+      }
+
+      List<string> assemblyPaths = GetReferenceAssemblyPaths();
+      foreach (Plugin plugin in Plugins)
+      {
+        plugin.Init(assemblyPaths);
       }
 
       if (EnvironmentConfig.PreventStartNoPlugin && Plugins.Count == 0)
@@ -373,6 +383,16 @@ namespace Anvil.Plugins
           Thread.Sleep(PluginUnloadSleepMs);
         }
       }
+    }
+
+    private List<string> GetReferenceAssemblyPaths()
+    {
+      return
+      [
+        Assemblies.Anvil.Location,
+        ..Assemblies.RuntimeAssemblies,
+        ..Plugins.Select(plugin => plugin.Path),
+      ];
     }
   }
 }
