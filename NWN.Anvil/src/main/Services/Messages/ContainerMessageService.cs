@@ -10,6 +10,9 @@ namespace Anvil.Services
     private readonly List<IUpdateable> updateTargets = new List<IUpdateable>();
     private readonly HashSet<ILateDisposable> lateDisposeTargets = new HashSet<ILateDisposable>();
 
+    private readonly List<IUpdateable> pendingAddTargets = new List<IUpdateable>();
+    private readonly List<IUpdateable> pendingRemoveTargets = new List<IUpdateable>();
+
     public ContainerMessageService(IServiceManager serviceManager)
     {
       serviceManager.OnContainerCreate += OnContainerCreate;
@@ -18,10 +21,31 @@ namespace Anvil.Services
 
     internal void RunServerLoop()
     {
-      foreach (IUpdateable updateTarget in updateTargets)
+      for (int i = 0; i < updateTargets.Count; i++)
       {
-        updateTarget.Update();
+        updateTargets[i].Update();
       }
+
+      if (pendingAddTargets.Count > 0 || pendingRemoveTargets.Count > 0)
+      {
+        UpdateLoopList();
+      }
+    }
+
+    private void UpdateLoopList()
+    {
+      foreach (IUpdateable updateable in pendingRemoveTargets)
+      {
+        updateTargets.Remove(updateable);
+      }
+
+      foreach (IUpdateable updateable in pendingAddTargets)
+      {
+        updateTargets.Add(updateable);
+      }
+
+      pendingAddTargets.Clear();
+      pendingRemoveTargets.Clear();
     }
 
     private void OnContainerCreate(IServiceContainer container)
@@ -31,15 +55,12 @@ namespace Anvil.Services
         service.Init();
       }
 
-      updateTargets.AddRange(container.GetAllInstances<IUpdateable>().OrderBy(service => service.GetType().GetServicePriority()));
+      pendingAddTargets.AddRange(container.GetAllInstances<IUpdateable>().OrderBy(service => service.GetType().GetServicePriority()));
     }
 
     private void OnContainerDispose(IServiceContainer container)
     {
-      foreach (IUpdateable updateTarget in container.GetAllInstances<IUpdateable>())
-      {
-        updateTargets.Remove(updateTarget);
-      }
+      pendingRemoveTargets.AddRange(container.GetAllInstances<IUpdateable>());
 
       foreach (ILateDisposable lateDisposeTarget in container.GetAllInstances<ILateDisposable>())
       {
