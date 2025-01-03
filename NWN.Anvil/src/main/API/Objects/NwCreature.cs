@@ -992,6 +992,33 @@ namespace Anvil.API
       await WaitForObjectContext();
       NWScript.ActionCounterSpell(counterSpellTarget);
     }
+    /// <summary>
+    /// Forces a PC to level up without the level up GUI.
+    /// </summary>
+    /// <param name="nClass">The class to level up.</param>
+    /// <param name="nHitDie">The hit points gained during this level up.</param>
+    /// <param name="nAbilityGain">The abilty to increase : 6 = no increase.</param>
+    /// <param name="bEpic">Is this an epic level.</param>
+    /// <param name="nSkillPointsRemaining">Number of skill points to give</param>
+    /// <param name="nDomain1">Sets a cleric domain for the class (255 = no domain)</param>
+    /// <param name="nDomain2">Sets the second cleric domain for the class (255 = no domain)</param>
+    /// <param name="nSchool">Sets the wizard school for the class (255 = no school)</param>
+    /// <param name="addStatsToList">Adds the new stats to the character sheet</param>
+    public void ForceLevelUp(byte nClass, byte nHitDie, byte nAbilityGain = 6, int bEpic = 0, ushort nSkillPointsRemaining = 0, byte nDomain1 = 255, byte nDomain2 = 255, byte nSchool = 255, int addStatsToList = 1)
+    {
+      CNWLevelStats stats = new()
+      {
+        m_nClass = nClass,
+        m_nHitDie = nHitDie,
+        m_nAbilityGain = nAbilityGain,
+        m_bEpic = bEpic,
+        m_nSkillPointsRemaining = nSkillPointsRemaining,
+      };
+
+      Creature.m_pStats.LevelUp(stats, nDomain1, nDomain2, nSchool, addStatsToList);
+      GC.SuppressFinalize(stats);
+    }
+
 
     /// <summary>
     /// Instructs this creature to equip the specified item into the given inventory slot.<br/>
