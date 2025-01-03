@@ -1,8 +1,10 @@
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
 using Anvil.Native;
 using Anvil.Services;
+using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API.Events
@@ -17,6 +19,8 @@ namespace Anvil.API.Events
     public bool PreventSpellCast { get; set; }
 
     public NwSpell Spell { get; private init; } = null!;
+    public NwGameObject TargetObject { get; private init; } = null!;
+    public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Caster;
 
@@ -36,12 +40,16 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
+        NwGameObject oTarget = ((uint)creature.m_pExecutingAIAction.m_pParameter[5]).ToNwObject<NwGameObject>()!;
+
         OnSpellBroadcast eventData = ProcessEvent(EventCallbackType.Before, new OnSpellBroadcast
         {
           Caster = creature.ToNwObject<NwCreature>()!,
           Spell = NwSpell.FromSpellId((int)nSpellId)!,
           ClassIndex = nMultiClass,
           Feat = NwFeat.FromFeatId(nFeat)!,
+          TargetObject = oTarget,
+          TargetPosition = oTarget is not null ? oTarget.Position : new Vector3(BitConverter.Int32BitsToSingle((int)creature.m_pExecutingAIAction.m_pParameter[6]), BitConverter.Int32BitsToSingle((int)creature.m_pExecutingAIAction.m_pParameter[7]), BitConverter.Int32BitsToSingle((int)creature.m_pExecutingAIAction.m_pParameter[8])),
         });
 
         if (!eventData.PreventSpellCast)
