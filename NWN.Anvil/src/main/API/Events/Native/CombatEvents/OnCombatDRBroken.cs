@@ -23,7 +23,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, ushort, void*, void*, void> pHook = &OnSendFeedbackMessage;
         Hook = HookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

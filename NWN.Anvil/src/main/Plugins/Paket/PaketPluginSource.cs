@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Anvil.Internal;
 using Anvil.Services;
 using Microsoft.FSharp.Collections;
@@ -17,7 +16,10 @@ namespace Anvil.Plugins
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
-    private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
+    private static readonly string[] NativeDllPackagePaths = ["runtimes/linux-x64/native"];
+
+    [Inject]
+    private InjectionService InjectionService { get; init; } = null!;
 
     private readonly FSharpList<string> frameworks = ListModule.OfArray(Assemblies.TargetFrameworks);
     private readonly string linkFilePathFormat = Path.Combine(HomeStorage.Paket, ".paket/load/{0}/main.group.csx");
@@ -25,20 +27,14 @@ namespace Anvil.Plugins
 
     private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
 
-    private readonly PluginManager pluginManager;
-    private readonly FSharpList<string> scriptTypes = ListModule.OfArray(new[] { "csx" });
-
-    public PaketPluginSource(PluginManager pluginManager)
-    {
-      this.pluginManager = pluginManager;
-    }
+    private readonly FSharpList<string> scriptTypes = ListModule.OfArray(["csx"]);
 
     public IEnumerable<Plugin> Bootstrap()
     {
       Dependencies? dependencies = GetDependencies();
       if (dependencies == null)
       {
-        return Enumerable.Empty<Plugin>();
+        return [];
       }
 
       Logging.@event.Publish.AddHandler(OnLogEvent);
@@ -69,7 +65,7 @@ namespace Anvil.Plugins
 
       Dictionary<string, string> nativeAssemblyPaths = GetNativeAssemblyPaths();
 
-      List<Plugin> plugins = new List<Plugin>();
+      List<Plugin> plugins = [];
       FSharpList<Tuple<string, string, string>> entries = dependencies.GetDirectDependencies();
 
       Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", entries.Length, HomeStorage.Paket);
@@ -93,11 +89,11 @@ namespace Anvil.Plugins
           continue;
         }
 
-        Plugin plugin = new Plugin(pluginManager, pluginPath)
+        Plugin plugin = InjectionService.Inject(new Plugin(pluginPath)
         {
           AdditionalAssemblyPaths = loadFile.AssemblyPaths,
           UnmanagedAssemblyPaths = nativeAssemblyPaths,
-        };
+        });
 
         plugins.Add(plugin);
       }

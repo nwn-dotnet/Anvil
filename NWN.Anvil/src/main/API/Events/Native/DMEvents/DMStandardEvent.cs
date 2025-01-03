@@ -3,29 +3,29 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public sealed class OnDMAppear : DMEvent {}
+  public sealed class OnDMAppear : DMEvent;
 
-  public sealed class OnDMDisappear : DMEvent {}
+  public sealed class OnDMDisappear : DMEvent;
 
-  public sealed class OnDMSetFaction : DMEvent {}
+  public sealed class OnDMSetFaction : DMEvent;
 
-  public sealed class OnDMTakeItem : DMEvent {}
+  public sealed class OnDMTakeItem : DMEvent;
 
-  public sealed class OnDMSetStat : DMEvent {}
+  public sealed class OnDMSetStat : DMEvent;
 
-  public sealed class OnDMGetVariable : DMEvent {}
+  public sealed class OnDMGetVariable : DMEvent;
 
-  public sealed class OnDMSetVariable : DMEvent {}
+  public sealed class OnDMSetVariable : DMEvent;
 
-  public sealed class OnDMSetTime : DMEvent {}
+  public sealed class OnDMSetTime : DMEvent;
 
-  public sealed class OnDMSetDate : DMEvent {}
+  public sealed class OnDMSetDate : DMEvent;
 
-  public sealed class OnDMSetFactionReputation : DMEvent {}
+  public sealed class OnDMSetFactionReputation : DMEvent;
 
-  public sealed class OnDMGetFactionReputation : DMEvent {}
+  public sealed class OnDMGetFactionReputation : DMEvent;
 
-  public sealed class OnDMPlayerDMLogout : DMEvent {}
+  public sealed class OnDMPlayerDMLogout : DMEvent;
 }
 
 namespace Anvil.API

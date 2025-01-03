@@ -15,7 +15,7 @@ namespace Anvil
     private static ScriptDispatchService? ScriptDispatchService { get; set; }
 
     [Inject]
-    private static ServerUpdateLoopService? ServerUpdateLoopService { get; set; }
+    private static AnvilMessageService? AnvilMessageService { get; set; }
 
     private static readonly Dictionary<ulong, Action> Closures = new Dictionary<ulong, Action>();
     private static readonly Stack<uint> ScriptContexts = new Stack<uint>();
@@ -117,7 +117,7 @@ namespace Anvil
     [UnmanagedCallersOnly]
     private static void OnLoop(ulong _)
     {
-      ServerUpdateLoopService?.Update();
+      AnvilMessageService?.RunServerLoop();
     }
 
     [UnmanagedCallersOnly]

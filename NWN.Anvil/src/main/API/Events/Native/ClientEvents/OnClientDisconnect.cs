@@ -28,7 +28,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnRemovePCFromWorld;
         Hook = HookService.RequestHook<Functions.CServerExoAppInternal.RemovePCFromWorld>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

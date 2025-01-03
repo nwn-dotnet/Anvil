@@ -6,19 +6,13 @@ namespace Anvil.API
   /// A combo/list element for use in <see cref="NuiCombo"/>.
   /// </summary>
   [JsonConverter(typeof(ObjectToArrayConverter<NuiComboEntry>))]
-  public sealed class NuiComboEntry
+  [method: JsonConstructor]
+  public sealed class NuiComboEntry(string label, int value)
   {
-    [JsonConstructor]
-    public NuiComboEntry(string label, int value)
-    {
-      Label = label;
-      Value = value;
-    }
-
     [JsonProperty(Order = 1)]
-    public string Label { get; set; }
+    public string Label { get; set; } = label;
 
     [JsonProperty(Order = 2)]
-    public int Value { get; set; }
+    public int Value { get; set; } = value;
   }
 }

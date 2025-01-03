@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwStoreTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing a store generates valid gff data, and a new valid store.")]
     [TestCase(StandardResRef.Store.nw_storethief001)]
@@ -177,7 +177,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(store);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwStore clone = store.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Store {storeResRef} was null after clone.");

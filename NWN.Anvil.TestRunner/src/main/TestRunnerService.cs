@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
@@ -67,10 +68,10 @@ namespace Anvil.TestRunner
         testRunner.Execute(GetRunnerArguments(testAssembly));
       }
 
-      Shutdown();
+      _ = Shutdown();
     }
 
-    private async void Shutdown()
+    private async Task Shutdown()
     {
       testWorkerThread = null;
       await NwTask.SwitchToMainThread();
@@ -82,7 +83,7 @@ namespace Anvil.TestRunner
       string outputPath = Path.Combine(outputDir, assembly.GetName().Name!);
 
       string args = $"--mainthread --work={outputPath} {additionalArgs}";
-      return string.IsNullOrEmpty(args) ? Array.Empty<string>() : CommandLineParser.SplitCommandLineIntoArguments(args, false).ToArray();
+      return string.IsNullOrEmpty(args) ? [] : CommandLineParser.SplitCommandLineIntoArguments(args, false).ToArray();
     }
   }
 }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Anvil.Internal;
 using Anvil.Services;
@@ -176,7 +175,7 @@ namespace Anvil.API
         return virtualMachine.m_lScriptParams.GetItem(RecursionLevel);
       }
 
-      return Enumerable.Empty<ScriptParam>();
+      return [];
     }
 
     private int PopScriptContext()

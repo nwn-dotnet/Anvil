@@ -15,7 +15,7 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly HashSet<IDisposable> hooks = new HashSet<IDisposable>();
+    private readonly HashSet<IDisposable> hooks = [];
 
     /// <summary>
     /// Requests a hook for a native function.

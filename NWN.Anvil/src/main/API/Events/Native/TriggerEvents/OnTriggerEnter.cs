@@ -47,7 +47,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, uint, void*, uint, uint, void> pHook = &OnTriggerEventHandler;
         Hook = HookService.RequestHook<Functions.CNWSTrigger.EventHandler>(pHook, HookOrder.Late);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       private static OnTriggerEnter HandleEnter(CNWSTrigger trigger, CScriptEvent scriptEvent)

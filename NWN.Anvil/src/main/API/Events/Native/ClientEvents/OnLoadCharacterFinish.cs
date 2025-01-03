@@ -24,7 +24,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int, int, int> pHook = &OnLoadCharacterFinish;
         Hook = HookService.RequestHook<Functions.CServerExoAppInternal.LoadCharacterFinish>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

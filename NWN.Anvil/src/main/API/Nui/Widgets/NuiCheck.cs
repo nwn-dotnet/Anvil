@@ -5,20 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// A checkbox with a label to the right of it.
   /// </summary>
-  public sealed class NuiCheck : NuiWidget
+  [method: JsonConstructor]
+  public sealed class NuiCheck(NuiProperty<string> label, NuiProperty<bool> selected) : NuiWidget
   {
-    [JsonConstructor]
-    public NuiCheck(NuiProperty<string> label, NuiProperty<bool> selected)
-    {
-      Label = label;
-      Selected = selected;
-    }
-
     [JsonProperty("label")]
-    public NuiProperty<string> Label { get; set; }
+    public NuiProperty<string> Label { get; set; } = label;
 
     [JsonProperty("value")]
-    public NuiProperty<bool> Selected { get; set; }
+    public NuiProperty<bool> Selected { get; set; } = selected;
 
     public override string Type => "check";
   }

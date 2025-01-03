@@ -42,7 +42,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, uint, int> pHook = &OnCheckProficiencies;
         Hook = HookService.RequestHook<Functions.CNWSCreature.CheckProficiencies>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

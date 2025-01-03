@@ -802,7 +802,7 @@ namespace Anvil.API
     {
       get
       {
-        List<SpecialAbility> retVal = new List<SpecialAbility>();
+        List<SpecialAbility> retVal = [];
         CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
 
         foreach (CNWSStats_SpellLikeAbility ability in specialAbilities)
@@ -911,7 +911,7 @@ namespace Anvil.API
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
-        if (!resGff.IsValidGff(new[] { "BIC", "GFF", "UTC" }, new[] { "V3.2" }))
+        if (!resGff.IsValidGff(["BIC", "GFF", "UTC"], ["V3.2"]))
         {
           return false;
         }
@@ -2688,7 +2688,7 @@ namespace Anvil.API
 
     private List<NwCreature> GetAssociates(AssociateType associateType)
     {
-      List<NwCreature> associates = new List<NwCreature>();
+      List<NwCreature> associates = [];
       int type = (int)associateType;
 
       for (int i = 1; ; i++)

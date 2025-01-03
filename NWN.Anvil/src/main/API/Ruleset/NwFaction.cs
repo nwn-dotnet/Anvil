@@ -200,7 +200,7 @@ namespace Anvil.API
     /// <returns>All creatures in this faction.</returns>
     public List<NwCreature> GetMembers()
     {
-      List<NwCreature> members = new List<NwCreature>();
+      List<NwCreature> members = [];
 
       for (int i = 0; i < faction.m_listFactionMembers.Count; i++)
       {

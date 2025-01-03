@@ -107,7 +107,7 @@ namespace Anvil.API
 
     public static bool IsValidGff(this CResGFF resGff, string expectedFileType, string expectedVersion = DefaultGffVersion)
     {
-      return IsValidGff(resGff, expectedFileType.Yield(), expectedVersion.Yield());
+      return IsValidGff(resGff, [expectedFileType], [expectedVersion]);
     }
 
     public static bool IsValidGff(this CResGFF resGff, IEnumerable<string> expectedFileTypes, IEnumerable<string> expectedVersions)

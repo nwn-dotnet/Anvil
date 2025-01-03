@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -10,14 +9,9 @@ namespace Anvil.API
   /// <summary>
   /// A property/field in a <see cref="GffResource"/>.
   /// </summary>
-  public abstract unsafe class GffResourceField
+  public abstract unsafe class GffResourceField(CResGFF resGff)
   {
-    protected readonly CResGFF ResGff;
-
-    protected GffResourceField(CResGFF resGff)
-    {
-      ResGff = resGff;
-    }
+    protected readonly CResGFF ResGff = resGff;
 
     /// <summary>
     /// Gets the number of child fields.
@@ -28,7 +22,7 @@ namespace Anvil.API
     /// If this field is a struct, gets an enumerable of the key/values pairs.<br/>
     /// Otherwise, returns an empty enumerable.
     /// </summary>
-    public virtual IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; } = Enumerable.Empty<KeyValuePair<string, GffResourceField>>();
+    public virtual IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; } = [];
 
     /// <summary>
     /// Gets the GFF field type.
@@ -44,14 +38,14 @@ namespace Anvil.API
     /// If this field is a struct, gets an enumerable of the struct's keys.<br/>
     /// Otherwise, returns an empty enumerable.
     /// </summary>
-    public virtual IEnumerable<string> Keys { get; } = Enumerable.Empty<string>();
+    public virtual IEnumerable<string> Keys { get; } = [];
 
     /// <summary>
     /// If this field is an array, gets an enumerable of the array's values.<br/>
     /// If this field is a struct, gets an enumerable of the struct's values.<br/>
     /// Otherwise, returns an empty enumerable.
     /// </summary>
-    public virtual IEnumerable<GffResourceField> Values { get; } = Enumerable.Empty<GffResourceField>();
+    public virtual IEnumerable<GffResourceField> Values { get; } = [];
 
     /// <summary>
     /// Gets the child <see cref="GffResourceField"/> at the specified index.

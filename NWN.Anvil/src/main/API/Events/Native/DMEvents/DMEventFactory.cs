@@ -19,7 +19,7 @@ namespace Anvil.API.Events
     {
       delegate* unmanaged<void*, void*, byte, int, int> pHook = &OnHandleDMMessage;
       Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerDungeonMasterMessage>(pHook, HookOrder.Early);
-      return new IDisposable[] { Hook };
+      return [Hook];
     }
 
     private static OnDMChangeDifficulty HandleChangeDifficultyEvent(NwPlayer dungeonMaster, CNWSMessage message)

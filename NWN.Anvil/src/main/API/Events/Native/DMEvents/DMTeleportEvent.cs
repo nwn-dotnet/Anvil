@@ -11,9 +11,9 @@ namespace Anvil.API.Events
     public Vector3 TargetPosition { get; internal init; }
   }
 
-  public sealed class OnDMJumpToPoint : DMTeleportEvent {}
+  public sealed class OnDMJumpToPoint : DMTeleportEvent;
 
-  public sealed class OnDMJumpAllPlayersToPoint : DMTeleportEvent {}
+  public sealed class OnDMJumpAllPlayersToPoint : DMTeleportEvent;
 }
 
 namespace Anvil.API

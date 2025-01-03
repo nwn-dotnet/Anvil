@@ -11,7 +11,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwObjectTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Tests if assigning an action/closure using WaitForObjectContext correctly updates the script context.")]
     [Timeout(2000)]

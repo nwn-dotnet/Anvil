@@ -5,20 +5,10 @@ using NWN.Native.API;
 
 namespace Anvil.Native
 {
-  internal sealed class ArrayWrapper<T1, T2> : IArray<T2> where T1 : unmanaged
+  internal sealed class ArrayWrapper<T1, T2>(NativeArray<T1> nativeArray, Func<T1, T2> get, Func<T2, T1> set) : IArray<T2>
+    where T1 : unmanaged
   {
-    private readonly NativeArray<T1> nativeArray;
-    private readonly Func<T1, T2> get;
-    private readonly Func<T2, T1> set;
-
     public int Count => nativeArray.Length;
-
-    public ArrayWrapper(NativeArray<T1> nativeArray, Func<T1, T2> get, Func<T2, T1> set)
-    {
-      this.nativeArray = nativeArray;
-      this.get = get;
-      this.set = set;
-    }
 
     public IEnumerator<T2> GetEnumerator()
     {

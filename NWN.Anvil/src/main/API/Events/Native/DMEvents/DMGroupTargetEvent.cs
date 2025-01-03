@@ -8,19 +8,19 @@ namespace Anvil.API.Events
     public NwObject[] Targets { get; internal init; } = null!;
   }
 
-  public sealed class OnDMHeal : DMGroupTargetEvent {}
+  public sealed class OnDMHeal : DMGroupTargetEvent;
 
-  public sealed class OnDMKill : DMGroupTargetEvent {}
+  public sealed class OnDMKill : DMGroupTargetEvent;
 
-  public sealed class OnDMForceRest : DMGroupTargetEvent {}
+  public sealed class OnDMForceRest : DMGroupTargetEvent;
 
-  public sealed class OnDMToggleInvulnerable : DMGroupTargetEvent {}
+  public sealed class OnDMToggleInvulnerable : DMGroupTargetEvent;
 
-  public sealed class OnDMLimbo : DMGroupTargetEvent {}
+  public sealed class OnDMLimbo : DMGroupTargetEvent;
 
-  public sealed class OnDMToggleAI : DMGroupTargetEvent {}
+  public sealed class OnDMToggleAI : DMGroupTargetEvent;
 
-  public sealed class OnDMToggleImmortal : DMGroupTargetEvent {}
+  public sealed class OnDMToggleImmortal : DMGroupTargetEvent;
 }
 
 namespace Anvil.API
