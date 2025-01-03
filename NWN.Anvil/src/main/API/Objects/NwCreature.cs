@@ -92,14 +92,24 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's animal companion name.
+    /// Gets or Sets this creature's animal companion name.
     /// </summary>
-    public string AnimalCompanionName => NWScript.GetAnimalCompanionName(this);
+    public string AnimalCompanionName
+    {
+      get => NWScript.GetAnimalCompanionName(this);
+      set => Creature.m_pStats.m_sAnimalCompanionName = value.ToExoString();
+    }
+    
 
     /// <summary>
-    /// Gets this creature's animal companion creature type.
+    /// Gets or Sets this creature's animal companion creature type.
     /// </summary>
-    public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+    public AnimalCompanionCreatureType AnimalCompanionType
+    {
+      get => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+      set => Creature.m_pStats.m_nAnimalCompanionCreatureType = (int)value;
+    }
+    
 
     /// <summary>
     /// Gets or sets the appearance of this creature.
@@ -355,14 +365,24 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's familiar name.
+    /// Gets or Sets this creature's familiar name.
     /// </summary>
-    public string FamiliarName => NWScript.GetFamiliarName(this);
+    public string FamiliarName
+    {
+      get => NWScript.GetFamiliarName(this);
+      set => Creature.m_pStats.m_sFamiliarName = value.ToExoString();
+    }
+    
 
     /// <summary>
-    /// Gets the type of familiar that this creature can summon.
+    /// Gets or Sets the type of familiar that this creature can summon.
     /// </summary>
-    public FamiliarCreatureType FamiliarType => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+    public FamiliarCreatureType FamiliarType
+    {
+      get => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+      set => Creature.m_pStats.m_nFamiliarCreatureType = (int)value;
+    }
+    
 
     /// <summary>
     /// Gets the number of feats known by this creature.
