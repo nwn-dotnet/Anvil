@@ -104,6 +104,10 @@ namespace Anvil.API
     {
       AreaOfEffect.AddToArea(area, x, y, z, true.ToInt());
     }
+    /// <summary>
+    /// Set the radius of this area of effect.
+    /// </summary>
+    /// <param name="radius">The new radius of the area of effect.</param>
     public void SetRadius(float radius)
     {
       if (radius > 0 && AreaOfEffect.m_nShape == 0)
