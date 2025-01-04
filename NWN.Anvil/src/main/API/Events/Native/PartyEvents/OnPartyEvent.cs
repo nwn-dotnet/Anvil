@@ -28,7 +28,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePartyMessage;
         Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerParty>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

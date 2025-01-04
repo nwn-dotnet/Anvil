@@ -798,7 +798,7 @@ namespace Anvil.API
         throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
       }
 
-      List<NwCreature> addedCreatures = new List<NwCreature>();
+      List<NwCreature> addedCreatures = [];
 
       try
       {

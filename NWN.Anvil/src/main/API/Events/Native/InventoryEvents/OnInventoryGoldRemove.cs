@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, int, int, void> pHook = &OnRemoveGold;
         Hook = HookService.RequestHook<Functions.CNWSCreature.RemoveGold>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

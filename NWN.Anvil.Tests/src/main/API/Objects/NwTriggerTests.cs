@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwTriggerTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing a trigger generates valid gff data, and a new valid trigger.")]
     [TestCase(StandardResRef.Trigger.newtransition)]
@@ -162,7 +162,7 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(trigger);
 
-      string expectedNewTag = "expectedNewTag";
+      const string expectedNewTag = "expectedNewTag";
       NwTrigger clone = trigger.Clone(startLocation, expectedNewTag, false);
 
       Assert.That(clone, Is.Not.Null, $"Trigger {triggerResRef} was null after clone.");

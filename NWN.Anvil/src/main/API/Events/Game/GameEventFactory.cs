@@ -12,16 +12,9 @@ namespace Anvil.API.Events
   /// </summary>
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed partial class GameEventFactory : IEventFactory<GameEventFactory.RegistrationData>, IScriptDispatcher, IDisposable
+  public sealed partial class GameEventFactory(Lazy<EventService> eventService, VirtualMachine virtualMachine) : IEventFactory<GameEventFactory.RegistrationData>, IScriptDispatcher, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    // Dependencies
-    [Inject]
-    private Lazy<EventService>? EventService { get; init; }
-
-    [Inject]
-    private VirtualMachine VirtualMachine { get; init; } = null!;
 
     // Caches
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
@@ -42,7 +35,7 @@ namespace Anvil.API.Events
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string? scriptName, uint oidSelf)
     {
-      if (EventService == null || scriptName != ScriptConstants.GameEventScriptName)
+      if (scriptName != ScriptConstants.GameEventScriptName)
       {
         return ScriptHandleResult.NotHandled;
       }
@@ -57,10 +50,10 @@ namespace Anvil.API.Events
       {
         if (originalCallLookup.TryGetValue(new EventKey(eventScriptType, oidSelf), out scriptName))
         {
-          VirtualMachine.Execute(scriptName, oidSelf, eventScriptType);
+          virtualMachine.Execute(scriptName, oidSelf, eventScriptType);
         }
 
-        EventService.Value.ProcessEvent(EventCallbackType.Before, value.Invoke());
+        eventService.Value.ProcessEvent(EventCallbackType.Before, value.Invoke());
         return ScriptHandleResult.Handled;
       }
 

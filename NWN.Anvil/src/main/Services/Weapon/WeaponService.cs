@@ -44,7 +44,7 @@ namespace Anvil.Services
     private readonly HookService hookService;
 
     private readonly Dictionary<uint, MaxRangedAttackDistanceOverride> maxRangedAttackDistanceOverrideMap = new Dictionary<uint, MaxRangedAttackDistanceOverride>();
-    private readonly HashSet<uint> monkWeaponSet = new HashSet<uint>();
+    private readonly HashSet<uint> monkWeaponSet = [];
     private readonly Dictionary<uint, byte> weaponFinesseSizeMap = new Dictionary<uint, byte>();
 
     private readonly Dictionary<uint, HashSet<ushort>> weaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
@@ -52,7 +52,7 @@ namespace Anvil.Services
     private readonly Dictionary<uint, HashSet<ushort>> weaponOfChoiceMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly Dictionary<uint, HashSet<ushort>> weaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
 
-    private readonly HashSet<uint> weaponUnarmedSet = new HashSet<uint>();
+    private readonly HashSet<uint> weaponUnarmedSet = [];
     private bool combatModeEventSubscribed;
 
     private FunctionHook<Functions.CNWSCreature.MaxAttackRange>? maxAttackRangeHook;

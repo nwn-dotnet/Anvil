@@ -38,7 +38,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, void*, int, int> pHook = &OnGetEffectImmunity;
         Hook = HookService.RequestHook<Functions.CNWSCreatureStats.GetEffectImmunity>(pHook, HookOrder.Late);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

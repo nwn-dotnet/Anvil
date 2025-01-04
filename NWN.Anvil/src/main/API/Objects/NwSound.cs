@@ -10,10 +10,8 @@ namespace Anvil.API
   /// </summary>
   [ObjectType(ObjectTypes.All)]
   [ObjectFilter(ObjectTypes.All)]
-  public sealed class NwSound : NwGameObject
+  public sealed class NwSound(CNWSSoundObject soundObject) : NwGameObject(soundObject)
   {
-    private readonly CNWSSoundObject soundObject;
-
     internal CNWSSoundObject SoundObject
     {
       get
@@ -21,11 +19,6 @@ namespace Anvil.API
         AssertObjectValid();
         return soundObject;
       }
-    }
-
-    public NwSound(CNWSSoundObject soundObject) : base(soundObject)
-    {
-      this.soundObject = soundObject;
     }
 
     /// <summary>

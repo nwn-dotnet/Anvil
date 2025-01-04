@@ -8,7 +8,8 @@ namespace Anvil.API
   /// <summary>
   /// A talk table (tlk) string reference.
   /// </summary>
-  public readonly struct StrRef
+  [method: JsonConstructor]
+  public readonly struct StrRef(uint stringId)
   {
     private const uint CustomTlkOffset = 0x1000000;
 
@@ -19,13 +20,7 @@ namespace Anvil.API
     /// Gets the index/key for this StrRef.
     /// </summary>
     [JsonProperty("strref")]
-    public readonly uint Id;
-
-    [JsonConstructor]
-    public StrRef(uint stringId)
-    {
-      Id = stringId;
-    }
+    public readonly uint Id = stringId;
 
     public StrRef(int stringId) : this((uint)stringId) {}
 

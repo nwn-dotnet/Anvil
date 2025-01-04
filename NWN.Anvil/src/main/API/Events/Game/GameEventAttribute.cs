@@ -5,16 +5,11 @@ namespace Anvil.API.Events
 {
   [AttributeUsage(AttributeTargets.Class)]
   [BaseTypeRequired(typeof(IEvent))]
-  internal sealed class GameEventAttribute : Attribute
+  internal sealed class GameEventAttribute(EventScriptType eventScriptType) : Attribute
   {
     /// <summary>
     /// The native event type for this event.
     /// </summary>
-    public readonly EventScriptType EventScriptType;
-
-    public GameEventAttribute(EventScriptType eventScriptType)
-    {
-      EventScriptType = eventScriptType;
-    }
+    public readonly EventScriptType EventScriptType = eventScriptType;
   }
 }

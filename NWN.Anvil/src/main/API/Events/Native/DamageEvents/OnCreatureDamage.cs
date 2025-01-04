@@ -23,7 +23,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDamage;
         Hook = HookService.RequestHook<Functions.CNWSEffectListHandler.OnApplyDamage>(pHook, HookOrder.Late);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       private static bool IsValidObjectTarget(ObjectType objectType)

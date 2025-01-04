@@ -36,7 +36,7 @@ namespace Anvil.API.Events
         delegate* unmanaged<void*, void*, uint, int> pPlaceableExamineHook = &OnPlaceableExamine;
         placeableExamineHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_PlaceableData>(pPlaceableExamineHook, HookOrder.Earliest);
 
-        return new IDisposable[] { creatureExamineHook, doorExamineHook, itemExamineHook, placeableExamineHook };
+        return [creatureExamineHook, doorExamineHook, itemExamineHook, placeableExamineHook];
       }
 
       [UnmanagedCallersOnly]

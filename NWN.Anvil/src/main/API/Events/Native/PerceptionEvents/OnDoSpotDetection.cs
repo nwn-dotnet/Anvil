@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, int, int> pHook = &OnDoSpotDetection;
         Hook = HookService.RequestHook<Functions.CNWSCreature.DoSpotDetection>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

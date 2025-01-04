@@ -8,15 +8,9 @@ using NLog;
 
 namespace Anvil.Services
 {
-  internal sealed class InjectPropertySelector : PropertySelector
+  internal sealed class InjectPropertySelector(InjectPropertyTypes propertyTypes) : PropertySelector
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-    private readonly InjectPropertyTypes propertyTypes;
-
-    public InjectPropertySelector(InjectPropertyTypes propertyTypes)
-    {
-      this.propertyTypes = propertyTypes;
-    }
 
     /// <summary>
     /// Determines if the <paramref name="propertyInfo"/> represents an injectable property.

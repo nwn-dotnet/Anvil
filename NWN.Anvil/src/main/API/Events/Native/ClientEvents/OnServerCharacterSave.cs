@@ -34,7 +34,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, int, int> pHook = &OnSaveServerCharacter;
         Hook = HookService.RequestHook<Functions.CNWSPlayer.SaveServerCharacter>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

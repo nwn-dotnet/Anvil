@@ -8,16 +8,11 @@ namespace Anvil.API
   /// A NUI property binding that can be updated after being sent to the client.
   /// </summary>
   /// <typeparam name="T">The type of value being bound.</typeparam>
-  public sealed class NuiBind<T> : NuiProperty<T>
+  [method: JsonConstructor]
+  public sealed class NuiBind<T>(string key) : NuiProperty<T>
   {
-    [JsonConstructor]
-    public NuiBind(string key)
-    {
-      Key = key;
-    }
-
     [JsonProperty("bind")]
-    public string Key { get; init; }
+    public string Key { get; init; } = key;
 
     /// <summary>
     /// Queries the specified player for the value of this binding.

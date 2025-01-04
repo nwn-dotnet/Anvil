@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetOpenState;
         Hook = HookService.RequestHook<Functions.CNWSDoor.SetOpenState>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

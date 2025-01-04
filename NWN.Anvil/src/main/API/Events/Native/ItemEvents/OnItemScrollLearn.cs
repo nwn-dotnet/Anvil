@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, int> pHook = &OnLearnScroll;
         Hook = HookService.RequestHook<Functions.CNWSCreature.LearnScroll>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

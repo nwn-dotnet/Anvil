@@ -9,7 +9,7 @@ namespace Anvil.API
   /// </summary>
   public sealed class GffResourceFieldList : GffResourceField, IReadOnlyList<GffResourceFieldStruct>
   {
-    private readonly List<GffResourceFieldStruct> children = new List<GffResourceFieldStruct>();
+    private readonly List<GffResourceFieldStruct> children = [];
 
     internal GffResourceFieldList(CResGFF resGff, CResList list, uint count) : base(resGff)
     {

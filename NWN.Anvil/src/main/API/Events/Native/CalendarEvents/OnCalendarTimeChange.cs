@@ -24,7 +24,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, uint, uint, void> pHook = &OnUpdateTime;
         Hook = HookService.RequestHook<Functions.CNWSModule.UpdateTime>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

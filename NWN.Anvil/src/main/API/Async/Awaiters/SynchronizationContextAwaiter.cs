@@ -5,16 +5,9 @@ namespace Anvil.API
   /// <summary>
   /// Awaits for the current async context to return to the specified context.
   /// </summary>
-  internal readonly struct SynchronizationContextAwaiter : IAwaiter
+  internal readonly struct SynchronizationContextAwaiter(SynchronizationContext context) : IAwaiter
   {
     private static readonly SendOrPostCallback PostCallback = state => ((System.Action?)state)?.Invoke();
-
-    private readonly SynchronizationContext context;
-
-    public SynchronizationContextAwaiter(SynchronizationContext context)
-    {
-      this.context = context;
-    }
 
     public bool IsCompleted => context == SynchronizationContext.Current;
 
