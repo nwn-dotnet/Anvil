@@ -116,6 +116,5 @@ namespace Anvil.API
         AreaOfEffect.SetShape(0, radius);
       }
     }
-
   }
 }
