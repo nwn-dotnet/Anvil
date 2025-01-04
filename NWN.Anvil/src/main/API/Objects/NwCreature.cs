@@ -1033,7 +1033,7 @@ namespace Anvil.API
         m_bEpic = epic.ToInt(),
         m_nSkillPointsRemaining = skillPointsRemaining,
       };
-      
+
       Creature.m_pStats.LevelUp(stats, domain1?.Id ?? 255, domain2?.Id ?? 255, unchecked((byte)school), addStatsToList.ToInt());
       GC.SuppressFinalize(stats);
     }
