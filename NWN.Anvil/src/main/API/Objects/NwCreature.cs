@@ -1023,7 +1023,7 @@ namespace Anvil.API
     /// <param name="addStatsToList">Adds the new stats to the character sheet</param>
     public void ForceLevelUp(byte nClass, byte nHitDie, byte nAbilityGain = 6, int bEpic = 0, ushort nSkillPointsRemaining = 0, byte nDomain1 = 255, byte nDomain2 = 255, byte nSchool = 255, int addStatsToList = 1)
     {
-      CNWLevelStats stats = new()
+      CNWLevelStats stats = new CNWLevelStats()
       {
         m_nClass = nClass,
         m_nHitDie = nHitDie,
