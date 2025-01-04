@@ -1012,27 +1012,29 @@ namespace Anvil.API
     /// <summary>
     /// Forces a PC to level up without the level up GUI.
     /// </summary>
-    /// <param name="nClass">The class to level up.</param>
-    /// <param name="nHitDie">The hit points gained during this level up.</param>
-    /// <param name="nAbilityGain">The abilty to increase : 6 = no increase.</param>
-    /// <param name="bEpic">Is this an epic level.</param>
-    /// <param name="nSkillPointsRemaining">Number of skill points to give</param>
-    /// <param name="nDomain1">Sets a cleric domain for the class (255 = no domain)</param>
-    /// <param name="nDomain2">Sets the second cleric domain for the class (255 = no domain)</param>
-    /// <param name="nSchool">Sets the wizard school for the class (255 = no school)</param>
+    /// <param name="classType">The class to level up.</param>
+    /// <param name="hitDie">The hit points gained during this level up.</param>
+    /// <param name="abilityGain">The abilty to increase : 6 = no increase.</param>
+    /// <param name="epic">Is this an epic level.</param>
+    /// <param name="skillPointsRemaining">Number of skill points to give</param>
+    /// <param name="domain1">Sets a cleric domain for the class (255 = no domain)</param>
+    /// <param name="domain2">Sets the second cleric domain for the class (255 = no domain)</param>
+    /// <param name="school">Sets the wizard school for the class (255 = no school)</param>
     /// <param name="addStatsToList">Adds the new stats to the character sheet</param>
-    public void ForceLevelUp(byte nClass, byte nHitDie, byte nAbilityGain = 6, int bEpic = 0, ushort nSkillPointsRemaining = 0, byte nDomain1 = 255, byte nDomain2 = 255, byte nSchool = 255, int addStatsToList = 1)
+    public void ForceLevelUp(NwClass classType, byte hitDie, Ability? abilityGain = default, bool epic = false, ushort skillPointsRemaining = 0, NwDomain? domain1 = default, NwDomain? domain2 = default, SpellSchool school = SpellSchool.Unknown, bool addStatsToList = true)
     {
+      abilityGain ??= (Ability)6;
+
       CNWLevelStats stats = new CNWLevelStats()
       {
-        m_nClass = nClass,
-        m_nHitDie = nHitDie,
-        m_nAbilityGain = nAbilityGain,
-        m_bEpic = bEpic,
-        m_nSkillPointsRemaining = nSkillPointsRemaining,
+        m_nClass = classType.Id,
+        m_nHitDie = hitDie,
+        m_nAbilityGain = (byte)abilityGain,
+        m_bEpic = epic.ToInt(),
+        m_nSkillPointsRemaining = skillPointsRemaining,
       };
-
-      Creature.m_pStats.LevelUp(stats, nDomain1, nDomain2, nSchool, addStatsToList);
+      
+      Creature.m_pStats.LevelUp(stats, domain1?.Id ?? 255, domain2?.Id ?? 255, (unchecked((byte)school)), addStatsToList.ToInt());
       GC.SuppressFinalize(stats);
     }
 
@@ -2609,7 +2611,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Instructs this creature to summon their animal companion.
+    /// Instructs this creature to summon their animal companion.<br/>
     /// Does nothing if this creature has no animal companion available.
     /// </summary>
     public void SummonAnimalCompanion()
@@ -2628,7 +2630,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Forces this creature to unsummon their animal companion
+    /// Forces this creature to unsummon their animal companion.<br/>
     /// Does nothing if this creature has no animal companion summoned.
     /// </summary>
     public void UnsummonAnimalCompanion()
@@ -2638,7 +2640,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Instructs this creature to summon their familiar (wizard/sorcerer).
+    /// Instructs this creature to summon their familiar (wizard/sorcerer).<br/>
     /// Does nothing if this creature has no familiar available.
     /// </summary>
     public void SummonFamiliar()
@@ -2657,7 +2659,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Forces this creature to unsummon their familiar
+    /// Forces this creature to unsummon their familiar.<br/>
     /// Does nothing if this creature has no familiar summoned.
     /// </summary>
     public void UnsummonFamiliar()
@@ -2747,7 +2749,7 @@ namespace Anvil.API
       List<NwCreature> associates = [];
       int type = (int)associateType;
 
-      for (int i = 1; ; i++)
+      for (int i = 1;; i++)
       {
         NwCreature? associate = NWScript.GetAssociate(type, this, i).ToNwObject<NwCreature>();
         if (associate == null || associates.Contains(associate))
