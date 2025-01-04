@@ -10,6 +10,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellBroadcast : IEvent
   {
+    private const int ActionIdCastSpell = 15;
     public NwCreature Caster { get; private init; } = null!;
 
     public int ClassIndex { get; private init; }
@@ -18,7 +19,7 @@ namespace Anvil.API.Events
     public bool PreventSpellCast { get; set; }
 
     public NwSpell Spell { get; private init; } = null!;
-    public NwGameObject? TargetObject { get; private init; }
+    public NwObject TargetObject { get; private init; } = null!;
     public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Caster;
@@ -38,8 +39,18 @@ namespace Anvil.API.Events
       private static void OnBroadcastSpellCast(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat)
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-        NativeArray<long>? aiActionParams = creature.m_pExecutingAIAction.m_pParameter;
-        NwGameObject? oTarget = ((uint)aiActionParams[5]).ToNwObject<NwGameObject>();
+        NwObject? targetObject = null;
+        Vector3 targetPosition = Vector3.Zero;
+
+        CNWSObjectActionNode? actionNode = creature.m_pExecutingAIAction;
+        if (actionNode != null && actionNode.m_nActionId == ActionIdCastSpell)
+        {
+          NativeArray<long>? nodeParams = actionNode.m_pParameter;
+          targetObject = ((uint)nodeParams[5]).ToNwObject();
+          targetPosition = targetObject is NwGameObject gameObject ? gameObject.Position : new Vector3(BitConverter.Int32BitsToSingle((int)nodeParams[6]), BitConverter.Int32BitsToSingle((int)nodeParams[7]), BitConverter.Int32BitsToSingle((int)nodeParams[8]));
+        }
+
+        targetObject ??= creature.m_oidArea.ToNwObject()!;
 
         OnSpellBroadcast eventData = ProcessEvent(EventCallbackType.Before, new OnSpellBroadcast
         {
@@ -47,8 +58,8 @@ namespace Anvil.API.Events
           Spell = NwSpell.FromSpellId((int)nSpellId)!,
           ClassIndex = nMultiClass,
           Feat = NwFeat.FromFeatId(nFeat)!,
-          TargetObject = oTarget,
-          TargetPosition = oTarget is not null ? oTarget.Position : new Vector3(BitConverter.Int32BitsToSingle((int)aiActionParams[6]), BitConverter.Int32BitsToSingle((int)aiActionParams[7]), BitConverter.Int32BitsToSingle((int)aiActionParams[8])),
+          TargetObject = targetObject,
+          TargetPosition = targetPosition,
         });
 
         if (!eventData.PreventSpellCast)
