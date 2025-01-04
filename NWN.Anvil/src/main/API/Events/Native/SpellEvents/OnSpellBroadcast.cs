@@ -10,6 +10,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellBroadcast : IEvent
   {
+    private const int ActionIdCastSpell = 15;
     public NwCreature Caster { get; private init; } = null!;
 
     public int ClassIndex { get; private init; }
@@ -18,7 +19,7 @@ namespace Anvil.API.Events
     public bool PreventSpellCast { get; set; }
 
     public NwSpell Spell { get; private init; } = null!;
-    public NwGameObject? TargetObject { get; private init; }
+    public NwObject TargetObject { get; private init; } = null!;
     public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Caster;
