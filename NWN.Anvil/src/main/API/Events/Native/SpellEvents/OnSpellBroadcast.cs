@@ -18,7 +18,7 @@ namespace Anvil.API.Events
     public bool PreventSpellCast { get; set; }
 
     public NwSpell Spell { get; private init; } = null!;
-    public NwGameObject? TargetObject { get; private init; } = null!;
+    public NwGameObject? TargetObject { get; private init; }
     public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Caster;
@@ -38,8 +38,8 @@ namespace Anvil.API.Events
       private static void OnBroadcastSpellCast(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat)
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-
-        NwGameObject? oTarget = ((uint)creature.m_pExecutingAIAction.m_pParameter[5]).ToNwObject<NwGameObject>();
+        NativeArray<long>? aiActionParams = creature.m_pExecutingAIAction.m_pParameter;
+        NwGameObject? oTarget = ((uint)aiActionParams[5]).ToNwObject<NwGameObject>();
 
         OnSpellBroadcast eventData = ProcessEvent(EventCallbackType.Before, new OnSpellBroadcast
         {
@@ -48,7 +48,7 @@ namespace Anvil.API.Events
           ClassIndex = nMultiClass,
           Feat = NwFeat.FromFeatId(nFeat)!,
           TargetObject = oTarget,
-          TargetPosition = oTarget is not null ? oTarget.Position : new Vector3(BitConverter.Int32BitsToSingle((int)creature.m_pExecutingAIAction.m_pParameter[6]), BitConverter.Int32BitsToSingle((int)creature.m_pExecutingAIAction.m_pParameter[7]), BitConverter.Int32BitsToSingle((int)creature.m_pExecutingAIAction.m_pParameter[8])),
+          TargetPosition = oTarget is not null ? oTarget.Position : new Vector3(BitConverter.Int32BitsToSingle((int)aiActionParams[6]), BitConverter.Int32BitsToSingle((int)aiActionParams[7]), BitConverter.Int32BitsToSingle((int)aiActionParams[8])),
         });
 
         if (!eventData.PreventSpellCast)
