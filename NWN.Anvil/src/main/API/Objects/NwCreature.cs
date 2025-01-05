@@ -2669,6 +2669,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Forces this creature to unsummon itself.<br/>
+    /// Does nothing if this creature is not a summon.
+    /// </summary>
+    public void Unsummon()
+    {
+      Creature.UnsummonMyself();
+    }
+
+    /// <summary>
     /// Takes gold away from this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to take.</param>
