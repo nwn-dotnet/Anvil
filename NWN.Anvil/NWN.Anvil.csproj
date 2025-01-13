@@ -67,7 +67,7 @@
     <PackageReference Include="NLog" Version="5.3.4" />
     <PackageReference Include="Paket.Core" Version="8.0.3" PrivateAssets="all" />
     <PackageReference Include="NWN.Core" Version="8193.36.5" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.36.7" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.37.0" PrivateAssets="compile" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
 
