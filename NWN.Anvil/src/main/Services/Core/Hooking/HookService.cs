@@ -4,7 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using NLog;
-using NWN.Core;
+using NWNX.NET;
+using NWNX.NET.Native;
 
 namespace Anvil.Services
 {
@@ -27,8 +28,8 @@ namespace Anvil.Services
     public FunctionHook<T> RequestHook<T>(T handler, int order = HookOrder.Default) where T : Delegate
     {
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
-      IntPtr nativeFuncPtr = CreateHook<T>(managedFuncPtr, order);
-      FunctionHook<T> hook = new FunctionHook<T>(this, nativeFuncPtr, handler);
+      FunctionHook* functionHook = CreateHook<T>(managedFuncPtr, order);
+      FunctionHook<T> hook = new FunctionHook<T>(this, functionHook, handler);
       hooks.Add(hook);
 
       return hook;
@@ -43,14 +44,14 @@ namespace Anvil.Services
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
     public FunctionHook<T> RequestHook<T>(void* handler, int order = HookOrder.Default) where T : Delegate
     {
-      IntPtr nativeFuncPtr = CreateHook<T>((IntPtr)handler, order);
-      FunctionHook<T> hook = new FunctionHook<T>(this, nativeFuncPtr);
+      FunctionHook* functionHook = CreateHook<T>((IntPtr)handler, order);
+      FunctionHook<T> hook = new FunctionHook<T>(this, functionHook);
       hooks.Add(hook);
 
       return hook;
     }
 
-    private IntPtr CreateHook<T>(IntPtr handler, int order)
+    private FunctionHook* CreateHook<T>(IntPtr handler, int order)
     {
       NativeFunctionAttribute? info = typeof(T).GetCustomAttribute<NativeFunctionAttribute>();
       if (info == null)
@@ -59,7 +60,7 @@ namespace Anvil.Services
       }
 
       Log.Debug("Requesting function hook for {HookType}, address {Address}", typeof(T).Name, $"0x{info.Address:X}");
-      return VM.RequestHook(info.Address, handler, order);
+      return NWNXAPI.RequestFunctionHook(info.Address, handler, order);
     }
 
     void ICoreService.Init() {}

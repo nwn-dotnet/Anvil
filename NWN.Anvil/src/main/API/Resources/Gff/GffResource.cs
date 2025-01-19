@@ -1,5 +1,6 @@
 using System;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {
@@ -8,11 +9,12 @@ namespace Anvil.API
     private readonly CResGFF resGff;
     private readonly CResStruct rootStruct;
 
-    internal GffResource(string name, CResGFF resGff)
+    internal unsafe GffResource(string name, CResGFF resGff)
     {
       this.resGff = resGff;
+      NativeArray<byte>? fileType = this.resGff.m_pFileType;
 
-      FileType = resGff.m_pFileType.ReadFixedLengthString().Trim();
+      FileType = StringUtils.ReadFixedLengthString(fileType.Pointer, fileType.Length).Trim();
 
       rootStruct = new CResStruct();
       if (!resGff.GetTopLevelStruct(rootStruct).ToBool())

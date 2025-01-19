@@ -237,8 +237,8 @@ namespace Anvil.API
     {
       get
       {
-        CNWSClient client = LowLevel.ServerExoApp.GetClientObjectByPlayerId(PlayerId);
-        return client != null && client.AsNWSPlayer() == player;
+        CNWSPlayer? playerById = LowLevel.ServerExoApp.GetClientObjectByPlayerId(PlayerId);
+        return playerById == player;
       }
     }
 
@@ -1687,7 +1687,7 @@ namespace Anvil.API
 
     internal static NwPlayer? FromPlayerId(uint playerId)
     {
-      CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
+      CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId);
       return player != null ? new NwPlayer(player) : null;
     }
   }

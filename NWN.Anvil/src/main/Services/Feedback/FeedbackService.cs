@@ -166,7 +166,7 @@ namespace Anvil.Services
 
     private int OnSendServerToPlayerCCMessage(void* pMessage, uint nPlayerId, byte nMinor, void* pMessageData, void* pAttackData)
     {
-      CNWSPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayerId, 0).AsNWSPlayer();
+      CNWSPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayerId);
       if (IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.m_oidPCObject, (CombatLogMessage)nMinor, CombatMessageFilterMode))
       {
         return false.ToInt();

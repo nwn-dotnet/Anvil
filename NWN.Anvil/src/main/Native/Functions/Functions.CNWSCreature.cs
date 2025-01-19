@@ -76,6 +76,9 @@ namespace Anvil.Native
       [NativeFunction("_ZN12CNWSCreature8RunEquipEjjj", "?RunEquip@CNWSCreature@@QEAAHIII@Z")]
       public delegate int RunEquip(void* pCreature, uint oidItemToEquip, uint nInventorySlot, uint oidFeedbackPlayer);
 
+      [NativeFunction("_ZN12CNWSCreature10RunUnequipEjjhhij", "?RunUnequip@CNWSCreature@@QEAAHIIEEHI@Z")]
+      public delegate int RunUnequip(void* pCreature, uint oidItemToUnequip, uint oidTargetRepository, byte x, byte y, int bMergeIntoRepository, uint oidFeedbackPlayer);
+
       [NativeFunction("_ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer", "?SendFeedbackMessage@CNWSCreature@@QEAAXGPEAVCNWCCMessageData@@PEAVCNWSPlayer@@@Z")]
       public delegate void SendFeedbackMessage(void* pCreature, ushort nFeedbackId, void* pMessageData, void* pFeedbackPlayer);
 
@@ -93,9 +96,6 @@ namespace Anvil.Native
 
       [NativeFunction("_ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti", "?SignalRangedDamage@CNWSCreature@@IEAAXPEAVCNWSObject@@H@Z")]
       public delegate void SignalRangedDamage(void* pCreature, void* pTarget, int nAttacks);
-
-      [NativeFunction("_ZN12CNWSCreature10RunUnequipEjjhhij", "?UnequipItem@CNWSCreature@@QEAAHPEAVCNWSItem@@H@Z")]
-      public delegate int UnequipItem(void* pCreature, uint oidItemToUnequip, uint oidTargetRepository, byte x, byte y, int bMergeIntoRepository, uint oidFeedbackPlayer);
 
       [NativeFunction("_ZN12CNWSCreature17UnpossessFamiliarEv", "?UnpossessFamiliar@CNWSCreature@@QEAAXXZ")]
       public delegate void UnpossessFamiliar(void* pCreature);

@@ -31,12 +31,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<Functions.CNWSCreature.UnequipItem> Hook { get; set; } = null!;
+      private static FunctionHook<Functions.CNWSCreature.RunUnequip> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, byte, byte, int, uint, int> pHook = &OnUnequipItem;
-        Hook = HookService.RequestHook<Functions.CNWSCreature.UnequipItem>(pHook, HookOrder.Early);
+        Hook = HookService.RequestHook<Functions.CNWSCreature.RunUnequip>(pHook, HookOrder.Early);
         return [Hook];
       }
 

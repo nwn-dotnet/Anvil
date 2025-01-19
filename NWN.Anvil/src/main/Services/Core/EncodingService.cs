@@ -1,8 +1,7 @@
 using System;
 using System.Text;
 using Anvil.Internal;
-using NWN.Core;
-using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.Services
 {
@@ -16,7 +15,7 @@ namespace Anvil.Services
     /// </summary>
     public Encoding Encoding
     {
-      get => NWNCore.Encoding;
+      get => StringUtils.Encoding;
       set
       {
         if (value == null)
@@ -24,8 +23,7 @@ namespace Anvil.Services
           throw new NullReferenceException("Encoding must not be null.");
         }
 
-        NWNCore.Encoding = value;
-        StringHelper.Encoding = value;
+        StringUtils.Encoding = value;
       }
     }
 

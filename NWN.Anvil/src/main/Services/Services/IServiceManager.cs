@@ -5,8 +5,7 @@ using LightInject;
 namespace Anvil.Services
 {
   /// <summary>
-  /// The interface that manages all core, anvil and plugin services.<br/>
-  /// Advanced: implement in your own class and specify in <see cref="AnvilCore.Init(System.IntPtr,int,IServiceManager)"/> to implement your own service manager.
+  /// The interface that manages all core, anvil and plugin services.
   /// </summary>
   public interface IServiceManager
   {

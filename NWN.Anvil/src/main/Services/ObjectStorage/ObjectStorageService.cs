@@ -5,6 +5,7 @@ using Anvil.API;
 using Anvil.Native;
 using NLog;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.Services
 {

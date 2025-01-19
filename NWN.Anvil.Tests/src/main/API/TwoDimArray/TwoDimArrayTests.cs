@@ -3,6 +3,7 @@ using Anvil.API;
 using Anvil.Services;
 using NUnit.Framework;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.Tests.API
 {
@@ -27,7 +28,7 @@ namespace Anvil.Tests.API
                                  """;
 
       string resourceName = "testtemp.2da";
-      ResourceManager.WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(twoDimArray));
+      ResourceManager.WriteTempResource(resourceName, StringUtils.Encoding.GetBytes(twoDimArray));
       createdTempResources.Add(resourceName);
 
       TwoDimArray array = NwGameTables.GetTable(resourceName)!;

@@ -1,11 +1,12 @@
 using System;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
-using NWN.Core;
+using NWNX.NET;
+using NWNX.NET.Native;
 
 namespace Anvil.Services
 {
-  public sealed class FunctionHook<T> : IDisposable where T : Delegate
+  public sealed unsafe class FunctionHook<T> : IDisposable where T : Delegate
   {
     /// <summary>
     /// The original function call - invoke this to run the standard game behaviour.
@@ -17,14 +18,14 @@ namespace Anvil.Services
     private readonly T? handler;
 
     private readonly HookService hookService;
-    private readonly IntPtr nativeFuncPtr;
+    private readonly FunctionHook* functionHook;
 
-    internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr, T? handler = null)
+    internal FunctionHook(HookService hookService, FunctionHook* functionHook, T? handler = null)
     {
       this.hookService = hookService;
-      this.nativeFuncPtr = nativeFuncPtr;
+      this.functionHook = functionHook;
       this.handler = handler;
-      CallOriginal = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
+      CallOriginal = Marshal.GetDelegateForFunctionPointer<T>((IntPtr)functionHook->m_trampoline);
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ namespace Anvil.Services
     /// </summary>
     public void Dispose()
     {
-      VM.ReturnHook(nativeFuncPtr);
+      NWNXAPI.ReturnFunctionHook(functionHook);
       hookService.RemoveHook(this);
     }
   }

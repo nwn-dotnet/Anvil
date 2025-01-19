@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Anvil.Internal;
-using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -131,7 +130,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current player count.
     /// </summary>
-    public uint PlayerCount => LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.Count();
+    public int PlayerCount => LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList.Count;
 
     /// <summary>
     /// Gets all current online players.
@@ -140,12 +139,10 @@ namespace Anvil.API
     {
       get
       {
-        CExoLinkedListCNWSClient playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList;
-
-        for (CExoLinkedListNode node = playerList.GetHeadPos(); node != null; node = node.pNext)
+        CExoArrayListCNWSPlayerPtr? playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList;
+        foreach (CNWSPlayer player in playerList)
         {
-          CNWSPlayer player = playerList.GetAtPos(node).AsNWSPlayer();
-          yield return player.ToNwPlayer()!;
+          yield return new NwPlayer(player);
         }
       }
     }

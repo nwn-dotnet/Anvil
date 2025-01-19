@@ -108,7 +108,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
-        NwPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer().ToNwPlayer();
+        NwPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).ToNwPlayer();
         if (player == null)
         {
           return sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);

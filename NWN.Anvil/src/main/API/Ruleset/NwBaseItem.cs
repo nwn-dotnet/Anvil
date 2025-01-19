@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {
@@ -189,7 +190,14 @@ namespace Anvil.API
     /// Gets the ResRef of the item's model, or the base part of the resref.<br/>
     /// This property is dependent on <see cref="ModelType"/>. See https://nwn.wiki/display/NWN1/baseitems.2da for more info.
     /// </summary>
-    public string? ItemClass => BaseItemInfo.m_ItemClassResRefChunk.ReadFixedLengthString();
+    public string ItemClass
+    {
+      get
+      {
+        NativeArray<byte>? resRefChunk = BaseItemInfo.m_ItemClassResRefChunk;
+        return StringUtils.ReadFixedLengthString(resRefChunk.Pointer, resRefChunk.Length);
+      }
+    }
 
     /// <summary>
     /// Gets the maximum number of "cast spell" properties items of this type can be given when designed in the Toolset.

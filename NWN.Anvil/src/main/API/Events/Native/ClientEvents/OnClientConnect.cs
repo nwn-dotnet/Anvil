@@ -100,7 +100,7 @@ namespace Anvil.API.Events
           PlayerName = playerInfo.m_sPlayerName.ToString()!,
           ClientVersion = new Version(playerInfo.m_nBuildVersion, playerInfo.m_nPatchRevision),
           ClientPlatform = (PlayerPlatform)playerInfo.m_nPlatformId,
-          CDKey = playerInfo.m_lstKeys[0].sPublic.ToString()!,
+          CDKey = playerInfo.m_cCDKey.sPublic.ToString()!,
           DM = playerInfo.m_bGameMasterPrivileges.ToBool(),
           IP = ipAddress,
         });
