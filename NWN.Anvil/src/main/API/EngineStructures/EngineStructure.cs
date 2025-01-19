@@ -1,5 +1,6 @@
 using System;
 using NWN.Core;
+using NWNX.NET;
 
 namespace Anvil.API
 {
@@ -40,7 +41,7 @@ namespace Anvil.API
       if (memoryOwn)
       {
         memoryOwn = false;
-        VM.FreeGameDefinedStructure(StructureId, handle);
+        NWNXAPI.FreeGameDefinedStructure(StructureId, handle);
         handle = IntPtr.Zero;
       }
     }

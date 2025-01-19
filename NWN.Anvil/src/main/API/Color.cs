@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {
@@ -154,7 +155,7 @@ namespace Anvil.API
     {
       const byte tokenMinVal = 1;
       ReadOnlySpan<byte> tokenBytes = [Math.Max(Red, tokenMinVal), Math.Max(Green, tokenMinVal), Math.Max(Blue, tokenMinVal)];
-      return StringHelper.Encoding.GetString(tokenBytes);
+      return StringUtils.Encoding.GetString(tokenBytes);
     }
 
     /// <summary>

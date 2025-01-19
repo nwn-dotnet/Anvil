@@ -8,6 +8,7 @@ using Anvil.API;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
+using NWNX.NET.Native;
 using ResRefType = Anvil.API.ResRefType;
 
 namespace Anvil.Services
@@ -132,7 +133,7 @@ namespace Anvil.Services
       {
         case ResRefType.NSS:
           string source = GetNSSContents(name);
-          return StringHelper.Encoding.GetBytes(source);
+          return StringUtils.Encoding.GetBytes(source);
         case ResRefType.NCS:
           return null;
         default:
@@ -156,7 +157,7 @@ namespace Anvil.Services
           return null;
         default:
           byte[]? data = GetStandardResourceData(name, type);
-          return data != null ? StringHelper.Encoding.GetString(data) : null;
+          return data != null ? StringUtils.Encoding.GetString(data) : null;
       }
     }
 
@@ -190,7 +191,7 @@ namespace Anvil.Services
     /// <param name="text">The text to populate in the resource.</param>
     public void WriteTempResource(string resourceName, string text)
     {
-      WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(text));
+      WriteTempResource(resourceName, StringUtils.Encoding.GetBytes(text));
     }
 
     private byte[]? GetStandardResourceData(string name, ResRefType type)

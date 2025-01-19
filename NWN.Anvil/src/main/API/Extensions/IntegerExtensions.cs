@@ -1,5 +1,6 @@
 using System;
 using Anvil.Internal;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -146,34 +147,35 @@ namespace Anvil.API
     /// <param name="objectId">The object ID to convert.</param>
     /// <param name="playerSearch">Methods to use to resolve the player.</param>
     /// <returns>The associated player for this object, otherwise null.</returns>
-    public static unsafe NwPlayer? ToNwPlayer(this uint objectId, PlayerSearch playerSearch = PlayerSearch.All)
+    public static NwPlayer? ToNwPlayer(this uint objectId, PlayerSearch playerSearch = PlayerSearch.All)
     {
       if (objectId == NwObject.Invalid)
       {
         return null;
       }
 
-      CNWSPlayer? player = null;
       if (playerSearch.HasFlag(PlayerSearch.Controlled))
       {
-        player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);
+        CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);
+        if (player != null)
+        {
+          return new NwPlayer(player);
+        }
       }
 
-      if ((player == null || player.Pointer == IntPtr.Zero) && playerSearch.HasFlag(PlayerSearch.Login))
+      if (playerSearch.HasFlag(PlayerSearch.Login))
       {
-        CExoLinkedListInternal players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
-        for (CExoLinkedListNode node = players.pHead; node != null; node = node.pNext)
+        CExoArrayListCNWSPlayerPtr? players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList;
+        foreach (CNWSPlayer player in players)
         {
-          CNWSPlayer current = CNWSPlayer.FromPointer(node.pObject);
-          if (current.m_oidPCObject == objectId)
+          if (player.m_oidPCObject == objectId)
           {
-            player = current;
-            break;
+            return new NwPlayer(player);
           }
         }
       }
 
-      return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
+      return null;
     }
   }
 }

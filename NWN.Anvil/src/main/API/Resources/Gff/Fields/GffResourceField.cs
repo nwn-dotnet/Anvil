@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {

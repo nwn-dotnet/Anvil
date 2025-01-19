@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {
@@ -22,10 +23,10 @@ namespace Anvil.API
       for (uint i = 0; i < fieldCount; i++)
       {
         byte* fieldIdPtr = ResGff.GetFieldLabel(resStruct, i);
-        string key = StringHelper.ReadNullTerminatedString(fieldIdPtr);
+        string? key = StringUtils.ReadNullTerminatedString(fieldIdPtr);
         GffResourceField? value = Create(resGff, resStruct, i, fieldIdPtr);
 
-        if (value == null)
+        if (key == null || value == null)
         {
           continue;
         }

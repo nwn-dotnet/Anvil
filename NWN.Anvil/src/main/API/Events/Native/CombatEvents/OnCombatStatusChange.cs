@@ -31,7 +31,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerAmbientBattleMusicPlay(void* pMessage, uint nPlayer, int bPlay)
       {
-        NwPlayer? player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer().ToNwPlayer();
+        NwPlayer? player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).ToNwPlayer();
         OnCombatStatusChange? eventData = null;
 
         if (player != null)
