@@ -9,12 +9,13 @@ using LightInject;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
+using NWNX.NET;
 
 namespace Anvil
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init(IntPtr, int, IServiceManager)"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Bootstrap"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public sealed partial class AnvilCore
   {
@@ -42,28 +43,20 @@ namespace Anvil
     }
 
     /// <summary>
-    /// Entrypoint to start Anvil.
+    /// Entrypoint to start Anvil. This should be specified in the "NWNX_DOTNET_METHOD" environment variable to be triggered by NWNX.
     /// </summary>
-    /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
-    /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="serviceManager">A custom service manager to use instead of the default <see cref="AnvilServiceManager"/>. For advanced users only.</param>
-    /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static unsafe int Init(IntPtr arg, int argLength, IServiceManager? serviceManager = default)
+    internal static unsafe void Bootstrap()
     {
-      serviceManager ??= new AnvilServiceManager();
+      AnvilServiceManager serviceManager = new AnvilServiceManager();
       instance = new AnvilCore(serviceManager);
 
-      NWNCore.NativeEventHandlesUnmanaged eventHandles = new NWNCore.NativeEventHandlesUnmanaged
-      {
-        Signal = &OnNWNXSignal,
-        RunScript = &OnRunScript,
-        Closure = &OnClosure,
-        MainLoop = &OnLoop,
-        AssertFail = &OnAssertFail,
-      };
-
-      return NWNCore.Init(arg, argLength, instance, eventHandles);
+      NWNCore.Init(instance);
+      NWNXAPI.RegisterSignalHandler(&OnNWNXSignal);
+      NWNXAPI.RegisterRunScriptHandler(&OnRunScript);
+      NWNXAPI.RegisterClosureHandler(&OnClosure);
+      NWNXAPI.RegisterMainLoopHandler(&OnLoop);
+      NWNXAPI.RegisterAssertHandler(&OnAssertFail);
     }
 
     /// <summary>

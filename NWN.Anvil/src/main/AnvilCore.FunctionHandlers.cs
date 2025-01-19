@@ -4,7 +4,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Anvil.Services;
 using NWN.Core;
-using NWN.Native.API;
+using NWNX.NET;
+using NWNX.NET.Native;
 using Action = System.Action;
 
 namespace Anvil
@@ -27,7 +28,7 @@ namespace Anvil
 
     void ICoreFunctionHandler.ClosureActionDoCommand(uint obj, Action func)
     {
-      if (VM.ClosureActionDoCommand(obj, nextEventId) != 0)
+      if (NWNXAPI.ClosureActionDoCommand(obj, nextEventId) != 0)
       {
         Closures.Add(nextEventId++, func);
       }
@@ -35,7 +36,7 @@ namespace Anvil
 
     void ICoreFunctionHandler.ClosureAssignCommand(uint obj, Action func)
     {
-      if (VM.ClosureAssignCommand(obj, nextEventId) != 0)
+      if (NWNXAPI.ClosureAssignCommand(obj, nextEventId) != 0)
       {
         Closures.Add(nextEventId++, func);
       }
@@ -43,7 +44,7 @@ namespace Anvil
 
     void ICoreFunctionHandler.ClosureDelayCommand(uint obj, float duration, Action func)
     {
-      if (VM.ClosureDelayCommand(obj, duration, nextEventId) != 0)
+      if (NWNXAPI.ClosureDelayCommand(obj, duration, nextEventId) != 0)
       {
         Closures.Add(nextEventId++, func);
       }
@@ -52,7 +53,7 @@ namespace Anvil
     [UnmanagedCallersOnly]
     private static void OnNWNXSignal(IntPtr signalPtr)
     {
-      string signal = signalPtr.ReadNullTerminatedString();
+      string? signal = signalPtr.ReadNullTerminatedString();
 
       switch (signal)
       {
@@ -75,8 +76,13 @@ namespace Anvil
     [UnmanagedCallersOnly]
     private static int OnRunScript(IntPtr scriptPtr, uint oidSelf)
     {
+      string? script = scriptPtr.ReadNullTerminatedString();
+      if (script == null)
+      {
+        return 0;
+      }
+
       int retVal;
-      string script = scriptPtr.ReadNullTerminatedString();
       objectSelf = oidSelf;
       ScriptContexts.Push(oidSelf);
 
@@ -123,8 +129,8 @@ namespace Anvil
     [UnmanagedCallersOnly]
     private static void OnAssertFail(IntPtr messagePtr, IntPtr nativeStackTracePtr)
     {
-      string message = messagePtr.ReadNullTerminatedString();
-      string nativeStackTrace = nativeStackTracePtr.ReadNullTerminatedString();
+      string? message = messagePtr.ReadNullTerminatedString();
+      string? nativeStackTrace = nativeStackTracePtr.ReadNullTerminatedString();
 
       StackTrace stackTrace = new StackTrace(true);
       Log.Error("An assertion failure occurred in native code.\n" +
