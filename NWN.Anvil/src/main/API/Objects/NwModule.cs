@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Anvil.Internal;
-using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -131,7 +130,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current player count.
     /// </summary>
-    public int PlayerCount => LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList.Count();
+    public int PlayerCount => LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList.Count;
 
     /// <summary>
     /// Gets all current online players.

@@ -1,5 +1,4 @@
 using System;
-using NWN.Core;
 using NWNX.NET;
 
 namespace Anvil.API

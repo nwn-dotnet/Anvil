@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using NWN.Native.API;
 using NWNX.NET.Native;
 
 namespace Anvil.API

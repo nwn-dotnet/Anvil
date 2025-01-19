@@ -190,7 +190,7 @@ namespace Anvil.API
     /// Gets the ResRef of the item's model, or the base part of the resref.<br/>
     /// This property is dependent on <see cref="ModelType"/>. See https://nwn.wiki/display/NWN1/baseitems.2da for more info.
     /// </summary>
-    public unsafe string? ItemClass
+    public string ItemClass
     {
       get
       {

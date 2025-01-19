@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using Anvil.Internal;
-using NWN.Core;
 using NWNX.NET.Native;
 
 namespace Anvil.Services
