@@ -191,10 +191,9 @@ namespace Anvil.API
     ///    on a creature, which will stop the combat music and allow them to rest,
     ///    engage in dialog, or other actions that they would normally have to wait for.
     /// </summary>
-    public async Task ClearActionQueue(bool clearCombatState = false)
+    public void ClearActionQueue(bool clearCombatState = false)
     {
-      await WaitForObjectContext();
-      NWScript.ClearAllActions(clearCombatState.ToInt());
+      NWScript.ClearAllActions(clearCombatState.ToInt(), this);
     }
 
     /// <summary>

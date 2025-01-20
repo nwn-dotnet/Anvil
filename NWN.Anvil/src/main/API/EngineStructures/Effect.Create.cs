@@ -587,9 +587,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="polymorphType">The polymorph to apply.</param>
     /// <param name="locked">If true, players cannot dismiss the polymorph effect.</param>
-    public static Effect Polymorph(PolymorphTableEntry polymorphType, bool locked = false)
+    /// <param name="unPolymorphVfx">The visual effect that will play when this polymorph is removed. Set to null to have no effect play.</param>
+    /// <param name="spellAbilityModifier">Set a custom spell ability modifier for the 3 polymorph spells. Save DC is 10 + Innate spell level + this ability modifier.</param>
+    /// <param name="spellAbilityCasterLevel">Set a custom caster level for the 3 polymorph spells.</param>
+    public static Effect Polymorph(PolymorphTableEntry polymorphType, bool locked = false, VfxType? unPolymorphVfx = VfxType.ImpPolymorph, int spellAbilityModifier = -1, int spellAbilityCasterLevel = 0)
     {
-      return NWScript.EffectPolymorph(polymorphType.RowIndex, locked.ToInt())!;
+      return NWScript.EffectPolymorph(polymorphType.RowIndex, locked.ToInt(), (int?)unPolymorphVfx ?? -1, spellAbilityModifier, spellAbilityCasterLevel)!;
     }
 
     /// <summary>
@@ -733,9 +736,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="failPct">A positive number representing the percent chance of spell failing (1-100)</param>
     /// <param name="spellSchool">The spell school that is affected.</param>
-    public static Effect SpellFailure(int failPct, SpellSchool spellSchool = SpellSchool.General)
+    /// <param name="failureType">Use <see cref="SpellFailureType"/> constants for different spell failure types.</param>
+    public static Effect SpellFailure(int failPct, SpellSchool spellSchool = SpellSchool.General, SpellFailureType failureType = SpellFailureType.All)
     {
-      return NWScript.EffectSpellFailure(failPct, (int)spellSchool)!;
+      return NWScript.EffectSpellFailure(failPct, (int)spellSchool, (int)failureType)!;
     }
 
     /// <summary>
@@ -786,20 +790,32 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates an effect to summon a creature.<br/>
+    /// Creates an effect to summon a creature from a resref.<br/>
     /// THIS IS OBJECT CONTEXT SENSITIVE! Use <see cref="NwObject.WaitForObjectContext"/> to correctly assign the right owner of the master.
     /// </summary>
     /// <param name="creatureResRef">The template/ResRef of the creature to summon.</param>
-    /// <param name="vfxType">A visual effect to display upon summoning.</param>
+    /// <param name="summonVfx">A visual effect to display upon summoning.</param>
     /// <param name="delay">A delay between the visual effect, and the creature actually being added to the area.</param>
     /// <param name="appearType">The appear animation to use.</param>
-    public static Effect SummonCreature(string creatureResRef, VfxType vfxType, TimeSpan delay = default, int appearType = 0)
+    /// <param name="unsummonVfx">A visual effect to display when this creature is unsummoned.</param>
+    public static Effect SummonCreature(string creatureResRef, VisualEffectTableEntry summonVfx, TimeSpan delay = default, int appearType = 0, VisualEffectTableEntry? unsummonVfx = default)
     {
-      return NWScript.EffectSummonCreature(creatureResRef, (int)vfxType, (float)delay.TotalSeconds, appearType)!;
+      return NWScript.EffectSummonCreature(creatureResRef, summonVfx.RowIndex, (float)delay.TotalSeconds, appearType, unsummonVfx?.RowIndex ?? (int)VfxType.ImpUnsummon)!;
     }
 
     /// <summary>
-    /// Creates a swarm effect. This is exactly the same as <see cref="SummonCreature"/>, except, after one dies, another takes its place.
+    /// Creates an effect that uses summon behaviours on an existing creature.
+    /// </summary>
+    /// <param name="summonCreature">The creature to be used as the summoned creature. Must not have a current "master" creature.</param>
+    /// <param name="summonVfx">A visual effect to display when claiming the summoned creature.</param>
+    /// <param name="unsummonVfx">A visual effect to play when the summoned creature is unsummoned.</param>
+    public static Effect SummonCreature(NwCreature summonCreature, VisualEffectTableEntry summonVfx, VisualEffectTableEntry? unsummonVfx = default)
+    {
+      return NWScript.EffectSummonCreature("", summonVfx.RowIndex, 0f, 0, unsummonVfx?.RowIndex ?? (int)VfxType.ImpUnsummon, summonCreature)!;
+    }
+
+    /// <summary>
+    /// Creates a swarm effect. This is exactly the same as <see cref="SummonCreature(string,Anvil.API.VisualEffectTableEntry,System.TimeSpan,int,Anvil.API.VisualEffectTableEntry?)"/>, except, after one dies, another takes its place.
     /// </summary>
     /// <param name="loop">If true, while the effect is active and the last creature dies, it will loop back to the first template.</param>
     /// <param name="creatureTemplate1">The blueprint of the first creature to spawn.</param>

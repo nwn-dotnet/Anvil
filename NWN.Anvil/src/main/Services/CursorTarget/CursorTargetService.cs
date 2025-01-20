@@ -41,6 +41,12 @@ namespace Anvil.Services
       NWScript.EnterTargetingMode(player.ControlledCreature, (int)settings.ValidTargets, (int)settings.CursorType, (int)settings.BadCursorType);
     }
 
+    internal void CancelTargetMode(NwPlayer player)
+    {
+      NWScript.EnterTargetingMode(player.ControlledCreature, 0);
+      UnregisterHandlerForPlayer(player, true);
+    }
+
     internal bool IsInTargetMode(NwPlayer player)
     {
       return activeHandlers.ContainsKey(player);
