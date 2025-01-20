@@ -248,6 +248,18 @@ namespace Anvil.API
     public PlayerLanguage Language => (PlayerLanguage)NWScript.GetPlayerLanguage(ControlledCreature);
 
     /// <summary>
+    /// Gets the last latency/"ping" result for this player. Results are updated every 6000 milliseconds.<br/>
+    /// Returns 0 for unsupported clients.
+    /// </summary>
+    public int Latency => NWScript.GetPlayerNetworkLatency(ControlledCreature, false.ToInt());
+
+    /// <summary>
+    /// Gets this player's smoothed/average latency. This is a moving calculation that may change in future game releases.<br/>
+    /// Returns 0 for unsupported clients.
+    /// </summary>
+    public int LatencyAverage => NWScript.GetPlayerNetworkLatency(ControlledCreature, true.ToInt());
+
+    /// <summary>
     /// Gets the original creature that this player logged in with.
     /// </summary>
     public NwCreature? LoginCreature => Player.m_oidPCObject.ToNwObject<NwCreature>();
@@ -557,6 +569,14 @@ namespace Anvil.API
     public void BootPlayer(string reason = "")
     {
       NWScript.BootPC(ControlledCreature, reason);
+    }
+
+    /// <summary>
+    /// Cancels any cursor targeting mode the player is currently in.
+    /// </summary>
+    public void CancelTargetMode()
+    {
+      CursorTargetService.CancelTargetMode(this);
     }
 
     /// <summary>

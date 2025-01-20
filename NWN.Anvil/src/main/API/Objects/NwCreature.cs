@@ -984,6 +984,17 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Instructs this creature to move and close the specified door.
+    /// </summary>
+    /// <param name="door">The door to close.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    public async Task ActionCloseDoor(NwDoor door, bool run = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCloseDoor(door, run.ToInt());
+    }
+
+    /// <summary>
     /// Intructs this creature to enter counterspell combat mode against the specified creature.
     /// </summary>
     /// <param name="counterSpellTarget">The target object to enter counterspell mode against.</param>
@@ -1152,6 +1163,17 @@ namespace Anvil.API
     {
       await WaitForObjectContext();
       NWScript.ActionMoveToObject(target, run.ToInt(), range);
+    }
+
+    /// <summary>
+    /// Instructs this creature to move and open the specified door.
+    /// </summary>
+    /// <param name="door">The door to open.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    public async Task ActionOpenDoor(NwDoor door, bool run = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionOpenDoor(door, run.ToInt());
     }
 
     /// <summary>
@@ -1409,11 +1431,7 @@ namespace Anvil.API
       creature.BroadcastSkillData(data);
     }
 
-    /// <summary>
-    /// Performs a spell resistance check between this creature, and the specified target object.
-    /// </summary>
-    /// <param name="target">The target of the spell.</param>
-    /// <returns>A result indicating if the spell was resisted by the target.</returns>
+    [Obsolete("Use SpellResistanceCheck instead.")]
     public ResistSpellResult CheckResistSpell(NwGameObject target)
     {
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
@@ -2566,6 +2584,61 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Performs a spell resistance check.
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="casterLevel">The caster level for the spell. If null, will use the caster's level.</param>
+    /// <param name="spellResistance">The spell resistance to penetrate. If null, will use the spell resistance of the target.</param>
+    /// <param name="feedback">If true, will show feedback for the spell resistance roll.</param>
+    /// <returns>True if the target successfully resisted the spell, otherwise false.</returns>
+    public bool SpellResistanceCheck(NwGameObject target, NwSpell? spell = null, int? casterLevel = null, int? spellResistance = null, bool feedback = true)
+    {
+      return NWScript.SpellResistanceCheck(target, this, spell?.Id ?? -1, casterLevel ?? -1, spellResistance ?? -1, feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell immunity check.
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="feedback">If true, will show feedback for the spell immunity check.</param>
+    /// <returns>True if the target is immune to the spell, otherwise false.</returns>
+    public bool SpellImmunityCheck(NwGameObject target, NwSpell? spell = null, bool feedback = true)
+    {
+      return NWScript.SpellImmunityCheck(target, this, spell?.Id ?? -1, feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell absorption check for limited spell absorption effects (e.g. Spell Mantle).
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="spellSchool">The spell school to check for. If null, uses the default spell school from the spell parameter.</param>
+    /// <param name="spellLevel">The spell level. If null, uses the spell level from the spell parameter using the creature's caster class.</param>
+    /// <param name="removeLevels">If true, will remove the spell levels from the effect that would stop it, and remove the effect if 0 or fewer levels remain. If false, the effect is untouched.</param>
+    /// <param name="feedback">If true, will show feedback for the spell absorption check.</param>
+    /// <returns>True if the target successfully absorbed the spell, otherwise false.</returns>
+    public bool SpellAbsorptionLimitedCheck(NwGameObject target, NwSpell? spell = null, SpellSchool? spellSchool = null, int? spellLevel = null, bool removeLevels = true, bool feedback = true)
+    {
+      return NWScript.SpellAbsorptionLimitedCheck(target, this, spell?.Id ?? -1, (int?)spellSchool ?? -1, spellLevel ?? -1, removeLevels.ToInt(), feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell absorption check for unlimited spell absorption effects (e.g. Globe of invulnerability).
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="spellSchool">The spell school to check for. If null, uses the default spell school from the spell parameter.</param>
+    /// <param name="spellLevel">The spell level. If null, uses the spell level from the spell parameter using the creature's caster class.</param>
+    /// <param name="feedback">If true, will show feedback for the spell absorption check.</param>
+    /// <returns>True if the target successfully absorbed the spell, otherwise false.</returns>
+    public bool SpellAbsorptionUnlimitedCheck(NwGameObject target, NwSpell? spell = null, SpellSchool? spellSchool = null, int? spellLevel = null, bool feedback = true)
+    {
+      return NWScript.SpellAbsorptionUnlimitedCheck(target, this, spell?.Id ?? -1, (int?)spellSchool ?? -1, spellLevel ?? -1, feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
     /// Instructs this creature to summon their animal companion.<br/>
     /// Does nothing if this creature has no animal companion available.
     /// </summary>
@@ -2616,10 +2689,10 @@ namespace Anvil.API
     /// Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.
     /// </summary>
     /// <param name="target">The target of this touch attack.</param>
-    public async Task<TouchAttackResult> TouchAttackMelee(NwGameObject target)
+    /// <param name="displayFeedback">If true, displays combat feedback in the chat window.</param>
+    public TouchAttackResult TouchAttackMelee(NwGameObject target, bool displayFeedback = true)
     {
-      await WaitForObjectContext();
-      return (TouchAttackResult)NWScript.TouchAttackMelee(target);
+      return (TouchAttackResult)NWScript.TouchAttackMelee(target, displayFeedback.ToInt(), this);
     }
 
     /// <summary>
@@ -2627,10 +2700,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="target">The target of this touch attack.</param>
     /// <param name="displayFeedback">If true, displays combat feedback in the chat window.</param>
-    public async Task<TouchAttackResult> TouchAttackRanged(NwGameObject target, bool displayFeedback)
+    public TouchAttackResult TouchAttackRanged(NwGameObject target, bool displayFeedback)
     {
-      await WaitForObjectContext();
-      return (TouchAttackResult)NWScript.TouchAttackRanged(target, displayFeedback.ToInt());
+      return (TouchAttackResult)NWScript.TouchAttackRanged(target, displayFeedback.ToInt(), this);
     }
 
     /// <summary>

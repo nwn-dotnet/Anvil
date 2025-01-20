@@ -48,12 +48,14 @@ namespace Anvil.API
     public static readonly PlayerDeviceProperty UiMouseoverFeedback = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_MOUSEOVER_FEEDBACK);
     public static readonly PlayerDeviceProperty UiTextBubble = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_TEXT_BUBBLE);
     public static readonly PlayerDeviceProperty UiTargetingFeedback = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_TARGETING_FEEDBACK);
+    public static readonly PlayerDeviceProperty UiCanClickSelfWhileWalking = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CAN_CLICK_SELF_WHILE_WALKING);
     public static readonly PlayerDeviceProperty UiFloatingTextFeedback = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_FLOATING_TEXT_FEEDBACK);
     public static readonly PlayerDeviceProperty UiFloatingTextFeedbackDamageTotalsOnly = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_FLOATING_TEXT_FEEDBACK_DAMAGE_TOTALS_ONLY);
     public static readonly PlayerDeviceProperty UiHideQuickchatTextInChatWindow = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_HIDE_QUICKCHAT_TEXT_IN_CHAT_WINDOW);
     public static readonly PlayerDeviceProperty UiConfirmSelfcastSpells = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CONFIRM_SELFCAST_SPELLS);
     public static readonly PlayerDeviceProperty UiConfirmSelfcastFeats = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CONFIRM_SELFCAST_FEATS);
     public static readonly PlayerDeviceProperty UiConfirmSelfcastItems = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CONFIRM_SELFCAST_ITEMS);
+    public static readonly PlayerDeviceProperty UiChargenSortClasses = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CHARGEN_SORT_CLASSES);
     public static readonly PlayerDeviceProperty UiChatPanePrimaryHeight = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CHAT_PANE_PRIMARY_HEIGHT);
     public static readonly PlayerDeviceProperty UiChatPaneSecondaryHeight = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CHAT_PANE_SECONDARY_HEIGHT);
     public static readonly PlayerDeviceProperty UiChatSwearFilter = new PlayerDeviceProperty(NWScript.PLAYER_DEVICE_PROPERTY_UI_CHAT_SWEAR_FILTER);

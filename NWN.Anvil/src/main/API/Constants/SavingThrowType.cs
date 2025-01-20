@@ -25,5 +25,6 @@ namespace Anvil.API
     Evil = NWScript.SAVING_THROW_TYPE_EVIL,
     Law = NWScript.SAVING_THROW_TYPE_LAW,
     Chaos = NWScript.SAVING_THROW_TYPE_CHAOS,
+    Paralysis = NWScript.SAVING_THROW_TYPE_PARALYSIS,
   }
 }

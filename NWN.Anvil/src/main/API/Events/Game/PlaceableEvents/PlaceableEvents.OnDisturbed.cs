@@ -18,24 +18,32 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> that triggered the disturb event on <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwItem? DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
+      public NwItem? DisturbedItem { get; }
 
       /// <summary>
       /// Gets the object that disturbed <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwGameObject? Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwGameObject>();
+      public NwGameObject? Disturber { get; }
 
       /// <summary>
       /// Gets the <see cref="InventoryDisturbType"/>.
       /// </summary>
-      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType)NWScript.GetInventoryDisturbType();
+      public InventoryDisturbType DisturbType { get; }
 
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was disturbed.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
+      public NwPlaceable Placeable { get; }
 
       NwObject IEvent.Context => Placeable;
+
+      public OnDisturbed()
+      {
+        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
+        Disturber = NWScript.GetLastDisturbed(Placeable).ToNwObject<NwGameObject>();
+        DisturbType = (InventoryDisturbType)NWScript.GetInventoryDisturbType(Placeable);
+        DisturbedItem = NWScript.GetInventoryDisturbItem(Placeable).ToNwObject<NwItem>();
+      }
     }
   }
 }

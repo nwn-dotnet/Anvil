@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Anvil.API;
 using Anvil.Services;
 using NUnit.Framework;
-using NWN.Native.API;
 using NWNX.NET.Native;
 
 namespace Anvil.Tests.API
