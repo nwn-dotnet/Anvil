@@ -92,7 +92,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or Sets this creature's animal companion name.
+    /// Gets or sets this creature's animal companion name.
     /// </summary>
     public string AnimalCompanionName
     {
@@ -101,7 +101,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or Sets this creature's animal companion creature type.
+    /// Gets or sets this creature's animal companion creature type.
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType
     {
@@ -363,7 +363,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or Sets this creature's familiar name.
+    /// Gets or sets this creature's familiar name.
     /// </summary>
     public string FamiliarName
     {
@@ -372,7 +372,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or Sets the type of familiar that this creature can summon.
+    /// Gets or sets the type of familiar that this creature can summon.
     /// </summary>
     public FamiliarCreatureType FamiliarType
     {
