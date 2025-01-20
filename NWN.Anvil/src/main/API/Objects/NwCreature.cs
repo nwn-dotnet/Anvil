@@ -2633,7 +2633,7 @@ namespace Anvil.API
     /// <param name="spellLevel">The spell level. If null, uses the spell level from the spell parameter using the creature's caster class.</param>
     /// <param name="feedback">If true, will show feedback for the spell absorption check.</param>
     /// <returns>True if the target successfully absorbed the spell, otherwise false.</returns>
-    public bool SpellAbsorptionLimitedCheck(NwGameObject target, NwSpell? spell = null, SpellSchool? spellSchool = null, int? spellLevel = null, bool feedback = true)
+    public bool SpellAbsorptionUnlimitedCheck(NwGameObject target, NwSpell? spell = null, SpellSchool? spellSchool = null, int? spellLevel = null, bool feedback = true)
     {
       return NWScript.SpellAbsorptionUnlimitedCheck(target, this, spell?.Id ?? -1, (int?)spellSchool ?? -1, spellLevel ?? -1, feedback.ToInt()).ToBool();
     }
