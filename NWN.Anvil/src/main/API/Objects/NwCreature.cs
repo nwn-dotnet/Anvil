@@ -92,14 +92,22 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's animal companion name.
+    /// Gets or sets this creature's animal companion name.
     /// </summary>
-    public string AnimalCompanionName => NWScript.GetAnimalCompanionName(this);
+    public string AnimalCompanionName
+    {
+      get => NWScript.GetAnimalCompanionName(this);
+      set => Creature.m_pStats.m_sAnimalCompanionName = value.ToExoString();
+    }
 
     /// <summary>
-    /// Gets this creature's animal companion creature type.
+    /// Gets or sets this creature's animal companion creature type.
     /// </summary>
-    public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+    public AnimalCompanionCreatureType AnimalCompanionType
+    {
+      get => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+      set => Creature.m_pStats.m_nAnimalCompanionCreatureType = (int)value;
+    }
 
     /// <summary>
     /// Gets or sets the appearance of this creature.
@@ -355,14 +363,22 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's familiar name.
+    /// Gets or sets this creature's familiar name.
     /// </summary>
-    public string FamiliarName => NWScript.GetFamiliarName(this);
+    public string FamiliarName
+    {
+      get => NWScript.GetFamiliarName(this);
+      set => Creature.m_pStats.m_sFamiliarName = value.ToExoString();
+    }
 
     /// <summary>
-    /// Gets the type of familiar that this creature can summon.
+    /// Gets or sets the type of familiar that this creature can summon.
     /// </summary>
-    public FamiliarCreatureType FamiliarType => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+    public FamiliarCreatureType FamiliarType
+    {
+      get => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+      set => Creature.m_pStats.m_nFamiliarCreatureType = (int)value;
+    }
 
     /// <summary>
     /// Gets the number of feats known by this creature.
@@ -1002,6 +1018,35 @@ namespace Anvil.API
     {
       await WaitForObjectContext();
       NWScript.ActionCounterSpell(counterSpellTarget);
+    }
+
+    /// <summary>
+    /// Forces a PC to level up without the level up GUI.
+    /// </summary>
+    /// <param name="classType">The class to level up.</param>
+    /// <param name="hitDie">The hit points gained during this level up.</param>
+    /// <param name="abilityGain">The abilty to increase : 6 = no increase.</param>
+    /// <param name="epic">Is this an epic level.</param>
+    /// <param name="skillPointsRemaining">Number of skill points to give</param>
+    /// <param name="domain1">Sets a cleric domain for the class (255 = no domain)</param>
+    /// <param name="domain2">Sets the second cleric domain for the class (255 = no domain)</param>
+    /// <param name="school">Sets the wizard school for the class (255 = no school)</param>
+    /// <param name="addStatsToList">Adds the new stats to the character sheet</param>
+    public void ForceLevelUp(NwClass classType, byte hitDie, Ability? abilityGain = default, bool epic = false, ushort skillPointsRemaining = 0, NwDomain? domain1 = default, NwDomain? domain2 = default, SpellSchool school = SpellSchool.Unknown, bool addStatsToList = true)
+    {
+      abilityGain ??= (Ability)6;
+
+      CNWLevelStats stats = new CNWLevelStats()
+      {
+        m_nClass = classType.Id,
+        m_nHitDie = hitDie,
+        m_nAbilityGain = (byte)abilityGain,
+        m_bEpic = epic.ToInt(),
+        m_nSkillPointsRemaining = skillPointsRemaining,
+      };
+
+      Creature.m_pStats.LevelUp(stats, domain1?.Id ?? 255, domain2?.Id ?? 255, unchecked((byte)school), addStatsToList.ToInt());
+      GC.SuppressFinalize(stats);
     }
 
     /// <summary>
@@ -2648,12 +2693,61 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Forces this creature to summon a familiar event if it does not meet the base game requirements
+    /// </summary>
+    /// <param name="resRef">The blueprint resource reference of the creature.</param>
+    public void SummonAnimalCompanion(string resRef)
+    {
+      Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sAnimalCompanionName, (ushort)AssociateType.AnimalCompanion);
+      Creature.m_bSummonedAnimalCompanion = 1;
+    }
+
+    /// <summary>
+    /// Forces this creature to unsummon their animal companion.<br/>
+    /// Does nothing if this creature has no animal companion summoned.
+    /// </summary>
+    public void UnsummonAnimalCompanion()
+    {
+      GetAssociate(AssociateType.AnimalCompanion)?.Creature.UnsummonMyself();
+      Creature.m_bSummonedAnimalCompanion = 0;
+    }
+
+    /// <summary>
     /// Instructs this creature to summon their familiar (wizard/sorcerer).<br/>
     /// Does nothing if this creature has no familiar available.
     /// </summary>
     public void SummonFamiliar()
     {
       NWScript.SummonFamiliar(this);
+    }
+
+    /// <summary>
+    /// Forces this creature to summon a familiar event if it does not meet the base game requirements
+    /// </summary>
+    /// <param name="resRef">The blueprint resource reference of the creature.</param>
+    public void SummonFamiliar(string resRef)
+    {
+      Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sFamiliarName, (ushort)AssociateType.Familiar);
+      Creature.m_bSummonedFamiliar = 1;
+    }
+
+    /// <summary>
+    /// Forces this creature to unsummon their familiar.<br/>
+    /// Does nothing if this creature has no familiar summoned.
+    /// </summary>
+    public void UnsummonFamiliar()
+    {
+      GetAssociate(AssociateType.Familiar)?.Creature.UnsummonMyself();
+      Creature.m_bSummonedFamiliar = 0;
+    }
+
+    /// <summary>
+    /// Forces this creature to unsummon itself.<br/>
+    /// Does nothing if this creature is not a summon.
+    /// </summary>
+    public void Unsummon()
+    {
+      Creature.UnsummonMyself();
     }
 
     /// <summary>
