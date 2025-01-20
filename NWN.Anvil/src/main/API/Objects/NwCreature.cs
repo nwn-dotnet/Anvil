@@ -2622,7 +2622,7 @@ namespace Anvil.API
     /// <summary>
     /// Forces this creature to summon a familiar event if it does not meet the base game requirements
     /// </summary>
-    /// /// <param name="resRef">The blueprint resource reference of the creature.</param>
+    /// <param name="resRef">The blueprint resource reference of the creature.</param>
     public void SummonAnimalCompanion(string resRef)
     {
       Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sAnimalCompanionName, (ushort)AssociateType.AnimalCompanion);
@@ -2651,7 +2651,7 @@ namespace Anvil.API
     /// <summary>
     /// Forces this creature to summon a familiar event if it does not meet the base game requirements
     /// </summary>
-    /// /// <param name="resRef">The blueprint resource reference of the creature.</param>
+    /// <param name="resRef">The blueprint resource reference of the creature.</param>
     public void SummonFamiliar(string resRef)
     {
       Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sFamiliarName, (ushort)AssociateType.Familiar);
