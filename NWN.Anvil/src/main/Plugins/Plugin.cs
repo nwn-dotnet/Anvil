@@ -108,10 +108,10 @@ namespace Anvil.Plugins
       }
     }
 
-    internal WeakReference Unload()
+    internal WeakReference Unload(bool immediateDispose)
     {
       RemoveResourceDirectory();
-      RemoveIsolatedContainer();
+      RemoveIsolatedContainer(immediateDispose);
 
       Assembly = null;
       PluginTypes = null;
@@ -204,11 +204,11 @@ namespace Anvil.Plugins
       }
     }
 
-    private void RemoveIsolatedContainer()
+    private void RemoveIsolatedContainer(bool immediateDispose)
     {
       if (Container != null)
       {
-        ServiceManager.DisposePluginContainer(Container, this);
+        ServiceManager.DisposePluginContainer(Container, this, immediateDispose);
         Container = null;
       }
     }

@@ -24,7 +24,7 @@ namespace Anvil.Services
     public ServiceContainer CoreServiceContainer { get; }
 
     public event Action<IServiceContainer, Plugin?>? OnContainerCreate;
-    public event Action<IServiceContainer, Plugin?>? OnContainerDispose;
+    public event Action<IServiceContainer, Plugin?, bool>? OnContainerDispose;
     public event Action<IServiceContainer, Plugin?>? OnContainerPostDispose;
 
     public AnvilServiceManager()
@@ -68,9 +68,9 @@ namespace Anvil.Services
       return pluginContainer;
     }
 
-    void IServiceManager.DisposePluginContainer(IServiceContainer container, Plugin plugin)
+    void IServiceManager.DisposePluginContainer(IServiceContainer container, Plugin plugin, bool immediateDispose)
     {
-      OnContainerDispose?.Invoke(container, plugin);
+      OnContainerDispose?.Invoke(container, plugin, immediateDispose);
       container.Dispose();
       OnContainerPostDispose?.Invoke(container, plugin);
     }
@@ -153,7 +153,7 @@ namespace Anvil.Services
       Log.Info("Unloading anvil services...");
 
       // This must always happen in a separate scope/method, otherwise in Debug and some Release configurations, AnvilServiceContainer will hold a strong reference and prevent plugin unload.
-      OnContainerDispose?.Invoke(AnvilServiceContainer, null);
+      OnContainerDispose?.Invoke(AnvilServiceContainer, null, true);
       AnvilServiceContainer.Dispose();
       AnvilServiceContainer = anvilContainerFactory.CreateContainer(CoreServiceContainer);
     }

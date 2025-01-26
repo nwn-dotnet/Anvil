@@ -154,7 +154,7 @@ namespace Anvil.Plugins
         throw new InvalidOperationException($"Non-isolated plugin {plugin.Name} may not be unloaded at runtime.");
       }
 
-      WeakReference pluginRef = UnloadPluginInternal(plugin);
+      WeakReference pluginRef = UnloadPluginInternal(plugin, waitForUnload);
       if (waitForUnload)
       {
         WaitForPendingUnloads(new Dictionary<WeakReference, string>
@@ -201,7 +201,7 @@ namespace Anvil.Plugins
       foreach (Plugin plugin in Plugins)
       {
         bool waitForUnload = EnvironmentConfig.ReloadEnabled || plugin.PluginInfo.Isolated;
-        WeakReference pluginRef = UnloadPluginInternal(plugin);
+        WeakReference pluginRef = UnloadPluginInternal(plugin, waitForUnload);
 
         if (waitForUnload)
         {
@@ -306,12 +306,12 @@ namespace Anvil.Plugins
       }
     }
 
-    private WeakReference UnloadPluginInternal(Plugin plugin)
+    private WeakReference UnloadPluginInternal(Plugin plugin, bool immediateDispose)
     {
       if (plugin.IsLoaded)
       {
         Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-        return plugin.Unload();
+        return plugin.Unload(immediateDispose);
       }
 
       return new WeakReference(null);

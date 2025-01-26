@@ -27,7 +27,7 @@ namespace Anvil.Services
     /// <summary>
     /// Called when a service container is about to be disposed.
     /// </summary>
-    event Action<IServiceContainer, Plugin?> OnContainerDispose;
+    event Action<IServiceContainer, Plugin?, bool> OnContainerDispose;
 
     /// <summary>
     /// Called when a service container has been disposed.
@@ -52,7 +52,8 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="container">The container to dispose.</param>
     /// <param name="plugin">The plugin owning this container.</param>
-    void DisposePluginContainer(IServiceContainer container, Plugin plugin);
+    /// <param name="immediate">If the plugin container should complete dispose immediately (true) or at the end of the current frame (false)</param>
+    void DisposePluginContainer(IServiceContainer container, Plugin plugin, bool immediate);
 
     /// <summary>
     /// Called during NWNX initialization. Core services should be initialized here.

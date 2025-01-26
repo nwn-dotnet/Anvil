@@ -17,11 +17,19 @@ namespace Anvil.Services
     [Inject]
     private IServiceManager ServiceManager { get; init; } = null!;
 
+    private bool updateTargetsModified;
+
     internal void RunServerLoop()
     {
       for (int i = 0; i < updateTargets.Count; i++)
       {
         updateTargets[i].Update();
+
+        if (updateTargetsModified)
+        {
+          updateTargetsModified = false;
+          break;
+        }
       }
 
       if (pendingAddTargets.Count > 0 || pendingRemoveTargets.Count > 0)
@@ -56,13 +64,19 @@ namespace Anvil.Services
       pendingAddTargets.AddRange(container.GetAllInstances<IUpdateable>().OrderBy(service => service.GetType().GetServicePriority()));
     }
 
-    private void OnContainerDispose(IServiceContainer container, Plugin? plugin)
+    private void OnContainerDispose(IServiceContainer container, Plugin? plugin, bool immediateDispose)
     {
       pendingRemoveTargets.AddRange(container.GetAllInstances<IUpdateable>());
 
       foreach (ILateDisposable lateDisposeTarget in container.GetAllInstances<ILateDisposable>())
       {
         lateDisposeTargets.Add(lateDisposeTarget);
+      }
+
+      if (immediateDispose)
+      {
+        UpdateLoopList();
+        updateTargetsModified = true;
       }
     }
 
