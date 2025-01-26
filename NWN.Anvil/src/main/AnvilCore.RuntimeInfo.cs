@@ -10,6 +10,7 @@ namespace Anvil
       public string? AssemblyVersion;
       public string? CoreVersion;
       public string? NativeVersion;
+      public string? NWNXDotNetVersion;
     }
   }
 }

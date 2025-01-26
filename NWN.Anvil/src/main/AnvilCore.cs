@@ -100,6 +100,7 @@ namespace Anvil
         AssemblyVersion = AssemblyInfo.VersionInfo.InformationalVersion,
         CoreVersion = Assemblies.Core.GetName().Version?.ToString(),
         NativeVersion = Assemblies.Native.GetName().Version?.ToString(),
+        NWNXDotNetVersion = Assemblies.NWNXDotNet.GetName().Version?.ToString(),
       };
 
       serviceManager.Init();
@@ -110,11 +111,11 @@ namespace Anvil
       }
       catch (Exception e)
       {
-        Log.Fatal(e, $"Failed to load {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
+        Log.Fatal(e, $"Failed to load {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion}, NWNX.NET: {runtimeInfo.NWNXDotNetVersion})");
         throw;
       }
 
-      Log.Info($"Loading {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
+      Log.Info($"Loading {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion}, NWNX.NET: {runtimeInfo.NWNXDotNetVersion})");
       CheckServerVersion();
     }
 
