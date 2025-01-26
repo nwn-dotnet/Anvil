@@ -11,6 +11,7 @@ namespace Anvil.Internal
     public static readonly Assembly Anvil = typeof(Assemblies).Assembly;
     public static readonly Assembly Core = typeof(NWN.Core.NWNCore).Assembly;
     public static readonly Assembly Native = typeof(NWN.Native.API.NWNXLib).Assembly;
+    public static readonly Assembly NWNXDotNet = typeof(NWNX.NET.NWNXAPI).Assembly;
 
     public static readonly Assembly[] AllAssemblies;
     public static readonly Type[] AllTypes;
@@ -27,6 +28,7 @@ namespace Anvil.Internal
         Anvil,
         Core,
         Native,
+        NWNXDotNet,
         typeof(NLog.Logger).Assembly,
         typeof(LightInject.ServiceContainer).Assembly,
         typeof(Newtonsoft.Json.JsonConvert).Assembly,
