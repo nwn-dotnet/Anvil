@@ -178,10 +178,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the Base Attack Bonus for this creature.
     /// </summary>
-    public byte BaseAttackBonus
+    public int BaseAttackBonus
     {
-      get => Creature.m_pStats.m_nBaseAttackBonus;
-      set => Creature.m_pStats.m_nBaseAttackBonus = value;
+      get => Creature.m_pStats.GetBaseAttackBonus(false.ToInt());
+      set => Creature.m_pStats.m_nBaseAttackBonus = checked((byte)value);
     }
 
     /// <summary>
