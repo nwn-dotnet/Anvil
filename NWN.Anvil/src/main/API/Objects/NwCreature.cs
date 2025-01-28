@@ -180,7 +180,7 @@ namespace Anvil.API
     /// </summary>
     public int BaseAttackBonus
     {
-      get => (byte)Creature.m_pStats.GetBaseAttackBonus(false.ToInt());
+      get => Creature.m_pStats.GetBaseAttackBonus(false.ToInt());
       set => Creature.m_pStats.m_nBaseAttackBonus = checked((byte)value);
     }
 
