@@ -103,6 +103,7 @@ namespace Anvil.Tests.API.Events
     {
       if (creature != null)
       {
+        creature.ClearEventSubscriptions();
         creature.Destroy();
       }
     }
