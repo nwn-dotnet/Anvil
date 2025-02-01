@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
-using Microsoft.CodeAnalysis;
 using NLog;
 using NUnit.Framework.Internal.Commands;
 using NUnitLite;
