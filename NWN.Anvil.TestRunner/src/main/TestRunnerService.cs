@@ -26,8 +26,6 @@ namespace Anvil.TestRunner
     private readonly Queue<Assembly> testAssemblyQueue = new Queue<Assembly>();
     private readonly string outputDir;
 
-    private readonly string additionalArgs = Environment.GetEnvironmentVariable("ANVIL_NUNIT_ARGS");
-
     private Thread testWorkerThread;
 
     public TestRunnerService(MainThreadSynchronizationContext mainThreadSynchronizationContext, PluginStorageService pluginStorageService)
@@ -81,9 +79,7 @@ namespace Anvil.TestRunner
     private string[] GetRunnerArguments(Assembly assembly)
     {
       string outputPath = Path.Combine(outputDir, assembly.GetName().Name!);
-
-      string args = $"--mainthread --work={outputPath} {additionalArgs}";
-      return string.IsNullOrEmpty(args) ? [] : CommandLineParser.SplitCommandLineIntoArguments(args, false).ToArray();
+      return ["--mainthread", $"--work={outputPath}"];
     }
   }
 }
