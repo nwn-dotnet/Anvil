@@ -67,6 +67,7 @@ jobs:
             NWNX_DOTNET_ASSEMBLY=/workspaces/NWN.Anvil/NWN.Anvil/bin/Release/net8.0/NWN.Anvil
             ANVIL_ADD_PLUGIN_PATHS=/workspaces/NWN.Anvil/NWN.Anvil.TestRunner/bin/Release:/workspaces/NWN.Anvil/NWN.Anvil.Tests/bin/Release
           runCmd: |
+            git config --global --add safe.directory /workspaces/NWN.Anvil
             dotnet build --configuration Release
             cd /nwn/data/bin/linux-amd64
             /nwn/run-server.sh
