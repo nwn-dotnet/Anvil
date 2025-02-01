@@ -1,0 +1,25 @@
+{
+  "name": "nwn.anvil",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "../"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/NWN.Anvil,type=bind",
+  "workspaceFolder": "/workspaces/NWN.Anvil",
+  "mounts": [
+    "source=${localWorkspaceFolder}/test_results,target=/nwn/home/anvil/PluginData/NWN.Anvil.TestRunner,type=bind"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "8.0"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": "curl,unzip,procps,git"
+    }
+  },
+  "appPort": ["5121:5121/udp"],
+  "containerEnv": {
+    "NWNX_DOTNET_ASSEMBLY": "/workspaces/NWN.Anvil/NWN.Anvil/bin/Debug/net8.0/NWN.Anvil",
+    "ANVIL_ADD_PLUGIN_PATHS": "/workspaces/NWN.Anvil/NWN.Anvil.TestRunner/bin/Debug:/workspaces/NWN.Anvil/NWN.Anvil.Tests/bin/Debug"
+  }
+}
