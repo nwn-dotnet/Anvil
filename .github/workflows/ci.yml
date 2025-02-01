@@ -64,6 +64,7 @@ jobs:
         with:
           push: never
           env: |
+            NWNX_DOTNET_ASSEMBLY=/workspaces/NWN.Anvil/NWN.Anvil/bin/Release/net8.0/NWN.Anvil
             ANVIL_ADD_PLUGIN_PATHS=/workspaces/NWN.Anvil/NWN.Anvil.TestRunner/bin/Release:/workspaces/NWN.Anvil/NWN.Anvil.Tests/bin/Release
           runCmd: |
             dotnet build --configuration Release
