@@ -230,6 +230,10 @@ namespace Anvil.Plugins
         {
           pluginSources.Add(InjectionService.Inject(new LocalPluginSource(fullPluginPath)));
         }
+        else
+        {
+          Log.Warn($"Additional plugin path '{fullPluginPath}' does not exist.");
+        }
       }
 
       foreach (IPluginSource pluginSource in pluginSources)
