@@ -1,7 +1,7 @@
 {
   "name": "nwn.anvil",
   "build": {
-    "dockerfile": "../Dockerfile",
+    "dockerfile": "../dockerfile",
     "context": "../"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/NWN.Anvil,type=bind",
