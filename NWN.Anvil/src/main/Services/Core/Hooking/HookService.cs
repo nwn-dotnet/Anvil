@@ -17,6 +17,7 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly HashSet<IDisposable> hooks = [];
+    private readonly HashSet<IDisposable> persistentHooks = [];
 
     /// <summary>
     /// Requests a hook for a native function.
@@ -28,11 +29,7 @@ namespace Anvil.Services
     public FunctionHook<T> RequestHook<T>(T handler, int order = HookOrder.Default) where T : Delegate
     {
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
-      FunctionHook* functionHook = CreateHook<T>(managedFuncPtr, order);
-      FunctionHook<T> hook = new FunctionHook<T>(this, functionHook, handler);
-      hooks.Add(hook);
-
-      return hook;
+      return CreateHook(managedFuncPtr, false, order, handler);
     }
 
     /// <summary>
@@ -44,14 +41,21 @@ namespace Anvil.Services
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
     public FunctionHook<T> RequestHook<T>(void* handler, int order = HookOrder.Default) where T : Delegate
     {
-      FunctionHook* functionHook = CreateHook<T>((IntPtr)handler, order);
-      FunctionHook<T> hook = new FunctionHook<T>(this, functionHook);
-      hooks.Add(hook);
-
-      return hook;
+      return CreateHook<T>((IntPtr)handler, false, order);
     }
 
-    private FunctionHook* CreateHook<T>(IntPtr handler, int order)
+    internal FunctionHook<T> RequestCoreHook<T>(T handler, int order = HookOrder.Default) where T : Delegate
+    {
+      IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
+      return CreateHook(managedFuncPtr, true, order, handler);
+    }
+
+    internal FunctionHook<T> RequestCoreHook<T>(void* handler, int order = HookOrder.Default) where T : Delegate
+    {
+      return CreateHook<T>((IntPtr)handler, true, order);
+    }
+
+    private FunctionHook<T> CreateHook<T>(IntPtr managedFuncPtr, bool persist, int order = HookOrder.Default, T? managedFunc = null) where T : Delegate
     {
       NativeFunctionAttribute? info = typeof(T).GetCustomAttribute<NativeFunctionAttribute>();
       if (info == null)
@@ -60,14 +64,34 @@ namespace Anvil.Services
       }
 
       Log.Debug("Requesting function hook for {HookType}, address {Address}", typeof(T).Name, $"0x{info.Address:X}");
-      return NWNXAPI.RequestFunctionHook(info.Address, handler, order);
+      FunctionHook* nativeHook = NWNXAPI.RequestFunctionHook(info.Address, managedFuncPtr, order);
+      FunctionHook<T> hook = new FunctionHook<T>(this, nativeHook, managedFunc);
+
+      if (persist)
+      {
+        persistentHooks.Add(hook);
+      }
+      else
+      {
+        hooks.Add(hook);
+      }
+
+      return hook;
     }
 
     void ICoreService.Init() {}
 
     void ICoreService.Load() {}
 
-    void ICoreService.Shutdown() {}
+    void ICoreService.Shutdown()
+    {
+      foreach (IDisposable hook in persistentHooks.ToList())
+      {
+        hook.Dispose();
+      }
+
+      persistentHooks.Clear();
+    }
 
     void ICoreService.Start() {}
 
@@ -83,7 +107,10 @@ namespace Anvil.Services
 
     internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate
     {
-      hooks.Remove(hook);
+      if (!hooks.Remove(hook))
+      {
+        persistentHooks.Remove(hook);
+      }
     }
   }
 }

@@ -9,8 +9,7 @@ using NWNX.NET.Native;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(ObjectStorageService))]
-  public sealed unsafe class ObjectStorageService
+  public sealed unsafe class ObjectStorageService : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -22,8 +21,9 @@ namespace Anvil.Services
     private readonly FunctionHook<Functions.CNWSPlayer.EatTURD> eatTURDHook;
     private readonly FunctionHook<Functions.CNWSUUID.LoadFromGff> loadFromGffHook;
     private readonly FunctionHook<Functions.CNWSObject.Destructor> objectDestructorHook;
-    private readonly Dictionary<IntPtr, ObjectStorage> objectStorage = new Dictionary<IntPtr, ObjectStorage>();
     private readonly FunctionHook<Functions.CNWSUUID.SaveToGff> saveToGffHook;
+
+    private readonly Dictionary<IntPtr, ObjectStorage> objectStorage = new Dictionary<IntPtr, ObjectStorage>();
 
     public ObjectStorageService(HookService hookService)
     {
@@ -177,5 +177,15 @@ namespace Anvil.Services
 
       saveToGffHook.CallOriginal(pUUID, pRes, pStruct);
     }
+
+    void ICoreService.Init() {}
+
+    void ICoreService.Load() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Unload() {}
   }
 }

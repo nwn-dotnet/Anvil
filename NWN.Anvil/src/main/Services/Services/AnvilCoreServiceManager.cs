@@ -22,6 +22,7 @@ namespace Anvil.Services
     private readonly EncodingService encodingService;
     private readonly ResourceManager resourceManager;
     private readonly AnvilMessageService anvilMessageService;
+    private readonly ObjectStorageService objectStorageService;
 
     public AnvilCoreServiceManager(IServiceContainer container)
     {
@@ -37,6 +38,7 @@ namespace Anvil.Services
       container.RegisterCoreService<EncodingService>();
       container.RegisterCoreService<ResourceManager>();
       container.RegisterCoreService<AnvilMessageService>();
+      container.RegisterCoreService<ObjectStorageService>();
 
       container.Compile();
 
@@ -52,6 +54,7 @@ namespace Anvil.Services
       encodingService = container.GetInstance<EncodingService>();
       hookService = container.GetInstance<HookService>();
       moduleLoadTracker = container.GetInstance<ModuleLoadTracker>();
+      objectStorageService = container.GetInstance<ObjectStorageService>();
     }
 
     public void Init()
@@ -69,6 +72,7 @@ namespace Anvil.Services
       InitService(encodingService);
       InitService(hookService);
       InitService(moduleLoadTracker);
+      InitService(objectStorageService);
     }
 
     public void Load()
@@ -86,6 +90,7 @@ namespace Anvil.Services
       LoadService(encodingService);
       LoadService(hookService);
       LoadService(moduleLoadTracker);
+      LoadService(objectStorageService);
     }
 
     public void Start()
@@ -103,11 +108,13 @@ namespace Anvil.Services
       StartService(encodingService);
       StartService(hookService);
       StartService(moduleLoadTracker);
+      StartService(objectStorageService);
     }
 
     public void Unload()
     {
       Log.Info("Unloading core services...");
+      UnloadService(objectStorageService);
       UnloadService(moduleLoadTracker);
       UnloadService(hookService);
       UnloadService(encodingService);
@@ -124,6 +131,7 @@ namespace Anvil.Services
 
     public void Shutdown()
     {
+      ShutdownService(objectStorageService);
       ShutdownService(moduleLoadTracker);
       ShutdownService(hookService);
       ShutdownService(encodingService);

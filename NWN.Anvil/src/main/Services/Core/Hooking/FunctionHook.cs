@@ -15,17 +15,22 @@ namespace Anvil.Services
 
     // We hold a reference to the delegate to prevent clean up from the garbage collector.
     [UsedImplicitly]
-    private readonly T? handler;
+    private readonly T? managedHandle;
 
     private readonly HookService hookService;
     private readonly FunctionHook* functionHook;
 
-    internal FunctionHook(HookService hookService, FunctionHook* functionHook, T? handler = null)
+    internal FunctionHook(HookService hookService, FunctionHook* functionHook, T? managedHandle = null)
     {
       this.hookService = hookService;
       this.functionHook = functionHook;
-      this.handler = handler;
+      this.managedHandle = managedHandle;
       CallOriginal = Marshal.GetDelegateForFunctionPointer<T>((IntPtr)functionHook->m_trampoline);
+    }
+
+    private void ReleaseUnmanagedResources()
+    {
+      NWNXAPI.ReturnFunctionHook(functionHook);
     }
 
     /// <summary>
@@ -33,8 +38,14 @@ namespace Anvil.Services
     /// </summary>
     public void Dispose()
     {
-      NWNXAPI.ReturnFunctionHook(functionHook);
+      ReleaseUnmanagedResources();
+      GC.SuppressFinalize(this);
       hookService.RemoveHook(this);
+    }
+
+    ~FunctionHook()
+    {
+      ReleaseUnmanagedResources();
     }
   }
 }

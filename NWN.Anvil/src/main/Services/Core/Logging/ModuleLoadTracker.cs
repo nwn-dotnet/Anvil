@@ -12,7 +12,7 @@ namespace Anvil.Services
 
     void ICoreService.Init()
     {
-      loadModuleInProgressHook = hookService.RequestHook<Functions.CNWSModule.LoadModuleInProgress>(OnModuleLoadProgressChange, HookOrder.Earliest);
+      loadModuleInProgressHook = hookService.RequestCoreHook<Functions.CNWSModule.LoadModuleInProgress>(OnModuleLoadProgressChange, HookOrder.Earliest);
     }
 
     void ICoreService.Load() {}
