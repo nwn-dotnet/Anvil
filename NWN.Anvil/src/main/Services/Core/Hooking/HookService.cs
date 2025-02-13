@@ -29,7 +29,7 @@ namespace Anvil.Services
     public FunctionHook<T> RequestHook<T>(T handler, int order = HookOrder.Default) where T : Delegate
     {
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
-      return CreateHook<T>(managedFuncPtr, false, order);
+      return CreateHook<T>(managedFuncPtr, false, order, handler);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace Anvil.Services
       return CreateHook<T>((IntPtr)handler, true, order);
     }
 
-    private FunctionHook<T> CreateHook<T>(IntPtr handler, bool persist, int order = HookOrder.Default) where T : Delegate
+    private FunctionHook<T> CreateHook<T>(IntPtr managedFuncPtr, bool persist, int order = HookOrder.Default, T? managedFunc = null) where T : Delegate
     {
       NativeFunctionAttribute? info = typeof(T).GetCustomAttribute<NativeFunctionAttribute>();
       if (info == null)
@@ -64,8 +64,8 @@ namespace Anvil.Services
       }
 
       Log.Debug("Requesting function hook for {HookType}, address {Address}", typeof(T).Name, $"0x{info.Address:X}");
-      FunctionHook* nativeHook = NWNXAPI.RequestFunctionHook(info.Address, handler, order);
-      FunctionHook<T> hook = new FunctionHook<T>(this, nativeHook);
+      FunctionHook* nativeHook = NWNXAPI.RequestFunctionHook(info.Address, managedFuncPtr, order);
+      FunctionHook<T> hook = new FunctionHook<T>(this, nativeHook, managedFunc);
 
       if (persist)
       {
