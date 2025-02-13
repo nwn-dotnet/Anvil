@@ -1,5 +1,5 @@
 # Load nwnx image to import nwserver + nwnx plugins
-FROM nwnxee/unified:a6c5f09 as nwnx
+FROM nwnxee/unified:1ef2783 as nwnx
 
 # Remove incompatible plugins
 RUN rm -rf /nwn/nwnx/NWNX_Ruby.so \
