@@ -29,7 +29,7 @@ namespace Anvil.Services
     public FunctionHook<T> RequestHook<T>(T handler, int order = HookOrder.Default) where T : Delegate
     {
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
-      return CreateHook<T>(managedFuncPtr, false, order, handler);
+      return CreateHook(managedFuncPtr, false, order, handler);
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ namespace Anvil.Services
     internal FunctionHook<T> RequestCoreHook<T>(T handler, int order = HookOrder.Default) where T : Delegate
     {
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
-      return CreateHook<T>(managedFuncPtr, true, order);
+      return CreateHook(managedFuncPtr, true, order, handler);
     }
 
     internal FunctionHook<T> RequestCoreHook<T>(void* handler, int order = HookOrder.Default) where T : Delegate
