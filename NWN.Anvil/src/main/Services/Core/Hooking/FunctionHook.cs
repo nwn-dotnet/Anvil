@@ -28,13 +28,24 @@ namespace Anvil.Services
       CallOriginal = Marshal.GetDelegateForFunctionPointer<T>((IntPtr)functionHook->m_trampoline);
     }
 
+    private void ReleaseUnmanagedResources()
+    {
+      NWNXAPI.ReturnFunctionHook(functionHook);
+    }
+
     /// <summary>
     /// Releases the FunctionHook, restoring the previous behaviour.
     /// </summary>
     public void Dispose()
     {
-      NWNXAPI.ReturnFunctionHook(functionHook);
+      ReleaseUnmanagedResources();
+      GC.SuppressFinalize(this);
       hookService.RemoveHook(this);
+    }
+
+    ~FunctionHook()
+    {
+      ReleaseUnmanagedResources();
     }
   }
 }
