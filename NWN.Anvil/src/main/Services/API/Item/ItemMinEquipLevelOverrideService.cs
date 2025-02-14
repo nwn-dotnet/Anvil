@@ -37,7 +37,7 @@ namespace Anvil.Services.Item
 
     private byte OnGetMinEquipLevel(void* pItem)
     {
-      NwItem? item = CNWSObject.FromPointer(pItem).ToNwObject<NwItem>();
+      NwItem? item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>();
       if (item != null)
       {
         InternalVariableInt overrideValue = InternalVariables.MinEquipLevelOverride(item);
