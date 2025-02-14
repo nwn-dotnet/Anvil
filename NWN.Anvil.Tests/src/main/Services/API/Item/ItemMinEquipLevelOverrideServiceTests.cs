@@ -15,10 +15,10 @@ namespace Anvil.Tests.Services.API.Item
 
     private readonly List<NwGameObject> createdTestObjects = [];
 
-    [Test(Description = "A created temporary resource is available as a game resource.")]
+    [Test(Description = "Setting an item minimum level overrides for a given item.")]
     [TestCase(StandardResRef.Item.nw_ashmlw009, 1, 0)]
     [TestCase(StandardResRef.Item.x2_wdrowls003, 15, 5)]
-    [TestCase(StandardResRef.Item.x2_it_mcloak007, 20, 30)]
+    [TestCase(StandardResRef.Item.x2_it_mcloak007, 19, 30)]
     public void SetItemMinEquipLevelOverrideChangesMinEquipLevel(string itemResRef, int standardMinLevel, byte overrideMinLevel)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
