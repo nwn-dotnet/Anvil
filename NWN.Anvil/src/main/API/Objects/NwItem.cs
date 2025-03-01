@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Anvil.Native;
+using Anvil.Services;
+using Anvil.Services.Item;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -15,6 +17,9 @@ namespace Anvil.API
   [ObjectFilter(ObjectTypes.Item)]
   public sealed partial class NwItem : NwGameObject
   {
+    [Inject]
+    private static Lazy<ItemMinEquipLevelOverrideService> ItemMinEquipLevelOverrideService { get; set; } = null!;
+
     private readonly CNWSItem item;
 
     internal CNWSItem Item
@@ -174,7 +179,8 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the minimum level required to equip this item.
+    /// Gets the minimum level required to equip this item.<br/>
+    /// If an override is set with <see cref="SetMinEquipLevelOverride"/>, this property will return the override value.
     /// </summary>
     public byte MinEquipLevel => Item.GetMinEquipLevel();
 
@@ -361,6 +367,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Clears any override that is set for the item's min equip level.<br/>
+    /// </summary>
+    public void ClearMinEquipLevelOverride()
+    {
+      ItemMinEquipLevelOverrideService.Value.ClearMinEquipLevelOverride(this);
+    }
+
+    /// <summary>
     /// Creates a copy of this item.
     /// </summary>
     /// <param name="targetInventory">The target inventory to create the cloned item.</param>
@@ -421,6 +435,14 @@ namespace Anvil.API
     public bool CompareItem(NwItem otherItem)
     {
       return Item.CompareItem(otherItem.Item).ToBool();
+    }
+
+    /// <summary>
+    /// Gets the override that is set for the item's min equip level.<br/>
+    /// </summary>
+    public byte? GetMinEquipLevelOverride()
+    {
+      return ItemMinEquipLevelOverrideService.Value.GetMinEquipLevelOverride(this);
     }
 
     /// <summary>
@@ -503,6 +525,14 @@ namespace Anvil.API
     public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTI", (resGff, resStruct) => Item.SaveItem(resGff, resStruct, 0).ToBool());
+    }
+
+    /// <summary>
+    /// Sets the override value to use for this item's min equip level.<br/>
+    /// </summary>
+    public void SetMinEquipLevelOverride(byte equipLevel)
+    {
+      ItemMinEquipLevelOverrideService.Value.SetMinEquipLevelOverride(this, equipLevel);
     }
 
     /// <summary>
