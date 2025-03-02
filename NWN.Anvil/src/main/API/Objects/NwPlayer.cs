@@ -1686,6 +1686,36 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Refreshes the player's character sheet.
+    /// </summary>
+    public async Task UpdateCharacterSheet()
+    {
+      await NwTask.Delay(TimeSpan.FromSeconds(0.5f));
+      if (!IsValid)
+      {
+        return;
+      }
+
+      CNWSPlayerCharSheetGUI? charSheet = Player.m_pCharSheetGUI;
+      if (charSheet == null)
+      {
+        return;
+      }
+
+      uint updatesRequired = charSheet.ComputeCharacterSheetUpdateRequired(Player);
+      if (updatesRequired == 0)
+      {
+        return;
+      }
+
+      CNWSMessage? message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message != null)
+      {
+        message.WriteGameObjUpdate_CharacterSheet(Player, updatesRequired);
+      }
+    }
+
+    /// <summary>
     /// Vibrates the player's device or controller. Does nothing if vibration is not supported.
     /// </summary>
     /// <param name="motor">Which motors to vibrate.</param>
