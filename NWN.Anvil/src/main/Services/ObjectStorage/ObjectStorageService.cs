@@ -27,12 +27,12 @@ namespace Anvil.Services
 
     public ObjectStorageService(HookService hookService)
     {
-      objectDestructorHook = hookService.RequestHook<Functions.CNWSObject.Destructor>(OnObjectDestructor, HookOrder.VeryEarly);
-      areaDestructorHook = hookService.RequestHook<Functions.CNWSArea.Destructor>(OnAreaDestructor, HookOrder.VeryEarly);
-      eatTURDHook = hookService.RequestHook<Functions.CNWSPlayer.EatTURD>(OnEatTURD, HookOrder.VeryEarly);
-      dropTURDHook = hookService.RequestHook<Functions.CNWSPlayer.DropTURD>(OnDropTURD, HookOrder.VeryEarly);
-      saveToGffHook = hookService.RequestHook<Functions.CNWSUUID.SaveToGff>(OnSaveToGff, HookOrder.VeryEarly);
-      loadFromGffHook = hookService.RequestHook<Functions.CNWSUUID.LoadFromGff>(OnLoadFromGff, HookOrder.VeryEarly);
+      objectDestructorHook = hookService.RequestCoreHook<Functions.CNWSObject.Destructor>(OnObjectDestructor, HookOrder.VeryEarly);
+      areaDestructorHook = hookService.RequestCoreHook<Functions.CNWSArea.Destructor>(OnAreaDestructor, HookOrder.VeryEarly);
+      eatTURDHook = hookService.RequestCoreHook<Functions.CNWSPlayer.EatTURD>(OnEatTURD, HookOrder.VeryEarly);
+      dropTURDHook = hookService.RequestCoreHook<Functions.CNWSPlayer.DropTURD>(OnDropTURD, HookOrder.VeryEarly);
+      saveToGffHook = hookService.RequestCoreHook<Functions.CNWSUUID.SaveToGff>(OnSaveToGff, HookOrder.VeryEarly);
+      loadFromGffHook = hookService.RequestCoreHook<Functions.CNWSUUID.LoadFromGff>(OnLoadFromGff, HookOrder.VeryEarly);
     }
 
     public void DestroyObjectStorage(NwObject gameObject)
