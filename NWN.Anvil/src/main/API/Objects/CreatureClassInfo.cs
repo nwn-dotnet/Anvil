@@ -64,9 +64,13 @@ namespace Anvil.API
     public byte NegativeLevels => classInfo.m_nNegativeLevels;
 
     /// <summary>
-    /// Gets the spell school for this class.
+    /// Gets or sets the spell school for this class.
     /// </summary>
-    public SpellSchool School => (SpellSchool)classInfo.m_nSchool;
+    public SpellSchool School
+    {
+      get => (SpellSchool)classInfo.m_nSchool;
+      set => classInfo.m_nSchool = (byte)value;
+    }
 
     /// <summary>
     /// Clears the specified spell from the creature's spellbook.
