@@ -6,14 +6,14 @@ using Anvil.Services;
 namespace Anvil.API
 {
   [ServiceBinding(typeof(NuiWindowEventService))]
-  internal sealed class NuiWindowEventService : IInitializable
+  internal sealed class NuiWindowEventService
   {
     private readonly Dictionary<NwPlayer, Dictionary<int, Action<ModuleEvents.OnNuiEvent>>> eventHandlers = new Dictionary<NwPlayer, Dictionary<int, Action<ModuleEvents.OnNuiEvent>>>();
 
-    public void Init()
+    public NuiWindowEventService(EventService eventService)
     {
-      NwModule.Instance.OnNuiEvent += OnNuiEvent;
-      NwModule.Instance.OnClientLeave += OnClientLeave;
+      eventService.SubscribeAll<ModuleEvents.OnNuiEvent, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(NwModule.Instance), OnNuiEvent);
+      eventService.SubscribeAll<ModuleEvents.OnClientLeave, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(NwModule.Instance), OnClientLeave);
     }
 
     public void Subscribe(NuiWindowToken token, Action<ModuleEvents.OnNuiEvent> handler)
