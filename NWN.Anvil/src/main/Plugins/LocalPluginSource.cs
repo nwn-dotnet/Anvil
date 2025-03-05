@@ -53,5 +53,7 @@ namespace Anvil.Plugins
 
       return plugins;
     }
+
+    public void Dispose() {}
   }
 }

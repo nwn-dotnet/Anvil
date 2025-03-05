@@ -155,5 +155,10 @@ namespace Anvil.Plugins
           break;
       }
     }
+
+    public void Dispose()
+    {
+      Logging.@event.Publish.RemoveHandler(OnLogEvent);
+    }
   }
 }

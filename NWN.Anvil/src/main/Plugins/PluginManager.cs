@@ -252,6 +252,8 @@ namespace Anvil.Plugins
         throw new Exception("No plugins are available to load, and ANVIL_PREVENT_START_NO_PLUGIN is enabled.\n" +
           $"Check your plugins are available at {HomeStorage.Plugins}, or add valid plugins paths using the ANVIL_ADD_PLUGIN_PATHS variable.");
       }
+
+      pluginSources.DisposeAll();
     }
 
     private bool IsUnloadComplete(Dictionary<WeakReference, string> pendingUnloads, int attempt)
