@@ -68,6 +68,7 @@ namespace Anvil
       if (!EnvironmentConfig.ReloadEnabled)
       {
         Log.Error("Hot Reload of plugins is not enabled (ANVIL_RELOAD_ENABLED=true)");
+        return;
       }
 
       GetService<SchedulerService>()?.Schedule(() =>
@@ -75,7 +76,7 @@ namespace Anvil
         Log.Info("Reloading Anvil");
         instance.Unload();
         instance.LoadAndStart();
-      }, TimeSpan.Zero);
+      }, TimeSpan.FromSeconds(0.1));
     }
 
     private void CheckServerVersion()

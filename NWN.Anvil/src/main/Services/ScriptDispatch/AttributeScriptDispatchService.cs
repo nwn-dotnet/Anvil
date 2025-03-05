@@ -7,7 +7,6 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(IScriptDispatcher))]
-  [ServiceBinding(typeof(IInitializable))]
   internal sealed class AttributeScriptDispatchService(Lazy<IEnumerable<object>> services) : IScriptDispatcher, IInitializable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
