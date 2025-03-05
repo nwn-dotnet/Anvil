@@ -68,6 +68,7 @@ namespace Anvil
       if (!EnvironmentConfig.ReloadEnabled)
       {
         Log.Error("Hot Reload of plugins is not enabled (ANVIL_RELOAD_ENABLED=true)");
+        return;
       }
 
       GetService<SchedulerService>()?.Schedule(() =>
