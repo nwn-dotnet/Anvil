@@ -33,6 +33,8 @@ namespace Anvil.API
 
       public Service()
       {
+        TimeSinceStartup = TimeSpan.Zero;
+        DeltaTime = TimeSpan.Zero;
         Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
       }
 
