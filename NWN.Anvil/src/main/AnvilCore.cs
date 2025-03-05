@@ -75,7 +75,7 @@ namespace Anvil
         Log.Info("Reloading Anvil");
         instance.Unload();
         instance.LoadAndStart();
-      }, TimeSpan.Zero);
+      }, TimeSpan.FromSeconds(0.1));
     }
 
     private void CheckServerVersion()
