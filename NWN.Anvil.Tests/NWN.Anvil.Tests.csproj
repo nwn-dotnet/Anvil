@@ -44,7 +44,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
     <PackageReference Include="NWN.Core" Version="8193.37.2" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.37.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.37.3" PrivateAssets="compile" />
   </ItemGroup>
 
 </Project>
