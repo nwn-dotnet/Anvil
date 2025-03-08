@@ -1,5 +1,5 @@
 <map id="Anvil.API.NuiOptions" name="Anvil.API.NuiOptions">
-<area shape="rect" id="node1" title="A list of options (radio buttons). &#160;Only one can be selected at a time." alt="" coords="5,155,149,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="36,80,119,107"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="33,5,122,32"/>
+<area shape="rect" id="Node000001" title="A list of options (radio buttons). &#160;Only one can be selected at a time." alt="" coords="5,79,149,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="36,5,118,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,46,80,79,74,79,74,46"/>
 </map>

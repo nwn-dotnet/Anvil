@@ -3,7 +3,6 @@ var classAnvil_1_1API_1_1NwFeat =
     [ "FromFeatId", "classAnvil_1_1API_1_1NwFeat.html#afbdbbe4c971b7238ac4dcaf8d2ac8886", null ],
     [ "FromFeatType", "classAnvil_1_1API_1_1NwFeat.html#af13e7b6613830a7cc3f7e4fab5a5700c", null ],
     [ "GetRequiredAbilityScore", "classAnvil_1_1API_1_1NwFeat.html#a8c937660fed502c6f856bdd41ccc5f62", null ],
-    [ "operator NwFeat?", "classAnvil_1_1API_1_1NwFeat.html#a9ec76b94b98311c464246a395eb5df3e", null ],
     [ "AllClassesCanUse", "classAnvil_1_1API_1_1NwFeat.html#a59899416933877c6513c6f9a03a09cab", null ],
     [ "Description", "classAnvil_1_1API_1_1NwFeat.html#a8f40a1c8a11b1b2937466970b12a54fd", null ],
     [ "FeatType", "classAnvil_1_1API_1_1NwFeat.html#a13806aa953fe9940864429a0a39453d2", null ],

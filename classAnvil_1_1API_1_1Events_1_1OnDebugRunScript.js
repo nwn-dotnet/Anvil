@@ -1,6 +1,5 @@
 var classAnvil_1_1API_1_1Events_1_1OnDebugRunScript =
 [
-    [ "Context", "classAnvil_1_1API_1_1Events_1_1OnDebugRunScript.html#ae9bf7afbbb225a80c37e91a7d60e5393", null ],
     [ "Player", "classAnvil_1_1API_1_1Events_1_1OnDebugRunScript.html#ad21f07b98b8a59b9306cc8bd91486649", null ],
     [ "ScriptName", "classAnvil_1_1API_1_1Events_1_1OnDebugRunScript.html#ad7e8f67b0f7617743f679cabef884d5a", null ],
     [ "Skip", "classAnvil_1_1API_1_1Events_1_1OnDebugRunScript.html#a1c67ce77f34a9d71741d14b3a2274b8c", null ],

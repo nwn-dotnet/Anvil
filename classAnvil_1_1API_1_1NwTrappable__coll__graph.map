@@ -1,6 +1,7 @@
 <map id="Anvil.API.NwTrappable" name="Anvil.API.NwTrappable">
-<area shape="rect" id="node1" title="A trappable game object/entity." alt="" coords="9,229,165,256"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="29,155,144,181"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,80,127,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" id="Node000001" title="A trappable game object/entity." alt="" coords="5,153,161,178"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="26,79,140,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,120,86,152,80,152,80,120"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="43,5,123,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,46,86,79,80,79,80,46"/>
 </map>

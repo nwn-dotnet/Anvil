@@ -1,4 +1,5 @@
 <map id="Anvil.API.EffectParams&lt; T &gt;" name="Anvil.API.EffectParams&lt; T &gt;">
-<area shape="rect" id="node1" title="Represents an array of Effect parameters." alt="" coords="5,80,192,107"/>
-<area shape="rect" id="node2" title=" " alt="" coords="29,5,168,32"/>
+<area shape="rect" id="Node000001" title="Represents an array of Effect parameters." alt="" coords="5,79,192,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="30,5,167,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,46,101,79,96,79,96,46"/>
 </map>

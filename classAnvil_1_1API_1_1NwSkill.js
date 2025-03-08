@@ -2,7 +2,6 @@ var classAnvil_1_1API_1_1NwSkill =
 [
     [ "FromSkillId", "classAnvil_1_1API_1_1NwSkill.html#a6ac76c629a7b295729c238acea6c3ce8", null ],
     [ "FromSkillType", "classAnvil_1_1API_1_1NwSkill.html#ac76f12cc8a5598112921fd20410f22e0", null ],
-    [ "operator NwSkill?", "classAnvil_1_1API_1_1NwSkill.html#a6d4d88974a2c9237897348c5fd64033f", null ],
     [ "AllClassesCanUse", "classAnvil_1_1API_1_1NwSkill.html#ae77745050417e4eafac3619513538c9e", null ],
     [ "ArmorCheckPenalty", "classAnvil_1_1API_1_1NwSkill.html#a0efe543da74dcdbd13bca93d7db1127a", null ],
     [ "Description", "classAnvil_1_1API_1_1NwSkill.html#a9966c622900847eb2b6b3aaf4f4956fd", null ],

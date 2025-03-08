@@ -16,6 +16,5 @@ var classAnvil_1_1API_1_1ItemAppearance =
     [ "SetArmorPieceColor", "classAnvil_1_1API_1_1ItemAppearance.html#acf1f2d2c4c3fc57d9333b920418d5c36", null ],
     [ "SetSimpleModel", "classAnvil_1_1API_1_1ItemAppearance.html#adeeefcd11825976a1aa39d4d5297ade6", null ],
     [ "SetWeaponColor", "classAnvil_1_1API_1_1ItemAppearance.html#a3daf298f4da2ef88b79d7d1011e5356a", null ],
-    [ "SetWeaponModel", "classAnvil_1_1API_1_1ItemAppearance.html#a1fc4ad285050332c83975e1ae992741d", null ],
-    [ "FeedbackService", "classAnvil_1_1API_1_1ItemAppearance.html#ad7ba6d4bdc88c027db566edee2a5f44a", null ]
+    [ "SetWeaponModel", "classAnvil_1_1API_1_1ItemAppearance.html#a1fc4ad285050332c83975e1ae992741d", null ]
 ];

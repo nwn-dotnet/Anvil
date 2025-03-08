@@ -1,4 +1,5 @@
 <map id="Anvil.API.Color" name="Anvil.API.Color">
-<area shape="rect" id="node1" title="A 8 bit Color structure." alt="" coords="18,80,127,107"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,140,32"/>
+<area shape="rect" id="Node000001" title="A 8 bit Color structure." alt="" coords="18,79,127,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,140,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,46,75,79,70,79,70,46"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="Anvil.API.ClassPreReqTableEntry" name="Anvil.API.ClassPreReqTableEntry">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,192,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html" title="Implement to decode TwoDimArrayEntry into a type using NwGameTables.GetTable&lt;T&gt;(string,..." alt="" coords="32,5,165,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,192,120"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html" title="Implement to decode TwoDimArrayEntry into a type using NwGameTables.GetTable&lt;T&gt;(string,..." alt="" coords="32,5,165,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,46,101,79,96,79,96,46"/>
 </map>

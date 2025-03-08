@@ -1,5 +1,7 @@
 <map id="Anvil.API.SQLQuery" name="Anvil.API.SQLQuery">
-<area shape="rect" id="node1" title="A SQL Query." alt="" coords="5,155,145,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1EngineStructure.html" title="A pointer&#45;type VM structure." alt="" coords="18,80,133,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="30,5,121,32"/>
+<area shape="rect" id="Node000001" title="A SQL Query." alt="" coords="5,153,145,178"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1EngineStructure.html" title="A pointer&#45;type VM structure." alt="" coords="18,79,132,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,120,78,152,72,152,72,120"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="30,5,120,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,46,78,79,72,79,72,46"/>
 </map>

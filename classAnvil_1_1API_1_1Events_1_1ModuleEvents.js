@@ -1,0 +1,25 @@
+var classAnvil_1_1API_1_1Events_1_1ModuleEvents =
+[
+    [ "OnAcquireItem", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem" ],
+    [ "OnActivateItem", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html", null ],
+    [ "OnClientEnter", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter" ],
+    [ "OnClientLeave", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave" ],
+    [ "OnCutsceneAbort", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort" ],
+    [ "OnHeartbeat", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnHeartbeat.html", null ],
+    [ "OnModuleLoad", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleLoad.html", null ],
+    [ "OnModuleStart", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleStart.html", null ],
+    [ "OnNuiEvent", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent" ],
+    [ "OnPlayerChat", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat" ],
+    [ "OnPlayerDeath", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath" ],
+    [ "OnPlayerDying", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying" ],
+    [ "OnPlayerEquipItem", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem" ],
+    [ "OnPlayerGuiEvent", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent" ],
+    [ "OnPlayerLevelUp", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp" ],
+    [ "OnPlayerRespawn", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn" ],
+    [ "OnPlayerRest", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest" ],
+    [ "OnPlayerTarget", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget" ],
+    [ "OnPlayerTileAction", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction" ],
+    [ "OnPlayerUnequipItem", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem" ],
+    [ "OnUnacquireItem", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem" ],
+    [ "OnUserDefined", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", null ]
+];

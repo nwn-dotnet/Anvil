@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.ModuleEvents.OnClientLeave" name="Anvil.API.Events.ModuleEvents.OnClientLeave">
-<area shape="rect" id="node1" title="Triggered when a NwCreature leaves the server." alt="" coords="5,80,212,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="79,5,138,32"/>
+<area shape="rect" id="Node000001" title="Triggered when a NwCreature leaves the server." alt="" coords="5,79,212,120"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="79,5,138,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,46,111,79,106,79,106,46"/>
 </map>

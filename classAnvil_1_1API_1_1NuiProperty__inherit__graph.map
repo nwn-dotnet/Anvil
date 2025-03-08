@@ -1,5 +1,5 @@
 <map id="Anvil.API.NuiProperty&lt; T &gt;" name="Anvil.API.NuiProperty&lt; T &gt;">
-<area shape="rect" id="node1" title="A NUI property that can be configured as a static readonly value, or a property that can be updated a..." alt="" coords="85,5,262,32"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiBind.html" title="A NUI property binding that can be updated after being sent to the client." alt="" coords="5,80,160,107"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiValue.html" title="A readonly NUI property value that cannot be changed at runtime." alt="" coords="184,80,347,107"/>
+<area shape="rect" id="Node000001" title="A NUI property that can be configured as a static readonly value, or a property that can be updated a..." alt="" coords="5,5,182,31"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NuiValue.html" title="A readonly NUI property value that cannot be changed at runtime." alt="" coords="13,79,174,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,46,96,79,91,79,91,46"/>
 </map>

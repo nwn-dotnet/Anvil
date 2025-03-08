@@ -1,7 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin =
 [
-    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin_1_1Factory" ],
-    [ "Context", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin.html#ada2e029062cbccf05fab6370283db7ec", null ],
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin_1_1Factory.html", null ],
     [ "Id", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin.html#ae9d94acac877e7f61c6a925234a023ba", null ],
     [ "Note", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin.html#add11796d85cdafc18202f848ba2388c4", null ],
     [ "Player", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin.html#a0827af77acfe2299bc29549c47c8ccdf", null ],

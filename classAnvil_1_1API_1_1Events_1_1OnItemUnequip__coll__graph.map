@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnItemUnequip" name="Anvil.API.Events.OnItemUnequip">
-<area shape="rect" id="node1" title="Called when a creature attempts to unequip an item." alt="" coords="5,80,219,107"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="83,5,141,32"/>
+<area shape="rect" id="Node000001" title="Called when a creature attempts to unequip an item." alt="" coords="5,79,218,105"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="82,5,141,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,46,114,79,109,79,109,46"/>
 </map>

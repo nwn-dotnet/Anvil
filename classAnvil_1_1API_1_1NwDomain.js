@@ -2,7 +2,6 @@ var classAnvil_1_1API_1_1NwDomain =
 [
     [ "FromDomainId", "classAnvil_1_1API_1_1NwDomain.html#a72f070c49a749592678a31091bd9407a", null ],
     [ "FromDomainType", "classAnvil_1_1API_1_1NwDomain.html#a87f7f6783864a00e87571412bed8b6c2", null ],
-    [ "operator NwDomain?", "classAnvil_1_1API_1_1NwDomain.html#a7e931e0b6d1ffa821fb85fbd33c2e1e7", null ],
     [ "CastableFeat", "classAnvil_1_1API_1_1NwDomain.html#ae0e454224cc5bb8df118057a4050e567", null ],
     [ "Description", "classAnvil_1_1API_1_1NwDomain.html#a5fae45e87199f7e9b05c5091431377eb", null ],
     [ "DomainType", "classAnvil_1_1API_1_1NwDomain.html#a1d55cedd636875a21145618d96066450", null ],

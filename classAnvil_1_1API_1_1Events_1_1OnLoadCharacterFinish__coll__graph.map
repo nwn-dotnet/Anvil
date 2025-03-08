@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnLoadCharacterFinish" name="Anvil.API.Events.OnLoadCharacterFinish">
-<area shape="rect" id="node1" title="Called immediately after a player character is loaded by the server." alt="" coords="5,80,229,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="88,5,147,32"/>
+<area shape="rect" id="Node000001" title="Called immediately after a player character is loaded by the server." alt="" coords="5,79,229,120"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="88,5,146,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,46,120,79,114,79,114,46"/>
 </map>

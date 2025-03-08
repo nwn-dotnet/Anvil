@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.IEventSkippable" name="Anvil.API.Events.IEventSkippable">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,221,107"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="84,5,143,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,221,105"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="84,5,142,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,46,116,79,110,79,110,46"/>
 </map>

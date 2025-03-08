@@ -1,4 +1,5 @@
 <map id="Anvil.API.RulesetKeys" name="Anvil.API.RulesetKeys">
-<area shape="rect" id="node1" title=" " alt="" coords="17,359,169,385"/>
-<area shape="rect" id="node2" href="$structAnvil_1_1API_1_1CRulesKeyHash.html" title=" " alt="" coords="5,5,180,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="16,364,168,390"/>
+<area shape="rect" id="Node000002" href="$structAnvil_1_1API_1_1CRulesKeyHash.html" title=" " alt="" coords="5,5,179,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,47,95,364,89,364,89,47"/>
 </map>

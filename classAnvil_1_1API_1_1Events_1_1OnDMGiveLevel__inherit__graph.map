@@ -1,6 +1,0 @@
-<map id="Anvil.API.Events.OnDMGiveLevel" name="Anvil.API.Events.OnDMGiveLevel">
-<area shape="rect" id="node1" title=" " alt="" coords="5,229,192,271"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html" title=" " alt="" coords="47,155,150,181"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="61,80,136,107"/>
-<area shape="rect" id="node4" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="69,5,128,32"/>
-</map>

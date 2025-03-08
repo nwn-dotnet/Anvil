@@ -1,4 +1,9 @@
 <map id="Anvil.API.NuiWindowToken" name="Anvil.API.NuiWindowToken">
-<area shape="rect" id="node1" title="Represents a NUI window instance for a certain player." alt="" coords="18,81,199,108"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,212,32"/>
+<area shape="rect" id="Node000001" title="Represents a NUI window instance for a certain player." alt="" coords="24,169,204,195"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,212,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,47,116,169,111,169,107,47"/>
+<area shape="rect" id="Node000003" href="$structAnvil_1_1API_1_1NuiWindowToken.html" title="Represents a NUI window instance for a certain player." alt="" coords="130,80,311,106"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="141,38,203,78,201,82,138,42"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,118,131,170,127,166,192,114"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="327,86,337,93,329,100,311,102,311,97,327,95,332,93,325,91"/>
 </map>

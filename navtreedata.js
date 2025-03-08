@@ -32,27 +32,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Effect.html#a4a412bb97d89d645d3e7701070017af4",
-"classAnvil_1_1API_1_1Events_1_1DMEvent.html#a5561c4f7dd6009bedd1b0b1326199c83",
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html#a0b12de98d4dc665d8337e2e5766d4865",
-"classAnvil_1_1API_1_1Events_1_1OnDetectModeUpdate.html#ab2d22d38a94131d64ed111999e100df0",
-"classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish_1_1Factory.html",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a470c624baac7f6b627a935ec36801007",
-"classAnvil_1_1API_1_1ItemProperty.html#a2e04d6bd19391c1c7e20cbbb9c81b7f3",
-"classAnvil_1_1API_1_1NativeUtils.html#a4b0f10b8c7a971b363b1dada09596b42",
-"classAnvil_1_1API_1_1NuiWindow.html",
-"classAnvil_1_1API_1_1NwCreature.html#a0f9a9f5ddc1595241fa4694f539ab4bf",
-"classAnvil_1_1API_1_1NwCreature.html#ae39685397152ab0297f4e218307c1bf7",
-"classAnvil_1_1API_1_1NwGameObject.html#afa1d37969f70dadab7e414d4086cda64",
-"classAnvil_1_1API_1_1NwModule.html#ad7a85da0993e25d144acb9f18b61ea92",
-"classAnvil_1_1API_1_1NwPlayer.html#ac753c5da1a8a1fb387246ec183ed4cbe",
-"classAnvil_1_1API_1_1NwTrappable.html#a7ee0c9ffacc39bceabc107640e8de804",
-"classAnvil_1_1API_1_1PlayerDeviceProperty.html#a41e495089498edb511189c327374441f",
-"classAnvil_1_1API_1_1RulesetKeys.html#a4b11a381f85b1fc0275a5dbc3cfa1c3a",
-"classAnvil_1_1API_1_1RulesetKeys.html#ae60fe2005bc0986858bbaed034922e48",
-"classAnvil_1_1API_1_1TwoDimArrayEntry.html#af59dd4bb85401a7052b82f29d477856a",
-"classAnvil_1_1Services_1_1PluginStorageService.html",
-"structAnvil_1_1API_1_1NwDateTime.html#a2278aea31cff64aa942680294bab4ddd"
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html",
+"classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html#acb5b2874610fa4a051093cedc75231f2",
+"classAnvil_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a1e3b5000303e74a40bd792fd921b9981",
+"classAnvil_1_1API_1_1NwArea.html#a592c7338b4937934d07b5d456c4d2884",
+"classAnvil_1_1API_1_1NwCreature.html#a4cfaeff64b14acb0968e2a7a5451bfa8",
+"classAnvil_1_1API_1_1NwDoor.html#aa26bffeb6d69d6916d0f2be7a9d7a0e5",
+"classAnvil_1_1API_1_1NwMath.html#a99384e7bd4e63bd5e4a7950ec2b80e4a",
+"classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce",
+"classAnvil_1_1API_1_1NwSpell.html#ac979787310d2598b7a935c419410283b",
+"classAnvil_1_1API_1_1TwoDimArrayEntry.html#a21ff9598111a53869518ce2addaae10a",
+"structAnvil_1_1API_1_1HitEffect.html#a8727f150d12188e30b08176552390b3e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

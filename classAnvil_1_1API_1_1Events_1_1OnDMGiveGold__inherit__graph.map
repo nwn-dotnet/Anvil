@@ -1,6 +1,0 @@
-<map id="Anvil.API.Events.OnDMGiveGold" name="Anvil.API.Events.OnDMGiveGold">
-<area shape="rect" id="node1" title=" " alt="" coords="5,229,219,256"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html" title=" " alt="" coords="61,155,163,181"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="75,80,149,107"/>
-<area shape="rect" id="node4" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="83,5,141,32"/>
-</map>

@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnClientConnect" name="Anvil.API.Events.OnClientConnect">
-<area shape="rect" id="node1" title="Triggered when a player attempts to connect to the server (before character select)...." alt="" coords="5,80,177,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="62,5,121,32"/>
+<area shape="rect" id="Node000001" title="Triggered when a player attempts to connect to the server (before character select)...." alt="" coords="5,79,177,120"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="62,5,120,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,46,94,79,88,79,88,46"/>
 </map>

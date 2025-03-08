@@ -13,5 +13,5 @@ var classAnvil_1_1API_1_1IntegerExtensions =
     [ "ToNwObject", "classAnvil_1_1API_1_1IntegerExtensions.html#ae8a93d630749b4b6c1aa4a42e0ed6406", null ],
     [ "ToNwObject< T >", "classAnvil_1_1API_1_1IntegerExtensions.html#abb3b5006540f32fccd0b2e395f602142", null ],
     [ "ToNwObjectSafe< T >", "classAnvil_1_1API_1_1IntegerExtensions.html#a490a6aa9aec727342bda5e5c1228fb46", null ],
-    [ "ToNwPlayer", "classAnvil_1_1API_1_1IntegerExtensions.html#a3fbc9a512088ad1ead4f14859c63ea86", null ]
+    [ "ToNwPlayer", "classAnvil_1_1API_1_1IntegerExtensions.html#a7bbfbadc456fde0c7e0d76b7c345412c", null ]
 ];

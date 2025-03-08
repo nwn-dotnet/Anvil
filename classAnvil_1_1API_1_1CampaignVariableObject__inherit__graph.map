@@ -1,6 +1,9 @@
 <map id="Anvil.API.CampaignVariableObject&lt; T &gt;" name="Anvil.API.CampaignVariableObject&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="70,169,254,211"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1CampaignVariable.html" title=" " alt="" coords="83,95,241,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,13,132,39"/>
-<area shape="rect" id="node4" title=" " alt="" coords="156,5,355,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="70,168,254,208"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1CampaignVariable.html" title=" " alt="" coords="84,94,240,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,135,164,167,159,167,159,135"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,13,132,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,47,149,91,146,96,92,51"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="156,5,354,46"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="222,58,178,95,175,91,219,54"/>
 </map>

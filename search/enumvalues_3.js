@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['feedback_3403',['Feedback',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182abea4c2c8eb82d05891ddd71584881b56',1,'Anvil::Services']]],
-  ['feedbackstring_3404',['Feedbackstring',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182ae40b2d464f2f4b266500cab5fc686c8c',1,'Anvil::Services']]]
+  ['destroyed_0',['Destroyed',['../namespaceAnvil_1_1API.html#abb4c20347d06c89a2519219e26fb0ef3aaefbd0597f1bc2493bbc18898243513b',1,'Anvil::API']]],
+  ['dispelmagic_1',['DispelMagic',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182adaf4b5bf9c1ee58b8f13d3833f7bb605',1,'Anvil::Services']]]
 ];

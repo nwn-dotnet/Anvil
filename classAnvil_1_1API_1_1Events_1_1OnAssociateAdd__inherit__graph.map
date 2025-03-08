@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnAssociateAdd" name="Anvil.API.Events.OnAssociateAdd">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,225,107"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="86,5,145,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,225,105"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="86,5,144,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,46,118,79,112,79,112,46"/>
 </map>

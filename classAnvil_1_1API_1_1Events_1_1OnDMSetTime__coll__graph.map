@@ -1,5 +1,0 @@
-<map id="Anvil.API.Events.OnDMSetTime" name="Anvil.API.Events.OnDMSetTime">
-<area shape="rect" id="node1" title=" " alt="" coords="5,155,213,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="72,80,147,107"/>
-<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="80,5,139,32"/>
-</map>

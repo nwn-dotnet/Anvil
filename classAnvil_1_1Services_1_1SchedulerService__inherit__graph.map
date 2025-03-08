@@ -1,5 +1,7 @@
 <map id="Anvil.Services.SchedulerService" name="Anvil.Services.SchedulerService">
-<area shape="rect" id="node1" title="A service for scheduling tasks to run with a timed delay and/or repeat with a regular interval." alt="" coords="25,80,192,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1Services_1_1IUpdateable.html" title="Implement this interface in your service to get a callback each server loop." alt="" coords="5,5,97,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="122,5,213,32"/>
+<area shape="rect" id="Node000001" title="A service for scheduling tasks to run with a timed delay and/or repeat with a regular interval." alt="" coords="26,79,191,120"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1Services_1_1IUpdateable.html" title="Implement this interface in your service to get a callback each server loop." alt="" coords="5,5,97,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,42,96,77,92,80,66,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="121,5,210,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,45,125,80,120,77,146,42"/>
 </map>

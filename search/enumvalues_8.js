@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['polymorph_3415',['Polymorph',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182a047b16cc218ad61c9e42c84c36ef9982',1,'Anvil::Services']]]
+  ['mousehover_0',['MouseHover',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a623f025e339b35b993e9a3ed2909a1c0',1,'Anvil::API']]],
+  ['mouseleft_1',['MouseLeft',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1abce0118bd8f5bf5e7f849dff486de57f',1,'Anvil::API']]],
+  ['mousemiddle_2',['MouseMiddle',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a9d30e0a64a4f80ad2159949d3f316626',1,'Anvil::API']]],
+  ['mouseoff_3',['MouseOff',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a7143aca0c2dace95a6ec5024c0bfff6b',1,'Anvil::API']]],
+  ['mouseright_4',['MouseRight',['../namespaceAnvil_1_1API.html#a3000ea96c8c73696330d75a59609a1a1a64be76bfebee9b86f0963be88b3de177',1,'Anvil::API']]]
 ];

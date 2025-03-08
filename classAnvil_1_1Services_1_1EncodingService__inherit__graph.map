@@ -1,4 +1,5 @@
 <map id="Anvil.Services.EncodingService" name="Anvil.Services.EncodingService">
-<area shape="rect" id="node1" title="Manages string conversion for NWN.Core, NWN.Native and the StringHelper utility class." alt="" coords="5,80,211,107"/>
-<area shape="rect" id="node2" title=" " alt="" coords="59,5,157,32"/>
+<area shape="rect" id="Node000001" title="Manages string conversion for NWN.Core, NWN.Native and the StringHelper utility class." alt="" coords="5,79,210,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="59,5,156,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,46,110,79,105,79,105,46"/>
 </map>

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['unlockachievement_3426',['Unlockachievement',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182ad48657ccc0e46bc65ae0cd3b307dc25a',1,'Anvil::Services']]],
-  ['useskill_3427',['UseSkill',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182ab0931fe8d84cc2cc7c60c1c356eab1f5',1,'Anvil::Services']]]
+  ['recomputelighting_0',['RecomputeLighting',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114',1,'Anvil::API']]],
+  ['reloadborder_1',['ReloadBorder',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a105a56ac435feecdb6d291cb69346c15',1,'Anvil::API']]],
+  ['reloadgrass_2',['ReloadGrass',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2e7fca71c3a794620bdba2b2535b2299',1,'Anvil::API']]],
+  ['replaceexisting_3',['ReplaceExisting',['../namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625acaa87ccd05a2655b0fafa8c9a145983572d',1,'Anvil::API']]]
 ];

@@ -1,6 +1,0 @@
-<map id="Anvil.API.Events.OnDMGoTo" name="Anvil.API.Events.OnDMGoTo">
-<area shape="rect" id="node1" title=" " alt="" coords="5,229,196,256"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMSingleTargetEvent.html" title=" " alt="" coords="27,155,175,181"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="63,80,138,107"/>
-<area shape="rect" id="node4" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="71,5,130,32"/>
-</map>

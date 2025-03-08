@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnSpellCast" name="Anvil.API.Events.OnSpellCast">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,200,107"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="73,5,132,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,200,105"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="73,5,132,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,46,105,79,100,79,100,46"/>
 </map>

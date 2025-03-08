@@ -1,5 +1,7 @@
 <map id="Anvil.API.GffResourceFieldList" name="Anvil.API.GffResourceFieldList">
-<area shape="rect" id="node1" title="A GffResourceField containing a list of GffResourceFieldStruct values." alt="" coords="55,95,257,121"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1GffResourceField.html" title="A property/field in a GffResource." alt="" coords="5,13,128,39"/>
-<area shape="rect" id="node3" title=" " alt="" coords="152,5,339,47"/>
+<area shape="rect" id="Node000001" title="A GffResourceField containing a list of GffResourceFieldStruct values." alt="" coords="54,94,254,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,127,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,47,142,91,139,95,89,51"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="150,5,336,46"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,58,170,95,166,91,208,54"/>
 </map>

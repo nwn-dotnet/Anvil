@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnLevelDown" name="Anvil.API.Events.OnLevelDown">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,209,107"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="78,5,137,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,209,105"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="78,5,136,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,46,110,79,104,79,104,46"/>
 </map>

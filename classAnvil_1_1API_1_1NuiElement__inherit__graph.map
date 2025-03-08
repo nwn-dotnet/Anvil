@@ -1,26 +1,11 @@
 <map id="Anvil.API.NuiElement" name="Anvil.API.NuiElement">
-<area shape="rect" id="node1" title="A dynamic NUI element with style support." alt="" coords="5,323,152,349"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiLayout.html" title=" " alt="" coords="200,81,339,108"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1NuiList.html" title="A list view of elements." alt="" coords="209,323,330,349"/>
-<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="200,537,339,564"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiColumn.html" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="403,5,545,32"/>
-<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1NuiGroup.html" title="A group, usually with a border and some padding, holding a single element. Can scroll...." alt="" coords="407,56,541,83"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1NuiRow.html" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="411,107,537,133"/>
-<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1NuiButton.html" title="A clickable button with text as the label." alt="" coords="405,157,543,184"/>
-<area shape="rect" id="node9" href="$classAnvil_1_1API_1_1NuiButtonImage.html" title="A clickable button with an image as the label." alt="" coords="387,208,561,235"/>
-<area shape="rect" id="node10" href="$classAnvil_1_1API_1_1NuiButtonSelect.html" title="A clickable button with text as the label. &#160;Same as NuiButton, but this one is a toggle." alt="" coords="387,259,561,285"/>
-<area shape="rect" id="node11" href="$classAnvil_1_1API_1_1NuiChart.html" title="A line/column chart element." alt="" coords="409,309,539,336"/>
-<area shape="rect" id="node12" href="$classAnvil_1_1API_1_1NuiCheck.html" title="A checkbox with a label to the right of it." alt="" coords="406,360,542,387"/>
-<area shape="rect" id="node13" href="$classAnvil_1_1API_1_1NuiColorPicker.html" title="A simple color picker, with no borders or spacing." alt="" coords="391,411,557,437"/>
-<area shape="rect" id="node14" href="$classAnvil_1_1API_1_1NuiCombo.html" title="A dropdown menu/combobox." alt="" coords="404,461,544,488"/>
-<area shape="rect" id="node15" href="$classAnvil_1_1API_1_1NuiImage.html" title="An image, with no border or padding." alt="" coords="407,512,541,539"/>
-<area shape="rect" id="node16" href="$classAnvil_1_1API_1_1NuiLabel.html" title="A single&#45;line, styleable, non&#45;editable text field." alt="" coords="409,563,539,589"/>
-<area shape="rect" id="node17" href="$classAnvil_1_1API_1_1NuiOptions.html" title="A list of options (radio buttons). &#160;Only one can be selected at a time." alt="" coords="402,613,546,640"/>
-<area shape="rect" id="node18" href="$classAnvil_1_1API_1_1NuiProgress.html" title="A generic progress bar." alt="" coords="399,664,549,691"/>
-<area shape="rect" id="node19" href="$classAnvil_1_1API_1_1NuiSlider.html" title="A slider bar with integer values." alt="" coords="408,715,540,741"/>
-<area shape="rect" id="node20" href="$classAnvil_1_1API_1_1NuiSliderFloat.html" title="A slider bar with floating&#45;point values." alt="" coords="393,765,555,792"/>
-<area shape="rect" id="node21" href="$classAnvil_1_1API_1_1NuiSpacer.html" title="A special widget that just takes up layout space. &#160;Configure the space used with the Width and Height..." alt="" coords="404,816,544,843"/>
-<area shape="rect" id="node22" href="$classAnvil_1_1API_1_1NuiText.html" title="A non&#45;editable text field. Supports multiple lines and has a skinned border and a scrollbar if needed..." alt="" coords="412,867,536,893"/>
-<area shape="rect" id="node23" href="$classAnvil_1_1API_1_1NuiTextEdit.html" title="An editable text field. Can be optionally configured as multi&#45;line." alt="" coords="401,917,547,944"/>
-<area shape="rect" id="node24" href="$classAnvil_1_1API_1_1NuiToggles.html" title=" " alt="" coords="401,968,547,995"/>
+<area shape="rect" id="Node000001" title="A dynamic NUI element with style support." alt="" coords="165,5,310,31"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NuiLayout.html" title=" " alt="" coords="169,79,306,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,46,240,79,235,79,235,46"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NuiColumn.html" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="5,153,148,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="198,114,105,155,103,150,196,109"/>
+<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1NuiGroup.html" title="A group, usually with a border and some padding, holding a single element. Can scroll...." alt="" coords="171,153,304,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="240,120,240,152,235,152,235,120"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1NuiRow.html" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="329,153,453,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="279,109,366,150,364,154,277,114"/>
 </map>

@@ -1,6 +1,5 @@
 var classAnvil_1_1Services_1_1WeaponService =
 [
-    [ "WeaponService", "classAnvil_1_1Services_1_1WeaponService.html#a7b2fff70272503f7dd7e47d0bd337173", null ],
     [ "AddEpicWeaponDevastatingCriticalFeat", "classAnvil_1_1Services_1_1WeaponService.html#ab51a84f3689b3be3993d498f66b401f7", null ],
     [ "AddEpicWeaponFocusFeat", "classAnvil_1_1Services_1_1WeaponService.html#aab4b82bfd07354ab250f3aa81a4d4310", null ],
     [ "AddEpicWeaponOverwhelmingCriticalFeat", "classAnvil_1_1Services_1_1WeaponService.html#a59f8e75b1b04f0f319fb1f46cea9536f", null ],

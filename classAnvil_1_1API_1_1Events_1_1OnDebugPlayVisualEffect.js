@@ -1,6 +1,5 @@
 var classAnvil_1_1API_1_1Events_1_1OnDebugPlayVisualEffect =
 [
-    [ "Context", "classAnvil_1_1API_1_1Events_1_1OnDebugPlayVisualEffect.html#a0554121e49b94a7170205e08fee11db6", null ],
     [ "Duration", "classAnvil_1_1API_1_1Events_1_1OnDebugPlayVisualEffect.html#acbd731c0600be6b9e47ef71eb8005ff5", null ],
     [ "Effect", "classAnvil_1_1API_1_1Events_1_1OnDebugPlayVisualEffect.html#a44a25e4928840aa092b5fb3a7eda7528", null ],
     [ "Player", "classAnvil_1_1API_1_1Events_1_1OnDebugPlayVisualEffect.html#a7d95dcf89612e70fee58776b3541b0ae", null ],

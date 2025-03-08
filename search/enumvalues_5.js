@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keepexisting_3407',['KeepExisting',['../namespaceAnvil_1_1API.html#a3ba42674b73a307c218e2a06a7625acaa52a9854287113e3ba9a005ff73c54c7b',1,'Anvil::API']]]
+  ['granted_0',['Granted',['../namespaceAnvil_1_1API.html#a76295b00f093a13173c5f146924b0f56ac322f9346b70efdd31968628d5ee68db',1,'Anvil::API']]]
 ];

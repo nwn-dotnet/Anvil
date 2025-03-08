@@ -1,3 +1,6 @@
 <map id="Anvil.API.CreatureTypeFilter" name="Anvil.API.CreatureTypeFilter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,191,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,94,190,120"/>
+<area shape="rect" id="Node000002" href="$structAnvil_1_1API_1_1CreatureTypeFilter.html" title=" " alt="" coords="5,5,190,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,47,100,94,95,94,95,47"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="206,11,216,18,208,25,190,28,190,23,206,21,211,18,204,15"/>
 </map>

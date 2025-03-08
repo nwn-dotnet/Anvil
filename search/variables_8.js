@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['nextupdate_3382',['NextUpdate',['../classAnvil_1_1Services_1_1SchedulerService.html#a68f70d765cb4305a506901b630986325',1,'Anvil::Services::SchedulerService']]]
+  ['radtodeg_0',['RadToDeg',['../classAnvil_1_1API_1_1NwMath.html#acef57b43a52582ae3abbfc87a2954ab0',1,'Anvil::API::NwMath']]],
+  ['red_1',['Red',['../structAnvil_1_1API_1_1Color.html#a4c14419dae0a5627fad714b089723f61',1,'Anvil::API::Color']]],
+  ['repeating_2',['Repeating',['../classAnvil_1_1Services_1_1ScheduledTask.html#a876f4ff139e05322f536de5b96b54856',1,'Anvil::Services::ScheduledTask']]]
 ];

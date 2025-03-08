@@ -1,8 +1,7 @@
 <map id="Anvil.API.Events.DMGiveEvent" name="Anvil.API.Events.DMGiveEvent">
-<area shape="rect" id="node1" title=" " alt="" coords="235,64,437,91"/>
-<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1Events_1_1OnDMGiveGold.html" title=" " alt="" coords="485,5,699,32"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Events_1_1OnDMGiveLevel.html" title=" " alt="" coords="499,57,685,98"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1Events_1_1OnDMGiveXP.html" title=" " alt="" coords="490,123,694,149"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="112,64,187,91"/>
-<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="5,64,64,91"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,153,207,178"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="69,79,143,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,120,109,152,103,152,103,120"/>
+<area shape="rect" id="Node000003" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="77,5,135,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,46,109,79,103,79,103,46"/>
 </map>

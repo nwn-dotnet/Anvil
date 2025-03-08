@@ -1,5 +1,7 @@
 <map id="Anvil.API.PersistentVariableInt" name="Anvil.API.PersistentVariableInt">
-<area shape="rect" id="node1" title=" " alt="" coords="5,169,205,196"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1ObjectStorageVariableInt.html" title=" " alt="" coords="22,95,189,121"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1ObjectStorageVariable.html" title=" " alt="" coords="29,5,181,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,168,205,193"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1ObjectStorageVariableInt.html" title=" " alt="" coords="22,94,188,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,135,108,167,102,167,102,135"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1ObjectStorageVariable.html" title=" " alt="" coords="29,5,181,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,62,108,93,102,93,102,62"/>
 </map>

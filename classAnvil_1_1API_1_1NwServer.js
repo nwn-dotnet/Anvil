@@ -1,6 +1,5 @@
 var classAnvil_1_1API_1_1NwServer =
 [
-    [ "NwServer", "classAnvil_1_1API_1_1NwServer.html#a350b678c3eceeea32fa242fc216abee9", null ],
     [ "AddBannedCDKey", "classAnvil_1_1API_1_1NwServer.html#adb9bf4470a72c9d79f248cab4c503c2f", null ],
     [ "AddBannedIP", "classAnvil_1_1API_1_1NwServer.html#a2bbd0c9969311075468431ac27bb90b2", null ],
     [ "AddBannedPlayerName", "classAnvil_1_1API_1_1NwServer.html#adbb31d5caa134e7ef556eb7afd3f655b", null ],
@@ -17,7 +16,6 @@ var classAnvil_1_1API_1_1NwServer =
     [ "DebugMoveSpeed", "classAnvil_1_1API_1_1NwServer.html#a854637b3b9530f5ecc3d8661f9c38f5b", null ],
     [ "DebugSaveThrows", "classAnvil_1_1API_1_1NwServer.html#ae755de4cd17ad607b5c92fba67b37c2e", null ],
     [ "DMPassword", "classAnvil_1_1API_1_1NwServer.html#ad44259566abe38515009366edca368a0", null ],
-    [ "Instance", "classAnvil_1_1API_1_1NwServer.html#abb54c36730b9ee4519851661bb57cb17", null ],
     [ "IsActivePaused", "classAnvil_1_1API_1_1NwServer.html#ae17459caf066f8d1bc3a521ffeecb9b9", null ],
     [ "IsTimestopPaused", "classAnvil_1_1API_1_1NwServer.html#a493021e5deb16b309f9277dbfc09353a", null ],
     [ "PlayerPassword", "classAnvil_1_1API_1_1NwServer.html#a49e03f447d5e84515c40edd5443a551e", null ],

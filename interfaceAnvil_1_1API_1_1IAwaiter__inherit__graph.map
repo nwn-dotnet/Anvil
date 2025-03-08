@@ -1,4 +1,6 @@
-<map id="Anvil.API.IAwaiter&lt; out out TResult &gt;" name="Anvil.API.IAwaiter&lt; out out TResult &gt;">
-<area shape="rect" id="node1" title="Explicit interface for an awaiter. An awaiter is a system that will run an async operation and schedu..." alt="" coords="5,80,136,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="8,5,133,32"/>
+<map id="Anvil.API.IAwaiter&lt; out TResult &gt;" name="Anvil.API.IAwaiter&lt; out TResult &gt;">
+<area shape="rect" id="Node000001" title="Explicit interface for an awaiter. An awaiter is a system that will run an async operation and schedu..." alt="" coords="5,79,132,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="6,5,131,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,46,63,79,58,79,57,47"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="80,47,79,79,74,79,74,46"/>
 </map>

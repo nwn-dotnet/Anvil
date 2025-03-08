@@ -1,0 +1,30 @@
+<map id="NWN.Anvil/src/main/API/Events/Native" name="NWN.Anvil/src/main/API/Events/Native">
+<area shape="rect" id="node2" href="dir_1959968431b3560b61afb8ee36ef4a6b.html" title="AssociateEvents" alt="" coords="120,63,240,89"/>
+<area shape="rect" id="node3" href="dir_71bdc194a0be114e934a4a9e77bfed04.html" title="BarterEvents" alt="" coords="264,63,360,89"/>
+<area shape="rect" id="node4" href="dir_54427ae486714b2ec7df352cd4148059.html" title="CalendarEvents" alt="" coords="384,63,496,89"/>
+<area shape="rect" id="node5" href="dir_6de70be2cae6a6f51b11d736eecc080c.html" title="ChatEvents" alt="" coords="520,63,608,89"/>
+<area shape="rect" id="node6" href="dir_063b942ac9d6a1e914a396abc0418cc7.html" title="ClientEvents" alt="" coords="633,63,727,89"/>
+<area shape="rect" id="node7" href="dir_ceb5b71d8951b64f500aa1c81f6bcad1.html" title="CombatEvents" alt="" coords="751,63,857,89"/>
+<area shape="rect" id="node8" href="dir_f000b074825f72a80f57170b07d3786c.html" title="CreatureEvents" alt="" coords="881,63,991,89"/>
+<area shape="rect" id="node9" href="dir_1f5d7759b710294f2ad93828b9367948.html" title="DamageEvents" alt="" coords="1015,63,1124,89"/>
+<area shape="rect" id="node10" href="dir_d3e2bdcb1e68bc6501c60d027afb5367.html" title="DebugEvents" alt="" coords="1148,63,1246,89"/>
+<area shape="rect" id="node11" href="dir_586cdf480b36d5f560bc43bb2b946638.html" title="DMEvents" alt="" coords="1270,63,1351,89"/>
+<area shape="rect" id="node12" href="dir_467c54359d231f0582079b7f300050df.html" title="EffectEvents" alt="" coords="1376,63,1470,89"/>
+<area shape="rect" id="node13" href="dir_5030b10b147c8a06d29e400ae03b9e56.html" title="ExamineEvents" alt="" coords="1494,63,1604,89"/>
+<area shape="rect" id="node14" href="dir_777bfae09953167cf019a89c3f0590db.html" title="FeatEvents" alt="" coords="1628,63,1716,89"/>
+<area shape="rect" id="node15" href="dir_eec35065c4461b8867d9cf620a5b56a5.html" title="HealEvents" alt="" coords="1740,63,1828,89"/>
+<area shape="rect" id="node16" href="dir_f154cc47fcdc60d691ccd02b901e18e4.html" title="InventoryEvents" alt="" coords="1852,63,1966,89"/>
+<area shape="rect" id="node17" href="dir_2a5f9a126f9634a95c8e77034e5f2b71.html" title="ItemEvents" alt="" coords="1991,63,2078,89"/>
+<area shape="rect" id="node18" href="dir_f91b3b8701b46b134de6e58ca4e3f41f.html" title="LevelEvents" alt="" coords="2103,63,2196,89"/>
+<area shape="rect" id="node19" href="dir_34c120d215c5f4c6aeba94beddc379a6.html" title="MapEvents" alt="" coords="2220,63,2306,89"/>
+<area shape="rect" id="node20" href="dir_8bb64a5f650b6504c8e0a72b1154441b.html" title="ObjectEvents" alt="" coords="2330,63,2430,89"/>
+<area shape="rect" id="node21" href="dir_f3c40b7ca46dcb9b2a9a0f81c58d90d9.html" title="PartyEvents" alt="" coords="2454,63,2546,89"/>
+<area shape="rect" id="node22" href="dir_4d3714ebb9b84c1bdcfed31c36059739.html" title="PerceptionEvents" alt="" coords="2570,63,2694,89"/>
+<area shape="rect" id="node23" href="dir_d3768e911c4695cedbbec8a0688c6d03.html" title="SkillEvents" alt="" coords="2718,63,2804,89"/>
+<area shape="rect" id="node24" href="dir_84a1756b0fcc4522bc7c14313590609b.html" title="SpellEvents" alt="" coords="2828,63,2918,89"/>
+<area shape="rect" id="node25" href="dir_e3d6596d79dba570467b619d9b66e3ea.html" title="StoreEvents" alt="" coords="2943,63,3036,89"/>
+<area shape="rect" id="node26" href="dir_7fe015307b97d0b819729d41fbbdf87d.html" title="ToggleModeEvents" alt="" coords="3059,63,3192,89"/>
+<area shape="rect" id="node27" href="dir_f3387e6e62cd26a0b01785b6201a7cdf.html" title="TriggerEvents" alt="" coords="3216,63,3317,89"/>
+<area shape="rect" id="clust2" href="dir_a8d7b685cc1d40c1b45b4a2c4edb947e.html" alt="" coords="27,52,3328,99"/>
+<area shape="rect" id="clust1" href="dir_d5b4ceedcc5316813f447b11584d8d9f.html" title="Events" alt="" coords="16,16,3339,110"/>
+</map>

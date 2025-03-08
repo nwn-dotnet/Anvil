@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnDebugPlayVisualEffect" name="Anvil.API.Events.OnDebugPlayVisualEffect">
-<area shape="rect" id="node1" title="Called when a client attempts to spawn a visual effect." alt="" coords="5,80,181,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="64,5,123,32"/>
+<area shape="rect" id="Node000001" title="Called when a client attempts to spawn a visual effect." alt="" coords="5,79,181,120"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="64,5,122,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,46,96,79,90,79,90,46"/>
 </map>

@@ -1,10 +1,17 @@
 <map id="Anvil.API.ObjectStorageVariable&lt; T &gt;" name="Anvil.API.ObjectStorageVariable&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="417,46,656,73"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1ObjectStorageVariableEnum.html" title=" " alt="" coords="704,5,913,47"/>
-<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1ObjectStorageVariableStruct.html" title=" " alt="" coords="704,71,913,112"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1ObjectVariable.html" title="A key/value pair/variable stored on an Object." alt="" coords="232,46,369,73"/>
-<area shape="rect" id="node3" title=" " alt="" coords="41,17,148,43"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,68,184,109"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1PersistentVariableEnum.html" title=" " alt="" coords="961,5,1147,47"/>
-<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1PersistentVariableStruct.html" title=" " alt="" coords="961,71,1147,112"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="416,46,654,72"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1ObjectStorageVariableEnum.html" title=" " alt="" coords="702,5,911,46"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="660,41,702,36,702,41,660,46"/>
+<area shape="rect" id="Node000007" href="$classAnvil_1_1API_1_1ObjectStorageVariableStruct.html" title=" " alt="" coords="702,71,911,111"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="665,72,702,76,702,81,664,77"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1ObjectVariable.html" title="A key/value pair/variable stored on an Object." alt="" coords="232,46,368,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="384,56,415,56,415,62,384,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="41,17,148,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="163,37,232,47,231,52,162,42"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,67,184,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="199,70,231,66,232,71,199,75"/>
+<area shape="rect" id="Node000006" href="$classAnvil_1_1API_1_1PersistentVariableEnum.html" title=" " alt="" coords="959,5,1143,46"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="926,23,958,23,958,28,926,28"/>
+<area shape="rect" id="Node000008" href="$classAnvil_1_1API_1_1PersistentVariableStruct.html" title=" " alt="" coords="959,71,1143,111"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="926,88,958,88,958,94,926,94"/>
 </map>

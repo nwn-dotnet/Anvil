@@ -1,5 +1,0 @@
-<map id="Anvil.API.NuiTextEdit" name="Anvil.API.NuiTextEdit">
-<area shape="rect" id="node1" title="An editable text field. Can be optionally configured as multi&#45;line." alt="" coords="5,155,152,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="37,80,120,107"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="34,5,123,32"/>
-</map>

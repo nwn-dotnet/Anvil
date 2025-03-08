@@ -1,9 +1,9 @@
 var classAnvil_1_1Plugins_1_1PluginManager =
 [
+    [ "GetPlugin", "classAnvil_1_1Plugins_1_1PluginManager.html#a56f69548b9edddf0da57706959815c3a", null ],
+    [ "GetPlugin", "classAnvil_1_1Plugins_1_1PluginManager.html#a901b7b0de5b65e1d6327f8555f3f9fc2", null ],
     [ "GetPluginDirectory", "classAnvil_1_1Plugins_1_1PluginManager.html#a27f33886afc2e3824a5dd65646a62d12", null ],
     [ "IsPluginAssembly", "classAnvil_1_1Plugins_1_1PluginManager.html#ac7e505c203083b13aec33503430dd647", null ],
-    [ "IsPluginLoaded", "classAnvil_1_1Plugins_1_1PluginManager.html#a12d88e80745e143fd6185f94be282786", null ],
-    [ "ResolveDependency", "classAnvil_1_1Plugins_1_1PluginManager.html#a146292c054e2c54a049d903d70653216", null ],
-    [ "LoadedTypes", "classAnvil_1_1Plugins_1_1PluginManager.html#a34196ac3a5e2890563dc96bd6cfdaca5", null ],
-    [ "ResourcePaths", "classAnvil_1_1Plugins_1_1PluginManager.html#af3f9d1e1752e09072d50e70915f53d29", null ]
+    [ "LoadPlugin", "classAnvil_1_1Plugins_1_1PluginManager.html#aab415aefabbf76d84d2185e486ecf721", null ],
+    [ "UnloadPlugin", "classAnvil_1_1Plugins_1_1PluginManager.html#a4c4e7c4935a2895e96e0ea9a2afc84d6", null ]
 ];

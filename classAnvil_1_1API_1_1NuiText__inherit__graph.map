@@ -1,5 +1,0 @@
-<map id="Anvil.API.NuiText" name="Anvil.API.NuiText">
-<area shape="rect" id="node1" title="A non&#45;editable text field. Supports multiple lines and has a skinned border and a scrollbar if needed..." alt="" coords="5,155,129,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="26,80,109,107"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="23,5,112,32"/>
-</map>

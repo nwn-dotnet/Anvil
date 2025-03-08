@@ -1,12 +1,21 @@
 <map id="Anvil.API.EngineStructure" name="Anvil.API.EngineStructure">
-<area shape="rect" id="node1" title="A pointer&#45;type VM structure." alt="" coords="144,132,315,159"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Cassowary.html" title="Represents a Cassowary engine structure. &#160;A Cassowary is a type of solver. NWN uses them internally t..." alt="" coords="363,5,505,32"/>
-<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1EffectBase.html" title=" " alt="" coords="363,56,505,83"/>
-<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Json.html" title="Represents a json engine structure." alt="" coords="381,107,487,133"/>
-<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation." alt="" coords="369,157,499,184"/>
-<area shape="rect" id="node9" href="$classAnvil_1_1API_1_1SQLQuery.html" title="A SQL Query." alt="" coords="364,208,504,235"/>
-<area shape="rect" id="node10" href="$classAnvil_1_1API_1_1Talent.html" title="Represents a talent structure. A talent is a feat, skill or spell possessed by a creature." alt="" coords="377,259,491,285"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,132,96,159"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure." alt="" coords="574,31,686,57"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1ItemProperty.html" title="Represents an item property effect engine structure." alt="" coords="553,81,707,108"/>
+<area shape="rect" id="Node000001" title="A pointer&#45;type VM structure." alt="" coords="143,129,313,155"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1Cassowary.html" title="Represents a Cassowary engine structure. &#160;A Cassowary is a type of solver. NWN uses them internally t..." alt="" coords="361,5,503,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,117,301,78,360,40,384,29,386,34,362,45,304,82,256,121"/>
+<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1EffectBase.html" title=" " alt="" coords="362,55,503,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="277,121,360,89,390,78,392,83,362,94,278,126"/>
+<area shape="rect" id="Node000007" href="$classAnvil_1_1API_1_1Json.html" title="Represents a json engine structure." alt="" coords="379,104,485,130"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="328,127,378,121,379,126,329,132"/>
+<area shape="rect" id="Node000008" href="$classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation." alt="" coords="368,153,496,179"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="329,151,368,156,367,161,328,157"/>
+<area shape="rect" id="Node000009" href="$classAnvil_1_1API_1_1SQLQuery.html" title="A SQL Query." alt="" coords="362,203,502,228"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="279,158,362,189,392,200,390,205,360,194,278,163"/>
+<area shape="rect" id="Node000010" href="$classAnvil_1_1API_1_1Talent.html" title="Represents a talent structure. A talent is a feat, skill or spell possessed by a creature." alt="" coords="375,252,489,278"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="257,163,304,201,362,238,386,249,384,254,360,243,301,206,253,168"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,129,95,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,140,142,140,142,145,110,145"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure." alt="" coords="572,31,683,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="518,54,571,48,572,53,518,60"/>
+<area shape="rect" id="Node000006" href="$classAnvil_1_1API_1_1ItemProperty.html" title="Represents an item property effect engine structure." alt="" coords="551,80,704,106"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="519,76,551,80,551,86,518,81"/>
 </map>

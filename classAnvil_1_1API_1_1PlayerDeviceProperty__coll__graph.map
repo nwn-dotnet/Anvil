@@ -1,3 +1,6 @@
 <map id="Anvil.API.PlayerDeviceProperty" name="Anvil.API.PlayerDeviceProperty">
-<area shape="rect" id="node1" title=" " alt="" coords="5,87,208,114"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,443,208,469"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1PlayerDeviceProperty.html" title=" " alt="" coords="5,90,208,116"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,131,109,443,104,443,104,131"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="129,77,164,62,198,60,212,65,224,74,232,87,234,103,231,120,222,134,209,142,192,146,173,146,154,141,135,132,117,118,120,114,138,127,156,136,174,140,191,141,206,137,218,130,226,118,229,103,227,88,220,78,210,70,197,66,165,67,132,82"/>
 </map>

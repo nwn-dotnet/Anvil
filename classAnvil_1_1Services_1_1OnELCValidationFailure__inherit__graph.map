@@ -1,8 +1,13 @@
 <map id="Anvil.Services.OnELCValidationFailure" name="Anvil.Services.OnELCValidationFailure">
-<area shape="rect" id="node1" title=" " alt="" coords="5,136,212,177"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1Services_1_1OnELCFeatValidationFailure.html" title=" " alt="" coords="263,5,439,47"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1Services_1_1OnELCItemValidationFailure.html" title=" " alt="" coords="263,71,439,112"/>
-<area shape="rect" id="node4" href="$classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html" title=" " alt="" coords="260,136,443,177"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html" title=" " alt="" coords="264,201,439,243"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html" title=" " alt="" coords="262,267,441,308"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,136,212,177"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1Services_1_1OnELCFeatValidationFailure.html" title=" " alt="" coords="263,5,438,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,124,200,90,258,57,287,44,289,49,261,61,203,95,152,129"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1Services_1_1OnELCItemValidationFailure.html" title=" " alt="" coords="263,71,438,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,129,271,109,273,115,202,134"/>
+<area shape="rect" id="Node000004" href="$classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html" title=" " alt="" coords="260,136,441,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="227,154,259,154,259,159,227,159"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html" title=" " alt="" coords="263,201,438,242"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="202,179,273,198,271,203,200,184"/>
+<area shape="rect" id="Node000006" href="$classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html" title=" " alt="" coords="261,267,440,307"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="152,184,203,218,261,251,289,264,287,269,258,256,200,223,149,188"/>
 </map>

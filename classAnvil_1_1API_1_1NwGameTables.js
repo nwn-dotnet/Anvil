@@ -1,7 +1,7 @@
 var classAnvil_1_1API_1_1NwGameTables =
 [
     [ "GetTable", "classAnvil_1_1API_1_1NwGameTables.html#a76a742e60aaad55caa7685f8e75ebf2a", null ],
-    [ "GetTable< T >", "classAnvil_1_1API_1_1NwGameTables.html#a330c961b92756e0c7da7c783a571ae10", null ],
+    [ "GetTable< T >", "classAnvil_1_1API_1_1NwGameTables.html#aa5b916924d2cd26e72c9b6727cdaff16", null ],
     [ "AppearanceTable", "classAnvil_1_1API_1_1NwGameTables.html#a14cd11dfeabc9a684e391b2ede091e5c", null ],
     [ "ArmorTable", "classAnvil_1_1API_1_1NwGameTables.html#a9d7e70a9010655a5d9adf235011aeb39", null ],
     [ "BodyBagTable", "classAnvil_1_1API_1_1NwGameTables.html#a55a0473ab4bb90b27e636e573a016402", null ],

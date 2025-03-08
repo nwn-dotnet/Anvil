@@ -1,6 +1,9 @@
 <map id="Anvil.API.Events.OnSpellCast.Factory" name="Anvil.API.Events.OnSpellCast.Factory">
-<area shape="rect" id="node1" title=" " alt="" coords="109,169,277,211"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1HookEventFactory.html" title=" " alt="" coords="129,95,258,121"/>
-<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html" title=" " alt="" coords="5,5,211,47"/>
-<area shape="rect" id="node4" title=" " alt="" coords="235,13,325,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="109,168,276,208"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1Events_1_1HookEventFactory.html" title=" " alt="" coords="129,94,257,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,135,196,167,190,167,190,135"/>
+<area shape="rect" id="Node000003" href="$interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html" title=" " alt="" coords="5,5,210,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,55,181,91,178,95,138,59"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="234,13,323,38"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="256,51,208,95,204,92,252,47"/>
 </map>
