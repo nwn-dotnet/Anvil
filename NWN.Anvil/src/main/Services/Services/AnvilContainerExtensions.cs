@@ -21,7 +21,7 @@ namespace Anvil.Services
       }
 
       ServiceBindingOptionsAttribute? options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      RegisterAnvilService(container, bindToType, new[] { bindToType, typeof(ICoreService) }, options);
+      RegisterAnvilService(container, bindToType, [bindToType, typeof(ICoreService)], options);
     }
 
     public static void RegisterAnvilService(this IServiceContainer serviceContainer, Type bindToType, IEnumerable<Type> bindFromTypes, ServiceBindingOptionsAttribute? options)
