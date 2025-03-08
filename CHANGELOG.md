@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.36.1...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.37.0
+https://github.com/nwn-dotnet/Anvil/compare/v8193.36.1...v8193.37.0
 
 ### Added
 - Plugins: Added support to disable loading plugins on startup with new environment variable, `ANVIL_PLUGINNAME_SKIP`
@@ -12,10 +33,10 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.36.1...HEAD
   - To mark a plugin as "isolated", add the `PluginInfo` assembly attribute with `Isolated` = `true`.
   - To load the isolated plugin, call the `PluginManager.LoadPlugin` method.
   - To unload the isolated plugin, call the `PluginManager.UnloadPlugin` method.
-- PlayerDeviceProperty: Added new 8193.37 constants
-- PlayerPlatform: Added new 8193.37 constants
-- SavingThrowType: Added new 8193.37 constants
-- SpellFailureType: Added new 8193.37 constants
+- PlayerDeviceProperty: Added new 8193.37 constants.
+- PlayerPlatform: Added new 8193.37 constants.
+- SavingThrowType: Added new 8193.37 constants.
+- SpellFailureType: Added new 8193.37 constants.
 - Effect: Added `DamageIncrease` overload with correct constants.
 - Effect: Added `SummonCreature` overload with `NwCreature` parameter instead of string ResRef.
 - ItemProperty: Added `OnHitCastSpell` overload with correct casterLevel parameter.
@@ -81,9 +102,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.36.1...HEAD
 - `ItemProperty.OnHitCastSpell(IPCastSpell, IPSpellLevel)` - use the `ItemProperty.OnHitCastSpell(IPCastSpell, int)` overload instead.
 - `NwCreature.CheckResistSpell(NwGameObject)` - use the `NwCreature.SpellResistanceCheck` method instead.
 - `NwGameObject.SetIsDestroyable(bool,bool,bool)` - use the IsDestroyable/IsRaiseable/IsSelectableWhenDead properties instead.
-
-### Removed
-- N/A
 
 ### Fixed
 - ItemProperty: `OnMonsterHitProperties` now correctly uses the "special" parameter.
