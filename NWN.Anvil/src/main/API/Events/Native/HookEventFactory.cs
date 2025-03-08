@@ -17,7 +17,7 @@ namespace Anvil.API.Events
     [Inject]
     protected static VirtualMachine VirtualMachine { get; private set; } = null!;
 
-    private readonly HashSet<Type> activeEvents = new HashSet<Type>();
+    private readonly HashSet<Type> activeEvents = [];
     private IDisposable[]? hooks;
 
     public void Dispose()

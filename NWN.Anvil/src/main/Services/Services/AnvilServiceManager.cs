@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using Anvil.API;
+using Anvil.Internal;
 using Anvil.Plugins;
 using LightInject;
 using NLog;
-using LogLevel = LightInject.LogLevel;
 
 namespace Anvil.Services
 {
@@ -15,57 +12,82 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly ContainerOptions containerOptions = new ContainerOptions
-    {
-      EnablePropertyInjection = true,
-      EnableCurrentScope = false,
-      EnableVariance = false,
-      DefaultServiceSelector = SelectHighestPriorityService,
-      LogFactory = CreateLogHandler,
-    };
-
-    private List<ICoreService> coreServices = null!;
-    private List<ILateDisposable>? lateDisposableServices;
-
+    private readonly AnvilContainerFactory anvilContainerFactory;
+    private readonly AnvilCoreServiceManager anvilCoreServiceManager;
     private PluginManager pluginManager = null!;
 
     private bool shuttingDown;
-
-    public AnvilServiceManager()
-    {
-      CoreServiceContainer = CreateContainer();
-      AnvilServiceContainer = CreateContainer();
-
-      InstallCoreContainer();
-    }
+    private bool anvilContainerAvailable;
 
     public ServiceContainer AnvilServiceContainer { get; private set; }
 
     public ServiceContainer CoreServiceContainer { get; }
 
+    public event Action<IServiceContainer, Plugin?>? OnContainerCreate;
+    public event Action<IServiceContainer, Plugin?, bool>? OnContainerDispose;
+    public event Action<IServiceContainer, Plugin?>? OnContainerPostDispose;
+
+    public AnvilServiceManager()
+    {
+      anvilContainerFactory = new AnvilContainerFactory(this);
+
+      CoreServiceContainer = anvilContainerFactory.CreateContainer();
+      AnvilServiceContainer = anvilContainerFactory.CreateContainer(CoreServiceContainer);
+
+      anvilCoreServiceManager = new AnvilCoreServiceManager(CoreServiceContainer);
+    }
+
+    public void InjectProperties(object? instance)
+    {
+      if (anvilContainerAvailable)
+      {
+        AnvilServiceContainer.InjectProperties(instance);
+      }
+      else
+      {
+        CoreServiceContainer.InjectProperties(instance);
+      }
+    }
+
+    IServiceContainer IServiceManager.CreatePluginContainer(Plugin plugin)
+    {
+      if (!plugin.IsLoaded)
+      {
+        throw new Exception("Plugin is not loaded.");
+      }
+
+      ServiceContainer pluginContainer = anvilContainerFactory.CreateContainer(AnvilServiceContainer);
+      foreach (Type type in plugin.PluginTypes)
+      {
+        TryRegisterAnvilService(pluginContainer, type);
+      }
+
+      pluginContainer.ConstructAllServices();
+      OnContainerCreate?.Invoke(pluginContainer, plugin);
+
+      return pluginContainer;
+    }
+
+    void IServiceManager.DisposePluginContainer(IServiceContainer container, Plugin plugin, bool immediateDispose)
+    {
+      OnContainerDispose?.Invoke(container, plugin, immediateDispose);
+      container.Dispose();
+      OnContainerPostDispose?.Invoke(container, plugin);
+    }
+
     void IServiceManager.Init()
     {
       pluginManager = CoreServiceContainer.GetInstance<PluginManager>();
-      coreServices = CoreServiceContainer.GetAllInstances<ICoreService>().ToList();
-
-      foreach (ICoreService coreService in coreServices)
-      {
-        Log.Info("Initialising core service {CoreService}", coreService.GetType().FullName);
-        coreService.Init();
-      }
+      anvilCoreServiceManager.Init();
     }
 
     void IServiceManager.Load()
     {
-      Log.Info("Loading core services...");
-      foreach (ICoreService coreService in coreServices)
-      {
-        Log.Info("Loading core service {CoreService}", coreService.GetType().FullName);
-        coreService.Load();
-      }
+      anvilCoreServiceManager.Load();
 
       Log.Info("Loading anvil services...");
       InstallAnvilServiceContainer();
+      anvilContainerAvailable = true;
     }
 
     void IServiceManager.Shutdown()
@@ -77,191 +99,51 @@ namespace Anvil.Services
       }
 
       shuttingDown = true;
-
-      if (lateDisposableServices != null)
-      {
-        foreach (ILateDisposable lateDisposable in lateDisposableServices)
-        {
-          lateDisposable.LateDispose();
-        }
-      }
-
-      for (int i = coreServices.Count - 1; i >= 0; i--)
-      {
-        coreServices[i].Shutdown();
-      }
-
-      lateDisposableServices = null;
+      anvilCoreServiceManager.Shutdown();
     }
 
     void IServiceManager.Start()
     {
-      foreach (ICoreService coreService in coreServices)
-      {
-        coreService.Start();
-      }
-
-      ConstructAllServices(AnvilServiceContainer);
-
-      foreach (IInitializable service in AnvilServiceContainer.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
-      {
-        service.Init();
-      }
+      anvilCoreServiceManager.Start();
+      AnvilServiceContainer.ConstructAllServices();
+      OnContainerCreate?.Invoke(AnvilServiceContainer, null);
     }
 
     void IServiceManager.Unload()
     {
       UnloadAnvilServices();
-      UnloadCoreServices();
-    }
-
-    private static Action<LogEntry> CreateLogHandler(Type type)
-    {
-      Logger logger = LogManager.GetLogger(type.FullName);
-      return entry =>
-      {
-        switch (entry.Level)
-        {
-          case LogLevel.Info:
-            logger.Debug(entry.Message);
-            break;
-          case LogLevel.Warning:
-            logger.Warn(entry.Message);
-            break;
-          default:
-            throw new ArgumentOutOfRangeException();
-        }
-      };
+      anvilCoreServiceManager.Unload();
     }
 
     private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute? options)
     {
-      return options?.PluginDependencies == null || options.PluginDependencies.All(pluginManager.IsPluginLoaded);
-    }
-
-    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindToType, IEnumerable<Type> bindFromTypes, ServiceBindingOptionsAttribute? options)
-    {
-      string serviceName = bindToType.GetInternalServiceName();
-
-      PerContainerLifetime lifeTime = new PerContainerLifetime();
-      RegisterExplicitBindings(serviceContainer, bindToType, bindFromTypes, serviceName, lifeTime);
-
-      if (options is not { Lazy: true })
-      {
-        RegisterImplicitBindings(serviceContainer, bindToType, serviceName, lifeTime);
-      }
-
-      Log.Info("Registered service {Service}", bindToType.FullName);
-    }
-
-    private static void RegisterExplicitBindings(ServiceContainer serviceContainer, Type bindToType, IEnumerable<Type> bindFromTypes, string serviceName, ILifetime lifeTime)
-    {
-      foreach (Type binding in bindFromTypes)
-      {
-        serviceContainer.Register(binding, bindToType, serviceName, lifeTime);
-        Log.Debug("Bind {BindFrom} -> {BindTo}", binding.FullName, bindToType.FullName);
-      }
-    }
-
-    private static void RegisterImplicitBindings(ServiceContainer serviceContainer, Type bindTo, string serviceName, ILifetime lifeTime)
-    {
-      serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
-
-      if (bindTo.IsAssignableTo(typeof(IInitializable)))
-      {
-        serviceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
-      }
-
-      if (bindTo.IsAssignableTo(typeof(ILateDisposable)))
-      {
-        serviceContainer.Register(typeof(ILateDisposable), bindTo, serviceName, lifeTime);
-      }
-    }
-
-    private static string SelectHighestPriorityService(string[] services)
-    {
-      // Services are sorted in priority order.
-      // So we just return the first service.
-      return services[0];
-    }
-
-    private static void SetupInjectPropertySelector(ServiceContainer serviceContainer)
-    {
-      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
-      serviceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
-    }
-
-    private void ConstructAllServices(ServiceContainer container)
-    {
-      container.GetAllInstances<object>();
-    }
-
-    private ServiceContainer CreateContainer()
-    {
-      ServiceContainer serviceContainer = new ServiceContainer(containerOptions);
-      SetupInjectPropertySelector(serviceContainer);
-
-      serviceContainer.RegisterInstance(typeof(IServiceManager), this);
-      return serviceContainer;
+      return options?.PluginDependencies == null || options.PluginDependencies.All(plugin => pluginManager.GetPlugin(plugin)?.IsLoaded == true);
     }
 
     private void InstallAnvilServiceContainer()
     {
-      // Expose all core services as concrete types.
-      foreach (ICoreService coreService in CoreServiceContainer.GetAllInstances<ICoreService>())
+      foreach (Type type in Assemblies.AllTypes)
       {
-        AnvilServiceContainer.RegisterInstance(coreService.GetType(), coreService);
+        TryRegisterAnvilService(AnvilServiceContainer, type);
       }
 
-      foreach (Type type in pluginManager.LoadedTypes)
+      foreach (Plugin plugin in pluginManager.Plugins)
       {
-        TryRegisterAnvilService(type);
+        if (plugin.PluginTypes != null && !plugin.PluginInfo.Isolated)
+        {
+          foreach (Type type in plugin.PluginTypes)
+          {
+            TryRegisterAnvilService(AnvilServiceContainer, type);
+          }
+        }
       }
     }
 
-    private void InstallCoreContainer()
+    private void TryRegisterAnvilService(IServiceContainer container, Type bindToType)
     {
-      RegisterCoreService<NwServer>();
-      RegisterCoreService<LoggerManager>();
-      RegisterCoreService<UnhandledExceptionLogger>();
-      RegisterCoreService<UnobservedTaskExceptionLogger>();
-      RegisterCoreService<InjectionService>();
-      RegisterCoreService<ModuleLoadTracker>();
-      RegisterCoreService<HookService>();
-      RegisterCoreService<VirtualMachine>();
-      RegisterCoreService<PluginManager>();
-      RegisterCoreService<EncodingService>();
-    }
-
-    private void RegisterCoreService<T>() where T : ICoreService
-    {
-      Type bindToType = typeof(T);
-      if (bindToType.IsAbstract || bindToType.ContainsGenericParameters)
+      if (bindToType.IsAnvilService(out ServiceBindingAttribute[]? bindings, out ServiceBindingOptionsAttribute? options) && IsServiceRequirementsMet(pluginManager, options))
       {
-        return;
-      }
-
-      ServiceBindingOptionsAttribute? options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      RegisterBindings(CoreServiceContainer, bindToType, new[] { bindToType, typeof(ICoreService) }, options);
-    }
-
-    private void TryRegisterAnvilService(Type bindToType)
-    {
-      if (!bindToType.IsClass || bindToType.IsAbstract || bindToType.ContainsGenericParameters)
-      {
-        return;
-      }
-
-      ServiceBindingAttribute[] bindings = bindToType.GetCustomAttributes<ServiceBindingAttribute>();
-      if (bindings.Length == 0)
-      {
-        return;
-      }
-
-      ServiceBindingOptionsAttribute? options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      if (IsServiceRequirementsMet(pluginManager, options))
-      {
-        RegisterBindings(AnvilServiceContainer, bindToType, bindings.Select(attribute => attribute.BindFrom), options);
+        container.RegisterAnvilService(bindToType, bindings.Select(attribute => attribute.BindFrom), options);
       }
     }
 
@@ -271,21 +153,9 @@ namespace Anvil.Services
       Log.Info("Unloading anvil services...");
 
       // This must always happen in a separate scope/method, otherwise in Debug and some Release configurations, AnvilServiceContainer will hold a strong reference and prevent plugin unload.
-      lateDisposableServices = AnvilServiceContainer.GetAllInstances<ILateDisposable>().ToList();
+      OnContainerDispose?.Invoke(AnvilServiceContainer, null, true);
       AnvilServiceContainer.Dispose();
-      AnvilServiceContainer = CreateContainer();
-    }
-
-    private void UnloadCoreServices()
-    {
-      Log.Info("Unloading core services...");
-      for (int i = coreServices.Count - 1; i >= 0; i--)
-      {
-        ICoreService coreService = coreServices[i];
-
-        Log.Info("Unloading core service {CoreService}", coreService.GetType().FullName);
-        coreService.Unload();
-      }
+      AnvilServiceContainer = anvilContainerFactory.CreateContainer(CoreServiceContainer);
     }
   }
 }

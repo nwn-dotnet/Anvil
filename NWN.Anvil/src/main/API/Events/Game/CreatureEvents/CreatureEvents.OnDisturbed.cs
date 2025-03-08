@@ -18,21 +18,29 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that had its inventory disturbed.
       /// </summary>
-      public NwCreature CreatureDisturbed { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
+      public NwCreature CreatureDisturbed { get; }
 
       /// <summary>
       /// Gets the <see cref="NwItem"/> that was disturbed in the inventory.
       /// </summary>
-      public NwItem DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>()!;
+      public NwItem DisturbedItem { get; }
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that disturbed another <see cref="NwCreature"/> inventory.
       /// </summary>
-      public NwCreature Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwCreature>()!;
+      public NwCreature Disturber { get; }
 
-      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType)NWScript.GetInventoryDisturbType();
+      public InventoryDisturbType DisturbType { get; }
 
       NwObject IEvent.Context => CreatureDisturbed;
+
+      public OnDisturbed()
+      {
+        CreatureDisturbed = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
+        DisturbedItem = NWScript.GetInventoryDisturbItem(CreatureDisturbed).ToNwObject<NwItem>()!;
+        Disturber = NWScript.GetLastDisturbed(CreatureDisturbed).ToNwObject<NwCreature>()!;
+        DisturbType = (InventoryDisturbType)NWScript.GetInventoryDisturbType(CreatureDisturbed);
+      }
     }
   }
 }

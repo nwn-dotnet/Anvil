@@ -237,8 +237,8 @@ namespace Anvil.API
     {
       get
       {
-        CNWSClient client = LowLevel.ServerExoApp.GetClientObjectByPlayerId(PlayerId);
-        return client != null && client.AsNWSPlayer() == player;
+        CNWSPlayer? playerById = LowLevel.ServerExoApp.GetClientObjectByPlayerId(PlayerId);
+        return playerById == player;
       }
     }
 
@@ -246,6 +246,18 @@ namespace Anvil.API
     /// Gets the language configured by this player.
     /// </summary>
     public PlayerLanguage Language => (PlayerLanguage)NWScript.GetPlayerLanguage(ControlledCreature);
+
+    /// <summary>
+    /// Gets the last latency/"ping" result for this player. Results are updated every 6000 milliseconds.<br/>
+    /// Returns 0 for unsupported clients.
+    /// </summary>
+    public int Latency => NWScript.GetPlayerNetworkLatency(ControlledCreature, false.ToInt());
+
+    /// <summary>
+    /// Gets this player's smoothed/average latency. This is a moving calculation that may change in future game releases.<br/>
+    /// Returns 0 for unsupported clients.
+    /// </summary>
+    public int LatencyAverage => NWScript.GetPlayerNetworkLatency(ControlledCreature, true.ToInt());
 
     /// <summary>
     /// Gets the original creature that this player logged in with.
@@ -557,6 +569,14 @@ namespace Anvil.API
     public void BootPlayer(string reason = "")
     {
       NWScript.BootPC(ControlledCreature, reason);
+    }
+
+    /// <summary>
+    /// Cancels any cursor targeting mode the player is currently in.
+    /// </summary>
+    public void CancelTargetMode()
+    {
+      CursorTargetService.CancelTargetMode(this);
     }
 
     /// <summary>
@@ -1666,6 +1686,36 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Refreshes the player's character sheet.
+    /// </summary>
+    public async Task UpdateCharacterSheet()
+    {
+      await NwTask.Delay(TimeSpan.FromSeconds(0.5f));
+      if (!IsValid)
+      {
+        return;
+      }
+
+      CNWSPlayerCharSheetGUI? charSheet = Player.m_pCharSheetGUI;
+      if (charSheet == null)
+      {
+        return;
+      }
+
+      uint updatesRequired = charSheet.ComputeCharacterSheetUpdateRequired(Player);
+      if (updatesRequired == 0)
+      {
+        return;
+      }
+
+      CNWSMessage? message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message != null)
+      {
+        message.WriteGameObjUpdate_CharacterSheet(Player, updatesRequired);
+      }
+    }
+
+    /// <summary>
     /// Vibrates the player's device or controller. Does nothing if vibration is not supported.
     /// </summary>
     /// <param name="motor">Which motors to vibrate.</param>
@@ -1687,7 +1737,7 @@ namespace Anvil.API
 
     internal static NwPlayer? FromPlayerId(uint playerId)
     {
-      CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
+      CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId);
       return player != null ? new NwPlayer(player) : null;
     }
   }

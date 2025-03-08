@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   [TestFixture(Category = "API.Object")]
   public sealed class NwEncounterTests
   {
-    private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
+    private readonly List<NwGameObject> createdTestObjects = [];
 
     [Test(Description = "Serializing and deserializing an encounter generates valid gff data, and a new valid encounter.")]
     [TestCase(StandardResRef.Encounter.x2_beholder001)]

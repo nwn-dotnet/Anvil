@@ -17,7 +17,7 @@ namespace Anvil.Services
 
     private readonly Dictionary<NwPlayer, PlayerNameOverride> globalNameOverrides = new Dictionary<NwPlayer, PlayerNameOverride>();
     private readonly Dictionary<NwPlayer, Dictionary<NwPlayer, PlayerNameOverride>> perPlayerOverrides = new Dictionary<NwPlayer, Dictionary<NwPlayer, PlayerNameOverride>>();
-    private readonly HashSet<NwPlayer> renameAddedToPlayerList = new HashSet<NwPlayer>();
+    private readonly HashSet<NwPlayer> renameAddedToPlayerList = [];
     private readonly Dictionary<NwPlayer, OriginalNames> renameOriginalNames = new Dictionary<NwPlayer, OriginalNames>();
 
     private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerChat_Party> sendServerToPlayerChatPartyHook;

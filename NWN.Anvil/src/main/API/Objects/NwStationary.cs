@@ -1,6 +1,5 @@
 using System;
 using System.Numerics;
-using System.Threading.Tasks;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -72,6 +71,11 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the object that last locked this stationary object.
+    /// </summary>
+    public NwGameObject? LockedBy => NWScript.GetLastLocked(this).ToNwObject<NwGameObject>();
+
+    /// <summary>
     /// Gets or sets a value indicating whether a specific key with the tag <see cref="LockKeyTag"/> is required to open this stationary object.
     /// </summary>
     public bool LockKeyRequired
@@ -99,6 +103,11 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the object that last unlocked this stationary object.
+    /// </summary>
+    public NwGameObject? UnlockedBy => NWScript.GetLastUnlocked(this).ToNwObject<NwGameObject>();
+
+    /// <summary>
     /// Creates the specified trap.
     /// </summary>
     /// <param name="trap">The base type of trap.</param>
@@ -109,19 +118,10 @@ namespace Anvil.API
       NWScript.CreateTrapOnObject((int)trap, this, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
     }
 
-    public override Task FaceToPoint(Vector3 point)
+    public override void FaceToPoint(Vector3 point)
     {
       Vector3 direction = Vector3.Normalize(point - Position);
-      return base.FaceToPoint(Position - direction);
-    }
-
-    /// <summary>
-    /// Gets the object that last locked this stationary object.
-    /// </summary>
-    public async Task<NwGameObject?> GetLastLockedBy()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetLastLocked().ToNwObject<NwGameObject>();
+      base.FaceToPoint(Position - direction);
     }
 
     /// <summary>

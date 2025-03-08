@@ -1,6 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {
@@ -153,8 +153,8 @@ namespace Anvil.API
     public string ToColorToken()
     {
       const byte tokenMinVal = 1;
-      ReadOnlySpan<byte> tokenBytes = stackalloc[] { Math.Max(Red, tokenMinVal), Math.Max(Green, tokenMinVal), Math.Max(Blue, tokenMinVal) };
-      return StringHelper.Encoding.GetString(tokenBytes);
+      ReadOnlySpan<byte> tokenBytes = [Math.Max(Red, tokenMinVal), Math.Max(Green, tokenMinVal), Math.Max(Blue, tokenMinVal)];
+      return StringUtils.Encoding.GetString(tokenBytes);
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ namespace Anvil.API
     /// <returns>The 32-bit RGBA value of this Color.</returns>
     public int ToRGBA()
     {
-      ReadOnlySpan<byte> data = stackalloc[] { Alpha, Blue, Green, Red };
+      ReadOnlySpan<byte> data = [Alpha, Blue, Green, Red];
       return BitConverter.ToInt32(data);
     }
 
@@ -178,7 +178,7 @@ namespace Anvil.API
     /// <returns>The 32-bit RGBA value of this Color.</returns>
     public uint ToUnsignedRGBA()
     {
-      ReadOnlySpan<byte> data = stackalloc[] { Alpha, Blue, Green, Red };
+      ReadOnlySpan<byte> data = [Alpha, Blue, Green, Red];
       return BitConverter.ToUInt32(data);
     }
   }

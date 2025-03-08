@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, uint, void*, int, int> pHook = &OnExamineTrap;
         Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_TrapData>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

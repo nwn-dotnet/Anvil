@@ -8,13 +8,12 @@ using Anvil.API;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
+using NWNX.NET.Native;
 using ResRefType = Anvil.API.ResRefType;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(ResourceManager))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed unsafe class ResourceManager : IDisposable
+  public sealed unsafe class ResourceManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -27,19 +26,8 @@ namespace Anvil.Services
     private static readonly CExoBase ExoBase = NWNXLib.ExoBase();
     private static readonly CExoResMan ResMan = NWNXLib.ExoResMan();
 
-    private readonly CExoString tempAlias;
-
+    private CExoString? tempAlias;
     private uint currentIndex;
-
-    public ResourceManager()
-    {
-      if (Directory.Exists(HomeStorage.ResourceTemp))
-      {
-        Directory.Delete(HomeStorage.ResourceTemp, true);
-      }
-
-      tempAlias = CreateResourceDirectory(HomeStorage.ResourceTemp).ToExoString();
-    }
 
     /// <summary>
     /// Adds the specified folder as a valid resource directory for all ResMan requests.
@@ -69,6 +57,11 @@ namespace Anvil.Services
       currentIndex++;
 
       return alias;
+    }
+
+    internal void RemoveResourceDirectory(string alias)
+    {
+      ResMan.RemoveResourceDirectory(alias.ToExoString());
     }
 
     /// <summary>
@@ -140,7 +133,7 @@ namespace Anvil.Services
       {
         case ResRefType.NSS:
           string source = GetNSSContents(name);
-          return StringHelper.Encoding.GetBytes(source);
+          return StringUtils.Encoding.GetBytes(source);
         case ResRefType.NCS:
           return null;
         default:
@@ -164,7 +157,7 @@ namespace Anvil.Services
           return null;
         default:
           byte[]? data = GetStandardResourceData(name, type);
-          return data != null ? StringHelper.Encoding.GetString(data) : null;
+          return data != null ? StringUtils.Encoding.GetString(data) : null;
       }
     }
 
@@ -198,15 +191,7 @@ namespace Anvil.Services
     /// <param name="text">The text to populate in the resource.</param>
     public void WriteTempResource(string resourceName, string text)
     {
-      WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(text));
-    }
-
-    void IDisposable.Dispose()
-    {
-      if (Directory.Exists(HomeStorage.ResourceTemp))
-      {
-        Directory.Delete(HomeStorage.ResourceTemp, true);
-      }
+      WriteTempResource(resourceName, StringUtils.Encoding.GetBytes(text));
     }
 
     private byte[]? GetStandardResourceData(string name, ResRefType type)
@@ -250,5 +235,23 @@ namespace Anvil.Services
       res = ResMan.GetResObject(resRef, (ushort)type);
       return res != null;
     }
+
+    void ICoreService.Init() {}
+
+    void ICoreService.Load()
+    {
+      if (Directory.Exists(HomeStorage.ResourceTemp))
+      {
+        Directory.Delete(HomeStorage.ResourceTemp, true);
+      }
+
+      tempAlias = CreateResourceDirectory(HomeStorage.ResourceTemp).ToExoString();
+    }
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Unload() {}
   }
 }

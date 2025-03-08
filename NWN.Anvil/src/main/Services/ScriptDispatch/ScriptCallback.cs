@@ -6,22 +6,15 @@ using Action = System.Action;
 
 namespace Anvil.Services
 {
-  internal sealed class ScriptCallback
+  internal sealed class ScriptCallback(string scriptName)
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    private readonly string scriptName;
 
     private Func<bool>? conditionalHandler;
     private Func<CallInfo, bool>? conditionalWithMetaHandler;
 
     private Action? scriptHandler;
     private Action<CallInfo>? scriptHandlerWithMetaHandler;
-
-    public ScriptCallback(string scriptName)
-    {
-      this.scriptName = scriptName;
-    }
 
     private enum MethodType
     {

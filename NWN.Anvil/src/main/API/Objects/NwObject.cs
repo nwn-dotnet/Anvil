@@ -15,7 +15,7 @@ namespace Anvil.API
   /// </summary>
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   [ObjectFilter(ObjectTypes.All)]
-  public abstract partial class NwObject : IEquatable<NwObject>
+  public abstract partial class NwObject(ICGameObject gameObject) : IEquatable<NwObject>
   {
     internal const uint Invalid = NWScript.OBJECT_INVALID;
 
@@ -35,9 +35,7 @@ namespace Anvil.API
     /// The ID of this object instance. Not persistent, changes after every spawn of the object.<br/>
     /// See <see cref="UUID"/> for a persistent unique ID for objects.
     /// </summary>
-    public readonly uint ObjectId;
-
-    private readonly ICGameObject gameObject;
+    public readonly uint ObjectId = gameObject.m_idSelf;
 
     internal ICGameObject Object
     {
@@ -46,12 +44,6 @@ namespace Anvil.API
         AssertObjectValid();
         return gameObject;
       }
-    }
-
-    protected NwObject(ICGameObject gameObject)
-    {
-      this.gameObject = gameObject;
-      ObjectId = gameObject.m_idSelf;
     }
 
     /// <summary>
@@ -199,10 +191,9 @@ namespace Anvil.API
     ///    on a creature, which will stop the combat music and allow them to rest,
     ///    engage in dialog, or other actions that they would normally have to wait for.
     /// </summary>
-    public async Task ClearActionQueue(bool clearCombatState = false)
+    public void ClearActionQueue(bool clearCombatState = false)
     {
-      await WaitForObjectContext();
-      NWScript.ClearAllActions(clearCombatState.ToInt());
+      NWScript.ClearAllActions(clearCombatState.ToInt(), this);
     }
 
     /// <summary>

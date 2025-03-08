@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
@@ -56,12 +56,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
-    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\NWN.Anvil\NWN.Anvil.csproj">
       <Private>false</Private>
       <ExcludeAssets>runtime</ExcludeAssets>
@@ -69,8 +63,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NWN.Core" Version="8193.36.1" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.36.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Core" Version="8193.37.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.37.3" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

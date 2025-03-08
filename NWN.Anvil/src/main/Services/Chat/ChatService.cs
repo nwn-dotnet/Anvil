@@ -161,7 +161,7 @@ namespace Anvil.Services
         return retVal;
       }
 
-      CExoLinkedListInternal playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
+      CExoArrayListCNWSPlayerPtr? playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList;
       if (playerList == null)
       {
         return false.ToInt();

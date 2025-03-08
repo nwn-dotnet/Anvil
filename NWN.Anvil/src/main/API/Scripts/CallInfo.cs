@@ -8,26 +8,19 @@ namespace Anvil.API
   /// <summary>
   /// Meta information for script calls, consumed by ScriptHandler attributed methods in service classes.
   /// </summary>
-  public sealed class CallInfo
+  public sealed class CallInfo(string scriptName, NwObject? objSelf)
   {
     private static readonly ScriptParams CachedScriptParams = new ScriptParams();
-
-    public CallInfo(string scriptName, NwObject? objSelf)
-    {
-      ScriptName = scriptName;
-      ObjectSelf = objSelf;
-      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent(false.ToInt());
-    }
 
     /// <summary>
     /// Gets the object that is currently running on this script.
     /// </summary>
-    public NwObject? ObjectSelf { get; }
+    public NwObject? ObjectSelf { get; } = objSelf;
 
     /// <summary>
     /// Gets the name of the script that is being executing.
     /// </summary>
-    public string ScriptName { get; }
+    public string ScriptName { get; } = scriptName;
 
     /// <summary>
     /// Gets the parameters set for this script call.<br/>
@@ -38,7 +31,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the event that triggered the execution of this script.
     /// </summary>
-    public EventScriptType ScriptType { get; }
+    public EventScriptType ScriptType { get; } = (EventScriptType)NWScript.GetCurrentlyRunningEvent(false.ToInt());
 
     /// <summary>
     /// Attempts to get the current running event.

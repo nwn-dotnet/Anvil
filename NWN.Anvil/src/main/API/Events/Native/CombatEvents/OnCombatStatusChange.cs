@@ -25,13 +25,13 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, int, int> pHook = &OnSendServerToPlayerAmbientBattleMusicPlay;
         Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerAmbientBattleMusicPlay>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerAmbientBattleMusicPlay(void* pMessage, uint nPlayer, int bPlay)
       {
-        NwPlayer? player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer().ToNwPlayer();
+        NwPlayer? player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).ToNwPlayer();
         OnCombatStatusChange? eventData = null;
 
         if (player != null)

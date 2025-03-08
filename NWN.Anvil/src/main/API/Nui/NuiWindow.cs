@@ -5,15 +5,9 @@ namespace Anvil.API
   /// <summary>
   /// Represents a NUI scriptable window container.
   /// </summary>
-  public sealed class NuiWindow
+  [method: JsonConstructor]
+  public sealed class NuiWindow(NuiLayout root, NuiProperty<string> title)
   {
-    [JsonConstructor]
-    public NuiWindow(NuiLayout root, NuiProperty<string> title)
-    {
-      Title = title;
-      Root = root;
-    }
-
     /// <summary>
     /// Gets or sets whether the window border should be rendered.
     /// </summary>
@@ -59,13 +53,13 @@ namespace Anvil.API
     /// Gets or sets the root parent layout containing the window content.
     /// </summary>
     [JsonProperty("root")]
-    public NuiLayout Root { get; set; }
+    public NuiLayout Root { get; set; } = root;
 
     /// <summary>
     /// Gets or sets the title of this window.
     /// </summary>
     [JsonProperty("title")]
-    public NuiProperty<string> Title { get; set; }
+    public NuiProperty<string> Title { get; set; } = title;
 
     /// <summary>
     /// Gets or sets whether the background should be rendered.

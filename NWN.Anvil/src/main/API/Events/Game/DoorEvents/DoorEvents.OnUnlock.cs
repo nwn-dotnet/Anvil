@@ -15,14 +15,20 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that was unlocked.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
+      public NwDoor Door { get; }
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that unlocked <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>()!;
+      public NwCreature UnlockedBy { get; }
 
       NwObject IEvent.Context => Door;
+
+      public OnUnlock()
+      {
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
+        UnlockedBy = NWScript.GetLastUnlocked(Door).ToNwObject<NwCreature>()!;
+      }
     }
   }
 }

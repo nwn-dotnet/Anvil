@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.Native
 {

@@ -92,14 +92,22 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's animal companion name.
+    /// Gets or sets this creature's animal companion name.
     /// </summary>
-    public string AnimalCompanionName => NWScript.GetAnimalCompanionName(this);
+    public string AnimalCompanionName
+    {
+      get => NWScript.GetAnimalCompanionName(this);
+      set => Creature.m_pStats.m_sAnimalCompanionName = value.ToExoString();
+    }
 
     /// <summary>
-    /// Gets this creature's animal companion creature type.
+    /// Gets or sets this creature's animal companion creature type.
     /// </summary>
-    public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+    public AnimalCompanionCreatureType AnimalCompanionType
+    {
+      get => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+      set => Creature.m_pStats.m_nAnimalCompanionCreatureType = (int)value;
+    }
 
     /// <summary>
     /// Gets or sets the appearance of this creature.
@@ -170,10 +178,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the Base Attack Bonus for this creature.
     /// </summary>
-    public byte BaseAttackBonus
+    public int BaseAttackBonus
     {
-      get => Creature.m_pStats.m_nBaseAttackBonus;
-      set => Creature.m_pStats.m_nBaseAttackBonus = value;
+      get => Creature.m_pStats.GetBaseAttackBonus(false.ToInt());
+      set => Creature.m_pStats.m_nBaseAttackBonus = checked((byte)value);
     }
 
     /// <summary>
@@ -355,14 +363,22 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's familiar name.
+    /// Gets or sets this creature's familiar name.
     /// </summary>
-    public string FamiliarName => NWScript.GetFamiliarName(this);
+    public string FamiliarName
+    {
+      get => NWScript.GetFamiliarName(this);
+      set => Creature.m_pStats.m_sFamiliarName = value.ToExoString();
+    }
 
     /// <summary>
-    /// Gets the type of familiar that this creature can summon.
+    /// Gets or sets the type of familiar that this creature can summon.
     /// </summary>
-    public FamiliarCreatureType FamiliarType => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+    public FamiliarCreatureType FamiliarType
+    {
+      get => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+      set => Creature.m_pStats.m_nFamiliarCreatureType = (int)value;
+    }
 
     /// <summary>
     /// Gets the number of feats known by this creature.
@@ -802,7 +818,7 @@ namespace Anvil.API
     {
       get
       {
-        List<SpecialAbility> retVal = new List<SpecialAbility>();
+        List<SpecialAbility> retVal = [];
         CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
 
         foreach (CNWSStats_SpellLikeAbility ability in specialAbilities)
@@ -911,7 +927,7 @@ namespace Anvil.API
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
-        if (!resGff.IsValidGff(new[] { "BIC", "GFF", "UTC" }, new[] { "V3.2" }))
+        if (!resGff.IsValidGff(["BIC", "GFF", "UTC"], ["V3.2"]))
         {
           return false;
         }
@@ -984,6 +1000,17 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Instructs this creature to move and close the specified door.
+    /// </summary>
+    /// <param name="door">The door to close.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    public async Task ActionCloseDoor(NwDoor door, bool run = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCloseDoor(door, run.ToInt());
+    }
+
+    /// <summary>
     /// Intructs this creature to enter counterspell combat mode against the specified creature.
     /// </summary>
     /// <param name="counterSpellTarget">The target object to enter counterspell mode against.</param>
@@ -991,6 +1018,35 @@ namespace Anvil.API
     {
       await WaitForObjectContext();
       NWScript.ActionCounterSpell(counterSpellTarget);
+    }
+
+    /// <summary>
+    /// Forces a PC to level up without the level up GUI.
+    /// </summary>
+    /// <param name="classType">The class to level up.</param>
+    /// <param name="hitDie">The hit points gained during this level up.</param>
+    /// <param name="abilityGain">The abilty to increase : 6 = no increase.</param>
+    /// <param name="epic">Is this an epic level.</param>
+    /// <param name="skillPointsRemaining">Number of skill points to give</param>
+    /// <param name="domain1">Sets a cleric domain for the class (255 = no domain)</param>
+    /// <param name="domain2">Sets the second cleric domain for the class (255 = no domain)</param>
+    /// <param name="school">Sets the wizard school for the class (255 = no school)</param>
+    /// <param name="addStatsToList">Adds the new stats to the character sheet</param>
+    public void ForceLevelUp(NwClass classType, byte hitDie, Ability? abilityGain = default, bool epic = false, ushort skillPointsRemaining = 0, NwDomain? domain1 = default, NwDomain? domain2 = default, SpellSchool school = SpellSchool.Unknown, bool addStatsToList = true)
+    {
+      abilityGain ??= (Ability)6;
+
+      CNWLevelStats stats = new CNWLevelStats()
+      {
+        m_nClass = classType.Id,
+        m_nHitDie = hitDie,
+        m_nAbilityGain = (byte)abilityGain,
+        m_bEpic = epic.ToInt(),
+        m_nSkillPointsRemaining = skillPointsRemaining,
+      };
+
+      Creature.m_pStats.LevelUp(stats, domain1?.Id ?? 255, domain2?.Id ?? 255, unchecked((byte)school), addStatsToList.ToInt());
+      GC.SuppressFinalize(stats);
     }
 
     /// <summary>
@@ -1152,6 +1208,17 @@ namespace Anvil.API
     {
       await WaitForObjectContext();
       NWScript.ActionMoveToObject(target, run.ToInt(), range);
+    }
+
+    /// <summary>
+    /// Instructs this creature to move and open the specified door.
+    /// </summary>
+    /// <param name="door">The door to open.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    public async Task ActionOpenDoor(NwDoor door, bool run = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionOpenDoor(door, run.ToInt());
     }
 
     /// <summary>
@@ -1409,11 +1476,7 @@ namespace Anvil.API
       creature.BroadcastSkillData(data);
     }
 
-    /// <summary>
-    /// Performs a spell resistance check between this creature, and the specified target object.
-    /// </summary>
-    /// <param name="target">The target of the spell.</param>
-    /// <returns>A result indicating if the spell was resisted by the target.</returns>
+    [Obsolete("Use SpellResistanceCheck instead.")]
     public ResistSpellResult CheckResistSpell(NwGameObject target)
     {
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
@@ -2566,6 +2629,61 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Performs a spell resistance check.
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="casterLevel">The caster level for the spell. If null, will use the caster's level.</param>
+    /// <param name="spellResistance">The spell resistance to penetrate. If null, will use the spell resistance of the target.</param>
+    /// <param name="feedback">If true, will show feedback for the spell resistance roll.</param>
+    /// <returns>True if the target successfully resisted the spell, otherwise false.</returns>
+    public bool SpellResistanceCheck(NwGameObject target, NwSpell? spell = null, int? casterLevel = null, int? spellResistance = null, bool feedback = true)
+    {
+      return NWScript.SpellResistanceCheck(target, this, spell?.Id ?? -1, casterLevel ?? -1, spellResistance ?? -1, feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell immunity check.
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="feedback">If true, will show feedback for the spell immunity check.</param>
+    /// <returns>True if the target is immune to the spell, otherwise false.</returns>
+    public bool SpellImmunityCheck(NwGameObject target, NwSpell? spell = null, bool feedback = true)
+    {
+      return NWScript.SpellImmunityCheck(target, this, spell?.Id ?? -1, feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell absorption check for limited spell absorption effects (e.g. Spell Mantle).
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="spellSchool">The spell school to check for. If null, uses the default spell school from the spell parameter.</param>
+    /// <param name="spellLevel">The spell level. If null, uses the spell level from the spell parameter using the creature's caster class.</param>
+    /// <param name="removeLevels">If true, will remove the spell levels from the effect that would stop it, and remove the effect if 0 or fewer levels remain. If false, the effect is untouched.</param>
+    /// <param name="feedback">If true, will show feedback for the spell absorption check.</param>
+    /// <returns>True if the target successfully absorbed the spell, otherwise false.</returns>
+    public bool SpellAbsorptionLimitedCheck(NwGameObject target, NwSpell? spell = null, SpellSchool? spellSchool = null, int? spellLevel = null, bool removeLevels = true, bool feedback = true)
+    {
+      return NWScript.SpellAbsorptionLimitedCheck(target, this, spell?.Id ?? -1, (int?)spellSchool ?? -1, spellLevel ?? -1, removeLevels.ToInt(), feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell absorption check for unlimited spell absorption effects (e.g. Globe of invulnerability).
+    /// </summary>
+    /// <param name="target">The target creature of the spell.</param>
+    /// <param name="spell">The spell to use for the check. If null, will auto-detect based on the current running spell script.</param>
+    /// <param name="spellSchool">The spell school to check for. If null, uses the default spell school from the spell parameter.</param>
+    /// <param name="spellLevel">The spell level. If null, uses the spell level from the spell parameter using the creature's caster class.</param>
+    /// <param name="feedback">If true, will show feedback for the spell absorption check.</param>
+    /// <returns>True if the target successfully absorbed the spell, otherwise false.</returns>
+    public bool SpellAbsorptionUnlimitedCheck(NwGameObject target, NwSpell? spell = null, SpellSchool? spellSchool = null, int? spellLevel = null, bool feedback = true)
+    {
+      return NWScript.SpellAbsorptionUnlimitedCheck(target, this, spell?.Id ?? -1, (int?)spellSchool ?? -1, spellLevel ?? -1, feedback.ToInt()).ToBool();
+    }
+
+    /// <summary>
     /// Instructs this creature to summon their animal companion.<br/>
     /// Does nothing if this creature has no animal companion available.
     /// </summary>
@@ -2575,12 +2693,61 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Forces this creature to summon a familiar event if it does not meet the base game requirements
+    /// </summary>
+    /// <param name="resRef">The blueprint resource reference of the creature.</param>
+    public void SummonAnimalCompanion(string resRef)
+    {
+      Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sAnimalCompanionName, (ushort)AssociateType.AnimalCompanion);
+      Creature.m_bSummonedAnimalCompanion = 1;
+    }
+
+    /// <summary>
+    /// Forces this creature to unsummon their animal companion.<br/>
+    /// Does nothing if this creature has no animal companion summoned.
+    /// </summary>
+    public void UnsummonAnimalCompanion()
+    {
+      GetAssociate(AssociateType.AnimalCompanion)?.Creature.UnsummonMyself();
+      Creature.m_bSummonedAnimalCompanion = 0;
+    }
+
+    /// <summary>
     /// Instructs this creature to summon their familiar (wizard/sorcerer).<br/>
     /// Does nothing if this creature has no familiar available.
     /// </summary>
     public void SummonFamiliar()
     {
       NWScript.SummonFamiliar(this);
+    }
+
+    /// <summary>
+    /// Forces this creature to summon a familiar event if it does not meet the base game requirements
+    /// </summary>
+    /// <param name="resRef">The blueprint resource reference of the creature.</param>
+    public void SummonFamiliar(string resRef)
+    {
+      Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sFamiliarName, (ushort)AssociateType.Familiar);
+      Creature.m_bSummonedFamiliar = 1;
+    }
+
+    /// <summary>
+    /// Forces this creature to unsummon their familiar.<br/>
+    /// Does nothing if this creature has no familiar summoned.
+    /// </summary>
+    public void UnsummonFamiliar()
+    {
+      GetAssociate(AssociateType.Familiar)?.Creature.UnsummonMyself();
+      Creature.m_bSummonedFamiliar = 0;
+    }
+
+    /// <summary>
+    /// Forces this creature to unsummon itself.<br/>
+    /// Does nothing if this creature is not a summon.
+    /// </summary>
+    public void Unsummon()
+    {
+      Creature.UnsummonMyself();
     }
 
     /// <summary>
@@ -2616,10 +2783,10 @@ namespace Anvil.API
     /// Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.
     /// </summary>
     /// <param name="target">The target of this touch attack.</param>
-    public async Task<TouchAttackResult> TouchAttackMelee(NwGameObject target)
+    /// <param name="displayFeedback">If true, displays combat feedback in the chat window.</param>
+    public TouchAttackResult TouchAttackMelee(NwGameObject target, bool displayFeedback = true)
     {
-      await WaitForObjectContext();
-      return (TouchAttackResult)NWScript.TouchAttackMelee(target);
+      return (TouchAttackResult)NWScript.TouchAttackMelee(target, displayFeedback.ToInt(), this);
     }
 
     /// <summary>
@@ -2627,10 +2794,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="target">The target of this touch attack.</param>
     /// <param name="displayFeedback">If true, displays combat feedback in the chat window.</param>
-    public async Task<TouchAttackResult> TouchAttackRanged(NwGameObject target, bool displayFeedback)
+    public TouchAttackResult TouchAttackRanged(NwGameObject target, bool displayFeedback)
     {
-      await WaitForObjectContext();
-      return (TouchAttackResult)NWScript.TouchAttackRanged(target, displayFeedback.ToInt());
+      return (TouchAttackResult)NWScript.TouchAttackRanged(target, displayFeedback.ToInt(), this);
     }
 
     /// <summary>
@@ -2661,7 +2827,7 @@ namespace Anvil.API
 
     private List<NwCreature> GetAssociates(AssociateType associateType)
     {
-      List<NwCreature> associates = new List<NwCreature>();
+      List<NwCreature> associates = [];
       int type = (int)associateType;
 
       for (int i = 1;; i++)

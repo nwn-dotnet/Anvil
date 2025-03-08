@@ -87,6 +87,33 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets if this object is destroyable.
+    /// </summary>
+    public bool IsDestroyable
+    {
+      get => GameObject.m_bDestroyable.ToBool();
+      set => GameObject.m_bDestroyable = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if this object is raiseable.
+    /// </summary>
+    public bool IsRaiseable
+    {
+      get => GameObject.m_bRaiseable.ToBool();
+      set => gameObject.m_bRaiseable = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if this object is selectable when dead.
+    /// </summary>
+    public bool IsSelectableWhenDead
+    {
+      get => GameObject.m_bSelectableWhenDead.ToBool();
+      set => gameObject.m_bSelectableWhenDead = value.ToInt();
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this object is in a conversation.
     /// </summary>
     public bool IsInConversation => NWScript.IsInConversation(this).ToBool();
@@ -108,13 +135,13 @@ namespace Anvil.API
         if (area == Area)
         {
           Position = value.Position;
-          Rotation = value.Rotation;
         }
         else
         {
           AddToArea(area.Area, value.Position.X, value.Position.Y, value.Position.Z);
-          Rotation = value.Rotation;
         }
+
+        Rotation = value.Rotation;
       }
     }
 
@@ -372,7 +399,7 @@ namespace Anvil.API
     /// <summary>
     /// Immediately ends this GameObject's current conversation.
     /// </summary>
-    public async void EndConversation()
+    public async Task EndConversation()
     {
       await NwTask.NextFrame();
       GameObject.StopDialog();
@@ -382,19 +409,21 @@ namespace Anvil.API
     /// Rotates this object to face towards target.
     /// </summary>
     /// <param name="target">The target object to face.</param>
-    public Task FaceToObject(NwGameObject target)
+    public void FaceToObject(NwGameObject target)
     {
-      return FaceToPoint(target.Position);
+      if (target.Area == Area)
+      {
+        FaceToPoint(target.Position);
+      }
     }
 
     /// <summary>
     /// Rotates this object to face a position.
     /// </summary>
     /// <param name="point">The position to face towards.</param>
-    public virtual async Task FaceToPoint(Vector3 point)
+    public virtual void FaceToPoint(Vector3 point)
     {
-      await WaitForObjectContext();
-      NWScript.SetFacingPoint(point);
+      NWScript.SetFacingPoint(point, this);
     }
 
     /// <summary>
@@ -669,22 +698,15 @@ namespace Anvil.API
     /// Rotates this object to face the specified facing angle.
     /// </summary>
     /// <param name="facing">The angle to face.</param>
-    public async Task SetFacing(float facing)
+    public void SetFacing(float facing)
     {
-      await WaitForObjectContext();
-      NWScript.SetFacing(facing);
+      NWScript.SetFacing(facing, this);
     }
 
-    /// <summary>
-    /// Sets whether this object is destroyable.
-    /// </summary>
-    /// <param name="destroyable">If false, this creature does not fade out on death, but sticks around as a corpse.</param>
-    /// <param name="raiseable">If true, this creature can be raised via resurrection.</param>
-    /// <param name="selectableWhenDead">If true, this creature is selectable after death.</param>
-    public async Task SetIsDestroyable(bool destroyable, bool raiseable = true, bool selectableWhenDead = false)
+    [Obsolete("Use the IsDestroyable/IsRaiseable/IsSelectableWhenDead properties instead.")]
+    public void SetIsDestroyable(bool destroyable, bool raiseable = true, bool selectableWhenDead = false)
     {
-      await WaitForObjectContext();
-      NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt());
+      NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt(), this);
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
@@ -42,12 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NWN.Core" Version="8193.36.1" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.36.2" PrivateAssets="compile" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ContentWithTargetPath Include="src\docker\**" TargetPath="..\%(RecursiveDir)%(FileName)%(Extension)" CopyToOutputDirectory="Always" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
+    <PackageReference Include="NWN.Core" Version="8193.37.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.37.3" PrivateAssets="compile" />
   </ItemGroup>
 
 </Project>

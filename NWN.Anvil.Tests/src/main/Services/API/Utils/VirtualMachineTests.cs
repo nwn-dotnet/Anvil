@@ -39,8 +39,8 @@ namespace Anvil.Tests.Services.API.Utils
 
     private void ExecuteScript(NwObject nwObject)
     {
-      string scriptParamKey = "someParamKey";
-      string scriptParamValue = "someParamValue";
+      const string scriptParamKey = "someParamKey";
+      const string scriptParamValue = "someParamValue";
 
       ScriptCallbackHandle handle = ScriptHandleFactory.CreateUniqueHandler(info =>
       {

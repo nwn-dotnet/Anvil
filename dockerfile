@@ -1,6 +1,5 @@
 # Load nwnx image to import nwserver + nwnx plugins
-ARG NWNX_VERSION
-FROM nwnxee/unified:${NWNX_VERSION} as nwnx
+FROM nwnxee/unified:7fc892a as nwnx
 
 # Remove incompatible plugins
 RUN rm -rf /nwn/nwnx/NWNX_Ruby.so \
@@ -27,8 +26,8 @@ RUN apt-get update \
     inotify-tools \
     patch \
     unzip \
-    dotnet-runtime-7.0 \
-    dotnet-apphost-pack-7.0 \
+    dotnet-runtime-8.0 \
+    dotnet-apphost-pack-8.0 \
 && rm -rf /var/cache/apt /var/lib/apt/lists/*
 
 # Copy Anvil Binaries
@@ -56,6 +55,9 @@ ENV NWN_LD_PRELOAD="/nwn/nwnx/NWNX_Core.so"
 ENV NWNX_DOTNET_SKIP=n
 ENV NWNX_SWIG_DOTNET_SKIP=n
 ENV NWNX_DOTNET_ASSEMBLY=/nwn/anvil/NWN.Anvil
+ENV NWNX_DOTNET_ENTRYPOINT=Anvil.AnvilCore
+ENV NWNX_DOTNET_METHOD=Bootstrap
+ENV NWNX_DOTNET_NEW_BOOTSTRAP=true
 
 # Use NWNX_ServerLogRedirector as default log manager
 ENV NWNX_SERVERLOGREDIRECTOR_SKIP=n

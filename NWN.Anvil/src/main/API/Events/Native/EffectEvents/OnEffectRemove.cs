@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, void*, int> pHook = &OnEffectRemoved;
         Hook = HookService.RequestHook<Functions.CNWSEffectListHandler.OnEffectRemoved>(pHook, HookOrder.Earliest);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

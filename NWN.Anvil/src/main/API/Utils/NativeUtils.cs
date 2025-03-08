@@ -7,6 +7,7 @@ using Anvil.Native;
 using Anvil.Services;
 using NLog;
 using NWN.Native.API;
+using NWNX.NET.Native;
 using Vector = NWN.Native.API.Vector;
 
 namespace Anvil.API
@@ -107,7 +108,7 @@ namespace Anvil.API
 
     public static bool IsValidGff(this CResGFF resGff, string expectedFileType, string expectedVersion = DefaultGffVersion)
     {
-      return IsValidGff(resGff, expectedFileType.Yield(), expectedVersion.Yield());
+      return IsValidGff(resGff, [expectedFileType], [expectedVersion]);
     }
 
     public static bool IsValidGff(this CResGFF resGff, IEnumerable<string> expectedFileTypes, IEnumerable<string> expectedVersions)
@@ -132,13 +133,13 @@ namespace Anvil.API
     public static string PeekMessageResRef(this CNWSMessage message, int offset)
     {
       byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return StringHelper.ReadFixedLengthString(ptr, 16);
+      return StringUtils.ReadFixedLengthString(ptr, 16);
     }
 
     public static string PeekMessageString(this CNWSMessage message, int offset)
     {
       byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return StringHelper.ReadNullTerminatedString(ptr);
+      return StringUtils.ReadNullTerminatedString(ptr)!;
     }
 
     public static byte[]? SerializeGff(string fileType, string version, Func<CResGFF, CResStruct, bool> serializeAction)

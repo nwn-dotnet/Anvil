@@ -51,7 +51,7 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, int, int, int, int, Vector3, uint, int, int, int, byte, int, int, int, byte, int> pHook = &OnAddCastSpellActions;
         Hook = HookService.RequestHook<Functions.CNWSCreature.AddCastSpellActions>(pHook, HookOrder.Early);
-        return new IDisposable[] { Hook };
+        return [Hook];
       }
 
       [UnmanagedCallersOnly]

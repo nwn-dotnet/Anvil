@@ -1,24 +1,19 @@
 using System.Collections.Generic;
 using System.IO;
 using Anvil.Internal;
+using Anvil.Services;
 using NLog;
 
 namespace Anvil.Plugins
 {
-  internal sealed class LocalPluginSource : IPluginSource
+  internal sealed class LocalPluginSource(string rootPath) : IPluginSource
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const string PluginResourceDir = "resources";
 
-    private readonly PluginManager pluginManager;
-    private readonly string rootPath;
-
-    public LocalPluginSource(PluginManager pluginManager, string rootPath)
-    {
-      this.pluginManager = pluginManager;
-      this.rootPath = rootPath;
-    }
+    [Inject]
+    private InjectionService InjectionService { get; init; } = null!;
 
     public IEnumerable<Plugin> Bootstrap()
     {
@@ -48,15 +43,17 @@ namespace Anvil.Plugins
           continue;
         }
 
-        Plugin plugin = new Plugin(pluginManager, pluginPath)
+        Plugin plugin = InjectionService.Inject(new Plugin(pluginPath)
         {
           ResourcePath = Path.Combine(pluginRoot, Path.Combine(pluginRoot, PluginResourceDir)),
-        };
+        });
 
         plugins.Add(plugin);
       }
 
       return plugins;
     }
+
+    public void Dispose() {}
   }
 }

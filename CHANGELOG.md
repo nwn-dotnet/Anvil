@@ -3,6 +3,96 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.37.0
+https://github.com/nwn-dotnet/Anvil/compare/v8193.36.1...v8193.37.0
+
+### Added
+- Plugins: Added support to disable loading plugins on startup with new environment variable, `ANVIL_PLUGINNAME_SKIP`
+- Plugins: Implemented new API for loading/unloading isolated plugins at runtime.
+  - To mark a plugin as "isolated", add the `PluginInfo` assembly attribute with `Isolated` = `true`.
+  - To load the isolated plugin, call the `PluginManager.LoadPlugin` method.
+  - To unload the isolated plugin, call the `PluginManager.UnloadPlugin` method.
+- PlayerDeviceProperty: Added new 8193.37 constants.
+- PlayerPlatform: Added new 8193.37 constants.
+- SavingThrowType: Added new 8193.37 constants.
+- SpellFailureType: Added new 8193.37 constants.
+- Effect: Added `DamageIncrease` overload with correct constants.
+- Effect: Added `SummonCreature` overload with `NwCreature` parameter instead of string ResRef.
+- ItemProperty: Added `OnHitCastSpell` overload with correct casterLevel parameter.
+- CreatureEvents.OnDamaged: Added `GetDamageDealtByType` method.
+- Events: Added `OnPolymorphApply` event.
+- Events: Added `OnPolymorphRemove` event.
+- OnSpellBroadcast: Added `TargetObject`, `TargetPosition` properties.
+- CreatureClassInfo: Added `School` property setter.
+- NwAreaOfEffect: Added `SetRadius` method.
+- NwCreature: Added `AnimalCompanionName` property setter.
+- NwCreature: Added `AnimalCompanionType` property setter.
+- NwCreature: Added `FamiliarName` property setter.
+- NwCreature: Added `FamiliarType` property setter.
+- NwCreature: Added `ActionCloseDoor` method.
+- NwCreature: Added `ForceLevelUp` method.
+- NwCreature: Added `ActionOpenDoor` method.
+- NwCreature: Added `SpellResistanceCheck` method.
+- NwCreature: Added `SpellImmunityCheck` method.
+- NwCreature: Added `SpellAbsorptionLimitedCheck` method.
+- NwCreature: Added `SpellAbsorptionUnlimitedCheck` method.
+- NwCreature: Added `SummonAnimalCompanion` method.
+- NwCreature: Added `UnsummonAnimalCompanion` method.
+- NwCreature: Added `SummonFamiliar` method.
+- NwCreature: Added `UnsummonFamiliar` method.
+- NwCreature: Added `Unsummon` method.
+- NwGameObject: Added `IsDestroyable` property.
+- NwGameObject: Added `IsRaiseable` property.
+- NwGameObject: Added `IsSelectableWhenDead` property.
+- NwItem: Added `GetMinEquipLevelOverride`, `SetMinEquipLevelOverride`, `ClearMinEquipLevelOverride` methods.
+- NwPlayer: Added `Latency` property.
+- NwPlayer: Added `LatencyAverage` property.
+- NwPlayer: Added `CancelTargetMode` method.
+- NwPlayer: Added `UpdateCharacterSheet` method.
+- NwPlaceable/NwTrigger: Added `LockedBy` property.
+- NwPlaceable/NwTrigger: Added `UnlockedBy` property.
+- NwRace: Added `GetFavoredEnemyFeat` method.
+- EnforceLegalCharacterService: Added failure event for too many ability score increases.
+
+### Package Updates
+- NWNX: 9865013 -> 7fc892a
+- NWN.Core: 8193.36.1 -> 8193.37.2
+- NWN.Native: 8193.36.2 -> 8193.37.3
+- NLog: 5.2.8 -> 5.4.0
+- System.Reflection.MetadataLoadContext: 8.0.1
+
+### Changed
+- Changed NWNX_DotNET interop to use `NWNX.NET` plugin.
+- Use `NWNX.NET` for encoding strings between UTF-16 and CP-1252.
+- Effect: `Polymorph` now supports optional `unPolymorphVfx`, `spellAbilityModifier`, `spellAbilityCasterLevel` parameters.
+- Effect: `SpellFailure` now supports an optional `failureType` parameter.
+- Effect/ItemProperty: `Spell` property is now correctly marked as nullable.
+- NwCreature: `TouchAttackMelee` method is no-longer async.
+- NwCreature: `TouchAttackRanged` method is no-longer async.
+- NwGameObject: `EndConversation` method is now awaitable.
+- NwGameObject: `FaceToObject` method is no-longer async.
+- NwGameObject: `FaceToPoint` method is no-longer async.
+- NwGameObject: `SetFacing` method is no-longer async.
+- NwModule: `PlayerCount` property is now an int.
+- NwObject: `ClearActionQueue` method is no-longer async.
+- ClassFeatListTypes: Renamed to match flags enum naming convention.
+
+### Deprecated
+- `ItemProperty.OnHitCastSpell(IPCastSpell, IPSpellLevel)` - use the `ItemProperty.OnHitCastSpell(IPCastSpell, int)` overload instead.
+- `NwCreature.CheckResistSpell(NwGameObject)` - use the `NwCreature.SpellResistanceCheck` method instead.
+- `NwGameObject.SetIsDestroyable(bool,bool,bool)` - use the IsDestroyable/IsRaiseable/IsSelectableWhenDead properties instead.
+
+### Fixed
+- ItemProperty: `OnMonsterHitProperties` now correctly uses the "special" parameter.
+- OnItemUnequip: Fixed a function hook issue.
+- SchedulerService: Fixed an issue where scheduling events immediately after reloading anvil would delay the event for the total uptime of the server.
+- NwCreature: `BaseAttackBonus` now returns the correct value if the value was not overriden with a custom value.
+- Paket: Fixed an issue where logs would be printed multiple times after reloading anvil.
+- NwCreature: Fixed an issue where setting `AlwaysWalk` to `false` would not correctly update the encumbrance state of the player.
+- HookService: Re-implemented as core service, and added new API to persist some function hooks after reloading anvil.
+- ObjectStorageService: Re-implemented as core service. Persistent variables should now persist after reloading anvil.
+- EnforceLegalCharacterService: Fixed an IndexOutOfRangeException for characters with too many ability score increases.
+
 ## 8193.36.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.35.3...v8193.36.1
 

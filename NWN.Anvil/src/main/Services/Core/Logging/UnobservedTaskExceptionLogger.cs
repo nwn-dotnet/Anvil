@@ -4,8 +4,7 @@ using NLog;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.High)]
-  internal class UnobservedTaskExceptionLogger : ICoreService
+  internal sealed class UnobservedTaskExceptionLogger : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

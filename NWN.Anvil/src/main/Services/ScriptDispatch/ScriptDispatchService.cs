@@ -8,7 +8,7 @@ namespace Anvil.Services
   {
     private readonly List<IScriptDispatcher> dispatchers;
 
-    public ScriptDispatchService(IReadOnlyList<IScriptDispatcher> dispatchers)
+    public ScriptDispatchService(IList<IScriptDispatcher> dispatchers)
     {
       this.dispatchers = dispatchers.ToList();
       this.dispatchers.Sort((dispatcherA, dispatcherB) => dispatcherA.ExecutionOrder.CompareTo(dispatcherB.ExecutionOrder));

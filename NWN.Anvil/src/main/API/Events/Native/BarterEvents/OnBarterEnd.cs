@@ -36,7 +36,7 @@ namespace Anvil.API.Events
         delegate* unmanaged<void*, uint, uint, int, int> pSendServerToPlayerBarterCloseBarterHook = &OnSendServerToPlayerBarterCloseBarter;
         sendServerToPlayerBarterCloseBarterHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerBarterCloseBarter>(pSendServerToPlayerBarterCloseBarterHook, HookOrder.Earliest);
 
-        return new IDisposable[] { setListAcceptedHook, sendServerToPlayerBarterCloseBarterHook };
+        return [setListAcceptedHook, sendServerToPlayerBarterCloseBarterHook];
       }
 
       private static OnBarterEnd? GetBarterAcceptedEventData(CNWSBarter other, CNWSBarter initiator, CNWSBarter target)
@@ -86,7 +86,7 @@ namespace Anvil.API.Events
 
       private static IReadOnlyList<NwItem> GetBarterItems(CNWSBarter barter)
       {
-        List<NwItem> items = new List<NwItem>();
+        List<NwItem> items = [];
         if (barter.m_pBarterList == null)
         {
           return items;
@@ -108,7 +108,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
-        NwPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer().ToNwPlayer();
+        NwPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).ToNwPlayer();
         if (player == null)
         {
           return sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);

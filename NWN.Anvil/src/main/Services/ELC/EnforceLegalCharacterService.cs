@@ -112,7 +112,7 @@ namespace Anvil.Services
     {
       int[] abilityMods = new int[6];
 
-      HashSet<Feat> creatureFeats = new HashSet<Feat>();
+      HashSet<Feat> creatureFeats = [];
       foreach (ushort nFeat in lstFeats)
       {
         creatureFeats.Add((Feat)nFeat);
@@ -768,16 +768,16 @@ namespace Anvil.Services
       byte[] nMultiClassLevel = new byte[NumMultiClass];
       int nSkillPointsRemaining = 0;
       byte[] listSkillRanks = new byte[pRules.m_nNumSkills];
-      HashSet<ushort> listFeats = new HashSet<ushort>();
-      HashSet<ushort> listChosenFeats = new HashSet<ushort>();
+      HashSet<ushort> listFeats = [];
+      HashSet<ushort> listChosenFeats = [];
       // [nMultiClass][nSpellLevel] . {SpellIDs}
-      List<Dictionary<uint, HashSet<uint>>> listSpells = new List<Dictionary<uint, HashSet<uint>>>();
+      List<Dictionary<uint, HashSet<uint>>> listSpells = [];
       for (int i = 0; i < NumMultiClass; i++)
       {
         listSpells.Add(new Dictionary<uint, HashSet<uint>>());
         for (uint j = 0; j < NumSpellLevels; j++)
         {
-          listSpells[i][j] = new HashSet<uint>();
+          listSpells[i][j] = [];
         }
       }
 
@@ -855,7 +855,20 @@ namespace Anvil.Services
         // Keep track of our ability values
         if (nLevel % 4 == 0)
         {
-          nAbilityAtLevel[pLevelStats.m_nAbilityGain]++;
+          if (pLevelStats.m_nAbilityGain < nAbilityAtLevel.Length)
+          {
+            nAbilityAtLevel[pLevelStats.m_nAbilityGain]++;
+          }
+          else if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+          {
+            Player = nwPlayer,
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+            StrRef = StrRefCharacterInvalidAbilityScores,
+          }))
+          {
+            return strRefFailure;
+          }
         }
 
         // Get the stat bonus from feats
@@ -892,23 +905,16 @@ namespace Anvil.Services
         // Calculate the skillpoints we gained this level
         int GetSkillPointAbilityAdjust()
         {
-          switch ((Ability)pRace.m_nSkillPointModifierAbility)
+          return (Ability)pRace.m_nSkillPointModifierAbility switch
           {
-            case Ability.Strength:
-              return pRace.m_nSTRAdjust;
-            case Ability.Dexterity:
-              return pRace.m_nDEXAdjust;
-            case Ability.Constitution:
-              return pRace.m_nCONAdjust;
-            case Ability.Intelligence:
-              return pRace.m_nINTAdjust;
-            case Ability.Wisdom:
-              return pRace.m_nWISAdjust;
-            case Ability.Charisma:
-              return pRace.m_nCHAAdjust;
-            default:
-              return 0;
-          }
+            Ability.Strength => pRace.m_nSTRAdjust,
+            Ability.Dexterity => pRace.m_nDEXAdjust,
+            Ability.Constitution => pRace.m_nCONAdjust,
+            Ability.Intelligence => pRace.m_nINTAdjust,
+            Ability.Wisdom => pRace.m_nWISAdjust,
+            Ability.Charisma => pRace.m_nCHAAdjust,
+            _ => 0,
+          };
         }
 
         int numSkillPoints = pRace != null && pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= AbilityMax
@@ -1507,7 +1513,7 @@ namespace Anvil.Services
         }
 
         // List to hold moved chosen feats
-        List<ushort> listMovedFeats = new List<ushort>();
+        List<ushort> listMovedFeats = [];
 
         foreach (ushort nFeatIndex in listChosenFeats)
         {

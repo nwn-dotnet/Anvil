@@ -4,6 +4,7 @@ using System.Numerics;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
+using NWNX.NET.Native;
 
 namespace Anvil.API
 {
@@ -798,7 +799,7 @@ namespace Anvil.API
         throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
       }
 
-      List<NwCreature> addedCreatures = new List<NwCreature>();
+      List<NwCreature> addedCreatures = [];
 
       try
       {

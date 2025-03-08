@@ -41,14 +41,9 @@ namespace Anvil.Tests.Services
     }
 
     [ServiceBinding(typeof(LazyServiceConsumerConstructor))]
-    internal sealed class LazyServiceConsumerConstructor
+    internal sealed class LazyServiceConsumerConstructor(Lazy<LazyServiceConstructor> lazyServiceConstructor)
     {
-      public Lazy<LazyServiceConstructor> LazyServiceConstructor { get; }
-
-      public LazyServiceConsumerConstructor(Lazy<LazyServiceConstructor> lazyServiceConstructor)
-      {
-        LazyServiceConstructor = lazyServiceConstructor;
-      }
+      public Lazy<LazyServiceConstructor> LazyServiceConstructor { get; } = lazyServiceConstructor;
     }
 
     [ServiceBinding(typeof(LazyServiceConsumerProperty))]

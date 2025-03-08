@@ -5,14 +5,9 @@ namespace Anvil.API
   /// <summary>
   /// An image, with no border or padding.
   /// </summary>
-  public sealed class NuiImage : NuiWidget
+  [method: JsonConstructor]
+  public sealed class NuiImage(NuiProperty<string> resRef) : NuiWidget
   {
-    [JsonConstructor]
-    public NuiImage(NuiProperty<string> resRef)
-    {
-      ResRef = resRef;
-    }
-
     [JsonProperty("image_halign")]
     public NuiProperty<NuiHAlign> HorizontalAlign { get; set; } = NuiHAlign.Left;
 
@@ -27,7 +22,7 @@ namespace Anvil.API
     public NuiProperty<NuiRect>? ImageRegion { get; set; }
 
     [JsonProperty("value")]
-    public NuiProperty<string> ResRef { get; set; }
+    public NuiProperty<string> ResRef { get; set; } = resRef;
 
     public override string Type => "image";
 

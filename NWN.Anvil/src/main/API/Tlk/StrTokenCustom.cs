@@ -2,17 +2,12 @@ using Anvil.Services;
 
 namespace Anvil.API
 {
-  public readonly struct StrTokenCustom
+  public readonly struct StrTokenCustom(int tokenNumber)
   {
     [Inject]
     private static TlkTable TlkTable { get; set; } = null!;
 
-    public readonly int TokenNumber;
-
-    public StrTokenCustom(int tokenNumber)
-    {
-      TokenNumber = tokenNumber;
-    }
+    public readonly int TokenNumber = tokenNumber;
 
     /// <summary>
     /// Gets or sets the string value of this token.<br/>

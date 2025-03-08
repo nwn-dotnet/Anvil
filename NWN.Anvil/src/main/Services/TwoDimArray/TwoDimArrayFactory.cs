@@ -14,17 +14,11 @@ namespace Anvil.Services
   /// </summary>
   [ServiceBinding(typeof(TwoDimArrayFactory))]
   [Obsolete("Create instances of Anvil.API.TwoDimArray instead.")]
-  public sealed class TwoDimArrayFactory
+  public sealed class TwoDimArrayFactory(InjectionService injectionService)
   {
     private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();
-    private readonly InjectionService injectionService;
 
     private readonly CTwoDimArrays twoDimArrays = NWNXLib.Rules().m_p2DArrays;
-
-    public TwoDimArrayFactory(InjectionService injectionService)
-    {
-      this.injectionService = injectionService;
-    }
 
     /// <summary>
     /// Deserializes the given 2da using the specified format.
