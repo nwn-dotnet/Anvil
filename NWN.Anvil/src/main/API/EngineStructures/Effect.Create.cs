@@ -198,9 +198,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="amount">The amount of damage to apply.</param>
     /// <param name="damageType">The damage type to apply.</param>
-    public static Effect Damage(int amount, DamageType damageType = DamageType.Magical)
+    /// <param name="damagePower">The enchantment/power bonus of the damage.</param>
+    public static Effect Damage(int amount, DamageType damageType = DamageType.Magical, DamagePower damagePower = DamagePower.Normal)
     {
-      return NWScript.EffectDamage(amount, (int)damageType)!;
+      return NWScript.EffectDamage(amount, (int)damageType, (int)damagePower)!;
     }
 
     /// <summary>
