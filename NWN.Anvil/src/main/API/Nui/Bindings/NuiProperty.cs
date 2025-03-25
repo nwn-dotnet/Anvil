@@ -6,7 +6,7 @@ namespace Anvil.API
   /// A NUI property that can be configured as a static readonly value, or a property that can be updated at runtime.
   /// </summary>
   /// <typeparam name="T">The underlying type of the property.</typeparam>
-  [JsonPolymorphic]
+  [JsonConverter(typeof(NuiPropertyConverter))]
   public abstract class NuiProperty<T>
   {
     /// <summary>
