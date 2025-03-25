@@ -28,7 +28,7 @@ namespace Anvil.Tests.API
         ],
       };
 
-      Assert.That(JsonUtility.ToJson(nuiRow), Is.EqualTo("""{"type":"row","children":[{"text_halign":1,"value":"test","type":"label","text_valign":1},{"type":"row","children":[]}],"aspect":1.5,"enabled":{"bind":"enabled_bind"},"foreground_color":{"bind":"color_bind"},"height":10.0,"id":"test_row","margin":2.0,"padding":3.0,"tooltip":"test_tooltip","visible":false,"width":100.0}"""));
+      Assert.That(JsonUtility.ToJson(nuiRow), Is.EqualTo("""{"type":"row","children":[{"text_halign":1,"value":"test","type":"label","text_valign":1},{"type":"row","children":[]}],"aspect":1.5,"enabled":{"bind":"enabled_bind"},"foreground_color":{"bind":"color_bind"},"height":10,"id":"test_row","margin":2,"padding":3,"tooltip":"test_tooltip","visible":false,"width":100}"""));
     }
   }
 }

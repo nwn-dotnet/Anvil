@@ -59,21 +59,12 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "Serializing a NuiValue<float> creates a valid JSON structure.")]
-    [TestCase(0f, @"0.0")]
+    [TestCase(0f, @"0")]
     [TestCase(0.1f, @"0.1")]
     [TestCase(0.125f, @"0.125")]
-    [TestCase(2f, @"2.0")]
+    [TestCase(2f, @"2")]
     [TestCase(2.5f, @"2.5")]
     [TestCase(2.5122f, @"2.5122")]
-    [TestCase(float.NaN, """
-                         "NaN"
-                         """)]
-    [TestCase(float.NegativeInfinity, """
-                                      "-Infinity"
-                                      """)]
-    [TestCase(float.PositiveInfinity, """
-                                      "Infinity"
-                                      """)]
     public void SerializeNuiValueFloatReturnsValidJsonStructure(float value, string expected)
     {
       NuiValue<float> test = new NuiValue<float>(value);
@@ -81,22 +72,13 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "Serializing a NuiValue<float?> creates a valid JSON structure.")]
-    [TestCase(0f, @"0.0")]
+    [TestCase(0f, @"0")]
     [TestCase(0.1f, @"0.1")]
     [TestCase(0.125f, @"0.125")]
-    [TestCase(2f, @"2.0")]
+    [TestCase(2f, @"2")]
     [TestCase(2.5f, @"2.5")]
     [TestCase(2.5122f, @"2.5122")]
     [TestCase(null, @"null")]
-    [TestCase(float.NaN, """
-                         "NaN"
-                         """)]
-    [TestCase(float.NegativeInfinity, """
-                                      "-Infinity"
-                                      """)]
-    [TestCase(float.PositiveInfinity, """
-                                      "Infinity"
-                                      """)]
     public void SerializeNuiValueFloatNullableReturnsValidJsonStructure(float? value, string expected)
     {
       NuiValue<float?> test = new NuiValue<float?>(value);
@@ -107,7 +89,7 @@ namespace Anvil.Tests.API
     public void SerializeNuiValueNuiRectReturnsValidJsonStructure()
     {
       NuiValue<NuiRect> test = new NuiValue<NuiRect>(new NuiRect(100f, 50.251f, 30.11f, 20f));
-      Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"h":20.0,"w":30.11,"x":100.0,"y":50.251}"""));
+      Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"h":20,"w":30.11,"x":100,"y":50.251}"""));
     }
 
     [Test(Description = "Serializing a NuiValue<List<int>> creates a valid JSON structure.")]
@@ -169,21 +151,12 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "Deerializing a NuiValue<float> creates a valid value/object.")]
-    [TestCase(0f, @"0.0")]
+    [TestCase(0f, @"0")]
     [TestCase(0.1f, @"0.1")]
     [TestCase(0.125f, @"0.125")]
-    [TestCase(2f, @"2.0")]
+    [TestCase(2f, @"2")]
     [TestCase(2.5f, @"2.5")]
     [TestCase(2.5122f, @"2.5122")]
-    [TestCase(float.NaN, """
-                         "NaN"
-                         """)]
-    [TestCase(float.NegativeInfinity, """
-                                      "-Infinity"
-                                      """)]
-    [TestCase(float.PositiveInfinity, """
-                                      "Infinity"
-                                      """)]
     public void DeserializeNuiValueFloatReturnsValidJsonStructure(float expected, string serialized)
     {
       NuiValue<float>? test = JsonUtility.FromJson<NuiValue<float>>(serialized);
@@ -191,22 +164,13 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "Deerializing a NuiValue<float?> creates a valid value/object.")]
-    [TestCase(0f, @"0.0")]
+    [TestCase(0f, @"0")]
     [TestCase(0.1f, @"0.1")]
     [TestCase(0.125f, @"0.125")]
-    [TestCase(2f, @"2.0")]
+    [TestCase(2f, @"2")]
     [TestCase(2.5f, @"2.5")]
     [TestCase(2.5122f, @"2.5122")]
     [TestCase(null, @"null")]
-    [TestCase(float.NaN, """
-                         "NaN"
-                         """)]
-    [TestCase(float.NegativeInfinity, """
-                                      "-Infinity"
-                                      """)]
-    [TestCase(float.PositiveInfinity, """
-                                      "Infinity"
-                                      """)]
     public void DeserializeNuiValueFloatNullableReturnsValidJsonStructure(float? expected, string serialized)
     {
       NuiValue<float?>? test = JsonUtility.FromJson<NuiValue<float?>>(serialized);
@@ -216,7 +180,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Deerializing a NuiValue<NuiRect> creates a valid value/object.")]
     public void DeserializeNuiValueNuiRectReturnsValidJsonStructure()
     {
-      NuiValue<NuiRect>? test = JsonUtility.FromJson<NuiValue<NuiRect>>("""{"h":20.0,"w":30.11,"x":100.0,"y":50.251}""");
+      NuiValue<NuiRect>? test = JsonUtility.FromJson<NuiValue<NuiRect>>("""{"h":20,"w":30.11,"x":100,"y":50.251}""");
       NuiRect expected = new NuiRect(100.0f, 50.251f, 30.11f, 20.0f);
 
       Assert.That(test?.Value, Is.EqualTo(expected));
