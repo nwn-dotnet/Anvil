@@ -7,6 +7,27 @@ namespace Anvil.API
   /// A dynamic NUI element with style support.
   /// </summary>
   [JsonPolymorphic]
+  [JsonDerivedType(typeof(NuiColumn))]
+  [JsonDerivedType(typeof(NuiGroup))]
+  [JsonDerivedType(typeof(NuiRow))]
+  [JsonDerivedType(typeof(NuiList))]
+  [JsonDerivedType(typeof(NuiButton))]
+  [JsonDerivedType(typeof(NuiButtonImage))]
+  [JsonDerivedType(typeof(NuiButtonSelect))]
+  [JsonDerivedType(typeof(NuiChart))]
+  [JsonDerivedType(typeof(NuiCheck))]
+  [JsonDerivedType(typeof(NuiColorPicker))]
+  [JsonDerivedType(typeof(NuiCombo))]
+  [JsonDerivedType(typeof(NuiImage))]
+  [JsonDerivedType(typeof(NuiLabel))]
+  [JsonDerivedType(typeof(NuiOptions))]
+  [JsonDerivedType(typeof(NuiProgress))]
+  [JsonDerivedType(typeof(NuiSlider))]
+  [JsonDerivedType(typeof(NuiSliderFloat))]
+  [JsonDerivedType(typeof(NuiSpacer))]
+  [JsonDerivedType(typeof(NuiText))]
+  [JsonDerivedType(typeof(NuiTextEdit))]
+  [JsonDerivedType(typeof(NuiToggles))]
   public abstract class NuiElement
   {
     /// <summary>

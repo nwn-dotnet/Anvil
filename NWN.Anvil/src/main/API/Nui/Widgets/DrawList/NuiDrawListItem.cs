@@ -3,6 +3,13 @@ using System.Text.Json.Serialization;
 namespace Anvil.API
 {
   [JsonPolymorphic]
+  [JsonDerivedType(typeof(NuiDrawListArc))]
+  [JsonDerivedType(typeof(NuiDrawListCircle))]
+  [JsonDerivedType(typeof(NuiDrawListCurve))]
+  [JsonDerivedType(typeof(NuiDrawListImage))]
+  [JsonDerivedType(typeof(NuiDrawListLine))]
+  [JsonDerivedType(typeof(NuiDrawListPolyLine))]
+  [JsonDerivedType(typeof(NuiDrawListText))]
   public abstract class NuiDrawListItem
   {
     [JsonPropertyName("color")]
