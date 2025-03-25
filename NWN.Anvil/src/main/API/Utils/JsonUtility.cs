@@ -1,3 +1,4 @@
+using System.Text.Json;
 
 namespace Anvil.API
 {
@@ -14,7 +15,7 @@ namespace Anvil.API
     /// <returns>The deserialized object.</returns>
     public static T? FromJson<T>(string json)
     {
-      return JsonConvert.DeserializeObject<T>(json);
+      return JsonSerializer.Deserialize<T>(json);
     }
 
     /// <summary>
@@ -25,7 +26,7 @@ namespace Anvil.API
     /// <returns>A JSON string representing the value.</returns>
     public static string ToJson<T>(T value)
     {
-      return JsonConvert.SerializeObject(value);
+      return JsonSerializer.Serialize(value);
     }
 
     /// <summary>
@@ -36,7 +37,7 @@ namespace Anvil.API
     /// <returns>The deserialized object.</returns>
     internal static T? FromJson<T>(Json json)
     {
-      return JsonConvert.DeserializeObject<T>(json.Dump());
+      return JsonSerializer.Deserialize<T>(json.Dump());
     }
 
     /// <summary>

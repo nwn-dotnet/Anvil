@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Anvil.API;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -46,7 +45,7 @@ namespace Anvil.Tests.API
     [TestCase("""{"r":255,"g":100,"b":10,"a":30}""", 255, 100, 10, 30)]
     public void DeserializeColorCreatesCorrectColor(string json, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
     {
-      Color color = JsonConvert.DeserializeObject<Color>(json);
+      Color color = JsonUtility.FromJson<Color>(json);
       Assert.That(color, Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
     }
 
@@ -96,8 +95,8 @@ namespace Anvil.Tests.API
     [TestCaseSource(nameof(ColorTestCases))]
     public void SerializeColorRetainsColorValues(Color color)
     {
-      string serializedColor = JsonConvert.SerializeObject(color);
-      Color deserializedColor = JsonConvert.DeserializeObject<Color>(serializedColor);
+      string serializedColor = JsonUtility.ToJson(color);
+      Color deserializedColor = JsonUtility.FromJson<Color>(serializedColor);
 
       Assert.That(deserializedColor, Is.EqualTo(color));
     }
