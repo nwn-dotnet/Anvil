@@ -31,7 +31,6 @@ namespace Anvil.Internal
         NWNXDotNet,
         typeof(NLog.Logger).Assembly,
         typeof(LightInject.ServiceContainer).Assembly,
-        typeof(Newtonsoft.Json.JsonConvert).Assembly,
         typeof(Paket.Dependencies).Assembly,
       ];
 
