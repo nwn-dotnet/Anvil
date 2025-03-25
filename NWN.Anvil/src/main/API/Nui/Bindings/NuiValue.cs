@@ -9,7 +9,7 @@ namespace Anvil.API
   [JsonConverter(typeof(NuiValueConverter))]
   public sealed class NuiValue<T> : NuiProperty<T>
   {
-    public NuiValue(T value)
+    public NuiValue(T? value)
     {
       Value = value;
     }
