@@ -1,54 +1,61 @@
 using System;
 using System.Reflection;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
-  public sealed class NuiValueConverter : JsonConverter
+  public sealed class NuiValueConverter : JsonConverterFactory
   {
     public override bool CanConvert(Type objectType)
     {
+      if (!objectType.IsGenericType)
+      {
+        return false;
+      }
+
       return objectType.GetGenericTypeDefinition() == typeof(NuiValue<>);
     }
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
-      object? retVal = Activator.CreateInstance(objectType, true);
-      if (retVal == null)
-      {
-        return null;
-      }
+      Type converterType = typeof(NuiValueConverterInner<>).MakeGenericType(typeToConvert);
 
-      PropertyInfo? propertyInfo = objectType.GetProperty(nameof(NuiValue<object>.Value));
-      if (propertyInfo == null)
-      {
-        return null;
-      }
-
-      Type valueType = objectType.GetGenericArguments()[0];
-      propertyInfo.SetValue(retVal, serializer.Deserialize(reader, valueType));
-
-      return retVal;
+      return (JsonConverter?)Activator.CreateInstance(converterType,
+        BindingFlags.Instance | BindingFlags.Public,
+        null,
+        [options],
+        null);
     }
 
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+    private sealed class NuiValueConverterInner<TValue> : JsonConverter<NuiValue<TValue>>
     {
-      if (value == null)
+      private readonly JsonConverter<TValue> valueConverter;
+      private readonly Type valueType;
+
+      public NuiValueConverterInner(JsonSerializerOptions options)
       {
-        writer.WriteNull();
-        return;
+        valueType = typeof(TValue);
+        valueConverter = (JsonConverter<TValue>)options.GetConverter(valueType);
       }
 
-      Type type = value.GetType();
-      PropertyInfo? propertyInfo = type.GetProperty(nameof(NuiValue<object>.Value));
-
-      if (propertyInfo == null)
+      public override NuiValue<TValue> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
       {
-        writer.WriteNull();
-        return;
+        TValue? value = valueConverter.Read(ref reader, valueType, options);
+        return new NuiValue<TValue>(value);
       }
 
-      serializer.Serialize(writer, propertyInfo.GetValue(value));
+      public override void Write(Utf8JsonWriter writer, NuiValue<TValue> value, JsonSerializerOptions options)
+      {
+        if (value.Value is not null)
+        {
+          valueConverter.Write(writer, value.Value, options);
+        }
+        else
+        {
+          writer.WriteNullValue();
+        }
+      }
     }
   }
 }
