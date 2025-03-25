@@ -6,6 +6,7 @@ namespace Anvil.API
   /// <summary>
   /// A dynamic NUI element with style support.
   /// </summary>
+  [JsonPolymorphic]
   public abstract class NuiElement
   {
     /// <summary>
