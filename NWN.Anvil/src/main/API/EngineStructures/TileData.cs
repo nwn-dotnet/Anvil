@@ -1,5 +1,5 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -18,43 +18,43 @@ namespace Anvil.API
     /// 3 4 5<br/>
     /// 0 1 2<br/>
     /// </remarks>
-    [JsonProperty("index")]
+    [JsonPropertyName("index")]
     public int Index { get; set; }
 
     /// <summary>
     /// The new tile ID to assign.
     /// </summary>
-    [JsonProperty("tileid")]
+    [JsonPropertyName("tileid")]
     public int TileId { get; set; }
 
     /// <summary>
     /// The rotation of the new tile.
     /// </summary>
-    [JsonProperty("orientation")]
+    [JsonPropertyName("orientation")]
     public TileRotation Orientation { get; set; }
 
     /// <summary>
     /// The height of the new tile.
     /// </summary>
-    [JsonProperty("height")]
+    [JsonPropertyName("height")]
     public int Height { get; set; }
 
     /// <summary>
     /// The animation state of the new tile (1/0).
     /// </summary>
-    [JsonProperty("animloop1")]
+    [JsonPropertyName("animloop1")]
     public int AnimationLoop1 { get; set; }
 
     /// <summary>
     /// The animation state of the new tile (1/0).
     /// </summary>
-    [JsonProperty("animloop2")]
+    [JsonPropertyName("animloop2")]
     public int AnimationLoop2 { get; set; }
 
     /// <summary>
     /// The animation state of the new tile (1/0).
     /// </summary>
-    [JsonProperty("animloop3")]
+    [JsonPropertyName("animloop3")]
     public int AnimationLoop3 { get; set; }
   }
 }

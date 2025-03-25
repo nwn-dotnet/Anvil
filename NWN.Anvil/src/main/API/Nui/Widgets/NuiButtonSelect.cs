@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -9,10 +9,10 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiButtonSelect(NuiProperty<string> label, NuiProperty<bool> selected) : NuiWidget
   {
-    [JsonProperty("label")]
+    [JsonPropertyName("label")]
     public NuiProperty<string> Label { get; set; } = label;
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<bool> Selected { get; set; } = selected;
 
     public override string Type => "button_select";

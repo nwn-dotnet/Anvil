@@ -1,6 +1,6 @@
+using System.Text.Json.Serialization;
 using Anvil.Internal;
 using Anvil.Services;
-using Newtonsoft.Json;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -19,7 +19,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the index/key for this StrRef.
     /// </summary>
-    [JsonProperty("strref")]
+    [JsonPropertyName("strref")]
     public readonly uint Id = stringId;
 
     public StrRef(int stringId) : this((uint)stringId) {}

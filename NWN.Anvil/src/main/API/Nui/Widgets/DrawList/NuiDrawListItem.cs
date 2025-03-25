@@ -1,28 +1,28 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
   public abstract class NuiDrawListItem
   {
-    [JsonProperty("color", NullValueHandling = NullValueHandling.Include)]
+    [JsonPropertyName("color", NullValueHandling = NullValueHandling.Include)]
     public NuiProperty<Color>? Color { get; set; }
 
-    [JsonProperty("enabled")]
+    [JsonPropertyName("enabled")]
     public NuiProperty<bool> Enabled { get; set; } = true;
 
-    [JsonProperty("fill", NullValueHandling = NullValueHandling.Include)]
+    [JsonPropertyName("fill", NullValueHandling = NullValueHandling.Include)]
     public NuiProperty<bool>? Fill { get; set; }
 
-    [JsonProperty("line_thickness", NullValueHandling = NullValueHandling.Include)]
+    [JsonPropertyName("line_thickness", NullValueHandling = NullValueHandling.Include)]
     public NuiProperty<float>? LineThickness { get; set; }
 
-    [JsonProperty("type")]
+    [JsonPropertyName("type")]
     public abstract NuiDrawListItemType Type { get; }
 
-    [JsonProperty("order")]
+    [JsonPropertyName("order")]
     public NuiDrawListItemOrder Order { get; set; } = NuiDrawListItemOrder.After;
 
-    [JsonProperty("render")]
+    [JsonPropertyName("render")]
     public NuiDrawListItemRender Render { get; set; } = NuiDrawListItemRender.Always;
   }
 }

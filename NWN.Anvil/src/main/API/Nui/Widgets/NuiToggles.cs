@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -7,10 +7,10 @@ namespace Anvil.API
   {
     public override string Type => "tabbar";
 
-    [JsonProperty("direction")]
+    [JsonPropertyName("direction")]
     public NuiDirection Direction { get; set; } = direction;
 
-    [JsonProperty("elements")]
+    [JsonPropertyName("elements")]
     public List<string> Elements { get; set; } = elements;
   }
 }

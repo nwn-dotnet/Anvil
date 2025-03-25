@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -14,10 +14,10 @@ namespace Anvil.API
       PointB = pointB;
     }
 
-    [JsonProperty("a")]
+    [JsonPropertyName("a")]
     public NuiProperty<NuiVector> PointA { get; set; }
 
-    [JsonProperty("b")]
+    [JsonPropertyName("b")]
     public NuiProperty<NuiVector> PointB { get; set; }
 
     public override NuiDrawListItemType Type => NuiDrawListItemType.Line;

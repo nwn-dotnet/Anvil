@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using NWN.Core;
 
 namespace Anvil.API
@@ -11,7 +11,7 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiGroup : NuiLayout
   {
-    [JsonProperty("border")]
+    [JsonPropertyName("border")]
     public bool Border { get; set; } = true;
 
     [JsonIgnore]
@@ -24,7 +24,7 @@ namespace Anvil.API
     [JsonIgnore]
     public NuiElement? Element { get; set; }
 
-    [JsonProperty("scrollbars")]
+    [JsonPropertyName("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
     public override string Type => "group";

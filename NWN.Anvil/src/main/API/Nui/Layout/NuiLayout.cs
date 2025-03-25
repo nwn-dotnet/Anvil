@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
   public abstract class NuiLayout : NuiElement
   {
-    [JsonProperty("children")]
+    [JsonPropertyName("children")]
     protected abstract IEnumerable<NuiElement> SerializedChildren { get; }
   }
 }

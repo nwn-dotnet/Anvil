@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using NWN.Core;
 
 namespace Anvil.API
@@ -11,7 +11,7 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiBind<T>(string key) : NuiProperty<T>
   {
-    [JsonProperty("bind")]
+    [JsonPropertyName("bind")]
     public string Key { get; init; } = key;
 
     /// <summary>

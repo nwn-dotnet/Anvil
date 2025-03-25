@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -17,16 +17,16 @@ namespace Anvil.API
       AngleMax = angleMax;
     }
 
-    [JsonProperty("amax")]
+    [JsonPropertyName("amax")]
     public NuiProperty<float> AngleMax { get; set; }
 
-    [JsonProperty("amin")]
+    [JsonPropertyName("amin")]
     public NuiProperty<float> AngleMin { get; set; }
 
-    [JsonProperty("c")]
+    [JsonPropertyName("c")]
     public NuiProperty<NuiVector> Center { get; set; }
 
-    [JsonProperty("radius")]
+    [JsonPropertyName("radius")]
     public NuiProperty<float> Radius { get; set; }
 
     public override NuiDrawListItemType Type => NuiDrawListItemType.Arc;

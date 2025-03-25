@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -13,7 +13,7 @@ namespace Anvil.API
     /// <summary>
     /// The current value of this progress bar (0-1).
     /// </summary>
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<float> Value { get; set; } = value;
   }
 }

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -8,7 +8,7 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiChart : NuiWidget
   {
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public List<NuiChartSlot>? ChartSlots { get; set; }
 
     public override string Type => "chart";
