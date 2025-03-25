@@ -24,6 +24,7 @@ namespace Anvil.API
     [JsonPropertyName("value")]
     public NuiProperty<string> ResRef { get; set; } = resRef;
 
+    [JsonPropertyName("type")]
     public override string Type => "image";
 
     [JsonPropertyName("image_valign")]

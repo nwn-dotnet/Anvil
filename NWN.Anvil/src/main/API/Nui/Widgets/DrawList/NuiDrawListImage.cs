@@ -25,6 +25,7 @@ namespace Anvil.API
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public NuiProperty<NuiRect>? ImageRegion { get; set; }
 
+    [JsonPropertyName("type")]
     public override NuiDrawListItemType Type => NuiDrawListItemType.Image;
 
     [JsonPropertyName("image_valign")]

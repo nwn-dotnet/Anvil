@@ -20,6 +20,7 @@ namespace Anvil.API
     [JsonPropertyName("b")]
     public NuiProperty<NuiVector> PointB { get; set; }
 
+    [JsonPropertyName("type")]
     public override NuiDrawListItemType Type => NuiDrawListItemType.Line;
   }
 }

@@ -14,6 +14,7 @@ namespace Anvil.API
     [JsonPropertyName("value")]
     public NuiProperty<string> Label { get; set; } = label;
 
+    [JsonPropertyName("type")]
     public override string Type => "label";
 
     [JsonPropertyName("text_valign")]

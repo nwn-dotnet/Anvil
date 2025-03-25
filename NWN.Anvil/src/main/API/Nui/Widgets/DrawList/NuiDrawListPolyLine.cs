@@ -17,6 +17,7 @@ namespace Anvil.API
     [JsonPropertyName("points")]
     public List<float> Points { get; set; }
 
+    [JsonPropertyName("type")]
     public override NuiDrawListItemType Type => NuiDrawListItemType.PolyLine;
   }
 }

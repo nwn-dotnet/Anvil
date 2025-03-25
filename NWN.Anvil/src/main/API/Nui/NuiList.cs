@@ -41,6 +41,7 @@ namespace Anvil.API
     [JsonPropertyName("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Y;
 
+    [JsonPropertyName("type")]
     public override string Type => "list";
   }
 }

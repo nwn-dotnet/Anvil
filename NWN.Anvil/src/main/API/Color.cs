@@ -13,24 +13,28 @@ namespace Anvil.API
     /// Gets the alpha value of this color as a byte (0-255).
     /// </summary>
     [JsonPropertyName("a")]
+    [JsonInclude]
     public readonly byte Alpha;
 
     /// <summary>
     /// Gets the blue value of this color as a byte (0-255).
     /// </summary>
     [JsonPropertyName("b")]
+    [JsonInclude]
     public readonly byte Blue;
 
     /// <summary>
     /// Gets the green value of this color as a byte (0-255).
     /// </summary>
     [JsonPropertyName("g")]
+    [JsonInclude]
     public readonly byte Green;
 
     /// <summary>
     /// Gets the red value of this color as a byte (0-255).
     /// </summary>
     [JsonPropertyName("r")]
+    [JsonInclude]
     public readonly byte Red;
 
     /// <summary>

@@ -5,6 +5,7 @@ namespace Anvil.API
 {
   public sealed class NuiToggles(NuiDirection direction, List<string> elements) : NuiWidget
   {
+    [JsonPropertyName("type")]
     public override string Type => "tabbar";
 
     [JsonPropertyName("direction")]

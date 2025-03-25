@@ -17,6 +17,7 @@ namespace Anvil.API
     [JsonPropertyName("step")]
     public NuiProperty<float> StepSize { get; set; } = 0.01f;
 
+    [JsonPropertyName("type")]
     public override string Type => "sliderf";
 
     [JsonPropertyName("value")]

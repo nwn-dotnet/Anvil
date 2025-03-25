@@ -17,6 +17,7 @@ namespace Anvil.API
     [JsonPropertyName("step")]
     public NuiProperty<int> Step { get; set; } = 1;
 
+    [JsonPropertyName("type")]
     public override string Type => "slider";
 
     [JsonPropertyName("value")]

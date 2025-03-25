@@ -8,9 +8,11 @@ namespace Anvil.API
   public readonly struct NuiVector(float x, float y) : IEquatable<NuiVector>
   {
     [JsonPropertyName("x")]
+    [JsonInclude]
     public readonly float X = x;
 
     [JsonPropertyName("y")]
+    [JsonInclude]
     public readonly float Y = y;
 
     public static NuiVector operator +(NuiVector a, NuiVector b)

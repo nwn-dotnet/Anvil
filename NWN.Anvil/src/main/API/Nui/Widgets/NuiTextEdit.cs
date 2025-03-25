@@ -17,6 +17,7 @@ namespace Anvil.API
     [JsonPropertyName("multiline")]
     public bool MultiLine { get; set; } = multiLine;
 
+    [JsonPropertyName("type")]
     public override string Type => "textedit";
 
     [JsonPropertyName("value")]

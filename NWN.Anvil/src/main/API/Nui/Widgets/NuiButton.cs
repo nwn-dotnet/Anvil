@@ -11,6 +11,7 @@ namespace Anvil.API
     [JsonPropertyName("label")]
     public NuiProperty<string> Label { get; set; } = label;
 
+    [JsonPropertyName("type")]
     public override string Type => "button";
   }
 }

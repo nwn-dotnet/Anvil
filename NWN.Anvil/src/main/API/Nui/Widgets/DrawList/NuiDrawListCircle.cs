@@ -16,6 +16,7 @@ namespace Anvil.API
     [JsonPropertyName("rect")]
     public NuiProperty<NuiRect> Rect { get; set; }
 
+    [JsonPropertyName("type")]
     public override NuiDrawListItemType Type => NuiDrawListItemType.Circle;
   }
 }

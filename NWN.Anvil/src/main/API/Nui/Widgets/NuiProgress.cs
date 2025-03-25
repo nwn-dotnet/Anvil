@@ -8,6 +8,7 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiProgress(NuiProperty<float> value) : NuiWidget
   {
+    [JsonPropertyName("type")]
     public override string Type => "progress";
 
     /// <summary>

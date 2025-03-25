@@ -11,6 +11,7 @@ namespace Anvil.API
     [JsonPropertyName("label")]
     public NuiProperty<string> ResRef { get; set; } = resRef;
 
+    [JsonPropertyName("type")]
     public override string Type => "button_image";
   }
 }
