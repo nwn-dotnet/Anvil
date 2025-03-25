@@ -21,7 +21,8 @@ namespace Anvil.API
     /// Optionally render a subregion of the image.<br/>
     /// This property is a NuiRect (x, y, w, h) to indicate the render region inside the image.
     /// </summary>
-    [JsonPropertyName("image_region", NullValueHandling = NullValueHandling.Ignore)]
+    [JsonPropertyName("image_region")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public NuiProperty<NuiRect>? ImageRegion { get; set; }
 
     public override NuiDrawListItemType Type => NuiDrawListItemType.Image;
