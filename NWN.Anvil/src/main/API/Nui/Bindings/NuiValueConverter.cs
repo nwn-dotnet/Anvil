@@ -19,7 +19,8 @@ namespace Anvil.API
 
     public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
-      Type converterType = typeof(NuiValueConverterInner<>).MakeGenericType(typeToConvert);
+      Type valueType = typeToConvert.GetGenericArguments()[0];
+      Type converterType = typeof(NuiValueConverterInner<>).MakeGenericType(valueType);
 
       return (JsonConverter?)Activator.CreateInstance(converterType,
         BindingFlags.Instance | BindingFlags.Public,
