@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
-  internal sealed class NuiListTemplateCellConverter(JsonSerializerOptions options) : JsonConverter<NuiListTemplateCell>
+  internal sealed class NuiListTemplateCellConverter : JsonConverter<NuiListTemplateCell>
   {
-    private readonly JsonConverter<NuiElement> nuiElementConverter = (JsonConverter<NuiElement>)options.GetConverter(typeof(NuiElement));
-
     public override NuiListTemplateCell? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
+      JsonConverter<NuiElement> nuiElementConverter = (JsonConverter<NuiElement>)options.GetConverter(typeof(NuiElement));
+
       reader.Read();
       if (reader.TokenType != JsonTokenType.StartArray)
       {
@@ -41,6 +41,8 @@ namespace Anvil.API
 
     public override void Write(Utf8JsonWriter writer, NuiListTemplateCell value, JsonSerializerOptions options)
     {
+      JsonConverter<NuiElement> nuiElementConverter = (JsonConverter<NuiElement>)options.GetConverter(typeof(NuiElement));
+
       writer.WriteStartArray();
       nuiElementConverter.Write(writer, value.Element, options);
       writer.WriteBooleanValue(value.VariableSize);
