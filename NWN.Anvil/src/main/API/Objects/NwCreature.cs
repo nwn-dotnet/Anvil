@@ -230,6 +230,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets this creature's initiative roll.
+    /// </summary>
+    public byte InitiativeRoll
+    {
+      get => Creature.m_nInitiativeRoll;
+      set => Creature.m_nInitiativeRoll = value;
+    }
+
+    /// <summary>
     /// Gets this creature's classes, and associated class info.
     /// </summary>
     public IReadOnlyList<CreatureClassInfo> Classes
