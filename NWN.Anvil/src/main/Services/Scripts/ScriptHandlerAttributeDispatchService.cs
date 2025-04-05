@@ -7,13 +7,13 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(IScriptDispatcher))]
-  internal sealed class AttributeScriptDispatchService(Lazy<IEnumerable<object>> services) : IScriptDispatcher, IInitializable
+  internal sealed class ScriptHandlerAttributeDispatchService(Lazy<IEnumerable<object>> services) : IScriptDispatcher, IInitializable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const int StartCapacity = 2000;
 
-    private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
+    private readonly Dictionary<string, ScriptHandler> scriptHandlers = new Dictionary<string, ScriptHandler>(StartCapacity);
 
     public int ExecutionOrder => 10000;
 
@@ -27,7 +27,7 @@ namespace Anvil.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint objectSelf)
     {
-      if (scriptHandlers.TryGetValue(script, out ScriptCallback? handler))
+      if (scriptHandlers.TryGetValue(script, out ScriptHandler? handler))
       {
         return handler.ProcessCallbacks(objectSelf);
       }
@@ -47,13 +47,13 @@ namespace Anvil.Services
         return;
       }
 
-      if (!scriptHandlers.TryGetValue(scriptName, out ScriptCallback? callback))
+      if (!scriptHandlers.TryGetValue(scriptName, out ScriptHandler? callback))
       {
-        callback = new ScriptCallback(scriptName);
+        callback = new ScriptHandler(scriptName);
         scriptHandlers.Add(scriptName, callback);
       }
 
-      callback.AddCallback(service, method);
+      callback.AddCallback(method, service);
     }
 
     private void RegisterServiceListeners(object service)

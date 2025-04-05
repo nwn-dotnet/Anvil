@@ -78,12 +78,13 @@ namespace Anvil.Services
     /// <returns>True if a handler was removed, false if nothing was removed.</returns>
     public bool UnregisterScriptHandler(string scriptName)
     {
-      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle? handle))
+      if (activeHandlers.Remove(scriptName, out ScriptCallbackHandle? handle))
       {
         handle.IsValid = false;
+        return true;
       }
 
-      return activeHandlers.Remove(scriptName);
+      return false;
     }
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
