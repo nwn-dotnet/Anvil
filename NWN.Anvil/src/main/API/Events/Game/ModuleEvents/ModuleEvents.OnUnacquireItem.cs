@@ -10,15 +10,17 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered when a <see cref="NwItem"/> is removed from a <see cref="NwCreature"/>'s inventory.
+    /// Triggered when a <see cref="NwItem"/> is removed from a <see cref="NwCreature"/>'s inventory.<br/>
+    /// This event is also fired when an item stack is destroyed when combining with another item stack.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnLoseItem)]
     public sealed class OnUnacquireItem : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwItem"/> that was lost by <see cref="NwCreature"/>.
+      /// Gets the <see cref="NwItem"/> that was lost by <see cref="NwCreature"/>.<br/>
+      /// This property is null when an item stack is destroyed when combining with another item stack.
       /// </summary>
-      public NwItem Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>()!;
+      public NwItem? Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that lost the <see cref="NwItem"/>.
