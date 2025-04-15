@@ -732,7 +732,7 @@ namespace Anvil.API
     /// <exception cref="InvalidOperationException">Thrown if the player is not a DM, or the creature is already possessed by another player.</exception>
     public void DMPossessCreature(NwCreature creature, bool impersonate = false)
     {
-      if (IsDM)
+      if (!IsDM)
       {
         throw new InvalidOperationException("Player must be a DM to possess the creature.");
       }
