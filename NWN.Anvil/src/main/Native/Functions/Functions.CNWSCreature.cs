@@ -100,6 +100,9 @@ namespace Anvil.Native
       [NativeFunction("_ZN12CNWSCreature17UnpossessFamiliarEv", "?UnpossessFamiliar@CNWSCreature@@QEAAXXZ")]
       public delegate void UnpossessFamiliar(void* pCreature);
 
+      [NativeFunction("_ZN12CNWSCreature14UnsummonMyselfEv", "?UnsummonMyself@CNWSCreature@@QEAAXXZ")]
+      public delegate void UnsummonMyself(void* pCreature);
+
       [NativeFunction("_ZN12CNWSCreature7UseFeatEttjjP6Vector", "?UseFeat@CNWSCreature@@QEAAHGGIIPEAVVector@@@Z")]
       public delegate int UseFeat(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos);
 

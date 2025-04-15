@@ -45,6 +45,9 @@ namespace Anvil.API
     [Inject]
     private static Lazy<PlayerLoopingVisualEffectService> PlayerLoopingVisualEffectService { get; set; } = null!;
 
+    [Inject]
+    private static Lazy<PlayerPossessionService> PlayerPossessionService { get; set; } = null!;
+
     private readonly CNWSPlayer player;
 
     internal CNWSPlayer Player
@@ -744,6 +747,17 @@ namespace Anvil.API
 
       NWN.Native.API.AssociateType possessType = impersonate ? NWN.Native.API.AssociateType.DMImpersonate : NWN.Native.API.AssociateType.DMPossess;
       Player.PossessCreature(creature, (byte)possessType);
+    }
+
+    /// <summary>
+    /// Possesses a creature temporarily by making them a familiar.
+    /// </summary>
+    /// <param name="creature">The creature to possess.</param>
+    /// <param name="mindImmune">If the built-in mind immunity should apply to this player while possessing.</param>
+    /// <param name="createDefaultQuickBar">If true, will populate the possessed creature's quick bar with default buttons.</param>
+    public void PlayerPossessCreature(NwCreature creature, bool mindImmune = true, bool createDefaultQuickBar = false)
+    {
+      PlayerPossessionService.Value.PossessCreature(this, creature, mindImmune, createDefaultQuickBar);
     }
 
     /// <summary>
