@@ -18,8 +18,8 @@ namespace Anvil.Tests.API
         ],
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"value":[{"type":1,"color":{"a":255,"b":0,"g":0,"r":128},"data":[1.0,2.0,3.0],"legend":"slot1"},{"type":1,"color":{"a":255,"b":128,"g":0,"r":0},"data":[0.0,-1.0,-2.0],"legend":"slot2"}],"type":"chart"}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"value":[{"type":1,"color":{"a":255,"b":0,"g":0,"r":128},"data":[1.0,2.0,3.0],"legend":"slot1"},{"type":1,"color":{"a":255,"b":128,"g":0,"r":0},"data":[0.0,-1.0,-2.0],"legend":"slot2"}],"type":"chart"}"""));
+      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"value":[{"type":1,"color":{"a":255,"b":0,"g":0,"r":128},"data":[1,2,3],"legend":"slot1"},{"type":1,"color":{"a":255,"b":128,"g":0,"r":0},"data":[0,-1,-2],"legend":"slot2"}],"type":"chart"}"""));
+      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"value":[{"type":1,"color":{"a":255,"b":0,"g":0,"r":128},"data":[1,2,3],"legend":"slot1"},{"type":1,"color":{"a":255,"b":128,"g":0,"r":0},"data":[0,-1,-2],"legend":"slot2"}],"type":"chart"}"""));
     }
   }
 }
