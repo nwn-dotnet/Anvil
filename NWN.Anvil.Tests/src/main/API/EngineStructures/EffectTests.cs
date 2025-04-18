@@ -5,7 +5,7 @@ using NWN.Native.API;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public sealed class EffectTests
   {
     [Test(Description = "Creating an effect and disposing the effect explicitly frees the associated memory.")]

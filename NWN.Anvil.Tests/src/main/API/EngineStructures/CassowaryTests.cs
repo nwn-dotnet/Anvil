@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public sealed class CassowaryTests
   {
     [Test(Description = "Creating a new cassowary and disposing the cassowary explicitly frees the associated memory.")]

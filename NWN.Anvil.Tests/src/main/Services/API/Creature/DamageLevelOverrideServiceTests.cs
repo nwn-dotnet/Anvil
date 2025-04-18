@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services.API.Creature
 {
-  [TestFixture(Category = "Services.API")]
+  [TestFixture]
   public sealed class DamageLevelOverrideServiceTests
   {
     [Inject]

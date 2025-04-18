@@ -10,7 +10,7 @@ using Skill = Anvil.API.Skill;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public sealed class ItemPropertyTests
   {
     [Test(Description = "Creating an item property and disposing the item property explicitly frees the associated memory.")]
@@ -36,7 +36,7 @@ namespace Anvil.Tests.API
       Assert.That(softReference.IsValid, Is.True, "The soft reference disposed the memory of the original item property.");
     }
 
-    [TestFixture(Category = "API.EngineStructure")]
+    [TestFixture]
     public abstract class ItemPropertyTest
     {
       protected abstract ItemProperty ItemProperty { get; }

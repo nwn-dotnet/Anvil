@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services.API.Item
 {
-  [TestFixture(Category = "Services.API")]
+  [TestFixture]
   public class ItemMinEquipLevelOverrideServiceTests
   {
     [Inject]

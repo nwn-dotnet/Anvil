@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public class SQLQueryTests
   {
     [Test(Description = "Creating a SQL query and disposing the query explicitly frees the associated memory.")]

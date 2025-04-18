@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Nui")]
+  [TestFixture]
   public sealed class NuiBindTests
   {
     [Test(Description = "Serializing a NuiBind<string> creates a valid JSON structure.")]
