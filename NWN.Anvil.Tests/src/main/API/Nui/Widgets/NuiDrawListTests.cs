@@ -6,6 +6,18 @@ namespace Anvil.Tests.API
   [TestFixture]
   public sealed class NuiDrawListTests
   {
+    [Test]
+    public void SerializeNuiDrawListReturnsValidJson()
+    {
+      NuiButton element = new NuiButton("btn_label")
+      {
+        DrawList = [new NuiDrawListText(ColorConstants.Red, new NuiRect(0, 0, 100, 100), "Draw list text")],
+      };
+
+      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"label":"btn_label","type":"button","draw_list":[{"rect":{"h":100.0,"w":100.0,"x":0.0,"y":0.0},"text":"Draw list text","type":4,"color":{"a":255,"b":0,"g":0,"r":255},"enabled":true,"fill":null,"line_thickness":null,"order":1,"render":0}]}"""));
+      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"label":"btn_label","type":"button","draw_list":[{"rect":{"h":100.0,"w":100.0,"x":0.0,"y":0.0},"text":"Draw list text","type":4,"color":{"a":255,"b":0,"g":0,"r":255},"enabled":true,"fill":null,"line_thickness":null,"order":1,"render":0}]}"""));
+    }
+
     [Test(Description = "Serializing a NuiDrawListArc creates a valid JSON structure.")]
     public void SerializeNuiDrawListArcReturnsValidJson()
     {
