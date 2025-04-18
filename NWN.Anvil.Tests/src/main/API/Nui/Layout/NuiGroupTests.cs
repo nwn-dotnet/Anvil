@@ -7,7 +7,7 @@ namespace Anvil.Tests.API
   public sealed class NuiGroupTests
   {
     [Test(Description = "Serializing a NuiGroup creates a valid JSON structure.")]
-    public void SerializeNuiGroupReturnsValidJsonStructure()
+    public void SerializeNuiGroupReturnsValidJson()
     {
       NuiGroup layout = new NuiGroup
       {

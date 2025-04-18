@@ -7,7 +7,7 @@ namespace Anvil.Tests.API
   public sealed class NuiColumnTests
   {
     [Test(Description = "Serializing a NuiColumn creates a valid JSON structure.")]
-    public void SerializeNuiColumnReturnsValidJsonStructure()
+    public void SerializeNuiColumnReturnsValidJson()
     {
       NuiColumn layout = new NuiColumn
       {

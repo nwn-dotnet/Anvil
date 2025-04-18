@@ -7,7 +7,7 @@ namespace Anvil.Tests.API
   public sealed class NuiRowTests
   {
     [Test(Description = "Serializing a NuiRow creates a valid JSON structure.")]
-    public void SerializeNuiRowReturnsValidJsonStructure()
+    public void SerializeNuiRowReturnsValidJson()
     {
       NuiRow layout = new NuiRow
       {
