@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using NWNX.NET;
@@ -8,11 +9,6 @@ namespace Anvil.Services
 {
   public sealed unsafe class FunctionHook<T> : IDisposable where T : Delegate
   {
-    /// <summary>
-    /// The original function call - invoke this to run the standard game behaviour.
-    /// </summary>
-    public readonly T CallOriginal;
-
     // We hold a reference to the delegate to prevent clean up from the garbage collector.
     [UsedImplicitly]
     private readonly T? managedHandle;
@@ -20,17 +16,50 @@ namespace Anvil.Services
     private readonly HookService hookService;
     private readonly FunctionHook* functionHook;
 
+    private T functionDelegate;
+    private void* functionDelegatePointer;
+
+    /// <summary>
+    /// The original function call - invoke this to run the standard game behaviour.
+    /// </summary>
+    public T CallOriginal
+    {
+      get
+      {
+        void* functionPointer = functionHook->m_trampoline;
+        if (functionPointer != functionDelegatePointer)
+        {
+          UpdateFunctionDelegate(functionPointer);
+        }
+
+        return functionDelegate;
+      }
+    }
+
     internal FunctionHook(HookService hookService, FunctionHook* functionHook, T? managedHandle = null)
     {
       this.hookService = hookService;
       this.functionHook = functionHook;
       this.managedHandle = managedHandle;
-      CallOriginal = Marshal.GetDelegateForFunctionPointer<T>((IntPtr)functionHook->m_trampoline);
+
+      UpdateFunctionDelegate(functionHook->m_trampoline);
+    }
+
+    ~FunctionHook()
+    {
+      ReleaseUnmanagedResources();
     }
 
     private void ReleaseUnmanagedResources()
     {
       NWNXAPI.ReturnFunctionHook(functionHook);
+    }
+
+    [MemberNotNull(nameof(functionDelegate), nameof(functionDelegatePointer))]
+    private void UpdateFunctionDelegate(void* functionPointer)
+    {
+      functionDelegate = Marshal.GetDelegateForFunctionPointer<T>((IntPtr)functionPointer);
+      functionDelegatePointer = functionPointer;
     }
 
     /// <summary>
@@ -41,11 +70,6 @@ namespace Anvil.Services
       ReleaseUnmanagedResources();
       GC.SuppressFinalize(this);
       hookService.RemoveHook(this);
-    }
-
-    ~FunctionHook()
-    {
-      ReleaseUnmanagedResources();
     }
   }
 }
