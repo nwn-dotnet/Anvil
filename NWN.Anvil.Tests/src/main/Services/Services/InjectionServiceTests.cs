@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services
 {
-  [TestFixture(Category = "Services.Services")]
+  [TestFixture]
   public sealed class InjectionServiceTests
   {
     [Inject]

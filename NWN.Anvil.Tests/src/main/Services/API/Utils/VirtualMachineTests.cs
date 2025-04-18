@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services.API.Utils
 {
-  [TestFixture(Category = "Services.API")]
+  [TestFixture]
   public sealed class VirtualMachineTests
   {
     [Inject]

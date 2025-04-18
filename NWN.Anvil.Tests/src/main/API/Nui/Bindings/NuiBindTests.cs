@@ -3,49 +3,52 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Nui")]
+  [TestFixture]
   public sealed class NuiBindTests
   {
     [Test(Description = "Serializing a NuiBind<string> creates a valid JSON structure.")]
-    public void SerializeNuiBindStringReturnsValidJsonStructure()
+    public void SerializeNuiBindStringReturnsValidJson()
     {
-      NuiBind<string> test = new NuiBind<string>("test");
-      Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"bind":"test"}"""));
+      NuiBind<string> bind = new NuiBind<string>("test");
+      Assert.That(JsonUtility.ToJson(bind), Is.EqualTo("""{"bind":"test"}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<string>>(bind), Is.EqualTo("""{"bind":"test"}"""));
     }
 
     [Test(Description = "Serializing a NuiBind<string> creates a valid JSON structure.")]
-    public void SerializeNuiBindStrRefReturnsValidJsonStructure()
+    public void SerializeNuiBindStrRefReturnsValidJson()
     {
-      NuiBindStrRef test = new NuiBindStrRef("test");
-      Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"bind":"test"}"""));
+      NuiBindStrRef bind = new NuiBindStrRef("test");
+      Assert.That(JsonUtility.ToJson(bind), Is.EqualTo("""{"bind":"test"}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<string>>(bind), Is.EqualTo("""{"bind":"test"}"""));
     }
 
     [Test(Description = "Serializing a NuiBind<NuiRect> creates a valid JSON structure.")]
-    public void SerializeNuiBindNuiRectReturnsValidJsonStructure()
+    public void SerializeNuiBindNuiRectReturnsValidJson()
     {
-      NuiBind<NuiRect> test = new NuiBind<NuiRect>("test");
-      Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"bind":"test"}"""));
+      NuiBind<NuiRect> bind = new NuiBind<NuiRect>("test");
+      Assert.That(JsonUtility.ToJson(bind), Is.EqualTo("""{"bind":"test"}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<NuiRect>>(bind), Is.EqualTo("""{"bind":"test"}"""));
     }
 
     [Test(Description = "Deerializing a NuiBind<string> creates a valid value/object.")]
-    public void DeserializeNuiBindStringReturnsValidJsonStructure()
+    public void DeserializeNuiBindStringReturnsValidJson()
     {
-      NuiBind<string>? test = JsonUtility.FromJson<NuiBind<string>>("""{"bind":"test"}""");
-      Assert.That(test?.Key, Is.EqualTo("test"));
+      NuiBind<string>? bind = JsonUtility.FromJson<NuiBind<string>>("""{"bind":"test"}""");
+      Assert.That(bind?.Key, Is.EqualTo("test"));
     }
 
     [Test(Description = "Deerializing a NuiBind<string> creates a valid value/object.")]
-    public void DeserializeNuiBindStrRefReturnsValidJsonStructure()
+    public void DeserializeNuiBindStrRefReturnsValidJson()
     {
-      NuiBind<NuiBindStrRef>? test = JsonUtility.FromJson<NuiBind<NuiBindStrRef>>("""{"bind":"test"}""");
-      Assert.That(test?.Key, Is.EqualTo("test"));
+      NuiBind<NuiBindStrRef>? bind = JsonUtility.FromJson<NuiBind<NuiBindStrRef>>("""{"bind":"test"}""");
+      Assert.That(bind?.Key, Is.EqualTo("test"));
     }
 
     [Test(Description = "Deerializing a NuiBind<NuiRect> creates a valid value/object.")]
-    public void DeserializeNuiBindNuiRectReturnsValidJsonStructure()
+    public void DeserializeNuiBindNuiRectReturnsValidJson()
     {
-      NuiBind<NuiRect>? test = JsonUtility.FromJson<NuiBind<NuiRect>>("""{"bind":"test"}""");
-      Assert.That(test?.Key, Is.EqualTo("test"));
+      NuiBind<NuiRect>? bind = JsonUtility.FromJson<NuiBind<NuiRect>>("""{"bind":"test"}""");
+      Assert.That(bind?.Key, Is.EqualTo("test"));
     }
   }
 }

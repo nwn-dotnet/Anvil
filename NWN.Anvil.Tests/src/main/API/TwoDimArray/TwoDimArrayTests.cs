@@ -6,7 +6,7 @@ using NWNX.NET.Native;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.TwoDimArray")]
+  [TestFixture]
   public sealed class TwoDimArrayTests
   {
     [Inject]

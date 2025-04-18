@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services
 {
-  [TestFixture(Category = "Services.Scheduler")]
+  [TestFixture]
   public sealed class SchedulerServiceTests
   {
     [Inject]

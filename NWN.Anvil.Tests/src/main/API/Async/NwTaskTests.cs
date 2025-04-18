@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Async")]
+  [TestFixture]
   public sealed class NwTaskTests
   {
     [Inject]

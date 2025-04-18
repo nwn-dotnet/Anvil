@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.System
 {
-  [TestFixture(Category = "TestRunner")]
+  [TestFixture]
   public sealed class HttpClientTests
   {
     [Test]

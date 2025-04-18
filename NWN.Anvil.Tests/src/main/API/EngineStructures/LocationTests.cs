@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public class LocationTests
   {
     [Test(Description = "Creating a location and disposing the location explicitly frees the associated memory.")]
