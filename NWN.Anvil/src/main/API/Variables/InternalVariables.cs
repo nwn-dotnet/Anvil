@@ -18,5 +18,9 @@ namespace Anvil.API
     public static InternalVariableEnum<VisibilityMode> PlayerVisibilityOverride(NwPlayer player, NwObject targetGameObject) => player.ControlledCreature!.GetObjectVariable<InternalVariableEnum<VisibilityMode>>("VISIBILITY_OVERRIDE" + targetGameObject.ObjectId);
     public static InternalVariableFloat WalkRateCap(NwObject creature) => creature.GetObjectVariable<InternalVariableFloat>("WALK_RATE_CAP");
     public static InternalVariableString ObjectNameOverride(NwPlayer player, NwGameObject gameObject) => gameObject.GetObjectVariable<InternalVariableString>("PLCNO_" + player.LoginCreature!.ObjectId);
+    public static InternalVariableEnum<AssociateType> PossessedAssociateType(NwCreature creature) => creature.GetObjectVariable<InternalVariableEnum<AssociateType>>("POSSESSED_ASSOCIATE_TYPE");
+    public static InternalVariableInt PossessedObject(NwPlayer player) => player.LoginCreature!.GetObjectVariable<InternalVariableInt>("POSSESSED_OBJECT_ID");
+    public static InternalVariableInt PossessedObject(NwCreature creature) => creature.GetObjectVariable<InternalVariableInt>("POSSESSED_OBJECT_ID");
+    public static InternalVariableInt PossessedByObject(NwCreature creature) => creature.GetObjectVariable<InternalVariableInt>("POSSESSED_BY_OBJECT_ID");
   }
 }

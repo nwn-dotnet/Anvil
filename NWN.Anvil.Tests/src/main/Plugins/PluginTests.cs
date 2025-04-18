@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Plugins
 {
-  [TestFixture(Category = "Plugins")]
+  [TestFixture]
   public sealed class PluginTests
   {
     [Inject]
@@ -112,7 +112,7 @@ namespace Anvil.Tests.Plugins
         """
           public static string ModuleName;
           public static NwServer ServerInstance;
-        
+
           public void Init()
           {
             ModuleName = NwModule.Instance.Name;
@@ -157,19 +157,19 @@ namespace Anvil.Tests.Plugins
           public static PluginManager PluginManager;
           public static HookService HookService;
           public static PluginTestDependency PluginTestDependency;
-        
+
           [Inject]
           private static PluginManager InjectedPluginManager { get; set; } = null!;
-          
+
           [Inject]
           private HookService InjectedHookService { get; init; } = null!;
-          
+
           public DependencyTestService(SchedulerService schedulerService, PluginTestDependency pluginTestDependency)
           {
             SchedulerService = schedulerService;
             PluginTestDependency = pluginTestDependency;
           }
-        
+
           public void Init()
           {
             PluginManager = InjectedPluginManager;

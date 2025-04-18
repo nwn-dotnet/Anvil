@@ -4,7 +4,7 @@ using NUnit.Framework;
 // ReSharper disable FunctionComplexityOverflow
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.TwoDimArray")]
+  [TestFixture]
   public sealed class NwGameTableTests
   {
     [Test(Description = "Appearance table entries match the expected values.")]

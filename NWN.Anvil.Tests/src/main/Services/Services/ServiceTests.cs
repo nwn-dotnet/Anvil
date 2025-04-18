@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services
 {
-  [TestFixture(Category = "Services.Services")]
+  [TestFixture]
   public sealed class ServiceTests
   {
     [Test(Description = "Plugin services are sorted based on binding priority.")]

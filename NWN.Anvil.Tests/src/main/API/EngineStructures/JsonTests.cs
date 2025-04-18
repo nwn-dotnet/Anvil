@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public sealed class JsonTests
   {
     [Test(Description = "Creating a json structure and disposing it explicitly frees the associated memory.")]

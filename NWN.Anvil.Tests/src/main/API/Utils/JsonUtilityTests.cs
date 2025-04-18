@@ -4,7 +4,7 @@ using NUnit.Framework;
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Utils")]
+  [TestFixture]
   public sealed class JsonUtilityTests
   {
     [Test(Description = "Serializing a value creates valid json.")]

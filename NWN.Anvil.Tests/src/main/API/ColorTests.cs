@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API")]
+  [TestFixture]
   public sealed class ColorTests
   {
     [Test]

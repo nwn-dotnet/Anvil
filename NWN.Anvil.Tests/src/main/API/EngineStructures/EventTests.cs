@@ -4,7 +4,7 @@ using Event = Anvil.API.Event;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public sealed class EventTests
   {
     [Test(Description = "Creating an event and disposing the event explicitly frees the associated memory.")]

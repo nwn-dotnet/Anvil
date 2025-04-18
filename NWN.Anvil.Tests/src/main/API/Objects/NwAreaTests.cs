@@ -4,7 +4,7 @@ using NWN.Core;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Object")]
+  [TestFixture]
   public sealed class NwAreaTests
   {
     [Test(Description = "Applying an environment preset to an area correctly updates area settings.")]

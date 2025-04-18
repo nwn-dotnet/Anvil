@@ -8,7 +8,7 @@ using NWN.Core;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Object")]
+  [TestFixture]
   public sealed class NwObjectTests
   {
     private readonly List<NwGameObject> createdTestObjects = [];

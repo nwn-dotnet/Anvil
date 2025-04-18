@@ -4,7 +4,7 @@ using NWN.Native.API;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Tlk")]
+  [TestFixture]
   public sealed class StrRefTests
   {
     [Test(Description = "A valid StrRef token resolves to the correct string")]

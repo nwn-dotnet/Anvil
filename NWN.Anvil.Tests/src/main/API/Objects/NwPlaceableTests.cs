@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Object")]
+  [TestFixture]
   public sealed class NwPlaceableTests
   {
     private readonly List<NwGameObject> createdTestObjects = [];

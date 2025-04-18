@@ -8,7 +8,7 @@ using NUnit.Framework;
 // ReSharper disable UnusedMember.Local
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Variable")]
+  [TestFixture]
   public sealed class LocalVariableTests
   {
     private readonly List<NwGameObject> createdTestObjects = [];
