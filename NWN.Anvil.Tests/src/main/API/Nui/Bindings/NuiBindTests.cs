@@ -11,6 +11,7 @@ namespace Anvil.Tests.API
     {
       NuiBind<string> test = new NuiBind<string>("test");
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"bind":"test"}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<string>>(test), Is.EqualTo("""{"bind":"test"}"""));
     }
 
     [Test(Description = "Serializing a NuiBind<string> creates a valid JSON structure.")]
@@ -18,6 +19,7 @@ namespace Anvil.Tests.API
     {
       NuiBindStrRef test = new NuiBindStrRef("test");
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"bind":"test"}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<string>>(test), Is.EqualTo("""{"bind":"test"}"""));
     }
 
     [Test(Description = "Serializing a NuiBind<NuiRect> creates a valid JSON structure.")]
@@ -25,6 +27,7 @@ namespace Anvil.Tests.API
     {
       NuiBind<NuiRect> test = new NuiBind<NuiRect>("test");
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"bind":"test"}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<NuiRect>>(test), Is.EqualTo("""{"bind":"test"}"""));
     }
 
     [Test(Description = "Deerializing a NuiBind<string> creates a valid value/object.")]

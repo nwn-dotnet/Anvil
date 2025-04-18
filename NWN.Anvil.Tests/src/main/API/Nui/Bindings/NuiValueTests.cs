@@ -19,6 +19,7 @@ namespace Anvil.Tests.API
     {
       NuiValue<string> test = new NuiValue<string>(value);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
+      Assert.That(JsonUtility.ToJson<NuiProperty<string>>(test), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a NuiValueStrRef creates a valid JSON structure.")]
@@ -29,6 +30,7 @@ namespace Anvil.Tests.API
     {
       NuiValueStrRef test = new NuiValueStrRef(value != null ? new StrRef(value.Value) : null);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
+      Assert.That(JsonUtility.ToJson<NuiProperty<string>>(test), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a NuiValue<int> creates a valid JSON structure.")]
@@ -42,6 +44,7 @@ namespace Anvil.Tests.API
     {
       NuiValue<int> test = new NuiValue<int>(value);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
+      Assert.That(JsonUtility.ToJson<NuiProperty<int>>(test), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a NuiValue<int?> creates a valid JSON structure.")]
@@ -56,6 +59,7 @@ namespace Anvil.Tests.API
     {
       NuiValue<int?> test = new NuiValue<int?>(value);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
+      Assert.That(JsonUtility.ToJson<NuiProperty<int?>>(test), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a NuiValue<float> creates a valid JSON structure.")]
@@ -78,6 +82,7 @@ namespace Anvil.Tests.API
     {
       NuiValue<float> test = new NuiValue<float>(value);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
+      Assert.That(JsonUtility.ToJson<NuiProperty<float>>(test), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a NuiValue<float?> creates a valid JSON structure.")]
@@ -101,20 +106,21 @@ namespace Anvil.Tests.API
     {
       NuiValue<float?> test = new NuiValue<float?>(value);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
+      Assert.That(JsonUtility.ToJson<NuiProperty<float?>>(test), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a NuiValue<NuiRect> creates a valid JSON structure.")]
     public void SerializeNuiValueNuiRectReturnsValidJsonStructure()
     {
       NuiValue<NuiRect> test = new NuiValue<NuiRect>(new NuiRect(100f, 50.251f, 30.11f, 20f));
-      Assert.That(JsonUtility.ToJson(test), Is.EqualTo("""{"h":20.0,"w":30.11,"x":100.0,"y":50.251}"""));
+      Assert.That(JsonUtility.ToJson<NuiProperty<NuiRect>>(test), Is.EqualTo("""{"h":20.0,"w":30.11,"x":100.0,"y":50.251}"""));
     }
 
     [Test(Description = "Serializing a NuiValue<List<int>> creates a valid JSON structure.")]
     public void SerializeNuiValueIntListReturnsValidJsonStructure()
     {
       NuiValue<List<int>> test = new NuiValue<List<int>>([1, 2, 3]);
-      Assert.That(JsonUtility.ToJson(test), Is.EqualTo(@"[1,2,3]"));
+      Assert.That(JsonUtility.ToJson<NuiProperty<List<int>>>(test), Is.EqualTo(@"[1,2,3]"));
     }
 
     [Test(Description = "Deerializing a NuiValue<string> creates a valid value/object.")]

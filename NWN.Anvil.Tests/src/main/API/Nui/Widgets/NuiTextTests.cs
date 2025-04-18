@@ -17,6 +17,7 @@ namespace Anvil.Tests.API
       };
 
       Assert.That(JsonUtility.ToJson(nuiText), Is.EqualTo("""{"value":"Some Text","border":false,"scrollbars":2,"type":"text","enabled":false}"""));
+      Assert.That(JsonUtility.ToJson<NuiElement>(nuiText), Is.EqualTo("""{"value":"Some Text","border":false,"scrollbars":2,"type":"text","enabled":false}"""));
     }
   }
 }
