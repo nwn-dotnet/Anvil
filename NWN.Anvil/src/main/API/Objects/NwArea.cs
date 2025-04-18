@@ -695,7 +695,7 @@ namespace Anvil.API
     /// <param name="tileSet">If specified, also changes the area's tileset. Warning: only use this if you really know what you're doing, it's very easy to break things badly.</param>
     public void SetTiles(List<TileData> data, SettleFlags flags = SettleFlags.RecomputeLighting, string tileSet = "")
     {
-      Json tileData = JsonUtility.ToJsonStructure(data);
+      Json tileData = Json.Serialize(data);
       NWScript.SetTileJson(this, tileData, (int)flags, tileSet);
     }
 

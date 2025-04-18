@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Anvil.Services;
 
 namespace Anvil.API
@@ -16,12 +17,12 @@ namespace Anvil.API
         if (ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage? objectStorage))
         {
           string? serialized = objectStorage.GetString(ObjectStoragePrefix, Key);
-          return !string.IsNullOrEmpty(serialized) ? JsonUtility.FromJson<T>(serialized) : default;
+          return !string.IsNullOrEmpty(serialized) ? JsonSerializer.Deserialize<T>(serialized) : default;
         }
 
         return default;
       }
-      set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonUtility.ToJson(value), Persist);
+      set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonSerializer.Serialize(value), Persist);
     }
 
     protected sealed override string VariableTypePrefix => "PERSTR!";

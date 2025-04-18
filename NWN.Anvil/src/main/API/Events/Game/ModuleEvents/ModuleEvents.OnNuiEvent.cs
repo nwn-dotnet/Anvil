@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using Anvil.API.Events;
 using NWN.Core;
 
@@ -74,7 +75,7 @@ namespace Anvil.API.Events
       /// <returns>The payload data, or null if the event has no payload.</returns>
       public T? GetEventPayload<T>()
       {
-        return JsonUtility.FromJson<T>(eventPayload);
+        return JsonSerializer.Deserialize<T>(eventPayload);
       }
     }
   }

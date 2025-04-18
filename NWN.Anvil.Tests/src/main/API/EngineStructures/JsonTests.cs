@@ -10,7 +10,7 @@ namespace Anvil.Tests.API
     public void CreateAndDisposeJsonFreesNativeStructure()
     {
       int[] test = [1, 2];
-      Json json = JsonUtility.ToJsonStructure(test);
+      Json json = Json.Serialize(test);
 
       Assert.That(json.IsValid, Is.True, "Json struct was not valid after creation.");
       json.Dispose();

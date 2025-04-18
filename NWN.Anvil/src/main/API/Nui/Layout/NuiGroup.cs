@@ -47,7 +47,7 @@ namespace Anvil.API
         throw new InvalidOperationException("Layout cannot be updated as the NuiGroup does not have an ID.");
       }
 
-      NWScript.NuiSetGroupLayout(player.ControlledCreature, token, Id, JsonUtility.ToJsonStructure(newLayout));
+      NWScript.NuiSetGroupLayout(player.ControlledCreature, token, Id, Json.Serialize(newLayout));
     }
   }
 }

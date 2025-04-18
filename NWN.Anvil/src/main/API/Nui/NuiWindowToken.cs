@@ -107,7 +107,7 @@ namespace Anvil.API
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
     public T? GetUserData<T>()
     {
-      return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(Player.ControlledCreature, Token));
+      return ((Json)NWScript.NuiGetUserData(Player.ControlledCreature, Token)).Deserialize<T>();
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ namespace Anvil.API
     /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
     public void SetUserData<T>(T userData)
     {
-      NWScript.NuiSetUserData(Player.ControlledCreature, Token, JsonUtility.ToJsonStructure(userData));
+      NWScript.NuiSetUserData(Player.ControlledCreature, Token, Json.Serialize(userData));
     }
   }
 }

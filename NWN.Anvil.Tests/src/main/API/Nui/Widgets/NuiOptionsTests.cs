@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -15,8 +16,8 @@ namespace Anvil.Tests.API
         Selection = new NuiBind<int>("selection"),
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"direction":1,"elements":["option1","option2"],"value":{"bind":"selection"},"type":"options"}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"direction":1,"elements":["option1","option2"],"value":{"bind":"selection"},"type":"options"}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"direction":1,"elements":["option1","option2"],"value":{"bind":"selection"},"type":"options"}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"direction":1,"elements":["option1","option2"],"value":{"bind":"selection"},"type":"options"}"""));
     }
   }
 }

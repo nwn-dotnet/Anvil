@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Anvil.API;
 using NUnit.Framework;
 
@@ -24,7 +25,7 @@ namespace Anvil.Tests.API
                   """)]
     public void SerializeValueCreatesValidJson(object value, string expected)
     {
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo(expected));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a struct creates valid json.")]
@@ -38,7 +39,7 @@ namespace Anvil.Tests.API
         TestS = "test",
       };
 
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
     }
 
     [Test(Description = "Serializing a class creates valid json.")]
@@ -52,7 +53,7 @@ namespace Anvil.Tests.API
         TestS = "test",
       };
 
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
     }
 
     [Test(Description = "Serializing a record creates valid json.")]
@@ -66,7 +67,7 @@ namespace Anvil.Tests.API
         TestS = "test",
       };
 
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
     }
 
     private struct TestStruct

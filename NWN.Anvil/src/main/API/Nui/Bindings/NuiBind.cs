@@ -22,7 +22,7 @@ namespace Anvil.API
     /// <returns>The current value of the binding.</returns>
     public T? GetBindValue(NwPlayer player, int uiToken)
     {
-      return JsonUtility.FromJson<T>(NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key));
+      return ((Json)NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key)).Deserialize<T>();
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace Anvil.API
     /// <returns>The current values of the binding.</returns>
     public List<T>? GetBindValues(NwPlayer player, int uiToken)
     {
-      return JsonUtility.FromJson<List<T>>(NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key));
+      return ((Json)NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key)).Deserialize<List<T>>();
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace Anvil.API
     /// <param name="value">The new value to assign.</param>
     public void SetBindValue(NwPlayer player, int uiToken, T value)
     {
-      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, JsonUtility.ToJsonStructure(value));
+      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, Json.Serialize(value));
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace Anvil.API
     /// <param name="values">The new value to assign.</param>
     public void SetBindValues(NwPlayer player, int uiToken, IEnumerable<T> values)
     {
-      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, JsonUtility.ToJsonStructure(values));
+      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, Json.Serialize(values));
     }
 
     /// <summary>

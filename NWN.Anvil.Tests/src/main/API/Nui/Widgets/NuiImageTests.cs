@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -18,8 +19,8 @@ namespace Anvil.Tests.API
         Margin = 0.0f,
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"image_halign":2,"image_aspect":4,"image_region":null,"value":"gui_chr_arrowbtn","type":"image","image_valign":0,"height":16,"margin":0,"width":16}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"image_halign":2,"image_aspect":4,"image_region":null,"value":"gui_chr_arrowbtn","type":"image","image_valign":0,"height":16,"margin":0,"width":16}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"image_halign":2,"image_aspect":4,"image_region":null,"value":"gui_chr_arrowbtn","type":"image","image_valign":0,"height":16,"margin":0,"width":16}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"image_halign":2,"image_aspect":4,"image_region":null,"value":"gui_chr_arrowbtn","type":"image","image_valign":0,"height":16,"margin":0,"width":16}"""));
     }
   }
 }

@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -14,8 +15,8 @@ namespace Anvil.Tests.API
         VerticalAlign = NuiVAlign.Middle,
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"text_halign":0,"value":"Label","type":"label","text_valign":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"text_halign":0,"value":"Label","type":"label","text_valign":0}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"text_halign":0,"value":"Label","type":"label","text_valign":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"text_halign":0,"value":"Label","type":"label","text_valign":0}"""));
     }
   }
 }
