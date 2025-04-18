@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
-  public sealed class NuiValueStrRefConverter : JsonConverter<NuiValueStrRef?>
+  internal sealed class NuiValueStrRefConverter : JsonConverter<NuiValueStrRef?>
   {
     public override NuiValueStrRef? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {

@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
-  public sealed class NuiPropertyConverter : JsonConverterFactory
+  internal sealed class NuiPropertyConverter : JsonConverterFactory
   {
     public override bool CanConvert(Type objectType)
     {
