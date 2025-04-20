@@ -438,6 +438,20 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the localized string for this object in the specified language.
+    /// </summary>
+    /// <param name="language">The language to resolve.</param>
+    /// <param name="gender">The gender to use.</param>
+    /// <returns>The localized string.</returns>
+    public string GetLocalizedName(PlayerLanguage language, Gender gender = Gender.Male)
+    {
+      CExoString str = new CExoString();
+      GameObject.GetFirstName().GetString((int)language, str, (byte)gender);
+
+      return str.ToString();
+    }
+
+    /// <summary>
     /// Returns the creatures closest to this object.
     /// </summary>
     public IEnumerable<NwCreature> GetNearestCreatures()
@@ -732,6 +746,19 @@ namespace Anvil.API
     public void SetListenPattern(string pattern, int patternNumber)
     {
       NWScript.SetListenPattern(this, pattern, patternNumber);
+    }
+
+    /// <summary>
+    /// Sets the localized string for this object in the specified language.
+    /// </summary>
+    /// <param name="name">New value to set.</param>
+    /// <param name="language">The language to resolve.</param>
+    /// <param name="gender">The gender to use.</param>
+    public void SetLocalizedName(string name, PlayerLanguage language, Gender gender = Gender.Male)
+    {
+      CExoLocString? locString = GameObject.GetFirstName();
+      locString.RemoveString((int)language, (byte)gender);
+      locString.AddString((int)language, name.ToExoString(), (byte)gender);
     }
 
     /// <summary>

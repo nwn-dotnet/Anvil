@@ -115,6 +115,30 @@ namespace Anvil.Tests.API
       });
     }
 
+    [Test]
+    [TestCase(PlayerLanguage.English, Gender.Male, "English male loc string")]
+    [TestCase(PlayerLanguage.German, Gender.Male, "German male loc string")]
+    [TestCase(PlayerLanguage.French, Gender.Male, "French male loc string")]
+    [TestCase(PlayerLanguage.Polish, Gender.Male, "Polish male loc string")]
+    [TestCase(PlayerLanguage.Italian, Gender.Male, "Italian male loc string")]
+    [TestCase(PlayerLanguage.Spanish, Gender.Male, "Spanish male loc string")]
+    [TestCase(PlayerLanguage.English, Gender.Female, "English female loc string")]
+    [TestCase(PlayerLanguage.German, Gender.Female, "German female loc string")]
+    [TestCase(PlayerLanguage.French, Gender.Female, "French female loc string")]
+    [TestCase(PlayerLanguage.Polish, Gender.Female, "Polish female loc string")]
+    [TestCase(PlayerLanguage.Italian, Gender.Female, "Italian female loc string")]
+    [TestCase(PlayerLanguage.Spanish, Gender.Female, "Spanish female loc string")]
+    public void SetLocalizedStringTest(PlayerLanguage language, Gender gender, string expectedString)
+    {
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation)!;
+      Assert.That(creature, Is.Not.Null);
+
+      createdTestObjects.Add(creature);
+
+      creature.SetLocalizedName(expectedString, language, gender);
+      Assert.That(creature.GetLocalizedName(language, gender), Is.EqualTo(expectedString));
+    }
+
     [TearDown]
     public void CleanupTestObjects()
     {
