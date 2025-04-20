@@ -10,6 +10,9 @@ namespace Anvil.Native
       [NativeFunction("_ZN8CNWSItem14CloseInventoryEji", "?CloseInventory@CNWSItem@@QEAAXIH@Z")]
       public delegate void CloseInventory(void* pItem, uint oidCloser, int bUpdatePlayer);
 
+      [NativeFunction("_ZN8CNWSItem12EventHandlerEjjPvjj", "?EventHandler@CNWSItem@@UEAAXIIPEAXII@Z")]
+      public delegate void EventHandler(void* pItem, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
+
       [NativeFunction("_ZN8CNWSItem16GetMinEquipLevelEv", "?GetMinEquipLevel@CNWSItem@@QEAAEXZ")]
       public delegate byte GetMinEquipLevel(void* pItem);
 
