@@ -8,7 +8,7 @@ namespace Anvil.Services
   {
     private readonly Action<CallInfo> callback = (Action<CallInfo>)Delegate.CreateDelegate(typeof(Action<CallInfo>), service, methodInfo);
 
-    public override bool RequiresCallInfo => false;
+    public override bool RequiresCallInfo => true;
 
     public override ScriptHandleResult Execute(CallInfo? callInfo)
     {
