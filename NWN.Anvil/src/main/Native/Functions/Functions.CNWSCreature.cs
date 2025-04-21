@@ -22,6 +22,21 @@ namespace Anvil.Native
       [NativeFunction("_ZN12CNWSCreature12AIActionHealEP20CNWSObjectActionNode", "?AIActionHeal@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
       public delegate uint AIActionHeal(void* pCreature, void* pNode);
 
+      [NativeFunction("_ZN12CNWSCreature18AIActionDisarmTrapEP20CNWSObjectActionNode", "?AIActionDisarmTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionDisarmTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature19AIActionExamineTrapEP20CNWSObjectActionNode", "?AIActionExamineTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionExamineTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature16AIActionFlagTrapEP20CNWSObjectActionNode", "?AIActionFlagTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionFlagTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature19AIActionRecoverTrapEP20CNWSObjectActionNode", "?AIActionRecoverTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionRecoverTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature15AIActionSetTrapEP20CNWSObjectActionNode", "?AIActionSetTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionSetTrap(void* pCreature, void* pNode);
+
       [NativeFunction("_ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode", "?AIActionRest@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
       public delegate uint AIActionRest(void* pCreature, void* pNode);
 
