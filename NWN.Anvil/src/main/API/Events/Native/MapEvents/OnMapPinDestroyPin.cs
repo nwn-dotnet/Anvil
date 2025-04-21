@@ -61,6 +61,11 @@ namespace Anvil.API.Events
         });
 
         int retVal = eventData.PreventPinDestroy ? false.ToInt() : Hook.CallOriginal(pMessage, pPlayer);
+        if (eventData.PreventPinDestroy)
+        {
+          message.ClearReadMessage();
+        }
+
         ProcessEvent(EventCallbackType.After, eventData);
 
         return retVal;
