@@ -11,6 +11,7 @@ using RacialType = Anvil.API.RacialType;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(PlayerPossessionService))]
+  [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class PlayerPossessionService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
