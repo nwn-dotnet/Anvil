@@ -69,7 +69,7 @@ namespace Anvil.API.Events
         {
           AcquiredBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Item = item,
-          AcquiredFrom = item.Possessor,
+          AcquiredFrom = oidPossessor.ToNwObject<NwGameObject>(),
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.Skip && Hook.CallOriginal(pCreature, pItem, oidPossessor, oidTargetRepository, x, y, bOriginatingFromScript, bDisplayFeedback).ToBool());
