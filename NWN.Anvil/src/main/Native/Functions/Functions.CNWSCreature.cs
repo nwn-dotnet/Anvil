@@ -8,6 +8,9 @@ namespace Anvil.Native
   {
     public static class CNWSCreature
     {
+      [NativeFunction("_ZN12CNWSCreature11AcquireItemEPP8CNWSItemjjhhii", "?AcquireItem@CNWSCreature@@QEAAHPEAPEAVCNWSItem@@IIEEHH@Z")]
+      public delegate int AcquireItem(void* pCreature, void** pItem, uint oidPossessor, uint oidTargetRepository, byte x, byte y, int bOriginatingFromScript, int bDisplayFeedback);
+
       [NativeFunction("_ZN12CNWSCreature12AddAssociateEjt", "?AddAssociate@CNWSCreature@@QEAAXIG@Z")]
       public delegate void AddAssociate(void* pCreature, uint oidAssociate, ushort associateType);
 
