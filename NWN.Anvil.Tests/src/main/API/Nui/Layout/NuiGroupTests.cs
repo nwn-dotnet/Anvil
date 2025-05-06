@@ -3,13 +3,13 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Nui")]
+  [TestFixture]
   public sealed class NuiGroupTests
   {
     [Test(Description = "Serializing a NuiGroup creates a valid JSON structure.")]
-    public void SerializeNuiGroupReturnsValidJsonStructure()
+    public void SerializeNuiGroupReturnsValidJson()
     {
-      NuiGroup nuiGroup = new NuiGroup
+      NuiGroup layout = new NuiGroup
       {
         Id = "test_group",
         Aspect = 1.5f,
@@ -32,7 +32,8 @@ namespace Anvil.Tests.API
         },
       };
 
-      Assert.That(JsonUtility.ToJson(nuiGroup), Is.EqualTo("""{"border":true,"scrollbars":3,"type":"group","children":[{"type":"col","children":[{"text_halign":1,"value":"Test","type":"label","text_valign":1}]}],"aspect":1.5,"enabled":{"bind":"enabled_bind"},"foreground_color":{"bind":"color_bind"},"height":10.0,"id":"test_group","margin":2.0,"padding":3.0,"tooltip":"test_tooltip","visible":false,"width":100.0}"""));
+      Assert.That(JsonUtility.ToJson(layout), Is.EqualTo("""{"border":true,"scrollbars":3,"type":"group","children":[{"type":"col","children":[{"text_halign":1,"value":"Test","type":"label","text_valign":1}]}],"aspect":1.5,"enabled":{"bind":"enabled_bind"},"foreground_color":{"bind":"color_bind"},"height":10.0,"id":"test_group","margin":2.0,"padding":3.0,"tooltip":"test_tooltip","visible":false,"width":100.0}"""));
+      Assert.That(JsonUtility.ToJson<NuiLayout>(layout), Is.EqualTo("""{"border":true,"scrollbars":3,"type":"group","children":[{"type":"col","children":[{"text_halign":1,"value":"Test","type":"label","text_valign":1}]}],"aspect":1.5,"enabled":{"bind":"enabled_bind"},"foreground_color":{"bind":"color_bind"},"height":10.0,"id":"test_group","margin":2.0,"padding":3.0,"tooltip":"test_tooltip","visible":false,"width":100.0}"""));
     }
   }
 }

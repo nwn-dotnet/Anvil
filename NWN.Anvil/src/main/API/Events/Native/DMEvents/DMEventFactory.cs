@@ -112,6 +112,10 @@ namespace Anvil.API.Events
       {
         eventData.Item = itemId.ToNwObject<NwItem>()!;
       }
+      else
+      {
+        message.ClearReadMessage();
+      }
 
       ProcessEvent(EventCallbackType.After, eventData);
 
@@ -257,6 +261,10 @@ namespace Anvil.API.Events
       if (!skipped)
       {
         eventData.SpawnedObject = gameObjectId.ToNwObject<NwGameObject>();
+      }
+      else
+      {
+        message.ClearReadMessage();
       }
 
       ProcessEvent(EventCallbackType.After, eventData);
@@ -466,6 +474,11 @@ namespace Anvil.API.Events
         }
 
         int retVal = !eventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        if (eventData.Skip)
+        {
+          message.ClearReadMessage();
+        }
+
         ProcessEvent(EventCallbackType.After, eventData);
 
         return retVal;

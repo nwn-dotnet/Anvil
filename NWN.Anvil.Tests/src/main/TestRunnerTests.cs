@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests
 {
-  [TestFixture(Category = "TestRunner")]
+  [TestFixture]
   public sealed class TestRunnerTests
   {
     [Inject]

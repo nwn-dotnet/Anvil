@@ -44,6 +44,12 @@ namespace Anvil.API.Events
         eventData.Result = new Lazy<bool>(() => !eventData.PreventLevelUp && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());
         ProcessEvent(EventCallbackType.Before, eventData);
 
+        if (eventData.PreventLevelUp)
+        {
+          CNWSMessage message = CNWSMessage.FromPointer(pMessage);
+          message.ClearReadMessage();
+        }
+
         int retVal = eventData.Result.Value.ToInt();
         ProcessEvent(EventCallbackType.After, eventData);
 

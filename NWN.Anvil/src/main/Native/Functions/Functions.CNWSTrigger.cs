@@ -9,6 +9,9 @@ namespace Anvil.Native
     {
       [NativeFunction("_ZN11CNWSTrigger12EventHandlerEjjPvjj", "?EventHandler@CNWSTrigger@@UEAAXIIPEAXII@Z")]
       public delegate void EventHandler(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
+
+      [NativeFunction("_ZN11CNWSTrigger11OnEnterTrapEi", "?OnEnterTrap@CNWSTrigger@@QEAAXH@Z")]
+      public delegate void OnEnterTrap(void* pTrigger, int bForceSet);
     }
   }
 }

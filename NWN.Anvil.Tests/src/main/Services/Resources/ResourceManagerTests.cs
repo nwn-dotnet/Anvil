@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.Services
 {
-  [TestFixture(Category = "Services.Resources")]
+  [TestFixture]
   public sealed class ResourceManagerTests
   {
     [Inject]

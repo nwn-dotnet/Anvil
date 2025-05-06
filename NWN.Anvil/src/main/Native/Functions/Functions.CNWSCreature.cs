@@ -8,6 +8,9 @@ namespace Anvil.Native
   {
     public static class CNWSCreature
     {
+      [NativeFunction("_ZN12CNWSCreature11AcquireItemEPP8CNWSItemjjhhii", "?AcquireItem@CNWSCreature@@QEAAHPEAPEAVCNWSItem@@IIEEHH@Z")]
+      public delegate int AcquireItem(void* pCreature, void** pItem, uint oidPossessor, uint oidTargetRepository, byte x, byte y, int bOriginatingFromScript, int bDisplayFeedback);
+
       [NativeFunction("_ZN12CNWSCreature12AddAssociateEjt", "?AddAssociate@CNWSCreature@@QEAAXIG@Z")]
       public delegate void AddAssociate(void* pCreature, uint oidAssociate, ushort associateType);
 
@@ -21,6 +24,21 @@ namespace Anvil.Native
 
       [NativeFunction("_ZN12CNWSCreature12AIActionHealEP20CNWSObjectActionNode", "?AIActionHeal@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
       public delegate uint AIActionHeal(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature18AIActionDisarmTrapEP20CNWSObjectActionNode", "?AIActionDisarmTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionDisarmTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature19AIActionExamineTrapEP20CNWSObjectActionNode", "?AIActionExamineTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionExamineTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature16AIActionFlagTrapEP20CNWSObjectActionNode", "?AIActionFlagTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionFlagTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature19AIActionRecoverTrapEP20CNWSObjectActionNode", "?AIActionRecoverTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionRecoverTrap(void* pCreature, void* pNode);
+
+      [NativeFunction("_ZN12CNWSCreature15AIActionSetTrapEP20CNWSObjectActionNode", "?AIActionSetTrap@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
+      public delegate uint AIActionSetTrap(void* pCreature, void* pNode);
 
       [NativeFunction("_ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode", "?AIActionRest@CNWSCreature@@QEAAIPEAVCNWSObjectActionNode@@@Z")]
       public delegate uint AIActionRest(void* pCreature, void* pNode);
@@ -99,6 +117,9 @@ namespace Anvil.Native
 
       [NativeFunction("_ZN12CNWSCreature17UnpossessFamiliarEv", "?UnpossessFamiliar@CNWSCreature@@QEAAXXZ")]
       public delegate void UnpossessFamiliar(void* pCreature);
+
+      [NativeFunction("_ZN12CNWSCreature14UnsummonMyselfEv", "?UnsummonMyself@CNWSCreature@@QEAAXXZ")]
+      public delegate void UnsummonMyself(void* pCreature);
 
       [NativeFunction("_ZN12CNWSCreature7UseFeatEttjjP6Vector", "?UseFeat@CNWSCreature@@QEAAHGGIIPEAVVector@@@Z")]
       public delegate int UseFeat(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos);

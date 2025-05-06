@@ -50,9 +50,18 @@ namespace Anvil.API.Events
           VoiceChat = (VoiceChatType)message.PeekMessage<short>(0),
         });
 
-        int retVal = !eventData.PreventQuickChat ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : 0;
-        ProcessEvent(EventCallbackType.After, eventData);
+        int retVal;
+        if (!eventData.PreventQuickChat)
+        {
+          retVal = Hook.CallOriginal(pMessage, pPlayer, nMinor);
+        }
+        else
+        {
+          retVal = false.ToInt();
+          message.ClearReadMessage();
+        }
 
+        ProcessEvent(EventCallbackType.After, eventData);
         return retVal;
       }
     }

@@ -35,17 +35,44 @@ namespace Anvil.API.Events
       {
         case MessageCheatMinor.RunScript:
           OnDebugRunScript runScriptEventData = HandleRunScriptEvent(message, player);
-          retVal = !runScriptEventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          if (!runScriptEventData.Skip)
+          {
+            retVal = Hook.CallOriginal(pMessage, pPlayer, nMinor);
+          }
+          else
+          {
+            retVal = false.ToInt();
+            message.ClearReadMessage();
+          }
+
           ProcessEvent(EventCallbackType.After, runScriptEventData);
           return retVal;
         case MessageCheatMinor.RunScriptChunk:
           OnDebugRunScriptChunk runScriptChunkEventData = HandleRunScriptChunkEvent(message, player);
-          retVal = !runScriptChunkEventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          if (!runScriptChunkEventData.Skip)
+          {
+            retVal = Hook.CallOriginal(pMessage, pPlayer, nMinor);
+          }
+          else
+          {
+            retVal = false.ToInt();
+            message.ClearReadMessage();
+          }
+
           ProcessEvent(EventCallbackType.After, runScriptChunkEventData);
           return retVal;
         case MessageCheatMinor.PlayVisualEffect:
           OnDebugPlayVisualEffect playVisualEffectEventData = HandleVisualEffectEvent(message, player);
-          retVal = !playVisualEffectEventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          if (!playVisualEffectEventData.Skip)
+          {
+            retVal = Hook.CallOriginal(pMessage, pPlayer, nMinor);
+          }
+          else
+          {
+            retVal = false.ToInt();
+            message.ClearReadMessage();
+          }
+
           ProcessEvent(EventCallbackType.After, playVisualEffectEventData);
           return retVal;
         default:

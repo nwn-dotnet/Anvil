@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.Tlk")]
+  [TestFixture]
   public sealed class StrTokenTests
   {
     [TestCase(8301u, "You may only have {0} {1} at a time.", 0, 1, "Token 0 Test", "Token 1 Test")]

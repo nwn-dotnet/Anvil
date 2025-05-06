@@ -589,6 +589,20 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the localized string for this area in the specified language.
+    /// </summary>
+    /// <param name="language">The language to resolve.</param>
+    /// <param name="gender">The gender to use.</param>
+    /// <returns>The localized string.</returns>
+    public string GetLocalizedName(PlayerLanguage language, Gender gender = Gender.Male)
+    {
+      CExoString str = new CExoString();
+      Area.m_lsName.GetString((int)language, str, (byte)gender);
+
+      return str.ToString();
+    }
+
+    /// <summary>
     /// Gets the tile info at the specified position in the area.
     /// </summary>
     /// <param name="tileX">The x coordinate of the tile to get info.</param>
@@ -685,6 +699,19 @@ namespace Anvil.API
     public void ReloadAreaBorder()
     {
       NWScript.ReloadAreaBorder(this);
+    }
+
+    /// <summary>
+    /// Sets the localized string for this area in the specified language.
+    /// </summary>
+    /// <param name="name">New value to set.</param>
+    /// <param name="language">The language to resolve.</param>
+    /// <param name="gender">The gender to use.</param>
+    public void SetLocalizedName(string name, PlayerLanguage language, Gender gender = Gender.Male)
+    {
+      CExoLocString? locString = Area.m_lsName;
+      locString.RemoveString((int)language, (byte)gender);
+      locString.AddString((int)language, name.ToExoString(), (byte)gender);
     }
 
     /// <summary>

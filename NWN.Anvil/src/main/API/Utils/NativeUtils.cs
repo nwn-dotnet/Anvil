@@ -124,24 +124,6 @@ namespace Anvil.API
         expectedFileTypes.Any(expectedFileType => expectedFileType + " " == fileType);
     }
 
-    public static T PeekMessage<T>(this CNWSMessage message, int offset) where T : unmanaged
-    {
-      byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return Marshal.PtrToStructure<T>((IntPtr)ptr);
-    }
-
-    public static string PeekMessageResRef(this CNWSMessage message, int offset)
-    {
-      byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return StringUtils.ReadFixedLengthString(ptr, 16);
-    }
-
-    public static string PeekMessageString(this CNWSMessage message, int offset)
-    {
-      byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return StringUtils.ReadNullTerminatedString(ptr)!;
-    }
-
     public static byte[]? SerializeGff(string fileType, string version, Func<CResGFF, CResStruct, bool> serializeAction)
     {
       if (string.IsNullOrEmpty(fileType))

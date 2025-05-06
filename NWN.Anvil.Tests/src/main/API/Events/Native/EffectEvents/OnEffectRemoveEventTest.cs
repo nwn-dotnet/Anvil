@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API.Events
 {
-  [TestFixture(Category = "API.Events.Native")]
+  [TestFixture]
   public sealed class OnEffectRemoveEventTest
   {
     private const string EffectTag = "test_tag";

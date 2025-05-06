@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anvil.Tests.API
 {
-  [TestFixture(Category = "API.EngineStructure")]
+  [TestFixture]
   public class TalentTests
   {
     [Test(Description = "Creating a talent and disposing the talent explicitly frees the associated memory.")]

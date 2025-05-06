@@ -54,6 +54,11 @@ namespace Anvil.API.Events
         eventData.Result = new Lazy<bool>(() => !eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());
         ProcessEvent(EventCallbackType.Before, eventData);
 
+        if (eventData.PreventEvent)
+        {
+          message.ClearReadMessage();
+        }
+
         int retVal = eventData.Result.Value.ToInt();
         ProcessEvent(EventCallbackType.After, eventData);
 

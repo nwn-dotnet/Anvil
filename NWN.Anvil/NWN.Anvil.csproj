@@ -67,7 +67,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.4.0" />
     <PackageReference Include="Paket.Core" Version="8.0.3" PrivateAssets="all" />
-    <PackageReference Include="NWN.Core" Version="8193.37.2" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Core" Version="8193.37.3" PrivateAssets="compile" />
     <PackageReference Include="NWN.Native" Version="8193.37.3" PrivateAssets="compile" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
