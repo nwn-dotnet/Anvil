@@ -301,6 +301,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>OpenInventory</b> ()<
 <tr class="memitem:a5d5ec9512333506c34edbae263a68ad5" id="r_a5d5ec9512333506c34edbae263a68ad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d5ec9512333506c34edbae263a68ad5">OpenInventory</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html">NwPlaceable</a> target)</td></tr>
 <tr class="memdesc:a5d5ec9512333506c34edbae263a68ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player to open the inventory of the specified placeable.  <br /></td></tr>
 <tr class="separator:a5d5ec9512333506c34edbae263a68ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cbe825988953b8f8e72227b41c9de6c" id="r_a5cbe825988953b8f8e72227b41c9de6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cbe825988953b8f8e72227b41c9de6c">PlayerPossessCreature</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> creature, bool mindImmune=true, bool createDefaultQuickBar=false)</td></tr>
+<tr class="memdesc:a5cbe825988953b8f8e72227b41c9de6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possesses a creature temporarily by making them a familiar.  <br /></td></tr>
+<tr class="separator:a5cbe825988953b8f8e72227b41c9de6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a710e89754554a4ee4644aeb820e64a4a" id="r_a710e89754554a4ee4644aeb820e64a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a710e89754554a4ee4644aeb820e64a4a">PlaySound</a> (string sound, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>? target=null)</td></tr>
 <tr class="memdesc:a710e89754554a4ee4644aeb820e64a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified sound at the target in the current area for this player only.  <br /></td></tr>
 <tr class="separator:a710e89754554a4ee4644aeb820e64a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2118,6 +2121,50 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">target</td><td>The placeable inventory to be viewed.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5cbe825988953b8f8e72227b41c9de6c" name="a5cbe825988953b8f8e72227b41c9de6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cbe825988953b8f8e72227b41c9de6c">&#9670;&#160;</a></span>PlayerPossessCreature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.PlayerPossessCreature </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a></td>          <td class="paramname"><span class="paramname"><em>creature</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>mindImmune</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>createDefaultQuickBar</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Possesses a creature temporarily by making them a familiar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">creature</td><td>The creature to possess.</td></tr>
+    <tr><td class="paramname">mindImmune</td><td>If the built-in mind immunity should apply to this player while possessing.</td></tr>
+    <tr><td class="paramname">createDefaultQuickBar</td><td>If true, will populate the possessed creature's quick bar with default buttons.</td></tr>
   </table>
   </dd>
 </dl>

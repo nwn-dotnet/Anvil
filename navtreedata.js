@@ -33,16 +33,16 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html",
-"classAnvil_1_1API_1_1Events_1_1OnDispelMagicApply.html#acb5b2874610fa4a051093cedc75231f2",
-"classAnvil_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a1e3b5000303e74a40bd792fd921b9981",
-"classAnvil_1_1API_1_1NwArea.html#a592c7338b4937934d07b5d456c4d2884",
-"classAnvil_1_1API_1_1NwCreature.html#a4cfaeff64b14acb0968e2a7a5451bfa8",
-"classAnvil_1_1API_1_1NwDoor.html#aa26bffeb6d69d6916d0f2be7a9d7a0e5",
-"classAnvil_1_1API_1_1NwMath.html#a99384e7bd4e63bd5e4a7950ec2b80e4a",
-"classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce",
-"classAnvil_1_1API_1_1NwSpell.html#ac979787310d2598b7a935c419410283b",
-"classAnvil_1_1API_1_1TwoDimArrayEntry.html#a21ff9598111a53869518ce2addaae10a",
-"structAnvil_1_1API_1_1HitEffect.html#a8727f150d12188e30b08176552390b3e"
+"classAnvil_1_1API_1_1Events_1_1OnDebugRunScriptChunk.html#aa49af3fa4fd3bd44fe61c11bef09a353",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html#a6a3a3d7d688ee3d02d51f9745b6772dc",
+"classAnvil_1_1API_1_1NuiOptions.html",
+"classAnvil_1_1API_1_1NwCreature.html#a1cc57b4cc94a45b9890c400211f68683",
+"classAnvil_1_1API_1_1NwCreature.html#aefc604a2733d184a7fd3b1a8b736b430",
+"classAnvil_1_1API_1_1NwGameTables.html#afe8e65110baab647b8710927338996b1",
+"classAnvil_1_1API_1_1NwPlaceable.html#a5e3bd3bc51a59c1db342ac7005eef2eb",
+"classAnvil_1_1API_1_1NwServer.html#adb9bf4470a72c9d79f248cab4c503c2f",
+"classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html#a7554a34782d02a8b98588130c002f6f3",
+"classAnvil_1_1Services_1_1WeaponService.html#ad967a77434b23bad0028a3d020ab6f06"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

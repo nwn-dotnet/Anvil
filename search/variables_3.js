@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['degtorad_0',['DegToRad',['../classAnvil_1_1API_1_1NwMath.html#a0514a6c0a69c66aaf9cc403bf480d4d5',1,'Anvil::API::NwMath']]]
+  ['feettometers_0',['FeetToMeters',['../classAnvil_1_1API_1_1NwMath.html#ac671b427c2417b6730651824751f52b1',1,'Anvil::API::NwMath']]]
 ];

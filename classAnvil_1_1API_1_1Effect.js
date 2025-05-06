@@ -20,7 +20,7 @@ var classAnvil_1_1API_1_1Effect =
     [ "CutsceneGhost", "classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13", null ],
     [ "CutsceneImmobilize", "classAnvil_1_1API_1_1Effect.html#a0ef8562943f99281e139e0b7b09030a2", null ],
     [ "CutsceneParalyze", "classAnvil_1_1API_1_1Effect.html#ae8dd4ce07eab12c92cbf9ca1e0d86f8f", null ],
-    [ "Damage", "classAnvil_1_1API_1_1Effect.html#a104811fc7037cdb2b21cc339b4c217b1", null ],
+    [ "Damage", "classAnvil_1_1API_1_1Effect.html#aef5cdcafc2a4920dcce7639e154bd904", null ],
     [ "DamageDecrease", "classAnvil_1_1API_1_1Effect.html#a896bd966368780d7aeebad15028cb017", null ],
     [ "DamageImmunityDecrease", "classAnvil_1_1API_1_1Effect.html#a1d5bfdece3e27220881da822450b2ff4", null ],
     [ "DamageImmunityIncrease", "classAnvil_1_1API_1_1Effect.html#a639eb932329a483b5c73a0c93fd8f41f", null ],

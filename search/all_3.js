@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['damage_0',['Damage',['../classAnvil_1_1API_1_1Effect.html#a104811fc7037cdb2b21cc339b4c217b1',1,'Anvil::API::Effect']]],
+  ['damage_0',['Damage',['../classAnvil_1_1API_1_1Effect.html#aef5cdcafc2a4920dcce7639e154bd904',1,'Anvil::API::Effect']]],
   ['damageamount_1',['DamageAmount',['../classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html#a09988e1762740beb62f25b2ff48b4362',1,'Anvil::API::Events::CreatureEvents::OnDamaged']]],
   ['damagebonuslimit_2',['DamageBonusLimit',['../classAnvil_1_1API_1_1NwModule.html#a57bd4142b0c0d5f2ffc286539dc2b0dc',1,'Anvil::API::NwModule']]],
   ['damagedata_3',['DamageData',['../classAnvil_1_1API_1_1Events_1_1DamageData.html',1,'Anvil::API::Events']]],

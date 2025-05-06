@@ -105,6 +105,9 @@ $(function(){initNavTree('classAnvil_1_1Native_1_1Functions_1_1CNWSCreature.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ac8169a64115c0bbaa06da4edccffbba3" id="r_ac8169a64115c0bbaa06da4edccffbba3"><td class="memItemLeft" align="right" valign="top"><a id="ac8169a64115c0bbaa06da4edccffbba3" name="ac8169a64115c0bbaa06da4edccffbba3"></a>
+delegate int&#160;</td><td class="memItemRight" valign="bottom"><b>AcquireItem</b> (void *pCreature, void **pItem, uint oidPossessor, uint oidTargetRepository, byte x, byte y, int bOriginatingFromScript, int bDisplayFeedback)</td></tr>
+<tr class="separator:ac8169a64115c0bbaa06da4edccffbba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae156aa6671c0328e046522da04f5eb8a" id="r_ae156aa6671c0328e046522da04f5eb8a"><td class="memItemLeft" align="right" valign="top"><a id="ae156aa6671c0328e046522da04f5eb8a" name="ae156aa6671c0328e046522da04f5eb8a"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>AddAssociate</b> (void *pCreature, uint oidAssociate, ushort associateType)</td></tr>
 <tr class="separator:ae156aa6671c0328e046522da04f5eb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,12 +117,27 @@ delegate int&#160;</td><td class="memItemRight" valign="bottom"><b>AddCastSpellA
 <tr class="memitem:aba8c23afc5b86ed44680dd48005ca3a5" id="r_aba8c23afc5b86ed44680dd48005ca3a5"><td class="memItemLeft" align="right" valign="top"><a id="aba8c23afc5b86ed44680dd48005ca3a5" name="aba8c23afc5b86ed44680dd48005ca3a5"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>AddGold</b> (void *pCreature, int nGold, int bDisplayFeedback)</td></tr>
 <tr class="separator:aba8c23afc5b86ed44680dd48005ca3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d9394755f0fc41c793d1d05924e82b" id="r_ad0d9394755f0fc41c793d1d05924e82b"><td class="memItemLeft" align="right" valign="top"><a id="ad0d9394755f0fc41c793d1d05924e82b" name="ad0d9394755f0fc41c793d1d05924e82b"></a>
+delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionDisarmTrap</b> (void *pCreature, void *pNode)</td></tr>
+<tr class="separator:ad0d9394755f0fc41c793d1d05924e82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38fc8ef71926af7211c659d5e174039c" id="r_a38fc8ef71926af7211c659d5e174039c"><td class="memItemLeft" align="right" valign="top"><a id="a38fc8ef71926af7211c659d5e174039c" name="a38fc8ef71926af7211c659d5e174039c"></a>
+delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionExamineTrap</b> (void *pCreature, void *pNode)</td></tr>
+<tr class="separator:a38fc8ef71926af7211c659d5e174039c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a796607e270531c69a1072fa7d803fb62" id="r_a796607e270531c69a1072fa7d803fb62"><td class="memItemLeft" align="right" valign="top"><a id="a796607e270531c69a1072fa7d803fb62" name="a796607e270531c69a1072fa7d803fb62"></a>
+delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionFlagTrap</b> (void *pCreature, void *pNode)</td></tr>
+<tr class="separator:a796607e270531c69a1072fa7d803fb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1be0b46d1080e39a911e1eb1e6450d6d" id="r_a1be0b46d1080e39a911e1eb1e6450d6d"><td class="memItemLeft" align="right" valign="top"><a id="a1be0b46d1080e39a911e1eb1e6450d6d" name="a1be0b46d1080e39a911e1eb1e6450d6d"></a>
 delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionHeal</b> (void *pCreature, void *pNode)</td></tr>
 <tr class="separator:a1be0b46d1080e39a911e1eb1e6450d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f82e16b81ee907828a5644e5129af3" id="r_a34f82e16b81ee907828a5644e5129af3"><td class="memItemLeft" align="right" valign="top"><a id="a34f82e16b81ee907828a5644e5129af3" name="a34f82e16b81ee907828a5644e5129af3"></a>
+delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionRecoverTrap</b> (void *pCreature, void *pNode)</td></tr>
+<tr class="separator:a34f82e16b81ee907828a5644e5129af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc485a2d7efa7f57ae093685be8e2e8a" id="r_adc485a2d7efa7f57ae093685be8e2e8a"><td class="memItemLeft" align="right" valign="top"><a id="adc485a2d7efa7f57ae093685be8e2e8a" name="adc485a2d7efa7f57ae093685be8e2e8a"></a>
 delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionRest</b> (void *pCreature, void *pNode)</td></tr>
 <tr class="separator:adc485a2d7efa7f57ae093685be8e2e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2683f45ef1223586c9e651035d035a22" id="r_a2683f45ef1223586c9e651035d035a22"><td class="memItemLeft" align="right" valign="top"><a id="a2683f45ef1223586c9e651035d035a22" name="a2683f45ef1223586c9e651035d035a22"></a>
+delegate uint&#160;</td><td class="memItemRight" valign="bottom"><b>AIActionSetTrap</b> (void *pCreature, void *pNode)</td></tr>
+<tr class="separator:a2683f45ef1223586c9e651035d035a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec37ce0b649c046b7be65f6c45ca86d4" id="r_aec37ce0b649c046b7be65f6c45ca86d4"><td class="memItemLeft" align="right" valign="top"><a id="aec37ce0b649c046b7be65f6c45ca86d4" name="aec37ce0b649c046b7be65f6c45ca86d4"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>BroadcastSpellCast</b> (void *pCreature, uint nSpellId, byte nMultiClass, ushort nFeat)</td></tr>
 <tr class="separator:aec37ce0b649c046b7be65f6c45ca86d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +213,9 @@ delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>SignalRanged
 <tr class="memitem:a05449e8d256324f854e7bd7048299691" id="r_a05449e8d256324f854e7bd7048299691"><td class="memItemLeft" align="right" valign="top"><a id="a05449e8d256324f854e7bd7048299691" name="a05449e8d256324f854e7bd7048299691"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>UnpossessFamiliar</b> (void *pCreature)</td></tr>
 <tr class="separator:a05449e8d256324f854e7bd7048299691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a479b4f80e84f5ac06b1cccf789c226aa" id="r_a479b4f80e84f5ac06b1cccf789c226aa"><td class="memItemLeft" align="right" valign="top"><a id="a479b4f80e84f5ac06b1cccf789c226aa" name="a479b4f80e84f5ac06b1cccf789c226aa"></a>
+delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>UnsummonMyself</b> (void *pCreature)</td></tr>
+<tr class="separator:a479b4f80e84f5ac06b1cccf789c226aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5fbc4d23c081e9f0a370010a7e0ede3" id="r_aa5fbc4d23c081e9f0a370010a7e0ede3"><td class="memItemLeft" align="right" valign="top"><a id="aa5fbc4d23c081e9f0a370010a7e0ede3" name="aa5fbc4d23c081e9f0a370010a7e0ede3"></a>
 delegate int&#160;</td><td class="memItemRight" valign="bottom"><b>UseFeat</b> (void *pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void *pTargetPos)</td></tr>
 <tr class="separator:aa5fbc4d23c081e9f0a370010a7e0ede3"><td class="memSeparator" colspan="2">&#160;</td></tr>

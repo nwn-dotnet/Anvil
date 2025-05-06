@@ -42,5 +42,7 @@ var classAnvil_1_1API_1_1NwItem =
     [ "UnidentifiedDescription", "classAnvil_1_1API_1_1NwItem.html#ad51c8ccb747a32496baefbb048af27c0", null ],
     [ "Weight", "classAnvil_1_1API_1_1NwItem.html#a5bba799d16a4901421f013e0d9432ce6", null ],
     [ "OnInventoryItemAdd", "classAnvil_1_1API_1_1NwItem.html#a2cc5b5749df38bc2cd574b5319c03ffb", null ],
-    [ "OnInventoryItemRemove", "classAnvil_1_1API_1_1NwItem.html#a0ef44a9a0c20c2e607f43baec22e95e7", null ]
+    [ "OnInventoryItemRemove", "classAnvil_1_1API_1_1NwItem.html#a0ef44a9a0c20c2e607f43baec22e95e7", null ],
+    [ "OnItemDecrementStackSize", "classAnvil_1_1API_1_1NwItem.html#a023b73b4e28212f9d8af653f1370629a", null ],
+    [ "OnItemDestroy", "classAnvil_1_1API_1_1NwItem.html#a894d3bb0a76ef07b32b0f6749e0b4c67", null ]
 ];

@@ -23,6 +23,8 @@ var annotated =
           [ "IEvent", "interfaceAnvil_1_1API_1_1Events_1_1IEvent.html", null ],
           [ "IEventFactory", "interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html", null ],
           [ "IEventSkippable", "interfaceAnvil_1_1API_1_1Events_1_1IEventSkippable.html", "interfaceAnvil_1_1API_1_1Events_1_1IEventSkippable" ],
+          [ "ItemEventHandlerEventFactory", "classAnvil_1_1API_1_1Events_1_1ItemEventHandlerEventFactory.html", null ],
+          [ "ItemHandlerEvent", "classAnvil_1_1API_1_1Events_1_1ItemHandlerEvent.html", "classAnvil_1_1API_1_1Events_1_1ItemHandlerEvent" ],
           [ "ModuleEvents", "classAnvil_1_1API_1_1Events_1_1ModuleEvents.html", "classAnvil_1_1API_1_1Events_1_1ModuleEvents" ],
           [ "OnAssociateAdd", "classAnvil_1_1API_1_1Events_1_1OnAssociateAdd.html", "classAnvil_1_1API_1_1Events_1_1OnAssociateAdd" ],
           [ "OnAssociateRemove", "classAnvil_1_1API_1_1Events_1_1OnAssociateRemove.html", "classAnvil_1_1API_1_1Events_1_1OnAssociateRemove" ],
@@ -38,6 +40,7 @@ var annotated =
           [ "OnCombatModeToggle", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle.html", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle" ],
           [ "OnCombatRoundStart", "classAnvil_1_1API_1_1Events_1_1OnCombatRoundStart.html", "classAnvil_1_1API_1_1Events_1_1OnCombatRoundStart" ],
           [ "OnCombatStatusChange", "classAnvil_1_1API_1_1Events_1_1OnCombatStatusChange.html", "classAnvil_1_1API_1_1Events_1_1OnCombatStatusChange" ],
+          [ "OnCreatureAcquireItem", "classAnvil_1_1API_1_1Events_1_1OnCreatureAcquireItem.html", "classAnvil_1_1API_1_1Events_1_1OnCreatureAcquireItem" ],
           [ "OnCreatureAttack", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack.html", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack" ],
           [ "OnCreatureCheckProficiencies", "classAnvil_1_1API_1_1Events_1_1OnCreatureCheckProficiencies.html", "classAnvil_1_1API_1_1Events_1_1OnCreatureCheckProficiencies" ],
           [ "OnCreatureDamage", "classAnvil_1_1API_1_1Events_1_1OnCreatureDamage.html", "classAnvil_1_1API_1_1Events_1_1OnCreatureDamage" ],
@@ -103,6 +106,12 @@ var annotated =
           [ "OnStealthModeUpdate", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate.html", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate" ],
           [ "OnStoreRequestBuy", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestBuy.html", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestBuy" ],
           [ "OnStoreRequestSell", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell.html", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell" ],
+          [ "OnTrapDisarm", "classAnvil_1_1API_1_1Events_1_1OnTrapDisarm.html", "classAnvil_1_1API_1_1Events_1_1OnTrapDisarm" ],
+          [ "OnTrapEnter", "classAnvil_1_1API_1_1Events_1_1OnTrapEnter.html", "classAnvil_1_1API_1_1Events_1_1OnTrapEnter" ],
+          [ "OnTrapExamine", "classAnvil_1_1API_1_1Events_1_1OnTrapExamine.html", "classAnvil_1_1API_1_1Events_1_1OnTrapExamine" ],
+          [ "OnTrapFlag", "classAnvil_1_1API_1_1Events_1_1OnTrapFlag.html", "classAnvil_1_1API_1_1Events_1_1OnTrapFlag" ],
+          [ "OnTrapRecover", "classAnvil_1_1API_1_1Events_1_1OnTrapRecover.html", "classAnvil_1_1API_1_1Events_1_1OnTrapRecover" ],
+          [ "OnTrapSet", "classAnvil_1_1API_1_1Events_1_1OnTrapSet.html", "classAnvil_1_1API_1_1Events_1_1OnTrapSet" ],
           [ "OnTriggerEnter", "classAnvil_1_1API_1_1Events_1_1OnTriggerEnter.html", "classAnvil_1_1API_1_1Events_1_1OnTriggerEnter" ],
           [ "OnUseFeat", "classAnvil_1_1API_1_1Events_1_1OnUseFeat.html", "classAnvil_1_1API_1_1Events_1_1OnUseFeat" ],
           [ "OnUseSkill", "classAnvil_1_1API_1_1Events_1_1OnUseSkill.html", "classAnvil_1_1API_1_1Events_1_1OnUseSkill" ],
@@ -110,6 +119,8 @@ var annotated =
           [ "SpellEvents", "classAnvil_1_1API_1_1Events_1_1SpellEvents.html", "classAnvil_1_1API_1_1Events_1_1SpellEvents" ],
           [ "StoreEvents", "classAnvil_1_1API_1_1Events_1_1StoreEvents.html", "classAnvil_1_1API_1_1Events_1_1StoreEvents" ],
           [ "TimeOfDayState", "classAnvil_1_1API_1_1Events_1_1TimeOfDayState.html", null ],
+          [ "TrapEvent", "classAnvil_1_1API_1_1Events_1_1TrapEvent.html", "classAnvil_1_1API_1_1Events_1_1TrapEvent" ],
+          [ "TrapHookEventFactory", "classAnvil_1_1API_1_1Events_1_1TrapHookEventFactory.html", null ],
           [ "TriggerEvents", "classAnvil_1_1API_1_1Events_1_1TriggerEvents.html", "classAnvil_1_1API_1_1Events_1_1TriggerEvents" ]
         ] ],
         [ "AppearanceTableEntry", "classAnvil_1_1API_1_1AppearanceTableEntry.html", null ],
@@ -305,6 +316,7 @@ var annotated =
         [ "EnvironmentConfig", "classAnvil_1_1Internal_1_1EnvironmentConfig.html", null ]
       ] ],
       [ "Native", "namespaceAnvil_1_1Native.html", [
+        [ "CNWSMessageExtensions", "classAnvil_1_1Native_1_1CNWSMessageExtensions.html", null ],
         [ "NativeObjectExtensions", "classAnvil_1_1Native_1_1NativeObjectExtensions.html", null ]
       ] ],
       [ "Plugins", "namespaceAnvil_1_1Plugins.html", [

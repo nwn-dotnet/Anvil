@@ -103,7 +103,8 @@ $(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacq
 </div><!--header-->
 <div class="contents">
 
-<p>Triggered when a <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> is removed from a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a>'s inventory.  
+<p>Triggered when a <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> is removed from a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a>'s inventory.<br  />
+ This event is also fired when an item stack is destroyed when combining with another item stack.  
  <a href="#details">More...</a></p>
 <div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.Events.ModuleEvents.OnUnacquireItem:</div>
@@ -112,7 +113,7 @@ $(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacq
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem__inherit__graph.png" border="0" usemap="#aAnvil_8API_8Events_8ModuleEvents_8OnUnacquireItem_inherit__map" alt="Inheritance graph"/></div>
 <map name="aAnvil_8API_8Events_8ModuleEvents_8OnUnacquireItem_inherit__map" id="aAnvil_8API_8Events_8ModuleEvents_8OnUnacquireItem_inherit__map">
-<area shape="rect" title="Triggered when a NwItem is removed from a NwCreature&#39;s inventory." alt="" coords="5,79,212,120"/>
+<area shape="rect" title="Triggered when a NwItem is removed from a NwCreature&#39;s inventory. &#160;This event is also fired when an i..." alt="" coords="5,79,212,120"/>
 <area shape="rect" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="79,5,138,31"/>
 <area shape="poly" title=" " alt="" coords="111,46,111,79,106,79,106,46"/>
 </map>
@@ -124,7 +125,7 @@ $(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacq
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem__coll__graph.png" border="0" usemap="#aAnvil_8API_8Events_8ModuleEvents_8OnUnacquireItem_coll__map" alt="Collaboration graph"/></div>
 <map name="aAnvil_8API_8Events_8ModuleEvents_8OnUnacquireItem_coll__map" id="aAnvil_8API_8Events_8ModuleEvents_8OnUnacquireItem_coll__map">
-<area shape="rect" title="Triggered when a NwItem is removed from a NwCreature&#39;s inventory." alt="" coords="5,79,212,120"/>
+<area shape="rect" title="Triggered when a NwItem is removed from a NwCreature&#39;s inventory. &#160;This event is also fired when an i..." alt="" coords="5,79,212,120"/>
 <area shape="rect" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="79,5,138,31"/>
 <area shape="poly" title=" " alt="" coords="111,46,111,79,106,79,106,46"/>
 </map>
@@ -132,10 +133,11 @@ $(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacq
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a04611164c781165dc0cd1d4a0a2704de" id="r_a04611164c781165dc0cd1d4a0a2704de"><td class="memItemLeft" align="right" valign="top"><a id="a04611164c781165dc0cd1d4a0a2704de" name="a04611164c781165dc0cd1d4a0a2704de"></a>
-<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> = NWScript.GetModuleItemLost().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&gt;()!<code> [get]</code></td></tr>
-<tr class="memdesc:a04611164c781165dc0cd1d4a0a2704de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> that was lost by <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a>. <br /></td></tr>
-<tr class="separator:a04611164c781165dc0cd1d4a0a2704de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab1ef73035f41ac502a38dca74b539f" id="r_a4ab1ef73035f41ac502a38dca74b539f"><td class="memItemLeft" align="right" valign="top"><a id="a4ab1ef73035f41ac502a38dca74b539f" name="a4ab1ef73035f41ac502a38dca74b539f"></a>
+<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> = NWScript.GetModuleItemLost().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&gt;()<code> [get]</code></td></tr>
+<tr class="memdesc:a4ab1ef73035f41ac502a38dca74b539f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> that was lost by <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a>.<br  />
+ This property is null when an item stack is destroyed when combining with another item stack. <br /></td></tr>
+<tr class="separator:a4ab1ef73035f41ac502a38dca74b539f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a392a2c430a87a3d2a4dde4b0795bf17d" id="r_a392a2c430a87a3d2a4dde4b0795bf17d"><td class="memItemLeft" align="right" valign="top"><a id="a392a2c430a87a3d2a4dde4b0795bf17d" name="a392a2c430a87a3d2a4dde4b0795bf17d"></a>
 <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LostBy</b> = NWScript.GetModuleItemLostBy().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&gt;()!<code> [get]</code></td></tr>
 <tr class="memdesc:a392a2c430a87a3d2a4dde4b0795bf17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a> that lost the <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a>. <br /></td></tr>
@@ -143,7 +145,8 @@ Properties</h2></td></tr>
 <tr class="inherit_header properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html">Anvil.API.Events.IEvent</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Triggered when a <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> is removed from a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a>'s inventory. </p>
+<div class="textblock"><p>Triggered when a <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> is removed from a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar.">NwCreature</a>'s inventory.<br  />
+ This event is also fired when an item stack is destroyed when combining with another item stack. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/<b>ModuleEvents.OnUnacquireItem.cs</b></li>
 </ul>

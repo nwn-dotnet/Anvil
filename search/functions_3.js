@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['damage_0',['Damage',['../classAnvil_1_1API_1_1Effect.html#a104811fc7037cdb2b21cc339b4c217b1',1,'Anvil::API::Effect']]],
+  ['damage_0',['Damage',['../classAnvil_1_1API_1_1Effect.html#aef5cdcafc2a4920dcce7639e154bd904',1,'Anvil::API::Effect']]],
   ['damagedecrease_1',['DamageDecrease',['../classAnvil_1_1API_1_1Effect.html#a896bd966368780d7aeebad15028cb017',1,'Anvil::API::Effect']]],
   ['damageimmunitydecrease_2',['DamageImmunityDecrease',['../classAnvil_1_1API_1_1Effect.html#a1d5bfdece3e27220881da822450b2ff4',1,'Anvil::API::Effect']]],
   ['damageimmunityincrease_3',['DamageImmunityIncrease',['../classAnvil_1_1API_1_1Effect.html#a639eb932329a483b5c73a0c93fd8f41f',1,'Anvil::API::Effect']]],

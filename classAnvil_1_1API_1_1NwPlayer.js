@@ -46,6 +46,7 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "OpenInventory", "classAnvil_1_1API_1_1NwPlayer.html#af2df962423380bf47fd03a73ecc6f88a", null ],
     [ "OpenInventory", "classAnvil_1_1API_1_1NwPlayer.html#ac91f29e51f7e63e965c39993e644dd17", null ],
     [ "OpenInventory", "classAnvil_1_1API_1_1NwPlayer.html#a5d5ec9512333506c34edbae263a68ad5", null ],
+    [ "PlayerPossessCreature", "classAnvil_1_1API_1_1NwPlayer.html#a5cbe825988953b8f8e72227b41c9de6c", null ],
     [ "PlaySound", "classAnvil_1_1API_1_1NwPlayer.html#a710e89754554a4ee4644aeb820e64a4a", null ],
     [ "PopUpDeathPanel", "classAnvil_1_1API_1_1NwPlayer.html#a83a6fd356c7d73357e656a933a920bff", null ],
     [ "PopUpGUIPanel", "classAnvil_1_1API_1_1NwPlayer.html#a956bf0cf5d6c8aa7f0e34aaf60590ebd", null ],

@@ -24,7 +24,7 @@ var searchData=
   ['enginestructure_21',['EngineStructure',['../classAnvil_1_1API_1_1EngineStructure.html',1,'Anvil::API']]],
   ['entangle_22',['Entangle',['../classAnvil_1_1API_1_1Effect.html#ac21232f8e266e23c6ddf520a7628dce3',1,'Anvil::API::Effect']]],
   ['entercutscenemode_23',['EnterCutsceneMode',['../classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8',1,'Anvil::API::NwPlayer']]],
-  ['enteredobject_24',['EnteredObject',['../classAnvil_1_1API_1_1Events_1_1OnTriggerEnter.html#aa709869bb1d5a9a16f8ddae1b44b91a1',1,'Anvil::API::Events::OnTriggerEnter']]],
+  ['enteredobject_24',['EnteredObject',['../classAnvil_1_1API_1_1Events_1_1OnTrapEnter.html#aa7a31a0a101196fbbcae45e2bea6f2d6',1,'Anvil.API.Events.OnTrapEnter.EnteredObject'],['../classAnvil_1_1API_1_1Events_1_1OnTriggerEnter.html#aa709869bb1d5a9a16f8ddae1b44b91a1',1,'Anvil.API.Events.OnTriggerEnter.EnteredObject']]],
   ['enteringobject_25',['EnteringObject',['../classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html#a09d5a65020934557031d716177f58dd2',1,'Anvil.API.Events.AreaEvents.OnEnter.EnteringObject'],['../classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a48f3c556c7a8e4a38a8ce7102031c7bf',1,'Anvil.API.Events.TriggerEvents.OnEnter.EnteringObject']]],
   ['enteroverride_26',['EnterOverride',['../classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate.html#aaed64a41ea49a9de0cae096e437b766e',1,'Anvil::API::Events::OnStealthModeUpdate']]],
   ['entertargetmode_27',['EnterTargetMode',['../classAnvil_1_1API_1_1NwPlayer.html#a1f8ca7454032483bcbb384a1e37775e4',1,'Anvil::API::NwPlayer']]],

@@ -1,0 +1,17 @@
+<map id="Anvil.API.Events.TrapHookEventFactory" name="Anvil.API.Events.TrapHookEventFactory">
+<area shape="rect" id="Node000001" title=" " alt="" coords="434,104,612,145"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1Events_1_1OnTrapDisarm_1_1Factory.html" title=" " alt="" coords="664,5,873,46"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="576,94,659,57,694,44,696,49,661,61,578,99"/>
+<area shape="rect" id="Node000006" href="$classAnvil_1_1API_1_1Events_1_1OnTrapExamine_1_1Factory.html" title=" " alt="" coords="660,71,877,111"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="627,108,660,103,660,108,628,113"/>
+<area shape="rect" id="Node000007" href="$classAnvil_1_1API_1_1Events_1_1OnTrapFlag_1_1Factory.html" title=" " alt="" coords="672,136,865,177"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="628,135,672,141,672,146,628,141"/>
+<area shape="rect" id="Node000008" href="$classAnvil_1_1API_1_1Events_1_1OnTrapRecover_1_1Factory.html" title=" " alt="" coords="661,201,876,242"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="579,149,661,186,696,198,695,203,659,191,577,154"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1Events_1_1HookEventFactory.html" title=" " alt="" coords="258,112,386,137"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,122,434,122,434,127,402,127"/>
+<area shape="rect" id="Node000003" href="$interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html" title=" " alt="" coords="5,75,210,115"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,108,257,113,257,118,225,114"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="63,140,152,165"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="168,142,257,130,257,135,168,147"/>
+</map>

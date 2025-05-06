@@ -1,0 +1,7 @@
+<map id="Anvil.API.Events.OnTrapExamine" name="Anvil.API.Events.OnTrapExamine">
+<area shape="rect" id="Node000001" title="Called when a creature attempts to examine a trap." alt="" coords="5,153,219,178"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1Events_1_1TrapEvent.html" title=" " alt="" coords="72,79,152,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,120,115,152,109,152,109,120"/>
+<area shape="rect" id="Node000003" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="83,5,141,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,46,115,79,109,79,109,46"/>
+</map>

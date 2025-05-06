@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calloriginal_0',['CallOriginal',['../classAnvil_1_1Services_1_1FunctionHook.html#acc60978a951a9b938a6d754c0ab80def',1,'Anvil::Services::FunctionHook']]]
+  ['degtorad_0',['DegToRad',['../classAnvil_1_1API_1_1NwMath.html#a0514a6c0a69c66aaf9cc403bf480d4d5',1,'Anvil::API::NwMath']]]
 ];

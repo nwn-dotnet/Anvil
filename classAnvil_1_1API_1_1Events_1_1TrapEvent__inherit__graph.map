@@ -1,0 +1,13 @@
+<map id="Anvil.API.Events.TrapEvent" name="Anvil.API.Events.TrapEvent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="112,80,292,106"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1Events_1_1OnTrapDisarm.html" title="Called when a creature attempts to disarm a trap." alt="" coords="344,5,549,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,71,339,40,380,29,381,34,341,45,250,76"/>
+<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1Events_1_1OnTrapExamine.html" title="Called when a creature attempts to examine a trap." alt="" coords="340,55,553,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="308,79,339,76,340,81,308,85"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1Events_1_1OnTrapFlag.html" title="Called when a creature attempts to flag a trap." alt="" coords="352,104,541,130"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="308,101,352,105,351,110,307,106"/>
+<area shape="rect" id="Node000006" href="$classAnvil_1_1API_1_1Events_1_1OnTrapRecover.html" title="Called when a creature attempts to recover a trap." alt="" coords="340,153,553,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="251,109,341,140,381,150,380,155,339,145,250,114"/>
+<area shape="rect" id="Node000002" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="5,80,64,106"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,90,111,90,111,96,79,96"/>
+</map>

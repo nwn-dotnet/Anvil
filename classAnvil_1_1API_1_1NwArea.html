@@ -156,6 +156,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyEnvironmentPrese
 <tr class="memitem:a70fcd6f7df3fdcccdbd62d5885bb528f" id="r_a70fcd6f7df3fdcccdbd62d5885bb528f"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70fcd6f7df3fdcccdbd62d5885bb528f">GetAreaLightDirection</a> (AreaLightDirection lightType)</td></tr>
 <tr class="memdesc:a70fcd6f7df3fdcccdbd62d5885bb528f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the light direction for the specified light type.  <br /></td></tr>
 <tr class="separator:a70fcd6f7df3fdcccdbd62d5885bb528f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc9b3e40707f07376de0fba7508810e" id="r_abbc9b3e40707f07376de0fba7508810e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbc9b3e40707f07376de0fba7508810e">GetLocalizedName</a> (PlayerLanguage language, Gender gender=Gender.Male)</td></tr>
+<tr class="memdesc:abbc9b3e40707f07376de0fba7508810e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the localized string for this area in the specified language.  <br /></td></tr>
+<tr class="separator:abbc9b3e40707f07376de0fba7508810e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64d9124cadb56b17d21251232386ea6e" id="r_a64d9124cadb56b17d21251232386ea6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1TileInfo.html">TileInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64d9124cadb56b17d21251232386ea6e">GetTileInfo</a> (int tileX, int tileY)</td></tr>
 <tr class="memdesc:a64d9124cadb56b17d21251232386ea6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tile info at the specified position in the area.  <br /></td></tr>
 <tr class="separator:a64d9124cadb56b17d21251232386ea6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,6 +230,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetFogAmount</b> (Fog
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetFogColor</b> (FogType fogType, FogColor fogColor, TimeSpan fadeTime=default)</td></tr>
 <tr class="memdesc:aaaea97e2fb2d5ee101f841e6526d1d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fog color for this area, at the specified time of day. <br /></td></tr>
 <tr class="separator:aaaea97e2fb2d5ee101f841e6526d1d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5455d61b56664b9c6fc8a1e724de7519" id="r_a5455d61b56664b9c6fc8a1e724de7519"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5455d61b56664b9c6fc8a1e724de7519">SetLocalizedName</a> (string name, PlayerLanguage language, Gender gender=Gender.Male)</td></tr>
+<tr class="memdesc:a5455d61b56664b9c6fc8a1e724de7519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the localized string for this area in the specified language.  <br /></td></tr>
+<tr class="separator:a5455d61b56664b9c6fc8a1e724de7519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a9d461784bc06136a2c87a869fa52d5" id="r_a0a9d461784bc06136a2c87a869fa52d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a9d461784bc06136a2c87a869fa52d5">SetTiles</a> (List&lt; <a class="el" href="classAnvil_1_1API_1_1TileData.html">TileData</a> &gt; data, <a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">SettleFlags</a> flags=<a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114">SettleFlags.RecomputeLighting</a>, string tileSet=&quot;&quot;)</td></tr>
 <tr class="memdesc:a0a9d461784bc06136a2c87a869fa52d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulk change a set of tiles in this area.  <br /></td></tr>
 <tr class="separator:a0a9d461784bc06136a2c87a869fa52d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -750,6 +756,45 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnUs
 
 </div>
 </div>
+<a id="abbc9b3e40707f07376de0fba7508810e" name="abbc9b3e40707f07376de0fba7508810e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbc9b3e40707f07376de0fba7508810e">&#9670;&#160;</a></span>GetLocalizedName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Anvil.API.NwArea.GetLocalizedName </td>
+          <td>(</td>
+          <td class="paramtype">PlayerLanguage</td>          <td class="paramname"><span class="paramname"><em>language</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Gender</td>          <td class="paramname"><span class="paramname"><em>gender</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Gender::Male</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the localized string for this area in the specified language. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">language</td><td>The language to resolve.</td></tr>
+    <tr><td class="paramname">gender</td><td>The gender to use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The localized string.</dd></dl>
+
+</div>
+</div>
 <a id="a64d9124cadb56b17d21251232386ea6e" name="a64d9124cadb56b17d21251232386ea6e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a64d9124cadb56b17d21251232386ea6e">&#9670;&#160;</a></span>GetTileInfo()</h2>
 
@@ -1132,6 +1177,50 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnUs
     <tr><td class="paramname">magnitude</td><td>The magnitude/intensity of the wind.</td></tr>
     <tr><td class="paramname">yaw</td><td>The yaw value of the wind.</td></tr>
     <tr><td class="paramname">pitch</td><td>The pitch value of the wind.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5455d61b56664b9c6fc8a1e724de7519" name="a5455d61b56664b9c6fc8a1e724de7519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5455d61b56664b9c6fc8a1e724de7519">&#9670;&#160;</a></span>SetLocalizedName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetLocalizedName </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PlayerLanguage</td>          <td class="paramname"><span class="paramname"><em>language</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Gender</td>          <td class="paramname"><span class="paramname"><em>gender</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Gender::Male</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the localized string for this area in the specified language. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>New value to set.</td></tr>
+    <tr><td class="paramname">language</td><td>The language to resolve.</td></tr>
+    <tr><td class="paramname">gender</td><td>The gender to use.</td></tr>
   </table>
   </dd>
 </dl>
