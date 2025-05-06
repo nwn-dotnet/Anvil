@@ -7,13 +7,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...HEAD
 
 ### Added
-- N/A
+- Events: Added `OnItemDestroy` event.
+- Events: Added `OnItemDecrementStackSize` event.
+- Events: Added `OnCreatureAcquireItem` event.
+- Events: Added `OnTrapDisarm` event.
+- Events: Added `OnTrapEnter` event.
+- Events: Added `OnTrapExamine` event.
+- Events: Added `OnTrapFlag` event.
+- Events: Added `OnTrapRecover` event.
+- Events: Added `OnTrapSet` event.
+- NwArea: Added `GetLocalizedName` method.
+- NwArea: Added `SetLocalizedName` method.
+- NwCreature: Added `InitiativeRoll` property getter/setter.
+- NwGameObject: Added `GetLocalizedName` method.
+- NwGameObject: Added `SetLocalizedName` method.
+- NwPlayer: Added `PlayerPossessCreature` method.
+- Added support for different [ScriptHandler] callback method signatures. The following signatures are now supported:
+```
+  void Handler();
+  bool Handler();
+  ScriptHandleResult Handler();
+  void Handler(CallInfo callInfo);
+  bool Handler(CallInfo callInfo);
+  ScriptHandleResult Handler(CallInfo callInfo);
+```
 
 ### Package Updates
-- N/A
+- NWNX: 7fc892a -> 292a2c0
+- NWN.Core: 8193.37.2 -> 8193.37.3
 
 ### Changed
-- N/A
+- Effect: `Damage` now supports optional `damagePower` parameter.
+- Events: `OnUnacquireItem.Item` is now nullable.
 
 ### Deprecated
 - N/A
@@ -22,7 +47,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed some assertion failure messages from skipped events using `CNWSMessage`.
+- Fixed `DMPossessCreature` exception when player was a DM.
+- Fixed undefined behaviour when disposing function hooks/reloading anvil.
 
 ## 8193.37.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.36.1...v8193.37.0
