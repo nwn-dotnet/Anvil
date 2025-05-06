@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.1...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.37.1
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...v8193.37.1
 
 ### Added
 - Events: Added `OnItemDestroy` event.
@@ -39,12 +60,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...HEAD
 ### Changed
 - Effect: `Damage` now supports optional `damagePower` parameter.
 - Events: `OnUnacquireItem.Item` is now nullable.
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed some assertion failure messages from skipped events using `CNWSMessage`.
