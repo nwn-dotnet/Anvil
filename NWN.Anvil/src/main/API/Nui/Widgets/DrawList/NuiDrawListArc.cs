@@ -1,10 +1,9 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
   public sealed class NuiDrawListArc : NuiDrawListItem
   {
-    [JsonConstructor]
     public NuiDrawListArc(NuiProperty<Color> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiVector> center, NuiProperty<float> radius,
       NuiProperty<float> angleMin, NuiProperty<float> angleMax)
     {
@@ -17,18 +16,19 @@ namespace Anvil.API
       AngleMax = angleMax;
     }
 
-    [JsonProperty("amax")]
+    [JsonPropertyName("amax")]
     public NuiProperty<float> AngleMax { get; set; }
 
-    [JsonProperty("amin")]
+    [JsonPropertyName("amin")]
     public NuiProperty<float> AngleMin { get; set; }
 
-    [JsonProperty("c")]
+    [JsonPropertyName("c")]
     public NuiProperty<NuiVector> Center { get; set; }
 
-    [JsonProperty("radius")]
+    [JsonPropertyName("radius")]
     public NuiProperty<float> Radius { get; set; }
 
+    [JsonPropertyName("type")]
     public override NuiDrawListItemType Type => NuiDrawListItemType.Arc;
   }
 }

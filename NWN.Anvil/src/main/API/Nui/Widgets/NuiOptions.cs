@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -9,15 +9,16 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiOptions : NuiWidget
   {
-    [JsonProperty("direction")]
+    [JsonPropertyName("direction")]
     public NuiDirection Direction { get; set; } = NuiDirection.Horizontal;
 
-    [JsonProperty("elements")]
+    [JsonPropertyName("elements")]
     public List<string> Options { get; set; } = [];
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<int> Selection { get; set; } = -1;
 
+    [JsonPropertyName("type")]
     public override string Type => "options";
   }
 }

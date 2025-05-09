@@ -1,6 +1,6 @@
+using System.Text.Json.Serialization;
 using Anvil.Internal;
 using Anvil.Services;
-using Newtonsoft.Json;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -8,8 +8,8 @@ namespace Anvil.API
   /// <summary>
   /// A talk table (tlk) string reference.
   /// </summary>
-  [method: JsonConstructor]
-  public readonly struct StrRef(uint stringId)
+  [JsonConverter(typeof(StrRefConverter))]
+  public readonly struct StrRef
   {
     private const uint CustomTlkOffset = 0x1000000;
 
@@ -19,21 +19,26 @@ namespace Anvil.API
     /// <summary>
     /// Gets the index/key for this StrRef.
     /// </summary>
-    [JsonProperty("strref")]
-    public readonly uint Id = stringId;
+    public uint Id { get; }
 
-    public StrRef(int stringId) : this((uint)stringId) {}
+    /// <summary>
+    /// A talk table (tlk) string reference.
+    /// </summary>
+    public StrRef(uint id)
+    {
+      Id = id;
+    }
+
+    public StrRef(int id) : this((uint)id) {}
 
     /// <summary>
     /// Gets the index/key for this StrRef relative to the module's custom talk table. (-16777216)
     /// </summary>
-    [JsonIgnore]
     public uint CustomId => Id - CustomTlkOffset;
 
     /// <summary>
     /// Gets or sets a string override that this StrRef should return instead of the tlk file definition.
     /// </summary>
-    [JsonIgnore]
     public string? Override
     {
       get => TlkTable.GetTlkOverride(this);

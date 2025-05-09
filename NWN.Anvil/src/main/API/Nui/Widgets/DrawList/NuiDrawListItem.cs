@@ -1,28 +1,39 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
+  [JsonPolymorphic]
+  [JsonDerivedType(typeof(NuiDrawListArc))]
+  [JsonDerivedType(typeof(NuiDrawListCircle))]
+  [JsonDerivedType(typeof(NuiDrawListCurve))]
+  [JsonDerivedType(typeof(NuiDrawListImage))]
+  [JsonDerivedType(typeof(NuiDrawListLine))]
+  [JsonDerivedType(typeof(NuiDrawListPolyLine))]
+  [JsonDerivedType(typeof(NuiDrawListText))]
   public abstract class NuiDrawListItem
   {
-    [JsonProperty("color", NullValueHandling = NullValueHandling.Include)]
+    [JsonPropertyName("color")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public NuiProperty<Color>? Color { get; set; }
 
-    [JsonProperty("enabled")]
+    [JsonPropertyName("enabled")]
     public NuiProperty<bool> Enabled { get; set; } = true;
 
-    [JsonProperty("fill", NullValueHandling = NullValueHandling.Include)]
+    [JsonPropertyName("fill")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public NuiProperty<bool>? Fill { get; set; }
 
-    [JsonProperty("line_thickness", NullValueHandling = NullValueHandling.Include)]
+    [JsonPropertyName("line_thickness")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public NuiProperty<float>? LineThickness { get; set; }
 
-    [JsonProperty("type")]
+    [JsonPropertyName("type")]
     public abstract NuiDrawListItemType Type { get; }
 
-    [JsonProperty("order")]
+    [JsonPropertyName("order")]
     public NuiDrawListItemOrder Order { get; set; } = NuiDrawListItemOrder.After;
 
-    [JsonProperty("render")]
+    [JsonPropertyName("render")]
     public NuiDrawListItemRender Render { get; set; } = NuiDrawListItemRender.Always;
   }
 }

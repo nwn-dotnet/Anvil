@@ -1,4 +1,4 @@
-using Anvil.API;
+using System.Text.Json;
 using NUnit.Framework;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Local
@@ -10,9 +10,9 @@ namespace Anvil.Tests.API
     [Test(Description = "Serializing a value creates valid json.")]
     [TestCase(null, "null")]
     [TestCase(1, "1")]
-    [TestCase(1f, "1.0")]
+    [TestCase(1f, "1")]
     [TestCase(1.532f, "1.532")]
-    [TestCase(1.0d, "1.0")]
+    [TestCase(1.0d, "1")]
     [TestCase(1.689d, "1.689")]
     [TestCase(false, "false")]
     [TestCase(true, "true")]
@@ -24,7 +24,7 @@ namespace Anvil.Tests.API
                   """)]
     public void SerializeValueCreatesValidJson(object value, string expected)
     {
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo(expected));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo(expected));
     }
 
     [Test(Description = "Serializing a struct creates valid json.")]
@@ -38,7 +38,7 @@ namespace Anvil.Tests.API
         TestS = "test",
       };
 
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10.0,"TestB":true}"""));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
     }
 
     [Test(Description = "Serializing a class creates valid json.")]
@@ -52,7 +52,7 @@ namespace Anvil.Tests.API
         TestS = "test",
       };
 
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10.0,"TestB":true}"""));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
     }
 
     [Test(Description = "Serializing a record creates valid json.")]
@@ -66,7 +66,7 @@ namespace Anvil.Tests.API
         TestS = "test",
       };
 
-      Assert.That(JsonUtility.ToJson(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10.0,"TestB":true}"""));
+      Assert.That(JsonSerializer.Serialize(value), Is.EqualTo("""{"TestI":5,"TestS":"test","TestF":10,"TestB":true}"""));
     }
 
     private struct TestStruct

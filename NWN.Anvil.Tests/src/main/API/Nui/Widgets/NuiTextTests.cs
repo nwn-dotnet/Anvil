@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Anvil.API;
 using NUnit.Framework;
 
@@ -16,8 +17,8 @@ namespace Anvil.Tests.API
         Scrollbars = NuiScrollbars.Y,
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"value":"Some Text","border":false,"scrollbars":2,"type":"text","enabled":false}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"value":"Some Text","border":false,"scrollbars":2,"type":"text","enabled":false}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"value":"Some Text","border":false,"scrollbars":2,"type":"text","enabled":false}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"value":"Some Text","border":false,"scrollbars":2,"type":"text","enabled":false}"""));
     }
   }
 }

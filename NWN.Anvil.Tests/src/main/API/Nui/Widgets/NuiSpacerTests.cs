@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -10,8 +11,8 @@ namespace Anvil.Tests.API
     {
       NuiSpacer element = new NuiSpacer();
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"type":"spacer"}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"type":"spacer"}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"type":"spacer"}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"type":"spacer"}"""));
     }
   }
 }

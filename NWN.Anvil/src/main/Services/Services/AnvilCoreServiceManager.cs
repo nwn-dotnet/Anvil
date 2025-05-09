@@ -23,6 +23,7 @@ namespace Anvil.Services
     private readonly ResourceManager resourceManager;
     private readonly AnvilMessageService anvilMessageService;
     private readonly ObjectStorageService objectStorageService;
+    private readonly JsonCacheService jsonCacheService;
 
     public AnvilCoreServiceManager(IServiceContainer container)
     {
@@ -39,6 +40,7 @@ namespace Anvil.Services
       container.RegisterCoreService<ResourceManager>();
       container.RegisterCoreService<AnvilMessageService>();
       container.RegisterCoreService<ObjectStorageService>();
+      container.RegisterCoreService<JsonCacheService>();
 
       container.Compile();
 
@@ -55,6 +57,7 @@ namespace Anvil.Services
       hookService = container.GetInstance<HookService>();
       moduleLoadTracker = container.GetInstance<ModuleLoadTracker>();
       objectStorageService = container.GetInstance<ObjectStorageService>();
+      jsonCacheService = container.GetInstance<JsonCacheService>();
     }
 
     public void Init()
@@ -73,6 +76,7 @@ namespace Anvil.Services
       InitService(hookService);
       InitService(moduleLoadTracker);
       InitService(objectStorageService);
+      InitService(jsonCacheService);
     }
 
     public void Load()
@@ -91,6 +95,7 @@ namespace Anvil.Services
       LoadService(hookService);
       LoadService(moduleLoadTracker);
       LoadService(objectStorageService);
+      LoadService(jsonCacheService);
     }
 
     public void Start()
@@ -109,11 +114,13 @@ namespace Anvil.Services
       StartService(hookService);
       StartService(moduleLoadTracker);
       StartService(objectStorageService);
+      StartService(jsonCacheService);
     }
 
     public void Unload()
     {
       Log.Info("Unloading core services...");
+      UnloadService(jsonCacheService);
       UnloadService(objectStorageService);
       UnloadService(moduleLoadTracker);
       UnloadService(hookService);
@@ -131,6 +138,7 @@ namespace Anvil.Services
 
     public void Shutdown()
     {
+      ShutdownService(jsonCacheService);
       ShutdownService(objectStorageService);
       ShutdownService(moduleLoadTracker);
       ShutdownService(hookService);

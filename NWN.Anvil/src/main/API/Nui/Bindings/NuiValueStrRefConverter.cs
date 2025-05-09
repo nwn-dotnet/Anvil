@@ -1,25 +1,30 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
-  public sealed class NuiValueStrRefConverter : JsonConverter<NuiValueStrRef?>
+  internal sealed class NuiValueStrRefConverter : JsonConverter<NuiValueStrRef?>
   {
-    public override NuiValueStrRef? ReadJson(JsonReader reader, Type objectType, NuiValueStrRef? existingValue, bool hasExistingValue, JsonSerializer serializer)
+    public override NuiValueStrRef? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-      StrRef? value = serializer.Deserialize<StrRef?>(reader);
+      JsonConverter<StrRef> valueConverter = (JsonConverter<StrRef>)options.GetConverter(typeof(StrRef));
+
+      StrRef? value = valueConverter.Read(ref reader, typeof(StrRef?), options);
       return value != null ? new NuiValueStrRef(value) : null;
     }
 
-    public override void WriteJson(JsonWriter writer, NuiValueStrRef? value, JsonSerializer serializer)
+    public override void Write(Utf8JsonWriter writer, NuiValueStrRef? value, JsonSerializerOptions options)
     {
+      JsonConverter<StrRef> valueConverter = (JsonConverter<StrRef>)options.GetConverter(typeof(StrRef));
+
       if (value?.Value != null)
       {
-        serializer.Serialize(writer, value.Value);
+        valueConverter.Write(writer, value.Value.Value, options);
       }
       else
       {
-        writer.WriteNull();
+        writer.WriteNullValue();
       }
     }
   }

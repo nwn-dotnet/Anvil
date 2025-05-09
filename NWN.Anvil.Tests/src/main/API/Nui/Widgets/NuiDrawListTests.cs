@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Anvil.API;
 using NUnit.Framework;
 
@@ -14,8 +15,8 @@ namespace Anvil.Tests.API
         DrawList = [new NuiDrawListText(ColorConstants.Red, new NuiRect(0, 0, 100, 100), "Draw list text")],
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"label":"btn_label","type":"button","draw_list":[{"rect":{"h":100.0,"w":100.0,"x":0.0,"y":0.0},"text":"Draw list text","type":4,"color":{"a":255,"b":0,"g":0,"r":255},"enabled":true,"fill":null,"line_thickness":null,"order":1,"render":0}]}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"label":"btn_label","type":"button","draw_list":[{"rect":{"h":100.0,"w":100.0,"x":0.0,"y":0.0},"text":"Draw list text","type":4,"color":{"a":255,"b":0,"g":0,"r":255},"enabled":true,"fill":null,"line_thickness":null,"order":1,"render":0}]}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"label":"btn_label","type":"button","draw_list":[{"rect":{"h":100,"w":100,"x":0,"y":0},"text":"Draw list text","type":4,"color":{"a":255,"b":0,"g":0,"r":255},"enabled":true,"fill":null,"line_thickness":null,"order":1,"render":0}]}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"label":"btn_label","type":"button","draw_list":[{"rect":{"h":100,"w":100,"x":0,"y":0},"text":"Draw list text","type":4,"color":{"a":255,"b":0,"g":0,"r":255},"enabled":true,"fill":null,"line_thickness":null,"order":1,"render":0}]}"""));
     }
 
     [Test(Description = "Serializing a NuiDrawListArc creates a valid JSON structure.")]
@@ -26,8 +27,8 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(item), Is.EqualTo("""{"amax":170.0,"amin":90.0,"c":{"x":1.0,"y":2.0},"radius":2.0,"type":3,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1.0,"order":1,"render":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiDrawListItem>(item), Is.EqualTo("""{"amax":170.0,"amin":90.0,"c":{"x":1.0,"y":2.0},"radius":2.0,"type":3,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1.0,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize(item), Is.EqualTo("""{"amax":170,"amin":90,"c":{"x":1,"y":2},"radius":2,"type":3,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiDrawListItem)item), Is.EqualTo("""{"amax":170,"amin":90,"c":{"x":1,"y":2},"radius":2,"type":3,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1,"order":1,"render":0}"""));
     }
 
     [Test(Description = "Serializing a NuiDrawListCircle creates a valid JSON structure.")]
@@ -38,8 +39,8 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(item), Is.EqualTo("""{"rect":{"h":4.0,"w":3.0,"x":1.0,"y":2.0},"type":2,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1.0,"order":1,"render":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiDrawListItem>(item), Is.EqualTo("""{"rect":{"h":4.0,"w":3.0,"x":1.0,"y":2.0},"type":2,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1.0,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize(item), Is.EqualTo("""{"rect":{"h":4,"w":3,"x":1,"y":2},"type":2,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiDrawListItem)item), Is.EqualTo("""{"rect":{"h":4,"w":3,"x":1,"y":2},"type":2,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":1,"order":1,"render":0}"""));
     }
 
     [Test(Description = "Serializing a NuiDrawListCurve creates a valid JSON structure.")]
@@ -50,8 +51,8 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(item), Is.EqualTo("""{"ctrl0":{"x":9.5,"y":3.0},"ctrl1":{"x":22.0,"y":11.3},"a":{"x":10.0,"y":5.0},"b":{"x":6.0,"y":2.0},"type":1,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":false,"line_thickness":1.0,"order":1,"render":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiDrawListItem>(item), Is.EqualTo("""{"ctrl0":{"x":9.5,"y":3.0},"ctrl1":{"x":22.0,"y":11.3},"a":{"x":10.0,"y":5.0},"b":{"x":6.0,"y":2.0},"type":1,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":false,"line_thickness":1.0,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize(item), Is.EqualTo("""{"ctrl0":{"x":9.5,"y":3},"ctrl1":{"x":22,"y":11.3},"a":{"x":10,"y":5},"b":{"x":6,"y":2},"type":1,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":false,"line_thickness":1,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiDrawListItem)item), Is.EqualTo("""{"ctrl0":{"x":9.5,"y":3},"ctrl1":{"x":22,"y":11.3},"a":{"x":10,"y":5},"b":{"x":6,"y":2},"type":1,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":false,"line_thickness":1,"order":1,"render":0}"""));
     }
 
     [Test(Description = "Serializing a NuiDrawListImage creates a valid JSON structure.")]
@@ -62,8 +63,8 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(item), Is.EqualTo("""{"image_aspect":3,"image_halign":1,"rect":{"h":4.0,"w":3.0,"x":1.0,"y":2.0},"image":"test_img","type":5,"image_valign":1,"color":null,"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiDrawListItem>(item), Is.EqualTo("""{"image_aspect":3,"image_halign":1,"rect":{"h":4.0,"w":3.0,"x":1.0,"y":2.0},"image":"test_img","type":5,"image_valign":1,"color":null,"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize(item), Is.EqualTo("""{"image_aspect":3,"image_halign":1,"rect":{"h":4,"w":3,"x":1,"y":2},"image":"test_img","type":5,"image_valign":1,"color":null,"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiDrawListItem)item), Is.EqualTo("""{"image_aspect":3,"image_halign":1,"rect":{"h":4,"w":3,"x":1,"y":2},"image":"test_img","type":5,"image_valign":1,"color":null,"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
     }
 
     [Test(Description = "Serializing a NuiDrawListPolyLine creates a valid JSON structure.")]
@@ -74,8 +75,8 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(item), Is.EqualTo("""{"points":[2.0,4.0,6.0,11.0],"type":0,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":2.0,"order":1,"render":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiDrawListItem>(item), Is.EqualTo("""{"points":[2.0,4.0,6.0,11.0],"type":0,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":2.0,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize(item), Is.EqualTo("""{"points":[2,4,6,11],"type":0,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":2,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiDrawListItem)item), Is.EqualTo("""{"points":[2,4,6,11],"type":0,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":true,"line_thickness":2,"order":1,"render":0}"""));
     }
 
     [Test(Description = "Serializing a NuiDrawListText creates a valid JSON structure.")]
@@ -86,8 +87,8 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(item), Is.EqualTo("""{"rect":{"h":8.0,"w":7.0,"x":5.0,"y":6.0},"text":"Test string","type":4,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
-      Assert.That(JsonUtility.ToJson<NuiDrawListItem>(item), Is.EqualTo("""{"rect":{"h":8.0,"w":7.0,"x":5.0,"y":6.0},"text":"Test string","type":4,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize(item), Is.EqualTo("""{"rect":{"h":8,"w":7,"x":5,"y":6},"text":"Test string","type":4,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
+      Assert.That(JsonSerializer.Serialize((NuiDrawListItem)item), Is.EqualTo("""{"rect":{"h":8,"w":7,"x":5,"y":6},"text":"Test string","type":4,"color":{"a":255,"b":170,"g":170,"r":255},"enabled":false,"fill":null,"line_thickness":null,"order":1,"render":0}"""));
     }
   }
 }

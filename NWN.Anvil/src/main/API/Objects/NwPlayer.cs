@@ -1655,7 +1655,7 @@ namespace Anvil.API
     /// <returns>True if the window was successfully created, otherwise false.</returns>
     public bool TryCreateNuiWindow(NuiWindow window, out NuiWindowToken token, string windowId = "")
     {
-      int tokenId = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
+      int tokenId = NWScript.NuiCreate(ControlledCreature, Json.Serialize(window), windowId);
       token = tokenId != 0 ? new NuiWindowToken(this, tokenId) : NuiWindowToken.Invalid;
 
       return tokenId != 0;
