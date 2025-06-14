@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using Anvil.Services;
@@ -45,6 +44,8 @@ namespace Anvil.API
         return gameObject;
       }
     }
+
+    protected abstract IntPtr Pointer { get; }
 
     /// <summary>
     /// Gets or sets the description for this object.
@@ -382,10 +383,9 @@ namespace Anvil.API
       await tcs.Task;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     protected void AssertObjectValid()
     {
-      if (LowLevel.ServerExoApp.GetGameObject(ObjectId)?.Pointer != gameObject.Pointer)
+      if (LowLevel.ServerExoApp.GetGameObject(ObjectId)?.Pointer != Pointer)
       {
         throw new InvalidOperationException("Object is not valid.");
       }

@@ -28,6 +28,8 @@ namespace Anvil.API
       this.areaOfEffect = areaOfEffect;
     }
 
+    protected override IntPtr Pointer => areaOfEffect.Pointer;
+
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>

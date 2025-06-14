@@ -126,18 +126,18 @@ namespace Anvil.API
     {
       return (ObjectType)gameObject.m_nObjectType switch
       {
-        ObjectType.Creature => new NwCreature(CNWSCreature.FromPointer(gameObject.Pointer)),
-        ObjectType.Item => new NwItem(CNWSItem.FromPointer(gameObject.Pointer)),
-        ObjectType.Placeable => new NwPlaceable(CNWSPlaceable.FromPointer(gameObject.Pointer)),
+        ObjectType.Creature => new NwCreature(gameObject.AsNWSCreature()),
+        ObjectType.Item => new NwItem(gameObject.AsNWSItem()),
+        ObjectType.Placeable => new NwPlaceable(gameObject.AsNWSPlaceable()),
         ObjectType.Module => NwModule.Instance,
-        ObjectType.Area => new NwArea(CNWSArea.FromPointer(gameObject.Pointer)),
-        ObjectType.Trigger => new NwTrigger(CNWSTrigger.FromPointer(gameObject.Pointer)),
-        ObjectType.Door => new NwDoor(CNWSDoor.FromPointer(gameObject.Pointer)),
-        ObjectType.Waypoint => new NwWaypoint(CNWSWaypoint.FromPointer(gameObject.Pointer)),
-        ObjectType.Encounter => new NwEncounter(CNWSEncounter.FromPointer(gameObject.Pointer)),
-        ObjectType.Store => new NwStore(CNWSStore.FromPointer(gameObject.Pointer)),
-        ObjectType.Sound => new NwSound(CNWSSoundObject.FromPointer(gameObject.Pointer)),
-        ObjectType.AreaOfEffect => new NwAreaOfEffect(CNWSAreaOfEffectObject.FromPointer(gameObject.Pointer)),
+        ObjectType.Area => new NwArea(gameObject.AsNWSArea()),
+        ObjectType.Trigger => new NwTrigger(gameObject.AsNWSTrigger()),
+        ObjectType.Door => new NwDoor(gameObject.AsNWSDoor()),
+        ObjectType.Waypoint => new NwWaypoint(gameObject.AsNWSWaypoint()),
+        ObjectType.Encounter => new NwEncounter(gameObject.AsNWSEncounter()),
+        ObjectType.Store => new NwStore(gameObject.AsNWSStore()),
+        ObjectType.Sound => new NwSound(gameObject.AsNWSSoundObject()),
+        ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
         _ => null,
       };
     }

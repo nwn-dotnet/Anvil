@@ -29,6 +29,8 @@ namespace Anvil.API
       this.door = door;
     }
 
+    protected override IntPtr Pointer => door.Pointer;
+
     /// <summary>
     /// Gets or sets the dialog ResRef for this door.
     /// </summary>

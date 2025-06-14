@@ -31,6 +31,8 @@ namespace Anvil.API
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
+    protected override IntPtr Pointer => placeable.Pointer;
+
     /// <summary>
     /// Gets or sets the appearance of this placeable.
     /// </summary>

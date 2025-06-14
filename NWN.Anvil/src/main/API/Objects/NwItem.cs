@@ -38,6 +38,8 @@ namespace Anvil.API
       Appearance = new ItemAppearance(this);
     }
 
+    protected override IntPtr Pointer => item.Pointer;
+
     /// <summary>
     /// Gets the armor class of this item.
     /// <remarks>

@@ -30,6 +30,8 @@ namespace Anvil.API
       this.area = area;
     }
 
+    protected override IntPtr Pointer => area.Pointer;
+
     /// <summary>
     /// Sets the daytime ambient track for this area.<br/>
     /// See "ambientsound.2da" for track numbers.

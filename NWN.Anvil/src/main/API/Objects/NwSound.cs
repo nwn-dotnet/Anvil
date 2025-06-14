@@ -10,8 +10,10 @@ namespace Anvil.API
   /// </summary>
   [ObjectType(ObjectTypes.All)]
   [ObjectFilter(ObjectTypes.All)]
-  public sealed class NwSound(CNWSSoundObject soundObject) : NwGameObject(soundObject)
+  public sealed class NwSound : NwGameObject
   {
+    private readonly CNWSSoundObject soundObject;
+
     internal CNWSSoundObject SoundObject
     {
       get
@@ -20,6 +22,13 @@ namespace Anvil.API
         return soundObject;
       }
     }
+
+    internal NwSound(CNWSSoundObject soundObject) : base(soundObject)
+    {
+      this.soundObject = soundObject;
+    }
+
+    protected override IntPtr Pointer => soundObject.Pointer;
 
     /// <summary>
     /// Sets the volume for this sound object (0-127).

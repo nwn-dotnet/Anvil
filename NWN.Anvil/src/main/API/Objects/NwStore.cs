@@ -29,6 +29,8 @@ namespace Anvil.API
       this.store = store;
     }
 
+    protected override IntPtr Pointer => store.Pointer;
+
     /// <summary>
     /// Gets or sets if this store purchases stolen goods.
     /// </summary>
