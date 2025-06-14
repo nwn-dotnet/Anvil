@@ -28,7 +28,7 @@ namespace Anvil.API
       this.soundObject = soundObject;
     }
 
-    protected override IntPtr Pointer => soundObject.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSSoundObject(NWNXUtils.GetGameObject(ObjectId)) == soundObject.Pointer;
 
     /// <summary>
     /// Sets the volume for this sound object (0-127).

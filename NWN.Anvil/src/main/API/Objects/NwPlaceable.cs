@@ -31,7 +31,7 @@ namespace Anvil.API
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
-    protected override IntPtr Pointer => placeable.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSPlaceable(NWNXUtils.GetGameObject(ObjectId)) == placeable.Pointer;
 
     /// <summary>
     /// Gets or sets the appearance of this placeable.

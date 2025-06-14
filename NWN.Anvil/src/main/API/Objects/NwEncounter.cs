@@ -29,7 +29,7 @@ namespace Anvil.API
       this.encounter = encounter;
     }
 
-    protected override IntPtr Pointer => encounter.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSEncounter(NWNXUtils.GetGameObject(ObjectId)) == encounter.Pointer;
 
     /// <summary>
     /// Gets or sets a value indicating whether this encounter is spawned and active.

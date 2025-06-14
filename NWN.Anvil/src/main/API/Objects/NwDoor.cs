@@ -29,7 +29,7 @@ namespace Anvil.API
       this.door = door;
     }
 
-    protected override IntPtr Pointer => door.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSDoor(NWNXUtils.GetGameObject(ObjectId)) == door.Pointer;
 
     /// <summary>
     /// Gets or sets the dialog ResRef for this door.

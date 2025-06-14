@@ -29,7 +29,7 @@ namespace Anvil.API
       this.store = store;
     }
 
-    protected override IntPtr Pointer => store.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSStore(NWNXUtils.GetGameObject(ObjectId)) == store.Pointer;
 
     /// <summary>
     /// Gets or sets if this store purchases stolen goods.

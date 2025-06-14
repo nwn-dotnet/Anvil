@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Anvil.API;
-using Anvil.Internal;
 using Anvil.Native;
 using NWN.Native.API;
 using Ability = NWN.Native.API.Ability;
@@ -272,13 +271,13 @@ namespace Anvil.Services
         return (int)StrRefCharacterDoesNotExist.Id;
       }
 
-      ICGameObject pGameObject = LowLevel.ServerExoApp.GetGameObject(pPlayer.m_oidNWSObject);
-      if (pGameObject == null)
+      IntPtr pGameObject = NWNXUtils.GetGameObject(pPlayer.m_oidNWSObject);
+      if (pGameObject == IntPtr.Zero)
       {
         return (int)StrRefCharacterDoesNotExist.Id;
       }
 
-      CNWSCreature pCreature = pGameObject.AsNWSCreature();
+      CNWSCreature? pCreature = CNWSCreature.FromPointer(NWNXUtils.AsNWSCreature(pGameObject));
       if (pCreature == null)
       {
         return (int)StrRefCharacterDoesNotExist.Id;

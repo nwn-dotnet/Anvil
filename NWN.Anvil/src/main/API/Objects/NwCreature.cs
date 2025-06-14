@@ -57,7 +57,7 @@ namespace Anvil.API
       Inventory = new Inventory(this, Creature.m_pcItemRepository);
     }
 
-    protected override IntPtr Pointer => creature.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSCreature(NWNXUtils.GetGameObject(ObjectId)) == creature.Pointer;
 
     /// <summary>
     /// Gets this creature's armour class.

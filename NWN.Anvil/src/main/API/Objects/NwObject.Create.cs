@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Anvil.Internal;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -126,18 +127,18 @@ namespace Anvil.API
     {
       return (ObjectType)gameObject.m_nObjectType switch
       {
-        ObjectType.Creature => new NwCreature(gameObject.AsNWSCreature()),
-        ObjectType.Item => new NwItem(gameObject.AsNWSItem()),
-        ObjectType.Placeable => new NwPlaceable(gameObject.AsNWSPlaceable()),
+        ObjectType.Creature => new NwCreature(CNWSCreature.FromPointer(NWNXUtils.AsNWSCreature(gameObject.Pointer))),
+        ObjectType.Item => new NwItem(CNWSItem.FromPointer(NWNXUtils.AsNWSItem(gameObject.Pointer))),
+        ObjectType.Placeable => new NwPlaceable(CNWSPlaceable.FromPointer(NWNXUtils.AsNWSPlaceable(gameObject.Pointer))),
         ObjectType.Module => NwModule.Instance,
-        ObjectType.Area => new NwArea(gameObject.AsNWSArea()),
-        ObjectType.Trigger => new NwTrigger(gameObject.AsNWSTrigger()),
-        ObjectType.Door => new NwDoor(gameObject.AsNWSDoor()),
-        ObjectType.Waypoint => new NwWaypoint(gameObject.AsNWSWaypoint()),
-        ObjectType.Encounter => new NwEncounter(gameObject.AsNWSEncounter()),
-        ObjectType.Store => new NwStore(gameObject.AsNWSStore()),
-        ObjectType.Sound => new NwSound(gameObject.AsNWSSoundObject()),
-        ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
+        ObjectType.Area => new NwArea(CNWSArea.FromPointer(NWNXUtils.AsNWSArea(gameObject.Pointer))),
+        ObjectType.Trigger => new NwTrigger(CNWSTrigger.FromPointer(NWNXUtils.AsNWSTrigger(gameObject.Pointer))),
+        ObjectType.Door => new NwDoor(CNWSDoor.FromPointer(NWNXUtils.AsNWSDoor(gameObject.Pointer))),
+        ObjectType.Waypoint => new NwWaypoint(CNWSWaypoint.FromPointer(NWNXUtils.AsNWSWaypoint(gameObject.Pointer))),
+        ObjectType.Encounter => new NwEncounter(CNWSEncounter.FromPointer(NWNXUtils.AsNWSEncounter(gameObject.Pointer))),
+        ObjectType.Store => new NwStore(CNWSStore.FromPointer(NWNXUtils.AsNWSStore(gameObject.Pointer))),
+        ObjectType.Sound => new NwSound(CNWSSoundObject.FromPointer(NWNXUtils.AsNWSSoundObject(gameObject.Pointer))),
+        ObjectType.AreaOfEffect => new NwAreaOfEffect(CNWSAreaOfEffectObject.FromPointer(NWNXUtils.AsNWSAreaOfEffectObject(gameObject.Pointer))),
         _ => null,
       };
     }

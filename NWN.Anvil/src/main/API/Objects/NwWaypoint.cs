@@ -27,7 +27,7 @@ namespace Anvil.API
       this.waypoint = waypoint;
     }
 
-    protected override IntPtr Pointer => waypoint.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSWaypoint(NWNXUtils.GetGameObject(ObjectId)) == waypoint.Pointer;
 
     public static NwWaypoint? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {

@@ -38,7 +38,7 @@ namespace Anvil.API
       Appearance = new ItemAppearance(this);
     }
 
-    protected override IntPtr Pointer => item.Pointer;
+    public override bool IsValid => NWNXUtils.AsNWSItem(NWNXUtils.GetGameObject(ObjectId)) == item.Pointer;
 
     /// <summary>
     /// Gets the armor class of this item.
