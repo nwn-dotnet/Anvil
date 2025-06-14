@@ -385,7 +385,7 @@ namespace Anvil.API
     [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     protected void AssertObjectValid()
     {
-      if (LowLevel.ServerExoApp.GetGameObject(ObjectId) == null)
+      if (LowLevel.ServerExoApp.GetGameObject(ObjectId)?.Pointer != Object.Pointer)
       {
         throw new InvalidOperationException("Object is not valid.");
       }
