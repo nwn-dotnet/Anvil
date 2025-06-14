@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
@@ -29,6 +30,8 @@ namespace Anvil.API
     {
       this.area = area;
     }
+
+    public override bool IsValid => NWNXUtils.AsNWSArea(NWNXUtils.GetGameObject(ObjectId)) == area.Pointer;
 
     /// <summary>
     /// Sets the daytime ambient track for this area.<br/>

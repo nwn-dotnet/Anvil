@@ -32,6 +32,8 @@ namespace Anvil.API
       this.module = module;
     }
 
+    public override bool IsValid => true;
+
     /// <summary>
     /// Gets or sets the max possible ability score penalty from temporary effects/items (Default: 30).
     /// </summary>

@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
-using Anvil.Internal;
+using Anvil.Native;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
@@ -194,7 +195,7 @@ namespace Anvil.API
     private int PushScriptContext(uint oid, int scriptEventId)
     {
       CNWSVirtualMachineCommands cmd = CNWSVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
-      bool valid = LowLevel.ServerExoApp.GetGameObject(oid) != null;
+      bool valid = NWNXUtils.GetGameObject(oid) != IntPtr.Zero;
 
       if (virtualMachine.m_nRecursionLevel++ == -1)
       {

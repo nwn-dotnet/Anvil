@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -27,6 +28,8 @@ namespace Anvil.API
     {
       this.areaOfEffect = areaOfEffect;
     }
+
+    public override bool IsValid => NWNXUtils.AsNWSAreaOfEffectObject(NWNXUtils.GetGameObject(ObjectId)) == areaOfEffect.Pointer;
 
     /// <summary>
     /// Gets the creator of this Area of Effect.
