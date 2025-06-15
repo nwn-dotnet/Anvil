@@ -19,6 +19,6 @@ var searchData=
   ['visualtransform_16',['VisualTransform',['../classAnvil_1_1API_1_1VisualTransform.html',1,'Anvil.API.VisualTransform'],['../classAnvil_1_1API_1_1NwGameObject.html#ae326638a871dd397a526a9127ba9f76f',1,'Anvil.API.NwGameObject.VisualTransform']]],
   ['visualtransformlerpsettings_17',['VisualTransformLerpSettings',['../classAnvil_1_1API_1_1VisualTransformLerpSettings.html',1,'Anvil::API']]],
   ['voicechat_18',['VoiceChat',['../classAnvil_1_1API_1_1Events_1_1OnPlayerQuickChat.html#ab3a79d32f37d8ef3dc7e9a502c07aeae',1,'Anvil::API::Events::OnPlayerQuickChat']]],
-  ['volume_19',['Volume',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a727254e285d09d375429cbbba49db3ac',1,'Anvil::API::Events::ModuleEvents::OnPlayerChat']]],
+  ['volume_19',['Volume',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a727254e285d09d375429cbbba49db3ac',1,'Anvil.API.Events.ModuleEvents.OnPlayerChat.Volume'],['../classAnvil_1_1API_1_1NwSound.html#a3bc17dfd490ca3e2783b3cc77bb8e661',1,'Anvil.API.NwSound.Volume']]],
   ['vorpal_20',['Vorpal',['../structAnvil_1_1API_1_1HitEffect.html#a92a4609be1ad2e26366ca1d5e16408a0',1,'Anvil::API::HitEffect']]]
 ];

@@ -249,6 +249,7 @@ var annotated =
         [ "NwRuleset", "classAnvil_1_1API_1_1NwRuleset.html", "classAnvil_1_1API_1_1NwRuleset" ],
         [ "NwServer", "classAnvil_1_1API_1_1NwServer.html", "classAnvil_1_1API_1_1NwServer" ],
         [ "NwSkill", "classAnvil_1_1API_1_1NwSkill.html", "classAnvil_1_1API_1_1NwSkill" ],
+        [ "NwSound", "classAnvil_1_1API_1_1NwSound.html", "classAnvil_1_1API_1_1NwSound" ],
         [ "NwSpell", "classAnvil_1_1API_1_1NwSpell.html", "classAnvil_1_1API_1_1NwSpell" ],
         [ "NwStationary", "classAnvil_1_1API_1_1NwStationary.html", "classAnvil_1_1API_1_1NwStationary" ],
         [ "NwStore", "classAnvil_1_1API_1_1NwStore.html", "classAnvil_1_1API_1_1NwStore" ],

@@ -8,6 +8,5 @@ var searchData=
   ['nuichartslot_5',['NuiChartSlot',['../namespaceAnvil_1_1API.html#a96a365a89266a1c5eef425ed64a912d4',1,'Anvil::API']]],
   ['nuicomboentry_6',['NuiComboEntry',['../namespaceAnvil_1_1API.html#a8ce225709db5f6177d11147e50693592',1,'Anvil::API']]],
   ['nuilisttemplatecell_7',['NuiListTemplateCell',['../namespaceAnvil_1_1API.html#a8d87b29b50aac7d3043f42f9470e95a9',1,'Anvil::API']]],
-  ['nuiwindow_8',['NuiWindow',['../namespaceAnvil_1_1API.html#ac634cdc6de96dc0b4f9fa0ff06e38498',1,'Anvil::API']]],
-  ['nwsound_9',['NwSound',['../namespaceAnvil_1_1API.html#aa8e640c93d02325e18c723bb67e9844b',1,'Anvil::API']]]
+  ['nuiwindow_8',['NuiWindow',['../namespaceAnvil_1_1API.html#ac634cdc6de96dc0b4f9fa0ff06e38498',1,'Anvil::API']]]
 ];

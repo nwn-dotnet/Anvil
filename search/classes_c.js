@@ -51,12 +51,13 @@ var searchData=
   ['nwruleset_48',['NwRuleset',['../classAnvil_1_1API_1_1NwRuleset.html',1,'Anvil::API']]],
   ['nwserver_49',['NwServer',['../classAnvil_1_1API_1_1NwServer.html',1,'Anvil::API']]],
   ['nwskill_50',['NwSkill',['../classAnvil_1_1API_1_1NwSkill.html',1,'Anvil::API']]],
-  ['nwspell_51',['NwSpell',['../classAnvil_1_1API_1_1NwSpell.html',1,'Anvil::API']]],
-  ['nwstationary_52',['NwStationary',['../classAnvil_1_1API_1_1NwStationary.html',1,'Anvil::API']]],
-  ['nwstore_53',['NwStore',['../classAnvil_1_1API_1_1NwStore.html',1,'Anvil::API']]],
-  ['nwtask_54',['NwTask',['../classAnvil_1_1API_1_1NwTask.html',1,'Anvil::API']]],
-  ['nwtimespan_55',['NwTimeSpan',['../classAnvil_1_1API_1_1NwTimeSpan.html',1,'Anvil::API']]],
-  ['nwtrappable_56',['NwTrappable',['../classAnvil_1_1API_1_1NwTrappable.html',1,'Anvil::API']]],
-  ['nwtrigger_57',['NwTrigger',['../classAnvil_1_1API_1_1NwTrigger.html',1,'Anvil::API']]],
-  ['nwwaypoint_58',['NwWaypoint',['../classAnvil_1_1API_1_1NwWaypoint.html',1,'Anvil::API']]]
+  ['nwsound_51',['NwSound',['../classAnvil_1_1API_1_1NwSound.html',1,'Anvil::API']]],
+  ['nwspell_52',['NwSpell',['../classAnvil_1_1API_1_1NwSpell.html',1,'Anvil::API']]],
+  ['nwstationary_53',['NwStationary',['../classAnvil_1_1API_1_1NwStationary.html',1,'Anvil::API']]],
+  ['nwstore_54',['NwStore',['../classAnvil_1_1API_1_1NwStore.html',1,'Anvil::API']]],
+  ['nwtask_55',['NwTask',['../classAnvil_1_1API_1_1NwTask.html',1,'Anvil::API']]],
+  ['nwtimespan_56',['NwTimeSpan',['../classAnvil_1_1API_1_1NwTimeSpan.html',1,'Anvil::API']]],
+  ['nwtrappable_57',['NwTrappable',['../classAnvil_1_1API_1_1NwTrappable.html',1,'Anvil::API']]],
+  ['nwtrigger_58',['NwTrigger',['../classAnvil_1_1API_1_1NwTrigger.html',1,'Anvil::API']]],
+  ['nwwaypoint_59',['NwWaypoint',['../classAnvil_1_1API_1_1NwWaypoint.html',1,'Anvil::API']]]
 ];

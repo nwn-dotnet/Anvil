@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Anvil: Anvil.API.NwAreaOfEffect Class Reference</title>
+<title>Anvil: Anvil.API.NwSound Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classAnvil_1_1API_1_1NwAreaOfEffect.html',''); initResizable(true); });
+$(function(){initNavTree('classAnvil_1_1API_1_1NwSound.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -101,60 +101,58 @@ $(function(){initNavTree('classAnvil_1_1API_1_1NwAreaOfEffect.html',''); initRes
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#events">Events</a> &#124;
-<a href="classAnvil_1_1API_1_1NwAreaOfEffect-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Anvil.API.NwAreaOfEffect Class Reference<span class="mlabels"><span class="mlabel">sealed</span></span></div></div>
+<a href="classAnvil_1_1API_1_1NwSound-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Anvil.API.NwSound Class Reference<span class="mlabels"><span class="mlabel">sealed</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>The area/region of an ongoing spell effect or ability.  
+<p>A configurable sound object in an area.  
  <a href="#details">More...</a></p>
 <div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.NwAreaOfEffect:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.NwSound:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classAnvil_1_1API_1_1NwAreaOfEffect__inherit__graph.png" border="0" usemap="#aAnvil_8API_8NwAreaOfEffect_inherit__map" alt="Inheritance graph"/></div>
-<map name="aAnvil_8API_8NwAreaOfEffect_inherit__map" id="aAnvil_8API_8NwAreaOfEffect_inherit__map">
-<area shape="rect" title="The area/region of an ongoing spell effect or ability." alt="" coords="5,153,178,178"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="34,79,149,105"/>
-<area shape="poly" title=" " alt="" coords="94,120,94,152,89,152,89,120"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="52,5,131,31"/>
-<area shape="poly" title=" " alt="" coords="94,46,94,79,89,79,89,46"/>
+<div class="center"><img src="classAnvil_1_1API_1_1NwSound__inherit__graph.png" border="0" usemap="#aAnvil_8API_8NwSound_inherit__map" alt="Inheritance graph"/></div>
+<map name="aAnvil_8API_8NwSound_inherit__map" id="aAnvil_8API_8NwSound_inherit__map">
+<area shape="rect" title="A configurable sound object in an area." alt="" coords="5,153,141,178"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="16,79,130,105"/>
+<area shape="poly" title=" " alt="" coords="76,120,76,152,70,152,70,120"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="33,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="76,46,76,79,70,79,70,46"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Anvil.API.NwAreaOfEffect:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Anvil.API.NwSound:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classAnvil_1_1API_1_1NwAreaOfEffect__coll__graph.png" border="0" usemap="#aAnvil_8API_8NwAreaOfEffect_coll__map" alt="Collaboration graph"/></div>
-<map name="aAnvil_8API_8NwAreaOfEffect_coll__map" id="aAnvil_8API_8NwAreaOfEffect_coll__map">
-<area shape="rect" title="The area/region of an ongoing spell effect or ability." alt="" coords="5,153,178,178"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="34,79,149,105"/>
-<area shape="poly" title=" " alt="" coords="94,120,94,152,89,152,89,120"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="52,5,131,31"/>
-<area shape="poly" title=" " alt="" coords="94,46,94,79,89,79,89,46"/>
+<div class="center"><img src="classAnvil_1_1API_1_1NwSound__coll__graph.png" border="0" usemap="#aAnvil_8API_8NwSound_coll__map" alt="Collaboration graph"/></div>
+<map name="aAnvil_8API_8NwSound_coll__map" id="aAnvil_8API_8NwSound_coll__map">
+<area shape="rect" title="A configurable sound object in an area." alt="" coords="5,153,141,178"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="16,79,130,105"/>
+<area shape="poly" title=" " alt="" coords="76,120,76,152,70,152,70,120"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="33,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="76,46,76,79,70,79,70,46"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a028d931ffb214e05dd35b1acd2a20c7d" id="r_a028d931ffb214e05dd35b1acd2a20c7d"><td class="memItemLeft" align="right" valign="top"><a id="a028d931ffb214e05dd35b1acd2a20c7d" name="a028d931ffb214e05dd35b1acd2a20c7d"></a>
-override <a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html">NwAreaOfEffect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Clone</b> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, string? newTag=null, bool copyLocalState=true)</td></tr>
-<tr class="separator:a028d931ffb214e05dd35b1acd2a20c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11a5de0617148cf910e6f8c42a030b97" id="r_a11a5de0617148cf910e6f8c42a030b97"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11a5de0617148cf910e6f8c42a030b97">GetObjectsInEffectArea</a> (ObjectTypes objectTypes)</td></tr>
-<tr class="memdesc:a11a5de0617148cf910e6f8c42a030b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all objects of the given types that are currently in this area of effect.  <br /></td></tr>
-<tr class="separator:a11a5de0617148cf910e6f8c42a030b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100868a55449e2d93802d927329812d7" id="r_a100868a55449e2d93802d927329812d7"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a100868a55449e2d93802d927329812d7">GetObjectsInEffectArea&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:a100868a55449e2d93802d927329812d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all objects of the given type that are currently in this area of effect.  <br /></td></tr>
-<tr class="separator:a100868a55449e2d93802d927329812d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b337c9b3b9f35d5482a2d634bc37b6a" id="r_a5b337c9b3b9f35d5482a2d634bc37b6a"><td class="memItemLeft" align="right" valign="top"><a id="a5b337c9b3b9f35d5482a2d634bc37b6a" name="a5b337c9b3b9f35d5482a2d634bc37b6a"></a>
-override byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> ()</td></tr>
-<tr class="separator:a5b337c9b3b9f35d5482a2d634bc37b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cfdff810345d275dd509e96c685f389" id="r_a2cfdff810345d275dd509e96c685f389"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cfdff810345d275dd509e96c685f389">SetRadius</a> (float radius)</td></tr>
-<tr class="memdesc:a2cfdff810345d275dd509e96c685f389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the radius of this area of effect.  <br /></td></tr>
-<tr class="separator:a2cfdff810345d275dd509e96c685f389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e164cc73bce5b31fdc873858a5768c1" id="r_a7e164cc73bce5b31fdc873858a5768c1"><td class="memItemLeft" align="right" valign="top"><a id="a7e164cc73bce5b31fdc873858a5768c1" name="a7e164cc73bce5b31fdc873858a5768c1"></a>
+override <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Clone</b> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, string? newTag=null, bool copyLocalState=true)</td></tr>
+<tr class="separator:a7e164cc73bce5b31fdc873858a5768c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31247371d703b62141176a2a7c57858a" id="r_a31247371d703b62141176a2a7c57858a"><td class="memItemLeft" align="right" valign="top"><a id="a31247371d703b62141176a2a7c57858a" name="a31247371d703b62141176a2a7c57858a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Play</b> ()</td></tr>
+<tr class="memdesc:a31247371d703b62141176a2a7c57858a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays this sound object. <br /></td></tr>
+<tr class="separator:a31247371d703b62141176a2a7c57858a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af47484976f02bd27a67096ecf93f671a" id="r_af47484976f02bd27a67096ecf93f671a"><td class="memItemLeft" align="right" valign="top"><a id="af47484976f02bd27a67096ecf93f671a" name="af47484976f02bd27a67096ecf93f671a"></a>
+override? byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> ()</td></tr>
+<tr class="separator:af47484976f02bd27a67096ecf93f671a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d3f8daac05ad9a81ddd6c647ff98fc0" id="r_a2d3f8daac05ad9a81ddd6c647ff98fc0"><td class="memItemLeft" align="right" valign="top"><a id="a2d3f8daac05ad9a81ddd6c647ff98fc0" name="a2d3f8daac05ad9a81ddd6c647ff98fc0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Stop</b> ()</td></tr>
+<tr class="memdesc:a2d3f8daac05ad9a81ddd6c647ff98fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops this sound object from playing. <br /></td></tr>
+<tr class="separator:a2d3f8daac05ad9a81ddd6c647ff98fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:a8fc489ed52411eb320e392d403f110a5 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject" id="r_a8fc489ed52411eb320e392d403f110a5"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a8fc489ed52411eb320e392d403f110a5">ActionCastSpellAt</a> (<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> spell, <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> target, MetaMagic metaMagic=MetaMagic.Any, bool cheat=false, ProjectilePathType projectilePathType=ProjectilePathType.Default, bool instant=false, <a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a>? spellClass=null, bool spontaneousCast=false, int domainLevel=0)</td></tr>
 <tr class="memdesc:a8fc489ed52411eb320e392d403f110a5 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a spell at an location.  <br /></td></tr>
@@ -312,9 +310,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetIsDestroyable</b> 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a169d8c1fcc60c905d03b171be267255d" id="r_a169d8c1fcc60c905d03b171be267255d"><td class="memItemLeft" align="right" valign="top"><a id="a169d8c1fcc60c905d03b171be267255d" name="a169d8c1fcc60c905d03b171be267255d"></a>
-static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator CNWSAreaOfEffectObject?</b> (<a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html">NwAreaOfEffect</a>? areaOfEffect)</td></tr>
-<tr class="separator:a169d8c1fcc60c905d03b171be267255d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2416d99089383ac091525be87974687c" id="r_a2416d99089383ac091525be87974687c"><td class="memItemLeft" align="right" valign="top"><a id="a2416d99089383ac091525be87974687c" name="a2416d99089383ac091525be87974687c"></a>
+static ? <a class="el" href="classAnvil_1_1API_1_1NwSound.html">NwSound</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> (string template, <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, string? newTag=null)</td></tr>
+<tr class="separator:a2416d99089383ac091525be87974687c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3bc6b3759484be0aa97fc9a48d897e1" id="r_ad3bc6b3759484be0aa97fc9a48d897e1"><td class="memItemLeft" align="right" valign="top"><a id="ad3bc6b3759484be0aa97fc9a48d897e1" name="ad3bc6b3759484be0aa97fc9a48d897e1"></a>
+static ? <a class="el" href="classAnvil_1_1API_1_1NwSound.html">NwSound</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize</b> (byte[] serialized)</td></tr>
+<tr class="separator:ad3bc6b3759484be0aa97fc9a48d897e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aa12f1f893c80f2fdf54ed36fbc91ab" id="r_a3aa12f1f893c80f2fdf54ed36fbc91ab"><td class="memItemLeft" align="right" valign="top"><a id="a3aa12f1f893c80f2fdf54ed36fbc91ab" name="a3aa12f1f893c80f2fdf54ed36fbc91ab"></a>
+static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator CNWSSoundObject?</b> (<a class="el" href="classAnvil_1_1API_1_1NwSound.html">NwSound</a>? sound)</td></tr>
+<tr class="separator:a3aa12f1f893c80f2fdf54ed36fbc91ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classAnvil_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classAnvil_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1NwObject.html">Anvil.API.NwObject</a></td></tr>
 <tr class="memitem:a2f6b9392ac458d89230d57affcaad67d inherit pub_static_methods_classAnvil_1_1API_1_1NwObject" id="r_a2f6b9392ac458d89230d57affcaad67d"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a2f6b9392ac458d89230d57affcaad67d">FindObjectsOfType&lt; T &gt;</a> ()</td></tr>
 <tr class="memdesc:a2f6b9392ac458d89230d57affcaad67d inherit pub_static_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locates all objects of the specified type.  <br /></td></tr>
@@ -328,9 +332,9 @@ static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator C
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ac0272c48ca29d465c2c43635174bb508" id="r_ac0272c48ca29d465c2c43635174bb508"><td class="memItemLeft" align="right" valign="top"><a id="ac0272c48ca29d465c2c43635174bb508" name="ac0272c48ca29d465c2c43635174bb508"></a>
+<tr class="memitem:a5cb8ca787593996346922c72ff7a05cc" id="r_a5cb8ca787593996346922c72ff7a05cc"><td class="memItemLeft" align="right" valign="top"><a id="a5cb8ca787593996346922c72ff7a05cc" name="a5cb8ca787593996346922c72ff7a05cc"></a>
 override void&#160;</td><td class="memItemRight" valign="bottom"><b>AddToArea</b> (CNWSArea area, float x, float y, float z)</td></tr>
-<tr class="separator:ac0272c48ca29d465c2c43635174bb508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a5cb8ca787593996346922c72ff7a05cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:a14917fcd79cc2fd5fda4323cd06511bd inherit pro_methods_classAnvil_1_1API_1_1NwGameObject" id="r_a14917fcd79cc2fd5fda4323cd06511bd"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>AddToArea</b> (CNWSArea area, float x, float y, float z)</td></tr>
@@ -340,25 +344,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AddToArea</b> (CNWSAr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a69fd7e1511f35a5193e401d9cf01cd79" id="r_a69fd7e1511f35a5193e401d9cf01cd79"><td class="memItemLeft" align="right" valign="top"><a id="a69fd7e1511f35a5193e401d9cf01cd79" name="a69fd7e1511f35a5193e401d9cf01cd79"></a>
-<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>Creator</b><code> [get]</code></td></tr>
-<tr class="memdesc:a69fd7e1511f35a5193e401d9cf01cd79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creator of this Area of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a>. <br /></td></tr>
-<tr class="separator:a69fd7e1511f35a5193e401d9cf01cd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d54786a6c675c5b2dc9b51e7aede9f8" id="r_a7d54786a6c675c5b2dc9b51e7aede9f8"><td class="memItemLeft" align="right" valign="top"><a id="a7d54786a6c675c5b2dc9b51e7aede9f8" name="a7d54786a6c675c5b2dc9b51e7aede9f8"></a>
+<tr class="memitem:af6bde361614ba315ba52f9a377e9ec2e" id="r_af6bde361614ba315ba52f9a377e9ec2e"><td class="memItemLeft" align="right" valign="top"><a id="af6bde361614ba315ba52f9a377e9ec2e" name="af6bde361614ba315ba52f9a377e9ec2e"></a>
 override bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsValid</b><code> [get]</code></td></tr>
-<tr class="separator:a7d54786a6c675c5b2dc9b51e7aede9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa0553019a5b38e1489e56a93c4184c5" id="r_aaa0553019a5b38e1489e56a93c4184c5"><td class="memItemLeft" align="right" valign="top"><a id="aaa0553019a5b38e1489e56a93c4184c5" name="aaa0553019a5b38e1489e56a93c4184c5"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Radius</b><code> [get]</code></td></tr>
-<tr class="memdesc:aaa0553019a5b38e1489e56a93c4184c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the radius of this area of effect. <br /></td></tr>
-<tr class="separator:aaa0553019a5b38e1489e56a93c4184c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82d511031f34bbe84838b7854e36b99f" id="r_a82d511031f34bbe84838b7854e36b99f"><td class="memItemLeft" align="right" valign="top"><a id="a82d511031f34bbe84838b7854e36b99f" name="a82d511031f34bbe84838b7854e36b99f"></a>
-TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><b>RemainingDuration</b><code> [get]</code></td></tr>
-<tr class="memdesc:a82d511031f34bbe84838b7854e36b99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a> duration. <br /></td></tr>
-<tr class="separator:a82d511031f34bbe84838b7854e36b99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1262060ce49b6a738e3f5b3a6889523e" id="r_a1262060ce49b6a738e3f5b3a6889523e"><td class="memItemLeft" align="right" valign="top"><a id="a1262060ce49b6a738e3f5b3a6889523e" name="a1262060ce49b6a738e3f5b3a6889523e"></a>
-<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>Spell</b><code> [get]</code></td></tr>
-<tr class="memdesc:a1262060ce49b6a738e3f5b3a6889523e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell from which the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a> was created. <br /></td></tr>
-<tr class="separator:a1262060ce49b6a738e3f5b3a6889523e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:af6bde361614ba315ba52f9a377e9ec2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bc17dfd490ca3e2783b3cc77bb8e661" id="r_a3bc17dfd490ca3e2783b3cc77bb8e661"><td class="memItemLeft" align="right" valign="top"><a id="a3bc17dfd490ca3e2783b3cc77bb8e661" name="a3bc17dfd490ca3e2783b3cc77bb8e661"></a>
+sbyte&#160;</td><td class="memItemRight" valign="bottom"><b>Volume</b><code> [set]</code></td></tr>
+<tr class="memdesc:a3bc17dfd490ca3e2783b3cc77bb8e661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the volume for this sound object (0-127). <br /></td></tr>
+<tr class="separator:a3bc17dfd490ca3e2783b3cc77bb8e661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:a8bc84d7689fc3318e281fb3f893382ae inherit properties_classAnvil_1_1API_1_1NwGameObject" id="r_a8bc84d7689fc3318e281fb3f893382ae"><td class="memItemLeft" align="right" valign="top">
 IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ActiveEffects</b><code> [get]</code></td></tr>
@@ -460,20 +452,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleDistance</b><
  Use <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#af9a9531dce24d0101caef763ead41a55" title="Gets the visual transform of this object for the specified scope.">GetVisualTransform</a> to get the visual transform for other scopes for this object. <br /></td></tr>
 <tr class="separator:ae326638a871dd397a526a9127ba9f76f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="events" name="events"></a>
-Events</h2></td></tr>
-<tr class="memitem:afadc0a4b77bfc002fc19c6bf0298a756" id="r_afadc0a4b77bfc002fc19c6bf0298a756"><td class="memItemLeft" align="right" valign="top"><a id="afadc0a4b77bfc002fc19c6bf0298a756" name="afadc0a4b77bfc002fc19c6bf0298a756"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html">AreaOfEffectEvents.OnEnter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnEnter</b><code> [add, remove]</code></td></tr>
-<tr class="separator:afadc0a4b77bfc002fc19c6bf0298a756"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90be602cb288a4ae3dcfc39ffdec8f5d" id="r_a90be602cb288a4ae3dcfc39ffdec8f5d"><td class="memItemLeft" align="right" valign="top"><a id="a90be602cb288a4ae3dcfc39ffdec8f5d" name="a90be602cb288a4ae3dcfc39ffdec8f5d"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnExit.html">AreaOfEffectEvents.OnExit</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnExit</b><code> [add, remove]</code></td></tr>
-<tr class="separator:a90be602cb288a4ae3dcfc39ffdec8f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e82f78ef0ac66e0d0cc59d292402456" id="r_a0e82f78ef0ac66e0d0cc59d292402456"><td class="memItemLeft" align="right" valign="top"><a id="a0e82f78ef0ac66e0d0cc59d292402456" name="a0e82f78ef0ac66e0d0cc59d292402456"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnHeartbeat.html">AreaOfEffectEvents.OnHeartbeat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnHeartbeat</b><code> [add, remove]</code></td></tr>
-<tr class="separator:a0e82f78ef0ac66e0d0cc59d292402456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a674eb7ec3f00765daa6f65bfb6bea510" id="r_a674eb7ec3f00765daa6f65bfb6bea510"><td class="memItemLeft" align="right" valign="top"><a id="a674eb7ec3f00765daa6f65bfb6bea510" name="a674eb7ec3f00765daa6f65bfb6bea510"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnUserDefined.html">AreaOfEffectEvents.OnUserDefined</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnUserDefined</b><code> [add, remove]</code></td></tr>
-<tr class="separator:a674eb7ec3f00765daa6f65bfb6bea510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header events_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:dynsection.toggleInherit('events_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:aa0e605177bb15f1197c9890eb3df55dc inherit events_classAnvil_1_1API_1_1NwGameObject" id="r_aa0e605177bb15f1197c9890eb3df55dc"><td class="memItemLeft" align="right" valign="top">
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html">ModuleEvents.OnAcquireItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnAcquireItem</b><code> [add, remove]</code></td></tr>
@@ -510,130 +490,16 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1On
 <tr class="separator:ae6f463ecb3b29bb9974a82226b8fcb05 inherit events_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The area/region of an ongoing spell effect or ability. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a11a5de0617148cf910e6f8c42a030b97" name="a11a5de0617148cf910e6f8c42a030b97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11a5de0617148cf910e6f8c42a030b97">&#9670;&#160;</a></span>GetObjectsInEffectArea()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt; Anvil.API.NwAreaOfEffect.GetObjectsInEffectArea </td>
-          <td>(</td>
-          <td class="paramtype">ObjectTypes</td>          <td class="paramname"><span class="paramname"><em>objectTypes</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets all objects of the given types that are currently in this area of effect. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">objectTypes</td><td>The types of object to return.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An enumerable containing all objects currently in the effect area.</dd></dl>
-
-</div>
-</div>
-<a id="a100868a55449e2d93802d927329812d7" name="a100868a55449e2d93802d927329812d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a100868a55449e2d93802d927329812d7">&#9670;&#160;</a></span>GetObjectsInEffectArea&lt; T &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt; T &gt; <a class="el" href="#a11a5de0617148cf910e6f8c42a030b97">Anvil.API.NwAreaOfEffect.GetObjectsInEffectArea</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets all objects of the given type that are currently in this area of effect. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of objects to return.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An enumerable containing all objects currently in the effect area.</dd></dl>
-<div class="typeconstraint">
-<dl><dt><b>Type Constraints</b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>NwGameObject</em></td><td>&#160;</td></tr>
-</table>
-</dd>
-</dl>
-</div>
-
-</div>
-</div>
-<a id="a2cfdff810345d275dd509e96c685f389" name="a2cfdff810345d275dd509e96c685f389"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cfdff810345d275dd509e96c685f389">&#9670;&#160;</a></span>SetRadius()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Anvil.API.NwAreaOfEffect.SetRadius </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>radius</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the radius of this area of effect. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">radius</td><td>The new radius of the area of effect.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/<b>AreaOfEffectEvents.OnEnter.cs</b></li>
-<li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/<b>AreaOfEffectEvents.OnExit.cs</b></li>
-<li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/<b>AreaOfEffectEvents.OnHeartbeat.cs</b></li>
-<li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/<b>AreaOfEffectEvents.OnUserDefined.cs</b></li>
-<li>NWN.Anvil/src/main/API/Objects/<b>NwAreaOfEffect.cs</b></li>
+<div class="textblock"><p>A configurable sound object in an area. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>NWN.Anvil/src/main/API/Objects/<b>NwSound.cs</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespaceAnvil.html">Anvil</a></li><li class="navelem"><a class="el" href="namespaceAnvil_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html">NwAreaOfEffect</a></li>
+    <li class="navelem"><a class="el" href="namespaceAnvil.html">Anvil</a></li><li class="navelem"><a class="el" href="namespaceAnvil_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classAnvil_1_1API_1_1NwSound.html">NwSound</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

@@ -41,8 +41,8 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1NwGameTables.html#afe8e65110baab647b8710927338996b1",
 "classAnvil_1_1API_1_1NwPlaceable.html#a5e3bd3bc51a59c1db342ac7005eef2eb",
 "classAnvil_1_1API_1_1NwServer.html#adb9bf4470a72c9d79f248cab4c503c2f",
-"classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html#a7554a34782d02a8b98588130c002f6f3",
-"classAnvil_1_1Services_1_1WeaponService.html#ad967a77434b23bad0028a3d020ab6f06"
+"classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html",
+"classAnvil_1_1Services_1_1WeaponService.html#acc10d8026ba1e0ef96eb8c33ae231c8f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

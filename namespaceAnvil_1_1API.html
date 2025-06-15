@@ -418,6 +418,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwSkill.html">NwSkill</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A creature/character skill definition.  <a href="classAnvil_1_1API_1_1NwSkill.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwSound.html">NwSound</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A configurable sound object in an area.  <a href="classAnvil_1_1API_1_1NwSound.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A spell definition.  <a href="classAnvil_1_1API_1_1NwSpell.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -14392,9 +14395,6 @@ readonly struct&#160;</td><td class="memItemRight" valign="bottom"><b>NuiRect</b
 <tr class="memitem:ac634cdc6de96dc0b4f9fa0ff06e38498" id="r_ac634cdc6de96dc0b4f9fa0ff06e38498"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac634cdc6de96dc0b4f9fa0ff06e38498">NuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiLayout.html">NuiLayout</a> root, <a class="el" href="classAnvil_1_1API_1_1NuiProperty.html">NuiProperty</a>&lt; string &gt; title)</td></tr>
 <tr class="memdesc:ac634cdc6de96dc0b4f9fa0ff06e38498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a NUI scriptable window container.  <br /></td></tr>
 <tr class="separator:ac634cdc6de96dc0b4f9fa0ff06e38498"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8e640c93d02325e18c723bb67e9844b" id="r_aa8e640c93d02325e18c723bb67e9844b"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8e640c93d02325e18c723bb67e9844b">NwSound</a> (CNWSSoundObject soundObject)</td></tr>
-<tr class="memdesc:aa8e640c93d02325e18c723bb67e9844b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A configurable sound object in an area.  <br /></td></tr>
-<tr class="separator:aa8e640c93d02325e18c723bb67e9844b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabc2e9d2aaf4ffa554cf812df59fc9f1" id="r_aabc2e9d2aaf4ffa554cf812df59fc9f1"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabc2e9d2aaf4ffa554cf812df59fc9f1">SpecialAbility</a> (<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> spell, byte casterLevel, bool ready=true)</td></tr>
 <tr class="separator:aabc2e9d2aaf4ffa554cf812df59fc9f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a494657510eed6984359ade30c46a8735" id="r_a494657510eed6984359ade30c46a8735"><td class="memItemLeft" align="right" valign="top">readonly struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a494657510eed6984359ade30c46a8735">StrRef</a> (uint stringId)</td></tr>
@@ -14731,36 +14731,6 @@ readonly struct&#160;</td><td class="memItemRight" valign="bottom"><b>NuiRect</b
 <p>Gets or sets whether the background should be rendered.</p>
 <p>Gets the current serialized version of this window.</p>
 <p>Set to false to disable all input. All hover, clicks and keypresses will fall through.</p>
-
-</div>
-</div>
-<a id="aa8e640c93d02325e18c723bb67e9844b" name="aa8e640c93d02325e18c723bb67e9844b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8e640c93d02325e18c723bb67e9844b">&#9670;&#160;</a></span>NwSound()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">class Anvil.API.NwSound </td>
-          <td>(</td>
-          <td class="paramtype">CNWSSoundObject</td>          <td class="paramname"><span class="paramname"><em>soundObject</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">sealed</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>A configurable sound object in an area. </p>
-<p>Sets the volume for this sound object (0-127).</p>
-<p>Plays this sound object.</p>
-<p>Stops this sound object from playing.</p>
 
 </div>
 </div>

@@ -1,5 +1,9 @@
 var NAVTREEINDEX11 =
 {
+"classAnvil_1_1Services_1_1WeaponService.html#acc10d8026ba1e0ef96eb8c33ae231c8f":[0,0,4,42,6],
+"classAnvil_1_1Services_1_1WeaponService.html#acc48425bba79ec0c3d8b3b11670958ed":[0,0,4,42,12],
+"classAnvil_1_1Services_1_1WeaponService.html#ad506cadda4060cdd417da2b8b0264c15":[0,0,4,42,11],
+"classAnvil_1_1Services_1_1WeaponService.html#ad80734fd6c668f226a6b2a71f0a4f580":[0,0,4,42,7],
 "classAnvil_1_1Services_1_1WeaponService.html#ad967a77434b23bad0028a3d020ab6f06":[0,0,4,42,18],
 "classAnvil_1_1Services_1_1WeaponService.html#adc2d197609dbda690f93d63c43512b17":[0,0,4,42,17],
 "classAnvil_1_1Services_1_1WeaponService.html#aebe9c7fef487fd702fbf468c16c1ac74":[0,0,4,42,15],

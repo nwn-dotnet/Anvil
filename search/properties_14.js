@@ -13,5 +13,5 @@ var searchData=
   ['visualeffecttable_10',['VisualEffectTable',['../classAnvil_1_1API_1_1NwGameTables.html#a0cddc7d4a66b9f6d0d11c888547900f7',1,'Anvil::API::NwGameTables']]],
   ['visualtransform_11',['VisualTransform',['../classAnvil_1_1API_1_1NwGameObject.html#ae326638a871dd397a526a9127ba9f76f',1,'Anvil::API::NwGameObject']]],
   ['voicechat_12',['VoiceChat',['../classAnvil_1_1API_1_1Events_1_1OnPlayerQuickChat.html#ab3a79d32f37d8ef3dc7e9a502c07aeae',1,'Anvil::API::Events::OnPlayerQuickChat']]],
-  ['volume_13',['Volume',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a727254e285d09d375429cbbba49db3ac',1,'Anvil::API::Events::ModuleEvents::OnPlayerChat']]]
+  ['volume_13',['Volume',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a727254e285d09d375429cbbba49db3ac',1,'Anvil.API.Events.ModuleEvents.OnPlayerChat.Volume'],['../classAnvil_1_1API_1_1NwSound.html#a3bc17dfd490ca3e2783b3cc77bb8e661',1,'Anvil.API.NwSound.Volume']]]
 ];

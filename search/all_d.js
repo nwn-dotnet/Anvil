@@ -76,7 +76,7 @@ var searchData=
   ['nwruleset_73',['NwRuleset',['../classAnvil_1_1API_1_1NwRuleset.html',1,'Anvil::API']]],
   ['nwserver_74',['NwServer',['../classAnvil_1_1API_1_1NwServer.html',1,'Anvil::API']]],
   ['nwskill_75',['NwSkill',['../classAnvil_1_1API_1_1NwSkill.html',1,'Anvil::API']]],
-  ['nwsound_76',['NwSound',['../namespaceAnvil_1_1API.html#aa8e640c93d02325e18c723bb67e9844b',1,'Anvil::API']]],
+  ['nwsound_76',['NwSound',['../classAnvil_1_1API_1_1NwSound.html',1,'Anvil::API']]],
   ['nwspell_77',['NwSpell',['../classAnvil_1_1API_1_1NwSpell.html',1,'Anvil::API']]],
   ['nwstationary_78',['NwStationary',['../classAnvil_1_1API_1_1NwStationary.html',1,'Anvil::API']]],
   ['nwstore_79',['NwStore',['../classAnvil_1_1API_1_1NwStore.html',1,'Anvil::API']]],
