@@ -13,7 +13,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.37.1...HEAD
 - N/A
 
 ### Changed
-- N/A
+- Improved invalid object detection in some edge cases.
 
 ### Deprecated
 - N/A
