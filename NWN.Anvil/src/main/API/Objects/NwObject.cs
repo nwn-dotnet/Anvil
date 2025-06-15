@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Anvil.Internal;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
@@ -63,7 +61,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this is a valid object.
     /// </summary>
-    public bool IsValid => LowLevel.ServerExoApp.GetGameObject(ObjectId) != null;
+    public abstract bool IsValid { get; }
 
     /// <summary>
     /// Gets all local variables assigned on this object.
@@ -382,10 +380,9 @@ namespace Anvil.API
       await tcs.Task;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
     protected void AssertObjectValid()
     {
-      if (LowLevel.ServerExoApp.GetGameObject(ObjectId) == null)
+      if (!IsValid)
       {
         throw new InvalidOperationException("Object is not valid.");
       }

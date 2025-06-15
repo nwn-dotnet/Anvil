@@ -29,6 +29,8 @@ namespace Anvil.API
       this.encounter = encounter;
     }
 
+    public override bool IsValid => NWNXUtils.AsNWSEncounter(NWNXUtils.GetGameObject(ObjectId)) == encounter.Pointer;
+
     /// <summary>
     /// Gets or sets a value indicating whether this encounter is spawned and active.
     /// </summary>

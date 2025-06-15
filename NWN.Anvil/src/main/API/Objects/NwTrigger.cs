@@ -29,6 +29,8 @@ namespace Anvil.API
       this.trigger = trigger;
     }
 
+    public override bool IsValid => NWNXUtils.AsNWSTrigger(NWNXUtils.GetGameObject(ObjectId)) == trigger.Pointer;
+
     public static NwTrigger? Create(string template, Location location, float size = 2.0f, string? newTag = null)
     {
       if (string.IsNullOrEmpty(template))

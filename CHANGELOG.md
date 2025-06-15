@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.37.2
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.1...v8193.37.2
+
+### Changed
+- Improved invalid object detection in some edge cases.
+
 ## 8193.37.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...v8193.37.1
 
