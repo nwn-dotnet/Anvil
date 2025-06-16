@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -13,9 +13,10 @@ namespace Anvil.API
       Rect = rect;
     }
 
-    [JsonProperty("rect")]
+    [JsonPropertyName("rect")]
     public NuiProperty<NuiRect> Rect { get; set; }
 
+    [JsonPropertyName("type")]
     public override NuiDrawListItemType Type => NuiDrawListItemType.Circle;
   }
 }

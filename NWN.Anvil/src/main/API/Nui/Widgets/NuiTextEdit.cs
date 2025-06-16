@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -8,21 +8,22 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiTextEdit(NuiProperty<string> label, NuiProperty<string> value, ushort maxLength, bool multiLine) : NuiWidget
   {
-    [JsonProperty("label")]
+    [JsonPropertyName("label")]
     public NuiProperty<string> Label { get; set; } = label;
 
-    [JsonProperty("max")]
+    [JsonPropertyName("max")]
     public ushort MaxLength { get; set; } = maxLength;
 
-    [JsonProperty("multiline")]
+    [JsonPropertyName("multiline")]
     public bool MultiLine { get; set; } = multiLine;
 
+    [JsonPropertyName("type")]
     public override string Type => "textedit";
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<string> Value { get; set; } = value;
 
-    [JsonProperty("wordwrap")]
+    [JsonPropertyName("wordwrap")]
     public NuiProperty<bool> WordWrap { get; set; } = true;
   }
 }

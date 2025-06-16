@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -8,12 +8,13 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiCombo : NuiWidget
   {
-    [JsonProperty("elements")]
+    [JsonPropertyName("elements")]
     public NuiProperty<List<NuiComboEntry>> Entries { get; set; } = new List<NuiComboEntry>();
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<int> Selected { get; set; } = 0;
 
+    [JsonPropertyName("type")]
     public override string Type => "combo";
   }
 }

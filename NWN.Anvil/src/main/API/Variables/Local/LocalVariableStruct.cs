@@ -14,8 +14,8 @@ namespace Anvil.API
   {
     public override T? Value
     {
-      get => HasValue ? JsonUtility.FromJson<T>(NWScript.GetLocalJson(Object, Name)) : default;
-      set => NWScript.SetLocalJson(Object, Name, JsonUtility.ToJsonStructure(value));
+      get => HasValue ? ((Json)NWScript.GetLocalJson(Object, Name)).Deserialize<T>() : default;
+      set => NWScript.SetLocalJson(Object, Name, Json.Serialize(value));
     }
 
     public override void Delete()

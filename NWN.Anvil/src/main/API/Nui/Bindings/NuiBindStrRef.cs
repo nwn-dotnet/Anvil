@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using NWN.Core;
 
 namespace Anvil.API
@@ -7,7 +7,7 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiBindStrRef(string key) : NuiProperty<string>
   {
-    [JsonProperty("bind")]
+    [JsonPropertyName("bind")]
     public string Key { get; init; } = key;
 
     /// <summary>
@@ -18,7 +18,7 @@ namespace Anvil.API
     /// <returns>The current value of the binding.</returns>
     public StrRef? GetBindValue(NwPlayer player, int uiToken)
     {
-      return JsonUtility.FromJson<StrRef?>(NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key));
+      return ((Json)NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key)).Deserialize<StrRef?>();
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ namespace Anvil.API
     /// <returns>The current values of the binding.</returns>
     public List<StrRef?>? GetBindValues(NwPlayer player, int uiToken)
     {
-      return JsonUtility.FromJson<List<StrRef?>>(NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key));
+      return ((Json)NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key)).Deserialize<List<StrRef?>>();
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ namespace Anvil.API
     /// <param name="value">The new value to assign.</param>
     public void SetBindValue(NwPlayer player, int uiToken, StrRef? value)
     {
-      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, JsonUtility.ToJsonStructure(value));
+      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, Json.Serialize(value));
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace Anvil.API
     /// <param name="values">The new value to assign.</param>
     public void SetBindValues(NwPlayer player, int uiToken, IEnumerable<StrRef?> values)
     {
-      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, JsonUtility.ToJsonStructure(values));
+      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, Json.Serialize(values));
     }
 
     /// <summary>

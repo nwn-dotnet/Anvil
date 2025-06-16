@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -10,8 +11,8 @@ namespace Anvil.Tests.API
     {
       NuiColorPicker element = new NuiColorPicker(new NuiBind<Color>("selected_color"));
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"value":{"bind":"selected_color"},"type":"color_picker"}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"value":{"bind":"selected_color"},"type":"color_picker"}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"value":{"bind":"selected_color"},"type":"color_picker"}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"value":{"bind":"selected_color"},"type":"color_picker"}"""));
     }
   }
 }
