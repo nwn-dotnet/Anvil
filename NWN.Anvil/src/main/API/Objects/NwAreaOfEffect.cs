@@ -24,9 +24,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffect) : base(areaOfEffect)
+    private NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffect) : base(areaOfEffect)
     {
       this.areaOfEffect = areaOfEffect;
+    }
+
+    internal static NwAreaOfEffect? CreateInternal(CNWSAreaOfEffectObject? areaOfEffect)
+    {
+      return areaOfEffect != null && areaOfEffect.Pointer != IntPtr.Zero ? new NwAreaOfEffect(areaOfEffect) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSAreaOfEffectObject(NWNXUtils.GetGameObject(ObjectId)) == areaOfEffect.Pointer;

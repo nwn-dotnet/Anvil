@@ -59,10 +59,15 @@ namespace Anvil.API
       }
     }
 
-    internal NwPlayer(CNWSPlayer player)
+    private NwPlayer(CNWSPlayer player)
     {
       this.player = player;
       PlayerId = player.m_nPlayerID;
+    }
+
+    internal static NwPlayer? CreateInternal(CNWSPlayer? player)
+    {
+      return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
     }
 
     /// <summary>

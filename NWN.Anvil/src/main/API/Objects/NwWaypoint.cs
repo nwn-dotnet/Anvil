@@ -22,9 +22,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwWaypoint(CNWSWaypoint waypoint) : base(waypoint)
+    private NwWaypoint(CNWSWaypoint waypoint) : base(waypoint)
     {
       this.waypoint = waypoint;
+    }
+
+    internal static NwWaypoint? CreateInternal(CNWSWaypoint? waypoint)
+    {
+      return waypoint != null && waypoint.Pointer != IntPtr.Zero ? new NwWaypoint(waypoint) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSWaypoint(NWNXUtils.GetGameObject(ObjectId)) == waypoint.Pointer;

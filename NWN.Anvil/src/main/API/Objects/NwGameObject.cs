@@ -28,7 +28,7 @@ namespace Anvil.API
       }
     }
 
-    internal NwGameObject(CNWSObject gameObject) : base(gameObject)
+    private protected NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
       this.gameObject = gameObject;
     }

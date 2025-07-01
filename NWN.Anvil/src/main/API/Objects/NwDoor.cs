@@ -24,9 +24,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwDoor(CNWSDoor door) : base(door)
+    private NwDoor(CNWSDoor door) : base(door)
     {
       this.door = door;
+    }
+
+    internal static NwDoor? CreateInternal(CNWSDoor? door)
+    {
+      return door != null && door.Pointer != IntPtr.Zero ? new NwDoor(door) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSDoor(NWNXUtils.GetGameObject(ObjectId)) == door.Pointer;

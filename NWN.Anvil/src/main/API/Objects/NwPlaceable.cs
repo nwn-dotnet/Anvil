@@ -25,10 +25,15 @@ namespace Anvil.API
       }
     }
 
-    internal NwPlaceable(CNWSPlaceable placeable) : base(placeable)
+    private NwPlaceable(CNWSPlaceable placeable) : base(placeable)
     {
       this.placeable = placeable;
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
+    }
+
+    internal static NwPlaceable? CreateInternal(CNWSPlaceable? placeable)
+    {
+      return placeable != null && placeable.Pointer != IntPtr.Zero ? new NwPlaceable(placeable) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSPlaceable(NWNXUtils.GetGameObject(ObjectId)) == placeable.Pointer;

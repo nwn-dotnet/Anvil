@@ -10,7 +10,7 @@ namespace Anvil.API
   [ObjectFilter(ObjectTypes.Trigger | ObjectTypes.Door | ObjectTypes.Placeable)]
   public abstract class NwTrappable : NwGameObject
   {
-    internal NwTrappable(CNWSObject gameObject) : base(gameObject) {}
+    private protected NwTrappable(CNWSObject gameObject) : base(gameObject) {}
 
     /// <summary>
     /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.
