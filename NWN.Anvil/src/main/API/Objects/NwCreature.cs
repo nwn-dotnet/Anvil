@@ -50,11 +50,16 @@ namespace Anvil.API
       }
     }
 
-    internal NwCreature(CNWSCreature creature) : base(creature)
+    private NwCreature(CNWSCreature creature) : base(creature)
     {
       this.creature = creature;
       faction = new NwFaction(Creature.GetFaction());
       Inventory = new Inventory(this, Creature.m_pcItemRepository);
+    }
+
+    internal static NwCreature? CreateInternal(CNWSCreature? creature)
+    {
+      return creature != null && creature.Pointer != IntPtr.Zero ? new NwCreature(creature) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSCreature(NWNXUtils.GetGameObject(ObjectId)) == creature.Pointer;

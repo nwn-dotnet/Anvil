@@ -23,9 +23,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwSound(CNWSSoundObject soundObject) : base(soundObject)
+    private NwSound(CNWSSoundObject soundObject) : base(soundObject)
     {
       this.soundObject = soundObject;
+    }
+
+    internal static NwSound? CreateInternal(CNWSSoundObject? soundObject)
+    {
+      return soundObject != null && soundObject.Pointer != IntPtr.Zero ? new NwSound(soundObject) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSSoundObject(NWNXUtils.GetGameObject(ObjectId)) == soundObject.Pointer;

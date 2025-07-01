@@ -24,9 +24,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwEncounter(CNWSEncounter encounter) : base(encounter)
+    private NwEncounter(CNWSEncounter encounter) : base(encounter)
     {
       this.encounter = encounter;
+    }
+
+    internal static NwEncounter? CreateInternal(CNWSEncounter? encounter)
+    {
+      return encounter != null && encounter.Pointer != IntPtr.Zero ? new NwEncounter(encounter) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSEncounter(NWNXUtils.GetGameObject(ObjectId)) == encounter.Pointer;

@@ -24,9 +24,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwTrigger(CNWSTrigger trigger) : base(trigger)
+    private NwTrigger(CNWSTrigger trigger) : base(trigger)
     {
       this.trigger = trigger;
+    }
+
+    internal static NwTrigger? CreateInternal(CNWSTrigger? trigger)
+    {
+      return trigger != null && trigger.Pointer != IntPtr.Zero ? new NwTrigger(trigger) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSTrigger(NWNXUtils.GetGameObject(ObjectId)) == trigger.Pointer;

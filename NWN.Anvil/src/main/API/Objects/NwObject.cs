@@ -13,7 +13,7 @@ namespace Anvil.API
   /// </summary>
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   [ObjectFilter(ObjectTypes.All)]
-  public abstract partial class NwObject(ICGameObject gameObject) : IEquatable<NwObject>
+  public abstract partial class NwObject : IEquatable<NwObject>
   {
     internal const uint Invalid = NWScript.OBJECT_INVALID;
 
@@ -33,7 +33,18 @@ namespace Anvil.API
     /// The ID of this object instance. Not persistent, changes after every spawn of the object.<br/>
     /// See <see cref="UUID"/> for a persistent unique ID for objects.
     /// </summary>
-    public readonly uint ObjectId = gameObject.m_idSelf;
+    public readonly uint ObjectId;
+
+    private readonly ICGameObject gameObject;
+
+    /// <summary>
+    /// Base class for all world entities (game objects) and containers (modules, areas).
+    /// </summary>
+    private protected NwObject(ICGameObject gameObject)
+    {
+      this.gameObject = gameObject;
+      ObjectId = gameObject.m_idSelf;
+    }
 
     internal ICGameObject Object
     {

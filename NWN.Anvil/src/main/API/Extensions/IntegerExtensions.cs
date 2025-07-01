@@ -155,21 +155,27 @@ namespace Anvil.API
 
       if (playerSearch.HasFlag(PlayerSearch.Controlled))
       {
-        CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);
+        NwPlayer? player = NwPlayer.CreateInternal(LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId));
         if (player != null)
         {
-          return new NwPlayer(player);
+          return player;
         }
       }
 
       if (playerSearch.HasFlag(PlayerSearch.Login))
       {
         CExoArrayListCNWSPlayerPtr? players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList;
-        foreach (CNWSPlayer player in players)
+        foreach (CNWSPlayer nwPlayer in players)
         {
-          if (player.m_oidPCObject == objectId)
+          if (nwPlayer == null || nwPlayer.Pointer == IntPtr.Zero || nwPlayer.m_oidPCObject != objectId)
           {
-            return new NwPlayer(player);
+            continue;
+          }
+
+          NwPlayer? player = NwPlayer.CreateInternal(nwPlayer);
+          if (player != null)
+          {
+            return player;
           }
         }
       }
