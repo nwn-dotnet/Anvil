@@ -45,7 +45,7 @@ namespace Anvil.API.Events
         uint objSelf = NWScript.OBJECT_SELF;
         DamagedObject = objSelf.ToNwObject<NwPlaceable>()!;
         TotalDamageDealt = NWScript.GetTotalDamageDealt();
-        Damager = NWScript.GetLastDamager(objSelf).ToNwObject<NwCreature>()!;
+        Damager = NWScript.GetLastDamager(objSelf).ToNwObject<NwGameObject>();
       }
     }
   }
