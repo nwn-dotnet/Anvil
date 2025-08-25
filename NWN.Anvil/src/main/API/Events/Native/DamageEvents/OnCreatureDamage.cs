@@ -12,7 +12,7 @@ namespace Anvil.API.Events
     public DamageData<int> DamageData { get; private init; } = null!;
     public NwObject DamagedBy { get; private init; } = null!;
     public NwGameObject Target { get; private init; } = null!;
-    public NwSpell? Spell { get; private init; } = null!;
+    public NwSpell? Spell { get; private init; }
 
     NwObject IEvent.Context => DamagedBy;
 
