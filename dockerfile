@@ -6,13 +6,13 @@ RUN rm -rf /nwn/nwnx/NWNX_Ruby.so \
     /nwn/nwnx/NWNX_SpellChecker.so \
     /nwn/nwnx/NWNX_Redis.so
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 COPY --from=nwnx /nwn /nwn
 
 RUN apt-get update \
 && apt-get --no-install-recommends -y install ca-certificates wget \
-&& wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+&& wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
 && rm packages-microsoft-prod.deb \
 && apt-get update \
