@@ -14,7 +14,7 @@
       "version": "8.0"
     },
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-      "packages": "curl,unzip,procps,git"
+      "packages": "curl,unzip,procps,git,lldb"
     }
   },
   "appPort": ["5121:5121/udp"],
