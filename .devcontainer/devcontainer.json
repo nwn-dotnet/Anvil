@@ -22,5 +22,6 @@
     "NWNX_DOTNET_ASSEMBLY": "/workspaces/NWN.Anvil/NWN.Anvil/bin/Debug/net8.0/NWN.Anvil",
     "ANVIL_ADD_PLUGIN_PATHS": "/workspaces/NWN.Anvil/NWN.Anvil.TestRunner/bin/Debug:/workspaces/NWN.Anvil/NWN.Anvil.Tests/bin/Debug"
   },
-  "runArgs": ["--privileged"]
+  "runArgs": ["--privileged"],
+  "onCreateCommand": ["sh", "-c", "dotnet tool install --global dotnet-sos && /root/.dotnet/tools/dotnet-sos install"]
 }
