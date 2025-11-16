@@ -4,27 +4,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.37.1...HEAD
+
+### Pending Changes
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.3...HEAD
+
+## 8193.37.3 (NWN 8193.37-17)
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.2...v8193.37.3
 
 ### Added
-- N/A
+- Events: Added `Spell` property to `OnCreatureDamage` event.
 
 ### Package Updates
-- N/A
+- NWNX: 292a2c0 -> 73cf6ab
+- NWN.Core: 8193.37.3 -> 8193.37.4
+- NWN.Native: 8193.37.3 -> 8193.37.4
+- Docker: Ubuntu 20.04 -> Debian 13 (Trixie)
+- Docker: Pinned OpenSSL 1.1.1t
+
+### Changed
+- Improved invalid object detection in some edge cases.
+- Events: Placeable `OnDamaged` event now supports damage sources from non-creatures.
+- NwCreature: `GetFeatRemainingUses`, `GetFeatTotalUses` now matches the behaviour of the NWScript function.
+  - If the feat has unlimited uses, returns int.MaxValue instead of 100.
+- NwSpell: `GetSpellLevelByClass` now matches the behaviour of the NWScript function.
+  - Returns the spell level for the specified class. Returns null if no spell level is defined for the specified class.
+  - `includeMasterSpell` parameter - If true, will use the master spell class level if this spell has no class level configured
+
+### Fixed
+- Fixed an OpenSSL crash when running Anvil/NWNX_DotNET on newer operating systems (Debian 12+, Ubuntu 22.04+)
+
+## 8193.37.2 (NWN 8193.37-15)
+https://github.com/nwn-dotnet/Anvil/compare/v8193.37.1...v8193.37.2
 
 ### Changed
 - Improved invalid object detection in some edge cases.
 
-### Deprecated
-- N/A
-
-### Removed
-- N/A
-
-### Fixed
-- N/A
-
-## 8193.37.1
+## 8193.37.1 (NWN 8193.37-15)
 https://github.com/nwn-dotnet/Anvil/compare/v8193.37.0...v8193.37.1
 
 ### Added
