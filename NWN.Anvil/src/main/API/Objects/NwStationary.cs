@@ -11,7 +11,7 @@ namespace Anvil.API
   [ObjectFilter(ObjectTypes.Door | ObjectTypes.Placeable)]
   public abstract class NwStationary : NwTrappable
   {
-    internal NwStationary(CNWSObject gameObject) : base(gameObject) {}
+    private protected NwStationary(CNWSObject gameObject) : base(gameObject) {}
 
     /// <summary>
     /// Gets or sets the hardness of this stationary object. This is the amount of damage deducted from each hit.

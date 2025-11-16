@@ -26,9 +26,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwArea(CNWSArea area) : base(area)
+    private NwArea(CNWSArea area) : base(area)
     {
       this.area = area;
+    }
+
+    internal static NwArea? CreateInternal(CNWSArea? area)
+    {
+      return area != null && area.Pointer != IntPtr.Zero ? new NwArea(area) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSArea(NWNXUtils.GetGameObject(ObjectId)) == area.Pointer;

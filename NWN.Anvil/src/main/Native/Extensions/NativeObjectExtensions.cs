@@ -40,7 +40,7 @@ namespace Anvil.Native
 
     public static NwPlayer? ToNwPlayer(this CNWSPlayer? player)
     {
-      return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
+      return NwPlayer.CreateInternal(player);
     }
   }
 }

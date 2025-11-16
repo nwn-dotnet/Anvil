@@ -50,11 +50,16 @@ namespace Anvil.API
       }
     }
 
-    internal NwCreature(CNWSCreature creature) : base(creature)
+    private NwCreature(CNWSCreature creature) : base(creature)
     {
       this.creature = creature;
       faction = new NwFaction(Creature.GetFaction());
       Inventory = new Inventory(this, Creature.m_pcItemRepository);
+    }
+
+    internal static NwCreature? CreateInternal(CNWSCreature? creature)
+    {
+      return creature != null && creature.Pointer != IntPtr.Zero ? new NwCreature(creature) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSCreature(NWNXUtils.GetGameObject(ObjectId)) == creature.Pointer;
@@ -1760,20 +1765,42 @@ namespace Anvil.API
     /// Gets the remaining uses available for the specified feat.
     /// </summary>
     /// <param name="feat">The feat to query.</param>
-    /// <returns>The amount of remaining uses.</returns>
-    public byte GetFeatRemainingUses(NwFeat feat)
+    /// <returns>The amount of remaining uses. If the feat has unlimited uses, returns int.MaxValue.</returns>
+    public int GetFeatRemainingUses(NwFeat feat)
     {
-      return Creature.m_pStats.GetFeatRemainingUses(feat.Id);
+      const int featUsePerDayUnlimited = 100;
+
+      CNWSCreatureStats? creatureStats = creature.m_pStats;
+      ushort sourceFeat = creature.m_pStats.GetHighestLevelOfFeat(feat.Id);
+
+      int retVal = 0;
+      if (sourceFeat != ushort.MaxValue && creatureStats.HasFeat(sourceFeat).ToBool())
+      {
+        retVal = creatureStats.GetFeatRemainingUses(sourceFeat);
+      }
+
+      return retVal == featUsePerDayUnlimited ? int.MaxValue : retVal;
     }
 
     /// <summary>
     /// Gets the max/total amount of times the specified feat can be used.
     /// </summary>
     /// <param name="feat">The feat to query.</param>
-    /// <returns>The amount of remaining uses.</returns>
-    public byte GetFeatTotalUses(NwFeat feat)
+    /// <returns>The total feat uses. If the feat has unlimited uses, returns int.MaxValue.</returns>
+    public int GetFeatTotalUses(NwFeat feat)
     {
-      return Creature.m_pStats.GetFeatTotalUses(feat.Id);
+      const int featUsePerDayUnlimited = 100;
+
+      CNWSCreatureStats? creatureStats = creature.m_pStats;
+      ushort sourceFeat = creature.m_pStats.GetHighestLevelOfFeat(feat.Id);
+
+      int retVal = 0;
+      if (sourceFeat != ushort.MaxValue && creatureStats.HasFeat(sourceFeat).ToBool())
+      {
+        retVal = creatureStats.GetFeatTotalUses(sourceFeat);
+      }
+
+      return retVal == featUsePerDayUnlimited ? int.MaxValue : retVal;
     }
 
     /// <summary>

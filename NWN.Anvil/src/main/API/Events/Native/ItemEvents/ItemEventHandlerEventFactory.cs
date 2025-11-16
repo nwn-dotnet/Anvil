@@ -22,12 +22,18 @@ namespace Anvil.API.Events
     {
       CNWSItem item = CNWSItem.FromPointer(pItem);
 
-      ItemHandlerEvent eventData = nEventId switch
+      ItemHandlerEvent? eventData = nEventId switch
       {
         11 => HandleEvent<OnItemDestroy>(item),
         16 => HandleEvent<OnItemDecrementStackSize>(item),
-        _ => throw new ArgumentOutOfRangeException(nameof(nEventId), nEventId, null),
+        _ => null,
       };
+
+      if (eventData == null)
+      {
+        Hook.CallOriginal(pItem, nEventId, nCallerObjectId, pScript, nCalendarDay, nTimeOfDay);
+        return;
+      }
 
       if (!eventData.Skip)
       {

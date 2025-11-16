@@ -12,19 +12,18 @@ namespace Anvil.Internal
   {
     private static readonly string[] VariablePrefixes = ["ANVIL_", "NWM_"];
 
+    public static readonly string? OpenSslVersionOverride = Environment.GetEnvironmentVariable("DOTNET_OPENSSL_VERSION_OVERRIDE");
+
     public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil");
     public static readonly string Encoding = GetAnvilVariableString("ENCODING", "windows-1252");
+
     public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
+
     public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
     public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
     public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
-    public static readonly string[] AdditionalPluginPaths = GetAnvilVariableArrayString("ADD_PLUGIN_PATHS");
 
-    static EnvironmentConfig()
-    {
-      ValidateUnset("NLOG_CONFIG");
-      ValidateUnset("PLUGIN_PATH");
-    }
+    public static readonly string[] AdditionalPluginPaths = GetAnvilVariableArrayString("ADD_PLUGIN_PATHS");
 
     public static bool GetIsPluginDisabled(string pluginName)
     {
@@ -64,14 +63,6 @@ namespace Anvil.Internal
       string? value = GetAnvilVariableString(key);
 
       return value != null ? value.Split(Path.PathSeparator) : defaultValue;
-    }
-
-    private static void ValidateUnset(string key)
-    {
-      if (Environment.GetEnvironmentVariable(key) != null)
-      {
-        throw new Exception($"Unsupported environment variable {key}. Please see the changelog for more information.");
-      }
     }
   }
 }

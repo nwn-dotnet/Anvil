@@ -24,9 +24,14 @@ namespace Anvil.API
       }
     }
 
-    internal NwStore(CNWSStore store) : base(store)
+    private NwStore(CNWSStore store) : base(store)
     {
       this.store = store;
+    }
+
+    internal static NwStore? CreateInternal(CNWSStore? store)
+    {
+      return store != null && store.Pointer != IntPtr.Zero ? new NwStore(store) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSStore(NWNXUtils.GetGameObject(ObjectId)) == store.Pointer;

@@ -31,11 +31,16 @@ namespace Anvil.API
       }
     }
 
-    internal NwItem(CNWSItem item) : base(item)
+    private NwItem(CNWSItem item) : base(item)
     {
       this.item = item;
       Inventory = new Inventory(this, item.m_pItemRepository);
       Appearance = new ItemAppearance(this);
+    }
+
+    internal static NwItem? CreateInternal(CNWSItem? item)
+    {
+      return item != null && item.Pointer != IntPtr.Zero ? new NwItem(item) : null;
     }
 
     public override bool IsValid => NWNXUtils.AsNWSItem(NWNXUtils.GetGameObject(ObjectId)) == item.Pointer;

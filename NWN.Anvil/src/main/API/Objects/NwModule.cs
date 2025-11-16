@@ -27,7 +27,7 @@ namespace Anvil.API
       }
     }
 
-    internal NwModule(CNWSModule module) : base(module)
+    private NwModule(CNWSModule module) : base(module)
     {
       this.module = module;
     }
@@ -142,9 +142,13 @@ namespace Anvil.API
       get
       {
         CExoArrayListCNWSPlayerPtr? playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_lstPlayerList;
-        foreach (CNWSPlayer player in playerList)
+        foreach (CNWSPlayer nwPlayer in playerList)
         {
-          yield return new NwPlayer(player);
+          NwPlayer? player = NwPlayer.CreateInternal(nwPlayer);
+          if (player != null)
+          {
+            yield return player;
+          }
         }
       }
     }

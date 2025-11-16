@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -333,9 +334,30 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class to query.</param>
     /// <returns>The spell level for the specified class.</returns>
+    [Obsolete("Use GetSpellLevelByClass instead.")]
     public byte GetSpellLevelForClass(NwClass nwClass)
     {
       return spellInfo.GetSpellLevel(nwClass.Id);
+    }
+
+    /// <summary>
+    /// Gets the spell class level for the specified class.
+    /// </summary>
+    /// <param name="classType">The class to query.</param>
+    /// <param name="includeMasterSpell">If true, will use the <see cref="MasterSpell"/> class level if this spell has no class level configured.</param>
+    /// <returns>The spell level for the specified class. Returns null if no spell level is defined for the specified class.</returns>
+    public int? GetSpellLevelByClass(NwClass classType, bool includeMasterSpell = true)
+    {
+      if (includeMasterSpell)
+      {
+        int retVal = NWScript.GetSpellLevelByClass(classType.Id, Id);
+        return retVal == -1 ? null : retVal;
+      }
+      else
+      {
+        byte retVal = spellInfo.GetSpellLevel(classType.Id);
+        return retVal == byte.MaxValue ? null : retVal;
+      }
     }
   }
 }
