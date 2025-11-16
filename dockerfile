@@ -10,22 +10,27 @@ FROM ubuntu:22.04
 
 COPY --from=nwnx /nwn /nwn
 
+ENV OPENSSL_VERSION="OpenSSL_1_1_1t"
+
 RUN apt-get update \
-&& apt-get --no-install-recommends -y install ca-certificates wget \
-&& wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+&& apt-get install -y --no-install-recommends \
+  ca-certificates \
+  wget \
+  git \
+  build-essential \
+&& git clone https://github.com/openssl/openssl.git \
+&& cd openssl \
+&& git checkout ${OPENSSL_VERSION} \
+&& ./config --prefix=/nwn/lib/openssl --openssldir=/nwn/lib/openssl \
+&& make depend \
+&& make install \
+&& cd .. \
+&& rm -rf openssl \
+&& wget https://packages.microsoft.com/config/debian/13/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
 && rm packages-microsoft-prod.deb \
 && apt-get update \
-&& apt-get --no-install-recommends -y install libc6 libstdc++6 \
-    hunspell \
-    default-libmysqlclient-dev \
-    libmariadb3 \
-    libpq5 \
-    libsqlite3-0 \
-    luajit libluajit-5.1-2 \
-    inotify-tools \
-    patch \
-    unzip \
+&& apt-get install -y --no-install-recommends \
     dotnet-runtime-8.0 \
     dotnet-apphost-pack-8.0 \
 && rm -rf /var/cache/apt /var/lib/apt/lists/*
@@ -50,6 +55,7 @@ VOLUME /nwn/home
 # Configure nwserver to run with nwnx
 ENV NWNX_CORE_LOAD_PATH=/nwn/nwnx/
 ENV NWN_LD_PRELOAD="/nwn/nwnx/NWNX_Core.so"
+ENV NWN_LD_LIBRARY_PATH="/nwn/lib/openssl/lib"
 
 # Configure nwnx to run with anvil
 ENV NWNX_DOTNET_SKIP=n
@@ -75,6 +81,10 @@ ENV DOTNET_CreateDumpDiagnostics=1
 ENV DOTNET_CreateDumpVerboseDiagnostics=1
 ENV DOTNET_DbgMiniDumpName=/nwn/run/logs.0/anvil-crash-%t.dmp
 ENV DOTNET_CreateDumpLogToFile=/nwn/run/logs.0/anvil-crash.log
+
+#Force .NET to use OpenSSL 1.1.1
+ENV CLR_OPENSSL_VERSION_OVERRIDE=1.1
+ENV DOTNET_OPENSSL_VERSION_OVERRIDE=1.1
 
 # Entrypoint & Executable
 EXPOSE ${NWN_PORT:-5121}/udp
