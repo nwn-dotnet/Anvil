@@ -6,7 +6,7 @@ RUN rm -rf /nwn/nwnx/NWNX_Ruby.so \
     /nwn/nwnx/NWNX_SpellChecker.so \
     /nwn/nwnx/NWNX_Redis.so
 
-FROM ubuntu:22.04
+FROM debian:trixie-slim
 
 COPY --from=nwnx /nwn /nwn
 
