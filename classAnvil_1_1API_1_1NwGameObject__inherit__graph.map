@@ -1,29 +1,31 @@
 <map id="Anvil.API.NwGameObject" name="Anvil.API.NwGameObject">
-<area shape="rect" id="Node000001" title="Base class for all entities in areas." alt="" coords="133,179,304,204"/>
-<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NwAreaOfEffect.html" title="The area/region of an ongoing spell effect or ability." alt="" coords="352,5,524,31"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,164,281,101,314,68,351,40,373,29,375,34,353,44,317,72,285,105,238,167"/>
-<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar." alt="" coords="364,55,512,80"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="243,166,291,127,351,89,377,78,379,83,353,94,294,131,246,170"/>
-<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1NwEncounter.html" title="An encounter trigger that spawns creatures." alt="" coords="360,104,516,130"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="265,170,351,138,386,128,387,133,353,143,267,175"/>
-<area shape="rect" id="Node000006" href="$classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr..." alt="" coords="376,153,500,179"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="319,177,375,171,376,176,320,183"/>
-<area shape="rect" id="Node000007" href="$classAnvil_1_1API_1_1NwSound.html" title="A configurable sound object in an area." alt="" coords="370,203,506,228"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="320,200,370,205,370,211,319,205"/>
-<area shape="rect" id="Node000008" href="$classAnvil_1_1API_1_1NwStore.html" title="A store object for bartering, and items to purchase." alt="" coords="374,252,503,278"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="268,208,353,238,388,249,386,254,351,243,267,213"/>
-<area shape="rect" id="Node000009" href="$classAnvil_1_1API_1_1NwTrappable.html" title="A trappable game object/entity." alt="" coords="360,301,516,327"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="247,213,294,251,353,288,380,298,378,303,351,293,291,256,243,217"/>
-<area shape="rect" id="Node000014" href="$classAnvil_1_1API_1_1NwWaypoint.html" title="A waypoint entity that uniquely identifies a location in the module." alt="" coords="362,351,514,376"/>
-<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="238,216,285,277,317,310,353,337,375,348,373,353,351,342,314,314,281,281,234,219"/>
-<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="5,179,85,204"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,189,132,189,132,194,100,194"/>
-<area shape="rect" id="Node000010" href="$classAnvil_1_1API_1_1NwStationary.html" title="A stationary game object entity." alt="" coords="572,277,729,303"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="531,301,572,296,572,302,532,306"/>
-<area shape="rect" id="Node000013" href="$classAnvil_1_1API_1_1NwTrigger.html" title="A trigger volume entity." alt="" coords="581,327,720,352"/>
-<area shape="poly" id="edge12_Node000009_Node000013" title=" " alt="" coords="532,323,581,329,581,334,531,328"/>
-<area shape="rect" id="Node000011" href="$classAnvil_1_1API_1_1NwDoor.html" title="A tile&#45;based door." alt="" coords="792,253,917,279"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="744,276,791,271,792,276,745,282"/>
-<area shape="rect" id="Node000012" href="$classAnvil_1_1API_1_1NwPlaceable.html" title="A static world object that is optionally interactable or destroyable." alt="" coords="777,303,932,328"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="744,299,777,303,776,308,744,304"/>
+<area shape="rect" id="Node000001" title="Base class for all entities in areas." alt="" coords="343,179,514,204"/>
+<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1NwAreaOfEffect.html" title="The area/region of an ongoing spell effect or ability." alt="" coords="562,5,735,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="444,164,491,101,524,68,561,40,583,29,585,34,564,44,528,72,495,105,448,167"/>
+<area shape="rect" id="Node000005" href="$classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar." alt="" coords="575,55,722,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="453,166,501,127,561,89,588,78,590,83,564,94,504,131,457,170"/>
+<area shape="rect" id="Node000006" href="$classAnvil_1_1API_1_1NwEncounter.html" title="An encounter trigger that spawns creatures." alt="" coords="570,104,727,130"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="475,170,561,138,596,128,597,133,563,143,477,175"/>
+<area shape="rect" id="Node000007" href="$classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr..." alt="" coords="586,153,711,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="529,177,585,171,586,176,530,183"/>
+<area shape="rect" id="Node000008" href="$classAnvil_1_1API_1_1NwSound.html" title="A configurable sound object in an area." alt="" coords="581,203,716,228"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="530,200,581,205,580,211,529,205"/>
+<area shape="rect" id="Node000009" href="$classAnvil_1_1API_1_1NwStore.html" title="A store object for bartering, and items to purchase." alt="" coords="584,252,713,278"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="479,208,563,238,598,249,596,254,561,243,477,213"/>
+<area shape="rect" id="Node000010" href="$classAnvil_1_1API_1_1NwTrappable.html" title="A trappable game object/entity." alt="" coords="571,301,726,327"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="457,213,505,251,564,288,590,298,588,303,561,293,502,256,454,217"/>
+<area shape="rect" id="Node000015" href="$classAnvil_1_1API_1_1NwWaypoint.html" title="A waypoint entity that uniquely identifies a location in the module." alt="" coords="573,351,724,376"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="448,216,496,277,528,310,564,337,585,348,583,353,561,342,524,314,492,281,444,219"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="216,179,295,204"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="311,189,342,189,342,194,311,194"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,179,168,204"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="183,189,215,189,215,194,183,194"/>
+<area shape="rect" id="Node000011" href="$classAnvil_1_1API_1_1NwStationary.html" title="A stationary game object entity." alt="" coords="783,277,939,303"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="741,301,782,296,783,302,742,306"/>
+<area shape="rect" id="Node000014" href="$classAnvil_1_1API_1_1NwTrigger.html" title="A trigger volume entity." alt="" coords="792,327,930,352"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="742,323,792,329,791,334,741,328"/>
+<area shape="rect" id="Node000012" href="$classAnvil_1_1API_1_1NwDoor.html" title="A tile&#45;based door." alt="" coords="1002,253,1127,279"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="954,276,1001,271,1002,276,955,282"/>
+<area shape="rect" id="Node000013" href="$classAnvil_1_1API_1_1NwPlaceable.html" title="A static world object that is optionally interactable or destroyable." alt="" coords="987,303,1142,328"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="955,299,987,303,986,308,954,304"/>
 </map>

@@ -88,7 +88,7 @@ var searchData=
   ['isunderground_85',['IsUnderGround',['../classAnvil_1_1API_1_1NwArea.html#ad76ec7f2d6b1f64fbc767bd5de23822f',1,'Anvil::API::NwArea']]],
   ['isuntrained_86',['IsUntrained',['../classAnvil_1_1API_1_1NwSkill.html#a312a0f268502e9f393c6300f4c19c82f',1,'Anvil::API::NwSkill']]],
   ['isurban_87',['IsUrban',['../classAnvil_1_1API_1_1NwArea.html#a0918256d5217ba8cf9b1c6b45b3ce560',1,'Anvil::API::NwArea']]],
-  ['isvalid_88',['IsValid',['../classAnvil_1_1API_1_1EngineStructure.html#a335fa3fcf3650733bf5b471655d8ff6c',1,'Anvil.API.EngineStructure.IsValid'],['../classAnvil_1_1API_1_1NwPlayer.html#a7ca343f91b10ce14b15b28a954a1d0cc',1,'Anvil.API.NwPlayer.IsValid']]],
+  ['isvalid_88',['IsValid',['../classAnvil_1_1API_1_1EngineStructure.html#a335fa3fcf3650733bf5b471655d8ff6c',1,'Anvil.API.EngineStructure.IsValid'],['../classAnvil_1_1API_1_1NwObject.html#a55d6fa2ef762491e726138e5f43df85e',1,'Anvil.API.NwObject.IsValid'],['../classAnvil_1_1API_1_1NwPlayer.html#a7ca343f91b10ce14b15b28a954a1d0cc',1,'Anvil.API.NwPlayer.IsValid']]],
   ['isvaliddomain_89',['IsValidDomain',['../classAnvil_1_1API_1_1NwDomain.html#a825715540959e9166c4a9919e330d063',1,'Anvil::API::NwDomain']]],
   ['iswalkable_90',['IsWalkable',['../classAnvil_1_1API_1_1Location.html#a9b35f8feac57ceadaf75560b9d8f396b',1,'Anvil::API::Location']]],
   ['iswater_91',['IsWater',['../classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html#afaa6b52d4a9d81b4874793a55af105e5',1,'Anvil::API::SurfaceMaterialTableEntry']]],

@@ -4,6 +4,7 @@ var classAnvil_1_1API_1_1NwSpell =
     [ "FromSpellId", "classAnvil_1_1API_1_1NwSpell.html#a1e179a42844f3ac8158f0e35dff4e29c", null ],
     [ "FromSpellType", "classAnvil_1_1API_1_1NwSpell.html#a3a0b097fcc772dc41ad60a8d9d814ac4", null ],
     [ "GetConjureSound", "classAnvil_1_1API_1_1NwSpell.html#a8abebc46e1ce055ffd853e4b1517c02a", null ],
+    [ "GetSpellLevelByClass", "classAnvil_1_1API_1_1NwSpell.html#aba04ef75ec5ca6b25397150730fad934", null ],
     [ "GetSpellLevelForClass", "classAnvil_1_1API_1_1NwSpell.html#a1a3c2091e1563c49fb5b230c207481de", null ],
     [ "AllowedMetaMagic", "classAnvil_1_1API_1_1NwSpell.html#ac0841e11458cd3fc392c4260d89e09c0", null ],
     [ "AltMessage", "classAnvil_1_1API_1_1NwSpell.html#a6734d0bc9906098993c7e52787f806ae", null ],

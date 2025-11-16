@@ -1,7 +1,9 @@
 <map id="Anvil.API.NwWaypoint" name="Anvil.API.NwWaypoint">
-<area shape="rect" id="Node000001" title="A waypoint entity that uniquely identifies a location in the module." alt="" coords="5,153,157,178"/>
-<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="24,79,138,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,120,84,152,78,152,78,120"/>
-<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="41,5,121,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,46,84,79,78,79,78,46"/>
+<area shape="rect" id="Node000001" title="A waypoint entity that uniquely identifies a location in the module." alt="" coords="11,226,162,252"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="29,153,144,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,194,89,226,84,226,84,194"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,79,126,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,120,89,152,84,152,84,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,5,168,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="89,46,89,79,84,79,84,46"/>
 </map>

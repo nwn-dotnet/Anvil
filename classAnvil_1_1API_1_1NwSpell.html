@@ -113,6 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8abebc46e1ce055ffd853e4b1517c02a" id="r_a8abebc46e1ce055ffd853e4b1517c02a"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8abebc46e1ce055ffd853e4b1517c02a">GetConjureSound</a> (Gender gender)</td></tr>
 <tr class="memdesc:a8abebc46e1ce055ffd853e4b1517c02a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the chant/voice that is played when this spell is conjured.  <br /></td></tr>
 <tr class="separator:a8abebc46e1ce055ffd853e4b1517c02a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba04ef75ec5ca6b25397150730fad934" id="r_aba04ef75ec5ca6b25397150730fad934"><td class="memItemLeft" align="right" valign="top">int?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba04ef75ec5ca6b25397150730fad934">GetSpellLevelByClass</a> (<a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a> classType, bool includeMasterSpell=true)</td></tr>
+<tr class="memdesc:aba04ef75ec5ca6b25397150730fad934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell class level for the specified class.  <br /></td></tr>
+<tr class="separator:aba04ef75ec5ca6b25397150730fad934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a3c2091e1563c49fb5b230c207481de" id="r_a1a3c2091e1563c49fb5b230c207481de"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a3c2091e1563c49fb5b230c207481de">GetSpellLevelForClass</a> (<a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a> nwClass)</td></tr>
 <tr class="memdesc:a1a3c2091e1563c49fb5b230c207481de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell class level for the specified class.  <br /></td></tr>
 <tr class="separator:a1a3c2091e1563c49fb5b230c207481de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -433,6 +436,45 @@ SpellUserType&#160;</td><td class="memItemRight" valign="bottom"><b>UserType</b>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ResRef of the sound to play for the specified gender.</dd></dl>
+
+</div>
+</div>
+<a id="aba04ef75ec5ca6b25397150730fad934" name="aba04ef75ec5ca6b25397150730fad934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba04ef75ec5ca6b25397150730fad934">&#9670;&#160;</a></span>GetSpellLevelByClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int? Anvil.API.NwSpell.GetSpellLevelByClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a></td>          <td class="paramname"><span class="paramname"><em>classType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>includeMasterSpell</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the spell class level for the specified class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classType</td><td>The class to query.</td></tr>
+    <tr><td class="paramname">includeMasterSpell</td><td>If true, will use the <a class="el" href="#add876088939243d44db7372fae567a34" title="Gets the parent spell if this spell is a subradial spell. The reverse of RadialSpells.">MasterSpell</a> class level if this spell has no class level configured.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The spell level for the specified class. Returns null if no spell level is defined for the specified class.</dd></dl>
 
 </div>
 </div>

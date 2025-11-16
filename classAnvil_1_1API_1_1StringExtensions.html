@@ -137,7 +137,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>ParseIntBool</
 <tr class="separator:ac02d1902fa9d3fd3a794df3d73432391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfb43776cfc7baedd112ee87031e871b" id="r_abfb43776cfc7baedd112ee87031e871b"><td class="memItemLeft" align="right" valign="top">static ? <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfb43776cfc7baedd112ee87031e871b">ParseObject</a> (this string objectIdString)</td></tr>
 <tr class="memdesc:abfb43776cfc7baedd112ee87031e871b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves the specified GameObject ID string to an object.<br  />
- This is the temporary ID created from NwObject.ToString. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs.  <br /></td></tr>
+ This is the temporary ID created from <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730" title="The ID of this object as a string. Can be used in StringExtensions.ParseObject while the object is al...">NwObject.ToString</a>. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs.  <br /></td></tr>
 <tr class="separator:abfb43776cfc7baedd112ee87031e871b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00d442b05b4e05832352e6691c1beda2" id="r_a00d442b05b4e05832352e6691c1beda2"><td class="memItemLeft" align="right" valign="top">static ? T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00d442b05b4e05832352e6691c1beda2">ParseObject&lt; T &gt;</a> (this string objectIdString)</td></tr>
 <tr class="separator:a00d442b05b4e05832352e6691c1beda2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,7 +170,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>TryParseIntBoo
 <tr class="separator:a40de2d22c1ed1057900fb746c8a15eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2df5023ab1ce7881db44612c2c667bed" id="r_a2df5023ab1ce7881db44612c2c667bed"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df5023ab1ce7881db44612c2c667bed">TryParseObject</a> (this string objectIdString, [NotNullWhen(true)] out <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? result)</td></tr>
 <tr class="memdesc:a2df5023ab1ce7881db44612c2c667bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to resolve the specified GameObject ID string to an object. A return value indicates whether the conversion succeeded or failed.<br  />
- This is the temporary ID created from NwObject.ToString. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs.  <br /></td></tr>
+ This is the temporary ID created from <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730" title="The ID of this object as a string. Can be used in StringExtensions.ParseObject while the object is al...">NwObject.ToString</a>. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs.  <br /></td></tr>
 <tr class="separator:a2df5023ab1ce7881db44612c2c667bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29cd1c3cdbcc18f34904e074f9d7049a" id="r_a29cd1c3cdbcc18f34904e074f9d7049a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29cd1c3cdbcc18f34904e074f9d7049a">TryParseObject&lt; T &gt;</a> (this string objectIdString, [NotNullWhen(true)] out T? result)</td></tr>
 <tr class="separator:a29cd1c3cdbcc18f34904e074f9d7049a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -314,14 +314,14 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>TryParseIntBoo
 </div><div class="memdoc">
 
 <p>Resolves the specified GameObject ID string to an object.<br  />
- This is the temporary ID created from NwObject.ToString. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs. </p>
+ This is the temporary ID created from <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730" title="The ID of this object as a string. Can be used in StringExtensions.ParseObject while the object is al...">NwObject.ToString</a>. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">objectIdString</td><td>The object ID string to parse.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> associated with the specified object ID.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas).">NwObject</a> associated with the specified object ID.</dd></dl>
 
 </div>
 </div>
@@ -422,7 +422,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>TryParseIntBoo
 </div><div class="memdoc">
 
 <p>Tries to resolve the specified GameObject ID string to an object. A return value indicates whether the conversion succeeded or failed.<br  />
- This is the temporary ID created from NwObject.ToString. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs. </p>
+ This is the temporary ID created from <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730" title="The ID of this object as a string. Can be used in StringExtensions.ParseObject while the object is al...">NwObject.ToString</a>. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">objectIdString</td><td>The object ID string to parse.</td></tr>

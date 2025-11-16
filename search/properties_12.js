@@ -2,7 +2,7 @@ var searchData=
 [
   ['table_0',['Table',['../classAnvil_1_1API_1_1ItemPropertyCostTablesEntry.html#a9c71e3bb6aff35e0ebd7e58b67956b0c',1,'Anvil.API.ItemPropertyCostTablesEntry.Table'],['../classAnvil_1_1API_1_1ItemPropertyParamTablesEntry.html#a496e1afdcb716b0bc671836f03e206b8',1,'Anvil.API.ItemPropertyParamTablesEntry.Table']]],
   ['tableresref_1',['TableResRef',['../classAnvil_1_1API_1_1ItemPropertyCostTablesEntry.html#a446abdf09c5137bcfe401a8042e3b9be',1,'Anvil.API.ItemPropertyCostTablesEntry.TableResRef'],['../classAnvil_1_1API_1_1ItemPropertyParamTablesEntry.html#a641d77262838af192aa4225c73e49860',1,'Anvil.API.ItemPropertyParamTablesEntry.TableResRef']]],
-  ['tag_2',['Tag',['../classAnvil_1_1API_1_1Effect.html#a53a01f8d59b8006260cd549e968510d4',1,'Anvil.API.Effect.Tag'],['../classAnvil_1_1API_1_1ItemProperty.html#a05c4625db521d959546988ad1d05d625',1,'Anvil.API.ItemProperty.Tag']]],
+  ['tag_2',['Tag',['../classAnvil_1_1API_1_1Effect.html#a53a01f8d59b8006260cd549e968510d4',1,'Anvil.API.Effect.Tag'],['../classAnvil_1_1API_1_1ItemProperty.html#a05c4625db521d959546988ad1d05d625',1,'Anvil.API.ItemProperty.Tag'],['../classAnvil_1_1API_1_1NwObject.html#a3a1d9ef0d20566a740b15d52f4cf2224',1,'Anvil.API.NwObject.Tag']]],
   ['tailtype_3',['TailType',['../classAnvil_1_1API_1_1NwCreature.html#a456573c1d660289c5ae58bb0a5c66ac2',1,'Anvil::API::NwCreature']]],
   ['talentcategory_4',['TalentCategory',['../classAnvil_1_1API_1_1NwFeat.html#a03ea035355818fd983484f944de475f8',1,'Anvil.API.NwFeat.TalentCategory'],['../classAnvil_1_1API_1_1NwSpell.html#ac28403a536afa25a09f1881c72cd5453',1,'Anvil.API.NwSpell.TalentCategory']]],
   ['talentmaxcr_5',['TalentMaxCR',['../classAnvil_1_1API_1_1NwFeat.html#aa432331aef677cb3da665a5c37270e7c',1,'Anvil::API::NwFeat']]],

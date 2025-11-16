@@ -11,5 +11,6 @@ var searchData=
   ['useditem_8',['UsedItem',['../classAnvil_1_1API_1_1Events_1_1OnUseSkill.html#a576c96978383ab3b8bdcf1a9c8e3027e',1,'Anvil::API::Events::OnUseSkill']]],
   ['userdirectory_9',['UserDirectory',['../classAnvil_1_1API_1_1NwServer.html#ae7aa74d53ee0190e3af13dfd76b548ff',1,'Anvil::API::NwServer']]],
   ['usertype_10',['UserType',['../classAnvil_1_1API_1_1NwSpell.html#a2869370069a798afeca099b98da400f3',1,'Anvil::API::NwSpell']]],
-  ['usesperday_11',['UsesPerDay',['../classAnvil_1_1API_1_1NwFeat.html#a8b2ff116dfdfc65d06772365949900df',1,'Anvil::API::NwFeat']]]
+  ['usesperday_11',['UsesPerDay',['../classAnvil_1_1API_1_1NwFeat.html#a8b2ff116dfdfc65d06772365949900df',1,'Anvil::API::NwFeat']]],
+  ['uuid_12',['UUID',['../classAnvil_1_1API_1_1NwObject.html#a3d63878b8436eb2d1fbee5ca0b42e37a',1,'Anvil::API::NwObject']]]
 ];

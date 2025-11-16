@@ -1,9 +1,11 @@
 <map id="Anvil.API.NwTrigger" name="Anvil.API.NwTrigger">
-<area shape="rect" id="Node000001" title="A trigger volume entity." alt="" coords="5,226,144,252"/>
-<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwTrappable.html" title="A trappable game object/entity." alt="" coords="25,153,124,178"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,194,77,226,72,226,72,194"/>
-<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="17,79,132,105"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,120,77,152,72,152,72,120"/>
-<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="35,5,114,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="77,46,77,79,72,79,72,46"/>
+<area shape="rect" id="Node000001" title="A trigger volume entity." alt="" coords="17,300,156,326"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwTrappable.html" title="A trappable game object/entity." alt="" coords="37,226,136,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,267,89,300,84,300,84,267"/>
+<area shape="rect" id="Node000003" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="29,153,144,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,194,89,226,84,226,84,194"/>
+<area shape="rect" id="Node000004" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,79,126,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="89,120,89,152,84,152,84,120"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,5,168,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="89,46,89,79,84,79,84,46"/>
 </map>

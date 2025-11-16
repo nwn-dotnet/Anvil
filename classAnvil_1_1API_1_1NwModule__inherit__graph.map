@@ -1,5 +1,7 @@
 <map id="Anvil.API.NwModule" name="Anvil.API.NwModule">
-<area shape="rect" id="Node000001" title="The root container object for all areas and module entities." alt="" coords="5,79,146,105"/>
-<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="36,5,115,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,46,78,79,73,79,73,46"/>
+<area shape="rect" id="Node000001" title="The root container object for all areas and module entities." alt="" coords="16,153,157,178"/>
+<area shape="rect" id="Node000002" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,79,126,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,120,89,152,84,152,84,120"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,168,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,46,89,79,84,79,84,46"/>
 </map>

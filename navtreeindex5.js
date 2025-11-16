@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"classAnvil_1_1API_1_1NwCreature.html#a1c8b9177184206715ab59f0e16a24028":[0,0,0,107,191],
 "classAnvil_1_1API_1_1NwCreature.html#a1cc57b4cc94a45b9890c400211f68683":[0,0,0,107,66],
 "classAnvil_1_1API_1_1NwCreature.html#a1d1bc5254eecbb400de35a147109c26e":[0,0,0,107,297],
 "classAnvil_1_1API_1_1NwCreature.html#a1ec45b175d523ee046bf9df89127b1fa":[0,0,0,107,270],
@@ -25,7 +26,6 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1NwCreature.html#a2fc5ebb269bf1dfbd628e1ae1b55a847":[0,0,0,107,232],
 "classAnvil_1_1API_1_1NwCreature.html#a32477d7a3c2e9bbca5e1fe0b81a6b990":[0,0,0,107,179],
 "classAnvil_1_1API_1_1NwCreature.html#a3369b8cd9f97f05a14b1c752bb627527":[0,0,0,107,78],
-"classAnvil_1_1API_1_1NwCreature.html#a33d2a04a430aebc29db22f80c457d960":[0,0,0,107,63],
 "classAnvil_1_1API_1_1NwCreature.html#a347b5225b43e22e0cd3165a512e90502":[0,0,0,107,103],
 "classAnvil_1_1API_1_1NwCreature.html#a34e880887bf89a2e6aa73933d03fbac3":[0,0,0,107,223],
 "classAnvil_1_1API_1_1NwCreature.html#a3643d2510a50cb4e32241002cebd5ac5":[0,0,0,107,216],
@@ -39,6 +39,7 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1NwCreature.html#a40f00a2665cd7198afa0bdae7ae8462a":[0,0,0,107,209],
 "classAnvil_1_1API_1_1NwCreature.html#a456573c1d660289c5ae58bb0a5c66ac2":[0,0,0,107,234],
 "classAnvil_1_1API_1_1NwCreature.html#a473a1c28b09bfec1b5903162abc7c67b":[0,0,0,107,289],
+"classAnvil_1_1API_1_1NwCreature.html#a4872dc67faf2ccee58fe65b184bfe187":[0,0,0,107,64],
 "classAnvil_1_1API_1_1NwCreature.html#a48b1aeadae5804e81551e51ba6778913":[0,0,0,107,153],
 "classAnvil_1_1API_1_1NwCreature.html#a49372da9435398a7ea31deed9960a18d":[0,0,0,107,121],
 "classAnvil_1_1API_1_1NwCreature.html#a49542283d5ea2d64e83f881fc7d34f90":[0,0,0,107,160],
@@ -92,7 +93,6 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1NwCreature.html#a6d9f26c2b50766de5508334b2077f9de":[0,0,0,107,14],
 "classAnvil_1_1API_1_1NwCreature.html#a6e4bd5d72462574dd2722017bcf5c703":[0,0,0,107,143],
 "classAnvil_1_1API_1_1NwCreature.html#a6eb860dbae3eb880d8ed1c8992ede3ef":[0,0,0,107,83],
-"classAnvil_1_1API_1_1NwCreature.html#a6f1bb4733764b087f5c78d9fe4e17ab2":[0,0,0,107,64],
 "classAnvil_1_1API_1_1NwCreature.html#a706f361a1aeba80a71fda1a5b77d439e":[0,0,0,107,167],
 "classAnvil_1_1API_1_1NwCreature.html#a7176b724809b948cee084ec0e7dc66a9":[0,0,0,107,249],
 "classAnvil_1_1API_1_1NwCreature.html#a72cb5c05e8486b83cc1d0d4891e09ad1":[0,0,0,107,127],

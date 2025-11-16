@@ -10,9 +10,10 @@ var searchData=
   ['optional_7',['Optional',['../classAnvil_1_1Services_1_1InjectAttribute.html#a0136dc3a79fd0e7e045dcb1f169872c1',1,'Anvil::Services::InjectAttribute']]],
   ['optionaldependencies_8',['OptionalDependencies',['../classAnvil_1_1Plugins_1_1PluginInfoAttribute.html#a14ae511d04d8186453478922514871e9',1,'Anvil::Plugins::PluginInfoAttribute']]],
   ['orientation_9',['Orientation',['../classAnvil_1_1API_1_1TileData.html#a79c856420c6034c251cede1fd49847a8',1,'Anvil.API.TileData.Orientation'],['../classAnvil_1_1API_1_1TileInfo.html#a72ad428612e4a5f9382fed9149cde36f',1,'Anvil.API.TileInfo.Orientation']]],
-  ['originalfirstname_10',['OriginalFirstName',['../classAnvil_1_1API_1_1NwCreature.html#a1b23bae3935417414426cd0b1aeead26',1,'Anvil::API::NwCreature']]],
-  ['originallastname_11',['OriginalLastName',['../classAnvil_1_1API_1_1NwCreature.html#a8a6fffe3e9dc9143814367b93f7b95be',1,'Anvil::API::NwCreature']]],
-  ['originalname_12',['OriginalName',['../classAnvil_1_1API_1_1NwCreature.html#a09ada771e2ae9792561ba7307e7faaf4',1,'Anvil::API::NwCreature']]],
-  ['originalunidentifieddescription_13',['OriginalUnidentifiedDescription',['../classAnvil_1_1API_1_1NwItem.html#afba6970cde26820acf6b125feae49d44',1,'Anvil::API::NwItem']]],
-  ['overwritedisplayname_14',['OverwriteDisplayName',['../classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a1dee48f9340cd1bd12bf3f66113eae41',1,'Anvil::Services::PlayerNameOverrideService']]]
+  ['originaldescription_10',['OriginalDescription',['../classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9',1,'Anvil::API::NwObject']]],
+  ['originalfirstname_11',['OriginalFirstName',['../classAnvil_1_1API_1_1NwCreature.html#a1b23bae3935417414426cd0b1aeead26',1,'Anvil::API::NwCreature']]],
+  ['originallastname_12',['OriginalLastName',['../classAnvil_1_1API_1_1NwCreature.html#a8a6fffe3e9dc9143814367b93f7b95be',1,'Anvil::API::NwCreature']]],
+  ['originalname_13',['OriginalName',['../classAnvil_1_1API_1_1NwCreature.html#a09ada771e2ae9792561ba7307e7faaf4',1,'Anvil::API::NwCreature']]],
+  ['originalunidentifieddescription_14',['OriginalUnidentifiedDescription',['../classAnvil_1_1API_1_1NwItem.html#afba6970cde26820acf6b125feae49d44',1,'Anvil::API::NwItem']]],
+  ['overwritedisplayname_15',['OverwriteDisplayName',['../classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a1dee48f9340cd1bd12bf3f66113eae41',1,'Anvil::Services::PlayerNameOverrideService']]]
 ];

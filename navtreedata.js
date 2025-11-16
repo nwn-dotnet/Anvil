@@ -36,13 +36,13 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1Events_1_1OnDebugRunScriptChunk.html#aa49af3fa4fd3bd44fe61c11bef09a353",
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html#a6a3a3d7d688ee3d02d51f9745b6772dc",
 "classAnvil_1_1API_1_1NuiOptions.html",
-"classAnvil_1_1API_1_1NwCreature.html#a1cc57b4cc94a45b9890c400211f68683",
+"classAnvil_1_1API_1_1NwCreature.html#a1c8b9177184206715ab59f0e16a24028",
 "classAnvil_1_1API_1_1NwCreature.html#aefc604a2733d184a7fd3b1a8b736b430",
 "classAnvil_1_1API_1_1NwGameTables.html#afe8e65110baab647b8710927338996b1",
-"classAnvil_1_1API_1_1NwPlaceable.html#a5e3bd3bc51a59c1db342ac7005eef2eb",
-"classAnvil_1_1API_1_1NwServer.html#adb9bf4470a72c9d79f248cab4c503c2f",
-"classAnvil_1_1API_1_1SurfaceMaterialTableEntry.html",
-"classAnvil_1_1Services_1_1WeaponService.html#acc10d8026ba1e0ef96eb8c33ae231c8f"
+"classAnvil_1_1API_1_1NwObject.html#a705c65fbafad561a5aeffa0032f15067",
+"classAnvil_1_1API_1_1NwRandom.html#af248f7338431d1a9ba5e08f910bda98b",
+"classAnvil_1_1API_1_1SQLResult.html#af2d91682608ba42aa11a02ac5e9cb5b0",
+"classAnvil_1_1Services_1_1ServiceBindingOptionsAttribute.html#afa830e7ac695ec8d6ece580e461b0a30"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

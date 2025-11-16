@@ -444,7 +444,7 @@ static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</t
 <tr class="separator:a199bf123512bb790b01eab25faf6a58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff3da8f78bcb3ece2ee1c2822d1cf7dc" id="r_aff3da8f78bcb3ece2ee1c2822d1cf7dc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff3da8f78bcb3ece2ee1c2822d1cf7dc">SummonCreature</a> (string creatureResRef, <a class="el" href="classAnvil_1_1API_1_1VisualEffectTableEntry.html">VisualEffectTableEntry</a> summonVfx, TimeSpan delay=default, int appearType=0, <a class="el" href="classAnvil_1_1API_1_1VisualEffectTableEntry.html">VisualEffectTableEntry</a>? unsummonVfx=default)</td></tr>
 <tr class="memdesc:aff3da8f78bcb3ece2ee1c2822d1cf7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an effect to summon a creature from a resref.<br  />
- THIS IS OBJECT CONTEXT SENSITIVE! Use NwObject.WaitForObjectContext to correctly assign the right owner of the master.  <br /></td></tr>
+ THIS IS OBJECT CONTEXT SENSITIVE! Use <a class="el" href="classAnvil_1_1API_1_1NwObject.html#afbb94a19d2c70f6fcd0bd9401b5c5505" title="Notifies then awaits for this object to become the current active object for the purpose of implicitl...">NwObject.WaitForObjectContext</a> to correctly assign the right owner of the master.  <br /></td></tr>
 <tr class="separator:aff3da8f78bcb3ece2ee1c2822d1cf7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eccf6102bc6c17c3778c4e1102afd49" id="r_a4eccf6102bc6c17c3778c4e1102afd49"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eccf6102bc6c17c3778c4e1102afd49">Swarm</a> (bool loop, string creatureTemplate1, string creatureTemplate2=&quot;&quot;, string creatureTemplate3=&quot;&quot;, string creatureTemplate4=&quot;&quot;)</td></tr>
 <tr class="memdesc:a4eccf6102bc6c17c3778c4e1102afd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a swarm effect. This is exactly the same as SummonCreature(string,Anvil.API.VisualEffectTableEntry,System.TimeSpan,int,Anvil.API.VisualEffectTableEntry?), except, after one dies, another takes its place.  <br /></td></tr>
@@ -629,7 +629,7 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 <div class="line">      NwModule.Instance.OnClientEnter += RatSummonExample;</div>
 <div class="line"> </div>
 <div class="line">      <span class="comment">// When entering a specific area, remove all blindness effects:</span></div>
-<div class="line">      <a class="code hl_class" href="classAnvil_1_1API_1_1NwArea.html" title="An environment/game level.">NwArea</a>? area = <a class="code hl_class" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>.<a class="code hl_function" href="classAnvil_1_1API_1_1NwObject.html#ac4a44392ac049e1c277a79913402d4b2" title="Locates all objects of that have the specified tag.">FindObjectsWithTag</a>&lt;<a class="code hl_class" href="classAnvil_1_1API_1_1NwArea.html" title="An environment/game level.">NwArea</a>&gt;(<span class="stringliteral">&quot;clear_blind&quot;</span>).FirstOrDefault();</div>
+<div class="line">      <a class="code hl_class" href="classAnvil_1_1API_1_1NwArea.html" title="An environment/game level.">NwArea</a>? area = <a class="code hl_class" href="classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas).">NwObject</a>.<a class="code hl_function" href="classAnvil_1_1API_1_1NwObject.html#ac4a44392ac049e1c277a79913402d4b2" title="Locates all objects of that have the specified tag.">FindObjectsWithTag</a>&lt;<a class="code hl_class" href="classAnvil_1_1API_1_1NwArea.html" title="An environment/game level.">NwArea</a>&gt;(<span class="stringliteral">&quot;clear_blind&quot;</span>).FirstOrDefault();</div>
 <div class="line">      <span class="keywordflow">if</span> (area != <span class="keyword">null</span>)</div>
 <div class="line">      {</div>
 <div class="line">        area.OnEnter += RemoveBlindnessExample;</div>
@@ -2866,7 +2866,7 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 </div><div class="memdoc">
 
 <p>Creates an effect to summon a creature from a resref.<br  />
- THIS IS OBJECT CONTEXT SENSITIVE! Use NwObject.WaitForObjectContext to correctly assign the right owner of the master. </p>
+ THIS IS OBJECT CONTEXT SENSITIVE! Use <a class="el" href="classAnvil_1_1API_1_1NwObject.html#afbb94a19d2c70f6fcd0bd9401b5c5505" title="Notifies then awaits for this object to become the current active object for the purpose of implicitl...">NwObject.WaitForObjectContext</a> to correctly assign the right owner of the master. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">creatureResRef</td><td>The template/ResRef of the creature to summon.</td></tr>

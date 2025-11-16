@@ -571,7 +571,7 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> TemporaryHasteExample(<a class="code hl_class" href="classAnvil_1_1API_1_1Events_1_1OnItemEquip.html">OnItemEquip</a> eventData)</div>
 <div class="line">    {</div>
 <div class="line">      <span class="comment">// Check if the tag matches the item that was equipped.</span></div>
-<div class="line">      <span class="keywordflow">if</span> (eventData.Item.Tag == <span class="stringliteral">&quot;temp_haste&quot;</span>)</div>
+<div class="line">      <span class="keywordflow">if</span> (eventData.Item.<a class="code hl_property" href="classAnvil_1_1API_1_1NwObject.html#a3a1d9ef0d20566a740b15d52f4cf2224" title="Gets or sets the tag for this object.">Tag</a> == <span class="stringliteral">&quot;temp_haste&quot;</span>)</div>
 <div class="line">      {</div>
 <div class="line">        <span class="comment">// Apply the haste item property.</span></div>
 <div class="line">        eventData.Item.<a class="code hl_function" href="classAnvil_1_1API_1_1NwItem.html#affe2e564e3bf49a3cad63104bd685dd2" title="Add an item property. Optional parameters allow for preventing unwanted stacking by removing the exis...">AddItemProperty</a>(hasteProperty, EffectDuration.Temporary, <a class="code hl_class" href="classAnvil_1_1API_1_1NwTimeSpan.html" title="Helpers to convert game time units to a TimeSpan.">NwTimeSpan</a>.<a class="code hl_function" href="classAnvil_1_1API_1_1NwTimeSpan.html#a493873133c85590daa450814b6a4e382" title="Returns a TimeSpan equal to the specified amount of rounds.">FromRounds</a>(5));</div>
