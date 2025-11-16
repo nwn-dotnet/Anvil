@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
@@ -19,10 +20,11 @@ namespace Anvil
   /// </summary>
   public sealed partial class AnvilCore
   {
+    private const int ExpectedOpenSslVersion = 269488463;
+
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private static AnvilCore instance = null!;
-
     private readonly IServiceManager serviceManager;
 
     private AnvilCore(IServiceManager serviceManager)
@@ -79,20 +81,6 @@ namespace Anvil
       }, TimeSpan.FromSeconds(0.1));
     }
 
-    private void CheckServerVersion()
-    {
-      AssemblyName assemblyName = Assemblies.Anvil.GetName();
-      Version serverVersion = NwServer.Instance.ServerVersion;
-
-      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
-      {
-        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
-          assemblyName.Name,
-          assemblyName.Version,
-          serverVersion);
-      }
-    }
-
     private void Init()
     {
       runtimeInfo = new RuntimeInfo
@@ -118,6 +106,40 @@ namespace Anvil
 
       Log.Info($"Loading {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion}, NWNX.NET: {runtimeInfo.NWNXDotNetVersion})");
       CheckServerVersion();
+      CheckOpenSslVersion();
+    }
+
+    private void CheckServerVersion()
+    {
+      AssemblyName assemblyName = Assemblies.Anvil.GetName();
+      Version serverVersion = NwServer.Instance.ServerVersion;
+
+      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
+      {
+        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
+          assemblyName.Name,
+          assemblyName.Version,
+          serverVersion);
+      }
+    }
+
+    private void CheckOpenSslVersion()
+    {
+      if (!OperatingSystem.IsLinux())
+      {
+        return;
+      }
+
+      Log.Info("Checking OpenSSL version. If the server crashes, see this page for troubleshooting: https://github.com/nwn-dotnet/Anvil/wiki/Troubleshooting-OpenSSL-Issues");
+      LogManager.Flush();
+
+      long version = SafeEvpPKeyHandle.OpenSslVersion;
+      if (version != ExpectedOpenSslVersion)
+      {
+        Log.Warn($"DotNET is currently using OpenSSL version '{version}' which differs from the bundled game version '{version}'.\n" +
+          $"You may experience crashes/undefined behaviour.\n" +
+          $"See this page for troubleshooting: https://github.com/nwn-dotnet/Anvil/wiki/Troubleshooting-OpenSSL-Issues");
+      }
     }
 
     private void LoadAndStart()
