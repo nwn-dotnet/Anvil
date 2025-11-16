@@ -20,6 +20,7 @@ namespace Anvil
   /// </summary>
   public sealed partial class AnvilCore
   {
+    private const string ExpectedOpenSslEnvironmentValue = "1.1";
     private const int ExpectedOpenSslVersion = 269488463;
 
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -131,6 +132,14 @@ namespace Anvil
       }
 
       Log.Info("Checking OpenSSL version. If the server crashes, see this page for troubleshooting: https://github.com/nwn-dotnet/Anvil/wiki/Troubleshooting-OpenSSL-Issues");
+
+      if (EnvironmentConfig.OpenSslVersionOverride != ExpectedOpenSslEnvironmentValue)
+      {
+        const string message = "Environment variable 'DOTNET_OPENSSL_VERSION_OVERRIDE' is not set. Please see the OpenSSL troubleshooting page for more info.";
+        Log.Fatal(message);
+        throw new Exception(message);
+      }
+
       LogManager.Flush();
 
       long version = SafeEvpPKeyHandle.OpenSslVersion;
