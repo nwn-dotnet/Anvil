@@ -31,9 +31,9 @@ namespace Anvil.API
       StrRef = entry.GetStrRef("StrRef");
     }
 
-    public static implicit operator EffectIconTableEntry?(EffectIcon effectIcon)
+    public static implicit operator EffectIconTableEntry(EffectIcon effectIcon)
     {
-      return NwGameTables.EffectIconTable.ElementAtOrDefault((int)effectIcon);
+      return NwGameTables.EffectIconTable.ElementAt((int)effectIcon);
     }
   }
 }

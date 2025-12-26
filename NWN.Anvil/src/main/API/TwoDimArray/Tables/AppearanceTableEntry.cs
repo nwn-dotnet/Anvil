@@ -118,9 +118,9 @@ namespace Anvil.API
       Targetable = entry.GetBool("TARGETABLE");
     }
 
-    public static implicit operator AppearanceTableEntry?(AppearanceType appearanceType)
+    public static implicit operator AppearanceTableEntry(AppearanceType appearanceType)
     {
-      return NwGameTables.AppearanceTable.ElementAtOrDefault((int)appearanceType);
+      return NwGameTables.AppearanceTable.ElementAt((int)appearanceType);
     }
   }
 }

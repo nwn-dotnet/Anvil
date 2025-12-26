@@ -105,10 +105,11 @@ namespace Anvil.API
     /// Resolves a <see cref="NwFaction"/> from a <see cref="StandardFaction"/>.
     /// </summary>
     /// <param name="factionType">The faction type to resolve.</param>
-    /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction type is invalid.</returns>
-    public static NwFaction? FromStandardFaction(StandardFaction factionType)
+    /// <returns>The associated <see cref="NwFaction"/> instance.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if factionType is not defined in the module faction list.</exception>
+    public static NwFaction FromStandardFaction(StandardFaction factionType)
     {
-      return FromFactionId((int)factionType);
+      return FromFactionId((int)factionType)!;
     }
 
     public static bool operator ==(NwFaction? left, NwFaction? right)
@@ -116,9 +117,9 @@ namespace Anvil.API
       return Equals(left, right);
     }
 
-    public static implicit operator NwFaction?(StandardFaction faction)
+    public static implicit operator NwFaction(StandardFaction faction)
     {
-      return FromFactionId((int)faction);
+      return FromFactionId((int)faction)!;
     }
 
     public static bool operator !=(NwFaction left, NwFaction right)

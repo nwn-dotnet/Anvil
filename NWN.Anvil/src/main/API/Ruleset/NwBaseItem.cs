@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NWN.Native.API;
@@ -371,15 +372,16 @@ namespace Anvil.API
     /// Resolves a <see cref="NwBaseItem"/> from a <see cref="BaseItemType"/>.
     /// </summary>
     /// <param name="itemType">The item type to resolve.</param>
-    /// <returns>The associated <see cref="NwBaseItem"/> instance. Null if the base item type is invalid.</returns>
-    public static NwBaseItem? FromItemType(BaseItemType itemType)
+    /// <returns>The associated <see cref="NwBaseItem"/> instance.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if itemType is not a value defined in baseitems.2da.</exception>
+    public static NwBaseItem FromItemType(BaseItemType itemType)
     {
-      return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
+      return NwRuleset.BaseItems.ElementAt((int)itemType);
     }
 
-    public static implicit operator NwBaseItem?(BaseItemType itemType)
+    public static implicit operator NwBaseItem(BaseItemType itemType)
     {
-      return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
+      return NwRuleset.BaseItems.ElementAt((int)itemType);
     }
 
     /// <summary>

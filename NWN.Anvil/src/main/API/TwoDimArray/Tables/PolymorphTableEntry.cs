@@ -76,9 +76,9 @@ namespace Anvil.API
       MergeA = entry.GetBool("MergeA");
     }
 
-    public static implicit operator PolymorphTableEntry?(PolymorphType polymorphType)
+    public static implicit operator PolymorphTableEntry(PolymorphType polymorphType)
     {
-      return NwGameTables.PolymorphTable.ElementAtOrDefault((int)polymorphType);
+      return NwGameTables.PolymorphTable.ElementAt((int)polymorphType);
     }
   }
 }

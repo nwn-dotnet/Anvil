@@ -66,9 +66,9 @@ namespace Anvil.API
       Description = entry.GetStrRef("Description");
     }
 
-    public static implicit operator ItemPropertyTableEntry?(ItemPropertyType propertyType)
+    public static implicit operator ItemPropertyTableEntry(ItemPropertyType propertyType)
     {
-      return NwGameTables.ItemPropertyTable.ElementAtOrDefault((int)propertyType);
+      return NwGameTables.ItemPropertyTable.ElementAt((int)propertyType);
     }
   }
 }
