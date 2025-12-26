@@ -1,0 +1,9 @@
+﻿- name: Visual Studio
+  href: visual-studio.md
+  expanded: true
+- name: Visual Studio Code
+  href: visual-studio-code.md
+  expanded: true
+- name: Rider
+  href: rider.md
+  expanded: true

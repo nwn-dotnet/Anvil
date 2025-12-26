@@ -1,0 +1,14 @@
+- name: Home
+  href: ../index.md
+- name: Installing Anvil
+  href: install/toc.yml
+  expanded: true
+- name: Troubleshooting
+  href: troubleshooting/toc.yml
+  expanded: true
+- name: Using Anvil
+  href: usage/toc.yml
+  expanded: true
+- name: Plugin Development
+  href: development/toc.yml
+  expanded: true

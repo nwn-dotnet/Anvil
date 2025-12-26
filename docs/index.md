@@ -4,12 +4,12 @@ Builders can add functionality like opening a store from a dialogue with a few l
 
 - Latest [Release](https://github.com/nwn-dotnet/Anvil/releases/latest)
 - [Changelog](https://github.com/nwn-dotnet/Anvil/blob/main/CHANGELOG.md)
-- View the Anvil [Documentation](docs/install/install.md)
+- View the Anvil [Documentation](docs/install/docker.md)
 - View the Anvil [API Reference](api/Anvil.yml)
 - Join the community: [![Discord](https://img.shields.io/discord/382306806866771978?color=7289DA&label=Discord&logo=discord&logoColor=7289DA)](https://discord.gg/CukSHZq)
 
 ## Getting Started
 
-New to Anvil and want to know how to get a server running? Have a look through our install guides: [Installing Anvil](docs/install/install.md)
+New to Anvil and want to know how to get a server running? Have a look through our install guides: [Installing Anvil](docs/install/docker.md)
 
 Want to write some scripts in C# or develop a new plugin? Have a look through our plugin development guides: [Plugin Development](docs/development/setup.md)
