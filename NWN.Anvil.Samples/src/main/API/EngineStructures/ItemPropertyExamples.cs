@@ -6,7 +6,7 @@ using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
 
-namespace NWN.Anvil.Samples.EngineStructures
+namespace NWN.Anvil.Samples.API.EngineStructures
 {
   [ServiceBinding(typeof(ItemPropertyExamples))]
   public class ItemPropertyExamples

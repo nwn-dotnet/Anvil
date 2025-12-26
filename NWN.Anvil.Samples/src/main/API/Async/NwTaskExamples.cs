@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Anvil.API;
 using Anvil.Services;
 
-namespace NWN.Anvil.Samples.Async
+namespace NWN.Anvil.Samples.API.Async
 {
   [ServiceBinding(typeof(NwTaskExamples))]
   public class NwTaskExamples
