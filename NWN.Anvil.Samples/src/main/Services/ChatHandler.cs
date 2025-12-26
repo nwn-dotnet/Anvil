@@ -8,7 +8,7 @@ using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   // Our base chat command interface...
   public interface IChatCommand

@@ -5,7 +5,7 @@
 using Anvil.Services;
 using NLog;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   // The "ServiceBinding" attribute indicates this class will be created on start, and available to other classes as "ServiceA".
   [ServiceBinding(typeof(ServiceA))]

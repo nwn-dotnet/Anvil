@@ -6,7 +6,7 @@ using Anvil.API;
 using Anvil.Services;
 using NLog;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBinding(typeof(PerformanceReportService))]

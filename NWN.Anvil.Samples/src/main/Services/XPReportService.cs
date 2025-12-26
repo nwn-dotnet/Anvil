@@ -7,7 +7,7 @@ using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   // This is the deserialization class for this specific type of 2da.
   // We can implement our own helper functions here that operate on the 2da data, and cache it.

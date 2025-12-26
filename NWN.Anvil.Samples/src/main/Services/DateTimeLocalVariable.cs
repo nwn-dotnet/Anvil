@@ -7,7 +7,7 @@ using System;
 using Anvil.API;
 using NWN.Core;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   public class DateTimeLocalVariable : LocalVariable<DateTime>
   {

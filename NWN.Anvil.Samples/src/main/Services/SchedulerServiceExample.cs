@@ -5,7 +5,7 @@
 using System;
 using Anvil.Services;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   [ServiceBinding(typeof(ScheduledService))]
   public class ScheduledService

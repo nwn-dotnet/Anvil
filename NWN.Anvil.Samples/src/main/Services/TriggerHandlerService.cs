@@ -8,7 +8,7 @@ using Anvil.API.Events;
 using Anvil.Services;
 using NLog;
 
-namespace NWN.Anvil.Samples
+namespace NWN.Anvil.Samples.Services
 {
   [ServiceBinding(typeof(TriggerHandlerService))]
   public class TriggerHandlerService
