@@ -357,3 +357,4 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 docs/html
+docs/api
