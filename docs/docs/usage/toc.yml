@@ -1,0 +1,9 @@
+﻿- name: Configuration Options
+  href: configuration.md
+  expanded: true
+- name: Installing Plugins - Local
+  href: install-plugins-local.md
+  expanded: true
+- name: Installing Plugins - Paket
+  href: install-plugins-paket.md
+  expanded: true

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../",
+          "files": [
+            "NWN.Anvil/NWN.Anvil.csproj"
+          ]
+        }
+      ],
+      "output": "api",
+      "memberLayout": "separatePages"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "../*.md",
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "html/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      },
+      {
+        "src": "../",
+        "files": [
+          "NWN.Anvil.Samples/**/*.cs"
+        ]
+      }
+    ],
+    "output": "html",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "NWN.Anvil",
+      "_appTitle": "NWN.Anvil",
+      "_enableSearch": true,
+      "pdf": false
+    },
+    "sitemap": {
+      "baseUrl": "https://nwn-dotnet.github.io/Anvil",
+      "priority": 0.5,
+      "changefreq": "monthly"
+    }
+  }
+}

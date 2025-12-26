@@ -6,12 +6,10 @@ using Action = System.Action;
 
 namespace Anvil.Services
 {
-  //! ## Examples
-  //! @include SchedulerServiceExample.cs
-
   /// <summary>
   /// A service for scheduling tasks to run with a timed delay and/or repeat with a regular interval.
   /// </summary>
+  /// <example>[!code-csharp[](~/../NWN.Anvil.Samples/src/main/Services/SchedulerServiceExample.cs)]</example>
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBinding(typeof(SchedulerService))]
   public sealed class SchedulerService : IUpdateable, IDisposable

@@ -1,0 +1,24 @@
+﻿- name: Setting up your Development Environment
+  href: setup.md
+  expanded: true
+- name: Introduction to C#
+  href: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tutorials/
+  expanded: true
+- name: Creating a new plugin
+  href: new-plugin/toc.yml
+  expanded: true
+- name: Plugin Basics
+  href: plugin-basics.md
+  expanded: true
+- name: Subscribing to Game Events
+  href: events.md
+  expanded: true
+- name: Bundling Resources with your Plugin
+  href: plugin-resources.md
+  expanded: true
+- name: Attaching Debuggers
+  href: debugging.md
+  expanded: true
+- name: Function Hooking
+  href: function-hooks.md
+  expanded: true

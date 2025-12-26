@@ -1,23 +1,48 @@
 name: Docs
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - development
+
+permissions:
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Doxygen Action
-        uses: mattnotmitt/doxygen-action@v1
         with:
-          doxyfile-path: "./docs/Doxyfile"
-          working-directory: "."
+          submodules: recursive
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html
-          commit_message: "Automated Commit: Update docs"
+          global-json-file: global.json
+
+      - name: Install DocFX
+        run: dotnet tool update -g docfx
+
+      - name: Build Docs
+        run: docfx docfx.json
+        working-directory: docs
+
+      - name: Upload Docs
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/html'
+
+      - name: Deploy Docs to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

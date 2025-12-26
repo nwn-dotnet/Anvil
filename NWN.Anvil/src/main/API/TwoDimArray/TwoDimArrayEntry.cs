@@ -3,12 +3,10 @@ using System.Numerics;
 
 namespace Anvil.API
 {
-  //! ## Examples
-  //! @include XPReportService.cs
-
   /// <summary>
   /// 2da row data.
   /// </summary>
+  /// <example>[!code-csharp[](~/../NWN.Anvil.Samples/src/main/Services/XPReportService.cs)]</example>
   public sealed class TwoDimArrayEntry
   {
     private readonly TwoDimArray array;

@@ -49,8 +49,11 @@ namespace Anvil.API
 
     /// <summary>
     /// Reloads all game rules (2da stuff, etc).<br/>
-    /// @warning DANGER, DRAGONS. Bad things may or may not happen. Only use this if you know what you are doing.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; DANGER, DRAGONS. Bad things may or may not happen. Only use this if you know what you are doing.
+    /// </remarks>
     public static void ReloadRules()
     {
       NWNXLib.Rules().ReloadAll();

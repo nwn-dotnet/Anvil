@@ -139,8 +139,11 @@ namespace Anvil.API
 
     /// <summary>
     /// Bans the provided player/community name.<br/>
-    /// @warning Players can change their player name at will.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; Players can change their player name at will.
+    /// </remarks>
     /// <param name="playerName">The player name to ban.</param>
     public void AddBannedPlayerName(string playerName)
     {
