@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWN.Anvil.Tests", "NWN.Anvi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWN.Anvil.TestRunner", "NWN.Anvil.TestRunner\NWN.Anvil.TestRunner.csproj", "{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWN.Anvil.Samples", "docs\NWN.Anvil.Samples.csproj", "{9CB3780F-8EEE-4911-B7A3-1FD9C03F9737}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWN.Anvil.Samples", "NWN.Anvil.Samples\NWN.Anvil.Samples.csproj", "{9CB3780F-8EEE-4911-B7A3-1FD9C03F9737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
