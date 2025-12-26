@@ -217,8 +217,8 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(creature);
 
-      NwFeat? feat = NwFeat.FromFeatType(Feat.BarbarianRage);
-      Assert.That(creature.GetFeatRemainingUses(feat!), Is.EqualTo(1));
+      NwFeat feat = NwFeat.FromFeatType(Feat.BarbarianRage);
+      Assert.That(creature.GetFeatRemainingUses(feat), Is.EqualTo(1));
     }
 
     [Test(Description = "Querying total feat uses returns a valid value.")]
@@ -232,10 +232,10 @@ namespace Anvil.Tests.API
 
       createdTestObjects.Add(creature);
 
-      NwFeat? feat = NwFeat.FromFeatType(Feat.BarbarianRage);
+      NwFeat feat = NwFeat.FromFeatType(Feat.BarbarianRage);
 
       Assert.That(feat, Is.Not.Null, "Could not get feat.");
-      Assert.That(creature.GetFeatTotalUses(feat!), Is.EqualTo(1));
+      Assert.That(creature.GetFeatTotalUses(feat), Is.EqualTo(1));
     }
 
     [Test(Description = "Setting remaining feat uses correctly updates the creature.")]
@@ -251,14 +251,14 @@ namespace Anvil.Tests.API
       Assert.That(creature!.IsValid, Is.True, "Creature was invalid after creation.");
 
       createdTestObjects.Add(creature);
-      NwFeat? feat = NwFeat.FromFeatType(Feat.BarbarianRage);
+      NwFeat feat = NwFeat.FromFeatType(Feat.BarbarianRage);
 
       Assert.That(feat, Is.Not.Null, "Could not get feat.");
 
-      creature.SetFeatRemainingUses(feat!, uses);
+      creature.SetFeatRemainingUses(feat, uses);
 
-      Assert.That(creature.GetFeatRemainingUses(feat!), Is.EqualTo(Math.Min(uses, creature.GetFeatTotalUses(feat!))), "Remaining feat uses was not updated after being set.");
-      Assert.That(creature.HasFeatPrepared(feat!), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
+      Assert.That(creature.GetFeatRemainingUses(feat), Is.EqualTo(Math.Min(uses, creature.GetFeatTotalUses(feat))), "Remaining feat uses was not updated after being set.");
+      Assert.That(creature.HasFeatPrepared(feat), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
     }
 
     [TestCase(ClassType.Barbarian, 1)]
@@ -290,7 +290,7 @@ namespace Anvil.Tests.API
     {
       Location startLocation = NwModule.Instance.StartingLocation;
       NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit002, startLocation);
-      NwClass? nwClass = NwClass.FromClassType(classType);
+      NwClass nwClass = NwClass.FromClassType(classType);
 
       Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
       Assert.That(nwClass, Is.Not.Null, "Class was null after creation.");
@@ -305,7 +305,7 @@ namespace Anvil.Tests.API
         classLevels = classInfoBefore.Level;
       }
 
-      creature.LevelUp(nwClass!, levels);
+      creature.LevelUp(nwClass, levels);
 
       CreatureClassInfo? classInfo = creature.GetClassInfo(nwClass);
       Assert.That(classInfo, Is.Not.Null, "Creature did not have class after level up.");
