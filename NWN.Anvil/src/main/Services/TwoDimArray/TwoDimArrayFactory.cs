@@ -6,12 +6,10 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  //! ## Examples
-  //! @include XPReportService.cs
-
   /// <summary>
   /// Creates a deserialized 2da structure using a <see cref="ITwoDimArray"/> converter.
   /// </summary>
+  /// <example>[!code-csharp[](~/../NWN.Anvil.Samples/src/main/Services/XPReportService.cs)]</example>
   [ServiceBinding(typeof(TwoDimArrayFactory))]
   [Obsolete("Create instances of Anvil.API.TwoDimArray instead.")]
   public sealed class TwoDimArrayFactory(InjectionService injectionService)

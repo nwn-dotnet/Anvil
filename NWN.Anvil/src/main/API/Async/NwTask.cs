@@ -9,12 +9,12 @@ using NLog;
 
 namespace Anvil.API
 {
-  //! ## Examples
-  //! @include NwTaskExamples.cs
-
   /// <summary>
   /// Asynchronous tasks and helpers for running NWN APIs in an async context.
   /// </summary>
+  /// <example>
+  ///
+  /// [!code-csharp[](~/../NWN.Anvil.Samples/src/main/API/Async/NwTaskExamples.cs)]</example>
   public static class NwTask
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

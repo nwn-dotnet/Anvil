@@ -429,7 +429,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets the color for the specified color channel.
     /// </summary>
-    /// @note A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// <remarks>
+    /// A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// </remarks>
     /// <param name="colorChannel">The color channel that you want to get the color value of.</param>
     /// <returns>The current color index value of the specified channel.</returns>
     public int GetColor(ColorChannel colorChannel)
@@ -544,8 +546,11 @@ namespace Anvil.API
 
     /// <summary>
     /// Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br/>
-    /// @note This is an expensive function and may degrade performance if used frequently.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This is an expensive function and may degrade performance if used frequently.
+    /// </remarks>
     /// <param name="target">The target object to perform the line of sight check against.</param>
     /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
     public bool HasLineOfSight(NwGameObject target)
@@ -700,7 +705,9 @@ namespace Anvil.API
     /// <summary>
     /// Sets the color for the specified color channel.
     /// </summary>
-    /// @note A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// <remarks>
+    /// A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// </remarks>
     /// <param name="colorChannel">The color channel to modify.</param>
     /// <param name="newColor">The color channel's new color index.</param>
     public void SetColor(ColorChannel colorChannel, int newColor)

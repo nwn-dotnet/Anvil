@@ -5,12 +5,10 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  //! ## Examples
-  //! @include ItemPropertyExamples.cs
-
   /// <summary>
   /// Represents an item property effect engine structure.
   /// </summary>
+  /// <example>[!code-csharp[](~/../NWN.Anvil.Samples/src/main/API/EngineStructures/ItemPropertyExamples.cs)]</example>
   public sealed partial class ItemProperty : EffectBase
   {
     internal ItemProperty(CGameEffect effect, bool memoryOwn) : base(effect, memoryOwn) {}

@@ -1,11 +1,9 @@
 namespace Anvil.Services
 {
-  //! ## Examples
-  //! @include PerformanceReportService.cs
-
   /// <summary>
   /// Implement this interface in your service to get a callback each server loop.
   /// </summary>
+  /// <example>[!code-csharp[](~/../NWN.Anvil.Samples/src/main/Services/PerformanceReportService.cs)]</example>
   public interface IUpdateable
   {
     /// <summary>

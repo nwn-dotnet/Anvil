@@ -15,7 +15,7 @@ using NWNX.NET;
 namespace Anvil
 {
   /// <summary>
-  /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
+  /// Handles bootstrap and interop between NWN, NWN.Core and the Anvil API. The entry point of the implementing module should point to this class.<br/>
   /// Until <see cref="Bootstrap"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public sealed partial class AnvilCore

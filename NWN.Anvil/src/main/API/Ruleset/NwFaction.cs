@@ -40,32 +40,47 @@ namespace Anvil.API
 
     /// <summary>
     /// Gets the average Good/Evil alignment value of members in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     public int AverageGoodEvilAlignment => faction.GetAverageGoodEvilAlignment();
 
     /// <summary>
     /// Gets the average Law/Chaos alignment value of members in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     public int AverageLawChaosAlignment => faction.GetAverageLawChaosAlignment();
 
     /// <summary>
     /// Gets the average level of members in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     public int AverageLevel => faction.GetAverageLevel();
 
     /// <summary>
     /// Gets the average amount of XP of members in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     public int AverageXP => faction.GetAverageXP();
 
     /// <summary>
     /// Gets the total amount of gold held by all members of this party.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     public int Gold => faction.GetGold();
 
     /// <summary>
@@ -80,8 +95,11 @@ namespace Anvil.API
 
     /// <summary>
     /// Gets the most common type of class among the members of this faction/party.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     public NwClass MostFrequentClass => NwClass.FromClassId(faction.GetMostFrequentClass())!;
 
     /// <summary>
@@ -196,8 +214,11 @@ namespace Anvil.API
 
     /// <summary>
     /// Gets all creatures that are members of this faction.<br/>
-    /// @note This can be a very costly operation when used on large NPC factions.
     /// </summary>
+    /// <remarks>
+    /// &gt; [!WARNING]
+    /// &gt; This can be a costly operation when used on large NPC factions.
+    /// </remarks>
     /// <returns>All creatures in this faction.</returns>
     public List<NwCreature> GetMembers()
     {

@@ -194,10 +194,11 @@ namespace Anvil.API
     /// <summary>
     /// Sets the number of base attacks for this creature.<br/>
     /// The range of values accepted are from 1 to 6.<br/>
-    /// @note Each successive attack per round suffers a -5 penalty.<br/>
+    /// </summary>
+    /// <remarks> Each successive attack per round suffers a -5 penalty.<br/>
     /// If the character has levels in Monk and fights with Unarmed Strike, each successive attack per round suffers a -3 penalty.<br/>
     /// These additional attacks are not shown on the player's character sheet.
-    /// </summary>
+    /// </remarks>
     public int BaseAttackCount
     {
       get => Creature.m_pStats.GetAttacksPerRound();
