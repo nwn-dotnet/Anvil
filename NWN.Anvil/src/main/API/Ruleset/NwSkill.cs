@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using NWN.Native.API;
 
@@ -80,15 +81,16 @@ namespace Anvil.API
     /// Resolves a <see cref="NwSkill"/> from a <see cref="Anvil.API.Skill"/>.
     /// </summary>
     /// <param name="skillType">The skill type to resolve.</param>
-    /// <returns>The associated <see cref="NwSkill"/> instance. Null if the skill type is invalid.</returns>
-    public static NwSkill? FromSkillType(Skill skillType)
+    /// <returns>The associated <see cref="NwSkill"/> instance.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if skillType is not a value defined in skills.2da.</exception>
+    public static NwSkill FromSkillType(Skill skillType)
     {
-      return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
+      return NwRuleset.Skills.ElementAt((int)skillType);
     }
 
-    public static implicit operator NwSkill?(Skill skillType)
+    public static implicit operator NwSkill(Skill skillType)
     {
-      return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
+      return NwRuleset.Skills.ElementAt((int)skillType);
     }
   }
 }

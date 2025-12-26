@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -336,15 +337,16 @@ namespace Anvil.API
     /// Resolves a <see cref="NwClass"/> from a <see cref="Anvil.API.ClassType"/>.
     /// </summary>
     /// <param name="classType">The class type to resolve.</param>
-    /// <returns>The associated <see cref="NwClass"/> instance. Null if the class type is invalid.</returns>
-    public static NwClass? FromClassType(ClassType classType)
+    /// <returns>The associated <see cref="NwClass"/> instance.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if classType is not a value defined in classes.2da.</exception>
+    public static NwClass FromClassType(ClassType classType)
     {
-      return NwRuleset.Classes.ElementAtOrDefault((int)classType);
+      return NwRuleset.Classes.ElementAt((int)classType);
     }
 
-    public static implicit operator NwClass?(ClassType classType)
+    public static implicit operator NwClass(ClassType classType)
     {
-      return NwRuleset.Classes.ElementAtOrDefault((int)classType);
+      return NwRuleset.Classes.ElementAt((int)classType);
     }
 
     /// <summary>

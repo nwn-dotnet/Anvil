@@ -46,9 +46,9 @@ namespace Anvil.API
       }
     }
 
-    public static implicit operator ProgrammedEffectTableEntry?(ProgFxType fxType)
+    public static implicit operator ProgrammedEffectTableEntry(ProgFxType fxType)
     {
-      return NwGameTables.ProgrammedEffectTable.ElementAtOrDefault((int)fxType);
+      return NwGameTables.ProgrammedEffectTable.ElementAt((int)fxType);
     }
   }
 }

@@ -107,9 +107,9 @@ namespace Anvil.API
       return timeMs == null ? null : TimeSpan.FromMilliseconds(timeMs.Value);
     }
 
-    public static implicit operator PersistentVfxTableEntry?(PersistentVfxType vfxType)
+    public static implicit operator PersistentVfxTableEntry(PersistentVfxType vfxType)
     {
-      return NwGameTables.PersistentEffectTable.ElementAtOrDefault((int)vfxType);
+      return NwGameTables.PersistentEffectTable.ElementAt((int)vfxType);
     }
   }
 }

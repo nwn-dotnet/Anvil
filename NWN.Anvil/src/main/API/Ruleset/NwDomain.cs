@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NWN.Native.API;
@@ -70,15 +71,16 @@ namespace Anvil.API
     /// Resolves a <see cref="NwDomain"/> from a <see cref="Domain"/>.
     /// </summary>
     /// <param name="domainType">The domain type to resolve.</param>
-    /// <returns>The associated <see cref="NwDomain"/> instance. Null if the domain type is invalid.</returns>
-    public static NwDomain? FromDomainType(Domain domainType)
+    /// <returns>The associated <see cref="NwDomain"/> instance.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if domainType is not a value defined in domains.2da.</exception>
+    public static NwDomain FromDomainType(Domain domainType)
     {
-      return NwRuleset.Domains.ElementAtOrDefault((int)domainType);
+      return NwRuleset.Domains.ElementAt((int)domainType);
     }
 
-    public static implicit operator NwDomain?(Domain domainType)
+    public static implicit operator NwDomain(Domain domainType)
     {
-      return NwRuleset.Domains.ElementAtOrDefault((int)domainType);
+      return NwRuleset.Domains.ElementAt((int)domainType);
     }
 
     /// <summary>

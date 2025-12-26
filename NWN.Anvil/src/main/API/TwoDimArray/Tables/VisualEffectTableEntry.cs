@@ -91,9 +91,9 @@ namespace Anvil.API
       OrientWithObject = entry.GetBool("OrientWithObject");
     }
 
-    public static implicit operator VisualEffectTableEntry?(VfxType vfxType)
+    public static implicit operator VisualEffectTableEntry(VfxType vfxType)
     {
-      return NwGameTables.VisualEffectTable.ElementAtOrDefault((int)vfxType);
+      return NwGameTables.VisualEffectTable.ElementAt((int)vfxType);
     }
   }
 }

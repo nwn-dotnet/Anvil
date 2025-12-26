@@ -303,15 +303,16 @@ namespace Anvil.API
     /// Resolves a <see cref="NwSpell"/> from a <see cref="Anvil.API.Spell"/>.
     /// </summary>
     /// <param name="spellType">The spell type to resolve.</param>
-    /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell type is invalid.</returns>
-    public static NwSpell? FromSpellType(Spell spellType)
+    /// <returns>The associated <see cref="NwSpell"/> instance.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if spellType is not a value defined in spells.2da.</exception>
+    public static NwSpell FromSpellType(Spell spellType)
     {
-      return NwRuleset.Spells.ElementAtOrDefault((int)spellType);
+      return NwRuleset.Spells.ElementAt((int)spellType);
     }
 
-    public static implicit operator NwSpell?(Spell spellType)
+    public static implicit operator NwSpell(Spell spellType)
     {
-      return NwRuleset.Spells.ElementAtOrDefault((int)spellType);
+      return NwRuleset.Spells.ElementAt((int)spellType);
     }
 
     /// <summary>
