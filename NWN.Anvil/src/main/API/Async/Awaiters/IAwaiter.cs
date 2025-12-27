@@ -7,8 +7,14 @@ namespace Anvil.API
   /// </summary>
   public interface IAwaiter : INotifyCompletion
   {
+    /// <summary>
+    /// Gets whether the asynchronous operation has completed.
+    /// </summary>
     bool IsCompleted { get; }
 
+    /// <summary>
+    /// Ends the await operation, rethrowing any captured exception.
+    /// </summary>
     void GetResult();
   }
 
@@ -18,8 +24,15 @@ namespace Anvil.API
   /// <typeparam name="TResult">The awaiter return value type.</typeparam>
   public interface IAwaiter<out TResult> : INotifyCompletion
   {
+    /// <summary>
+    /// Gets whether the asynchronous operation has completed.
+    /// </summary>
     bool IsCompleted { get; }
 
+    /// <summary>
+    /// Ends the await operation and returns the computed result.
+    /// </summary>
+    /// <returns>The result value produced by the asynchronous operation.</returns>
     TResult GetResult();
   }
 }

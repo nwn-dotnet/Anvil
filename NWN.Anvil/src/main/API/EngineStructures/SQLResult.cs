@@ -50,8 +50,8 @@ namespace Anvil.API
     /// Gets the int result for the specified column.
     /// </summary>
     /// <param name="columnName">The name of the column to fetch the result.</param>
-    /// <returns>The int result. Returns 0.0f on an error.</returns>
-    public float GetInt(string columnName)
+    /// <returns>The int result. Returns 0 on an error.</returns>
+    public int GetInt(string columnName)
     {
       return NWScript.SqlGetInt(query, Array.IndexOf(query.Columns, columnName));
     }
@@ -62,6 +62,7 @@ namespace Anvil.API
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
     /// <param name="spawnLocation">The location to spawn the object.</param>
     /// <param name="targetInventory">(Items only) The target inventory for the item.</param>
+    /// <typeparam name="T">The expected NWN object type.</typeparam>
     /// <returns>The deserialized object. Returns null on an error.</returns>
     public T? GetObject<T>(int columnIndex, Location spawnLocation, NwGameObject? targetInventory = null) where T : NwObject
     {
@@ -74,6 +75,7 @@ namespace Anvil.API
     /// <param name="columnName">The name of the column to fetch the result.</param>
     /// <param name="spawnLocation">The location to spawn the object.</param>
     /// <param name="targetInventory">(Items only) The target inventory for the item.</param>
+    /// <typeparam name="T">The expected NWN object type.</typeparam>
     /// <returns>The deserialized object. Returns null on an error.</returns>
     public T? GetObject<T>(string columnName, Location spawnLocation, NwGameObject? targetInventory = null) where T : NwObject
     {
@@ -84,7 +86,7 @@ namespace Anvil.API
     /// Gets the string result for the specified column.
     /// </summary>
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
-    /// <returns>The string result. Returns "" on an error.</returns>
+    /// <returns>The string result. Returns an empty string on an error.</returns>
     public string GetString(int columnIndex)
     {
       return NWScript.SqlGetString(query, columnIndex);
@@ -94,7 +96,7 @@ namespace Anvil.API
     /// Gets the string result for the specified column.
     /// </summary>
     /// <param name="columnName">The name of the column to fetch the result.</param>
-    /// <returns>The string result. Returns "" on an error.</returns>
+    /// <returns>The string result. Returns an empty string on an error.</returns>
     public string GetString(string columnName)
     {
       return NWScript.SqlGetString(query, Array.IndexOf(query.Columns, columnName));

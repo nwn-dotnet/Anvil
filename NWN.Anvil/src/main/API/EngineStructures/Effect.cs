@@ -70,6 +70,12 @@ namespace Anvil.API
 
     private protected override int StructureId => NWScript.ENGINE_STRUCTURE_EFFECT;
 
+    /// <summary>
+    /// Converts a native pointer to an <see cref="Effect"/> instance.
+    /// Returns null if the pointer is zero.
+    /// </summary>
+    /// <param name="intPtr">The native engine pointer to a game effect.</param>
+    /// <returns>An <see cref="Effect"/> instance, or null for a null pointer.</returns>
     public static implicit operator Effect?(IntPtr intPtr)
     {
       return intPtr != IntPtr.Zero ? new Effect(CGameEffect.FromPointer(intPtr), true) : null;

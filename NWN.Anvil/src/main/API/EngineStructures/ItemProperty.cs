@@ -109,12 +109,20 @@ namespace Anvil.API
     /// </summary>
     public TimeSpan TotalDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDuration(this));
 
+    /// <summary>
+    /// Gets or sets whether this item property can be activated by the user.
+    /// When true, the property appears as a usable ability on the item and may consume uses per day.
+    /// </summary>
     public bool Usable
     {
       get => Effect.GetInteger(8).ToBool();
       set => Effect.SetInteger(8, value.ToInt());
     }
 
+    /// <summary>
+    /// Gets or sets the number of times per day this usable item property can be activated.
+    /// Has effect only when <see cref="Usable"/> is true.
+    /// </summary>
     public int UsesPerDay
     {
       get => Effect.GetInteger(6);
@@ -128,6 +136,11 @@ namespace Anvil.API
 
     private protected override int StructureId => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
 
+    /// <summary>
+    /// Converts a native pointer to an <see cref="ItemProperty"/>.
+    /// </summary>
+    /// <param name="intPtr">The native pointer to a CGameEffect.</param>
+    /// <returns>The wrapped item property when <paramref name="intPtr"/> is non-zero; otherwise null.</returns>
     public static implicit operator ItemProperty?(IntPtr intPtr)
     {
       return intPtr != IntPtr.Zero ? new ItemProperty(CGameEffect.FromPointer(intPtr), true) : null;
