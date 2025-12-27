@@ -36,6 +36,7 @@ namespace Anvil.API
       return area != null && area.Pointer != IntPtr.Zero ? new NwArea(area) : null;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => NWNXUtils.AsNWSArea(NWNXUtils.GetGameObject(ObjectId)) == area.Pointer;
 
     /// <summary>

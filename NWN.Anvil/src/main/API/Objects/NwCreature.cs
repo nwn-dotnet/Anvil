@@ -62,6 +62,7 @@ namespace Anvil.API
       return creature != null && creature.Pointer != IntPtr.Zero ? new NwCreature(creature) : null;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => NWNXUtils.AsNWSCreature(NWNXUtils.GetGameObject(ObjectId)) == creature.Pointer;
 
     /// <summary>

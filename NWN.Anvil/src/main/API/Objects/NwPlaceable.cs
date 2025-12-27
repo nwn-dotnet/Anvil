@@ -36,6 +36,7 @@ namespace Anvil.API
       return placeable != null && placeable.Pointer != IntPtr.Zero ? new NwPlaceable(placeable) : null;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => NWNXUtils.AsNWSPlaceable(NWNXUtils.GetGameObject(ObjectId)) == placeable.Pointer;
 
     /// <summary>

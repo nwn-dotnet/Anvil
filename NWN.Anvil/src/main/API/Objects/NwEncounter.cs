@@ -34,6 +34,7 @@ namespace Anvil.API
       return encounter != null && encounter.Pointer != IntPtr.Zero ? new NwEncounter(encounter) : null;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => NWNXUtils.AsNWSEncounter(NWNXUtils.GetGameObject(ObjectId)) == encounter.Pointer;
 
     /// <summary>

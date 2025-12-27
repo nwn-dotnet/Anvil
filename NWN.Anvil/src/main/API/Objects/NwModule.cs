@@ -32,6 +32,7 @@ namespace Anvil.API
       this.module = module;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => true;
 
     /// <summary>
