@@ -6,7 +6,7 @@ using Anvil.API;
 using Anvil.Services;
 using NLog;
 
-namespace NWN.Anvil.Samples.EngineStructures
+namespace NWN.Anvil.Samples.API.EngineStructures
 {
   [ServiceBinding(typeof(CassowaryExamples))]
   public class CassowaryExamples

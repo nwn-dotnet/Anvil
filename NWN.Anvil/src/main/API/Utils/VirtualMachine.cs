@@ -117,7 +117,7 @@ namespace Anvil.API
       }
     }
 
-    public T ExecuteInScriptContext<T>(System.Func<T> action, uint objectId = NwObject.Invalid, int scriptEventId = 0)
+    public T ExecuteInScriptContext<T>(Func<T> action, uint objectId = NwObject.Invalid, int scriptEventId = 0)
     {
       int spBefore = PushScriptContext(objectId, scriptEventId);
 

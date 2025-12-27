@@ -112,9 +112,9 @@ namespace Anvil.Tests.API
 
     public sealed class AcBonusVsRaceTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.ACBonusVsRace(NwRace.FromRacialType(RacialType.Outsider)!, 3);
+      protected override ItemProperty ItemProperty => ItemProperty.ACBonusVsRace(NwRace.FromRacialType(RacialType.Outsider), 3);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AcBonusVsRacialGroup;
-      protected override int SubType => NwRace.FromRacialType(RacialType.Outsider)!.Id;
+      protected override int SubType => NwRace.FromRacialType(RacialType.Outsider).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(2);
       protected override int CostTableValue => 3;
     }
@@ -163,9 +163,9 @@ namespace Anvil.Tests.API
 
     public sealed class AttackBonusVsRaceTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.AttackBonusVsRace(NwRace.FromRacialType(RacialType.Halfling)!, 9);
+      protected override ItemProperty ItemProperty => ItemProperty.AttackBonusVsRace(NwRace.FromRacialType(RacialType.Halfling), 9);
       protected override ItemPropertyType PropertyType => ItemPropertyType.AttackBonusVsRacialGroup;
-      protected override int SubType => NwRace.FromRacialType(RacialType.Halfling)!.Id;
+      protected override int SubType => NwRace.FromRacialType(RacialType.Halfling).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(2);
       protected override int CostTableValue => 9;
     }
@@ -268,9 +268,9 @@ namespace Anvil.Tests.API
 
     public sealed class DamageBonusVsRaceTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.DamageBonusVsRace(NwRace.FromRacialType(RacialType.Elemental)!, IPDamageType.Bludgeoning, IPDamageBonus.Plus2d6);
+      protected override ItemProperty ItemProperty => ItemProperty.DamageBonusVsRace(NwRace.FromRacialType(RacialType.Elemental), IPDamageType.Bludgeoning, IPDamageBonus.Plus2d6);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DamageBonusVsRacialGroup;
-      protected override int SubType => NwRace.FromRacialType(RacialType.Elemental)!.Id;
+      protected override int SubType => NwRace.FromRacialType(RacialType.Elemental).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(4);
       protected override int CostTableValue => (int)IPDamageBonus.Plus2d6;
       protected override int Param1TableValue => (int)IPDamageType.Bludgeoning;
@@ -357,9 +357,9 @@ namespace Anvil.Tests.API
 
     public sealed class DecreaseSkillTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.DecreaseSkill(NwSkill.FromSkillType(Skill.Discipline)!, 5);
+      protected override ItemProperty ItemProperty => ItemProperty.DecreaseSkill(NwSkill.FromSkillType(Skill.Discipline), 5);
       protected override ItemPropertyType PropertyType => ItemPropertyType.DecreasedSkillModifier;
-      protected override int SubType => NwSkill.FromSkillType(Skill.Discipline)!.Id;
+      protected override int SubType => NwSkill.FromSkillType(Skill.Discipline).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(21);
       protected override int CostTableValue => 5;
     }
@@ -383,9 +383,9 @@ namespace Anvil.Tests.API
 
     public sealed class EnhancementBonusVsRaceTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.EnhancementBonusVsRace(NwRace.FromRacialType(RacialType.Dragon)!, 2);
+      protected override ItemProperty ItemProperty => ItemProperty.EnhancementBonusVsRace(NwRace.FromRacialType(RacialType.Dragon), 2);
       protected override ItemPropertyType PropertyType => ItemPropertyType.EnhancementBonusVsRacialGroup;
-      protected override int SubType => NwRace.FromRacialType(RacialType.Dragon)!.Id;
+      protected override int SubType => NwRace.FromRacialType(RacialType.Dragon).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(2);
       protected override int CostTableValue => 2;
     }
@@ -501,17 +501,17 @@ namespace Anvil.Tests.API
 
     public sealed class LimitUseByClassTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.LimitUseByClass(NwClass.FromClassType(ClassType.Bard)!);
+      protected override ItemProperty ItemProperty => ItemProperty.LimitUseByClass(NwClass.FromClassType(ClassType.Bard));
       protected override ItemPropertyType PropertyType => ItemPropertyType.UseLimitationClass;
-      protected override int SubType => NwClass.FromClassType(ClassType.Bard)!.Id;
+      protected override int SubType => NwClass.FromClassType(ClassType.Bard).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
     public sealed class LimitUseByRaceTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.LimitUseByRace(NwRace.FromRacialType(RacialType.Undead)!);
+      protected override ItemProperty ItemProperty => ItemProperty.LimitUseByRace(NwRace.FromRacialType(RacialType.Undead));
       protected override ItemPropertyType PropertyType => ItemPropertyType.UseLimitationRacialType;
-      protected override int SubType => NwRace.FromRacialType(RacialType.Undead)!.Id;
+      protected override int SubType => NwRace.FromRacialType(RacialType.Undead).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(0);
     }
 
@@ -625,9 +625,9 @@ namespace Anvil.Tests.API
 
     public sealed class SkillBonusTest : ItemPropertyTest
     {
-      protected override ItemProperty ItemProperty => ItemProperty.SkillBonus(NwSkill.FromSkillType(Skill.Persuade)!, 9);
+      protected override ItemProperty ItemProperty => ItemProperty.SkillBonus(NwSkill.FromSkillType(Skill.Persuade), 9);
       protected override ItemPropertyType PropertyType => ItemPropertyType.SkillBonus;
-      protected override int SubType => NwSkill.FromSkillType(Skill.Persuade)!.Id;
+      protected override int SubType => NwSkill.FromSkillType(Skill.Persuade).Id;
       protected override ItemPropertyCostTablesEntry? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(25);
       protected override int CostTableValue => 9;
     }
