@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class TriggerEvents
   {
+    /// <summary>
+    /// Triggered every 6 seconds for <see cref="NwTrigger"/>.
+    /// </summary>
     [GameEvent(EventScriptType.TriggerOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {

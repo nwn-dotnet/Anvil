@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class StoreEvents
   {
+    /// <summary>
+    /// Triggered when an <see cref="NwStore"/> is opened.
+    /// </summary>
     [GameEvent(EventScriptType.StoreOnOpen)]
     public sealed class OnOpen : IEvent
     {

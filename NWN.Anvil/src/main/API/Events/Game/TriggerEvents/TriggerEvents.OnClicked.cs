@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class TriggerEvents
   {
+    /// <summary>
+    /// Triggered when a <see cref="NwTrigger"/> is clicked.
+    /// </summary>
     [GameEvent(EventScriptType.TriggerOnClicked)]
     public sealed class OnClicked : IEvent
     {

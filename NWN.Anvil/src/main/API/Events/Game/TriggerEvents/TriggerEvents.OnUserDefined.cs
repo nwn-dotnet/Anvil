@@ -9,6 +9,10 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class TriggerEvents
   {
+    /// <summary>
+    /// Triggered for a trigger when the associated <see cref="Signal"/> method is called.
+    /// </summary>
+    /// <seealso cref="Signal"/>
     [GameEvent(EventScriptType.TriggerOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
@@ -24,6 +28,11 @@ namespace Anvil.API.Events
 
       NwObject IEvent.Context => Trigger;
 
+      /// <summary>
+      /// Signals a user-defined event on the specified trigger.
+      /// </summary>
+      /// <param name="trigger">The trigger to receive the event.</param>
+      /// <param name="eventId">The user-defined event number to trigger.</param>
       public static void Signal(NwTrigger trigger, int eventId)
       {
         Event nwEvent = NWScript.EventUserDefined(eventId)!;
