@@ -131,6 +131,9 @@ namespace Anvil.API
     /// </summary>
     public int ArcaneSpellFailure => NWScript.GetArcaneSpellFailure(this);
 
+    /// <summary>
+    /// Gets this creature's total armor check penalty from equipped gear.
+    /// </summary>
     public sbyte ArmorCheckPenalty => (sbyte)Creature.m_pStats.m_nArmorCheckPenalty;
 
     /// <summary>
@@ -790,6 +793,9 @@ namespace Anvil.API
       set => creature.m_pStats.m_nSkillPointsRemaining = value;
     }
 
+    /// <summary>
+    /// Gets this creature's shield check penalty from the equipped shield.
+    /// </summary>
     public sbyte ShieldCheckPenalty => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
 
     /// <summary>
@@ -939,6 +945,11 @@ namespace Anvil.API
       return CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
     }
 
+    /// <summary>
+    /// Deserializes a creature from a GFF payload (BIC/UTC), returning a <see cref="NwCreature"/> instance created from the serialized data.
+    /// </summary>
+    /// <param name="serialized">The serialized GFF bytes (BIC, GFF, or UTC).</param>
+    /// <returns>The deserialized creature, or null if invalid.</returns>
     public static NwCreature? Deserialize(byte[] serialized)
     {
       CNWSCreature? creature = null;
@@ -966,11 +977,19 @@ namespace Anvil.API
       return result && creature != null ? creature.ToNwObject<NwCreature>() : null;
     }
 
+    /// <summary>
+    /// Implicitly converts the managed <see cref="NwCreature"/> to the native <see cref="CNWSCreature"/>.
+    /// </summary>
     public static implicit operator CNWSCreature?(NwCreature? creature)
     {
       return creature?.Creature;
     }
 
+    /// <summary>
+    /// Immediately adds the specified item to this creature's inventory.
+    /// </summary>
+    /// <param name="item">The item to acquire.</param>
+    /// <param name="displayFeedback">If true, shows acquisition feedback to the creature.</param>
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
     {
       if (item == null)
@@ -1527,6 +1546,7 @@ namespace Anvil.API
       InitiativeModifierService.Value.ClearInitiativeModifier(this);
     }
 
+    /// <inheritdoc/>
     public override NwCreature Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
@@ -1547,6 +1567,11 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Deserializes and updates this creature's quickbar buttons from a GFF payload.
+    /// </summary>
+    /// <param name="serialized">The serialized GFF bytes containing quickbar data.</param>
+    /// <returns>True if applied successfully; otherwise false.</returns>
     public bool DeserializeQuickbar(byte[] serialized)
     {
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
@@ -1867,6 +1892,11 @@ namespace Anvil.API
       };
     }
 
+    /// <summary>
+    /// Gets the quickbar button at the specified index.
+    /// </summary>
+    /// <param name="index">The button index (0-35).</param>
+    /// <returns>The quickbar button data.</returns>
     public PlayerQuickBarButton GetQuickBarButton(byte index)
     {
       if (index >= QuickBarButtonCount)
@@ -1882,6 +1912,9 @@ namespace Anvil.API
       return InternalGetQuickBarButton(index);
     }
 
+    /// <summary>
+    /// Gets all quickbar buttons configured for this creature.
+    /// </summary>
     public PlayerQuickBarButton[] GetQuickBarButtons()
     {
       if (Creature.m_pQuickbarButton == null)
@@ -2444,6 +2477,7 @@ namespace Anvil.API
       return retVal;
     }
 
+    /// <inheritdoc/>
     public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("BIC", (resGff, resStruct) =>
@@ -2453,6 +2487,10 @@ namespace Anvil.API
       });
     }
 
+    /// <summary>
+    /// Serializes this creature's quickbar buttons to a GFF payload.
+    /// </summary>
+    /// <returns>Serialized GFF bytes containing quickbar data.</returns>
     public byte[]? SerializeQuickbar()
     {
       return NativeUtils.SerializeGff("GFF", (resGff, resStruct) =>
@@ -2559,6 +2597,11 @@ namespace Anvil.API
       NWScript.SetAssociateListenPatterns(this);
     }
 
+    /// <summary>
+    /// Sets a quickbar button at the specified index for this creature.
+    /// </summary>
+    /// <param name="index">The button index (0-35).</param>
+    /// <param name="data">The button data to apply.</param>
     public void SetQuickBarButton(byte index, PlayerQuickBarButton data)
     {
       if (index >= QuickBarButtonCount)
@@ -2581,6 +2624,10 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Sets the quickbar contents for this creature.
+    /// </summary>
+    /// <param name="buttons">The array of button data to apply.</param>
     public void SetQuickBarButtons(PlayerQuickBarButton[] buttons)
     {
       if (Creature.m_pQuickbarButton == null)
