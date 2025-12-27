@@ -4,6 +4,7 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
@@ -23,7 +24,7 @@ namespace NWN.Anvil.Samples.API.EngineStructures
       blindnessEffect.SubType = EffectSubType.Supernatural;
 
       // Register methods to listen for the player/client enter event.
-      NwModule.Instance.OnClientEnter += RatSummonExample;
+      NwModule.Instance.OnClientEnter += eventData => _ = RatSummonExample(eventData);
 
       // When entering a specific area, remove all blindness effects:
       NwArea? area = NwObject.FindObjectsWithTag<NwArea>("clear_blind").FirstOrDefault();
@@ -40,7 +41,7 @@ namespace NWN.Anvil.Samples.API.EngineStructures
     /// <summary>
     /// Spawns a rat creature summon at the module spawn location when a player connects.
     /// </summary>
-    private async void RatSummonExample(ModuleEvents.OnClientEnter eventData)
+    private async Task RatSummonExample(ModuleEvents.OnClientEnter eventData)
     {
       // Create the summon effect.
       // Some effects require a "caster" for the effect, and must be made within the caster's context.

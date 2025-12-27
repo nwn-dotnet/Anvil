@@ -1701,9 +1701,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class with domains. Defaults to <see cref="ClassType.Cleric"/> if not specified.</param>
     /// <returns>An enumeration of this creature's domains.</returns>
-    public IEnumerable<NwDomain> GetClassDomains(NwClass? nwClass = default)
+    public IEnumerable<NwDomain> GetClassDomains(NwClass? nwClass = null)
     {
-      nwClass ??= NwClass.FromClassType(ClassType.Cleric)!;
+      nwClass ??= NwClass.FromClassType(ClassType.Cleric);
 
       const int error = (int)Domain.Error;
       int classT = nwClass.Id;
@@ -1950,9 +1950,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class to query for specialized spell schools. Defaults to <see cref="ClassType.Wizard"/> if not specified.</param>
     /// <returns>The creature's selected spell specialization.</returns>
-    public SpellSchool GetSpecialization(NwClass? nwClass = default)
+    public SpellSchool GetSpecialization(NwClass? nwClass = null)
     {
-      nwClass ??= NwClass.FromClassType(ClassType.Wizard)!;
+      nwClass ??= NwClass.FromClassType(ClassType.Wizard);
       return (SpellSchool)NWScript.GetSpecialization(this, nwClass.Id);
     }
 
