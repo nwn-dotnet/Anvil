@@ -126,7 +126,7 @@ namespace Anvil.API
     /// </summary>
     public bool Valid => NWScript.GetIsItemPropertyValid(this).ToBool();
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
 
     public static implicit operator ItemProperty?(IntPtr intPtr)
     {

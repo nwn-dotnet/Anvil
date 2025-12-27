@@ -68,7 +68,7 @@ namespace Anvil.API
     /// </summary>
     public float TotalDuration => NWScript.GetEffectDuration(this);
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_EFFECT;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_EFFECT;
 
     public static implicit operator Effect?(IntPtr intPtr)
     {

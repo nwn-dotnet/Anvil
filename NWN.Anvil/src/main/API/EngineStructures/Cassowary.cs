@@ -22,7 +22,7 @@ namespace Anvil.API
     /// </summary>
     public string DebugState => NWScript.CassowaryDebug(this);
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_CASSOWARY;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_CASSOWARY;
 
     public static implicit operator Cassowary?(IntPtr intPtr)
     {

@@ -16,7 +16,7 @@ namespace Anvil.API
     /// </summary>
     public bool IsValid => handle != IntPtr.Zero;
 
-    protected abstract int StructureId { get; }
+    private protected abstract int StructureId { get; }
 
     private protected EngineStructure(IntPtr handle, bool memoryOwn)
     {

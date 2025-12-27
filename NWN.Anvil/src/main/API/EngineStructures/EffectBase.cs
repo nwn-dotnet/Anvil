@@ -6,7 +6,7 @@ namespace Anvil.API
 {
   public abstract class EffectBase : EngineStructure
   {
-    protected readonly CGameEffect Effect;
+    private protected readonly CGameEffect Effect;
 
     private protected unsafe EffectBase(CGameEffect effect, bool memoryOwn) : base(effect.Pointer, memoryOwn)
     {

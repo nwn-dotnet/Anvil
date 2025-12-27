@@ -12,7 +12,7 @@ namespace Anvil.API
   {
     internal Json(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_JSON;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_JSON;
 
     public static implicit operator Json(IntPtr intPtr)
     {

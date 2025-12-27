@@ -101,7 +101,7 @@ namespace Anvil.API
       }
     }
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
     /// <summary>
     /// Create a new location from the specified area, position and orientation

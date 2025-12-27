@@ -35,7 +35,7 @@ namespace Anvil.API
     /// </summary>
     public bool Valid => NWScript.GetIsTalentValid(this).ToBool();
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_TALENT;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_TALENT;
 
     public static implicit operator Talent(IntPtr intPtr)
     {
