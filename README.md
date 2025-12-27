@@ -8,15 +8,15 @@ Builders can add functionality like opening a store from a dialogue with a few l
 
 - Latest [Release](https://github.com/nwn-dotnet/Anvil/releases/latest)
 - [Changelog](https://github.com/nwn-dotnet/Anvil/blob/main/CHANGELOG.md) ([Development](https://github.com/nwn-dotnet/Anvil/blob/development/CHANGELOG.md))
-- View the [API Reference](https://nwn-dotnet.github.io/Anvil/annotated.html)
-- View [Community Submitted Plugins](https://github.com/nwn-dotnet/Anvil/discussions/categories/plugins)
+- View the [Documentation](https://nwn-dotnet.github.io/Anvil/)
+- View the [API Reference](https://nwn-dotnet.github.io/Anvil/api/Anvil.html)
 - Join the community: [![Discord](https://img.shields.io/discord/382306806866771978?color=7289DA&label=Discord&logo=discord&logoColor=7289DA)](https://discord.gg/CukSHZq)
 
 ## Getting Started
 
-New to Anvil and want to know how to get a server running? Have a look through our install guides: https://github.com/nwn-dotnet/Anvil/wiki/Installing-Anvil
+New to Anvil and want to know how to get a server running? Have a look through our install guides: https://nwn-dotnet.github.io/Anvil/docs/install/docker.html
 
-Want to write some scripts in C# or develop a new plugin? Have a look through our plugin development guides: https://github.com/nwn-dotnet/Anvil/wiki/Plugin-Development
+Want to write some scripts in C# or develop a new plugin? Have a look through our plugin development guides: https://nwn-dotnet.github.io/Anvil/docs/development/setup.html
 
 ## Compiling Anvil
 Anvil is a [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) project, and you will need the appropriate SDKs to compile and build the project.
@@ -35,7 +35,7 @@ To run tests locally, install the plugins in the anvil home directory as documen
 ## Contributions
 All contributions are welcome!
 
-Join the discussion on the NWN Developer Discord [Discord](https://discord.gg/CukSHZq), and also see our [contribution guidelines](https://github.com/nwn-dotnet/Anvil/blob/development/CONTRIBUTING.md). 
+Join the discussion on the NWN Developer Discord [Discord](https://discord.gg/CukSHZq), and also see our [contribution guidelines](https://github.com/nwn-dotnet/Anvil/blob/development/CONTRIBUTING.md).
 
 ## Credits
 The Anvil Framework builds heavily on the foundations of the [NWNX:EE DotNET plugin](https://github.com/nwnxee/unified/tree/master/Plugins/DotNET) that was written by [Milos Tijanic](https://github.com/mtijanic "Milos Tijanic"), and derives several service implementations from plugins developed by the NWNX:EE team and its contributors.
