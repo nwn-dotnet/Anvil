@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="NwPlaceable"/> has been opened.
+    /// Triggered when <see cref="NwPlaceable"/> is opened.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnOpen)]
     public sealed class OnOpen : IEvent

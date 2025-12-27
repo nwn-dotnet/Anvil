@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="NwCreature"/> has destroyed <see cref="NwPlaceable"/>.
+    /// Triggered when <see cref="NwCreature"/> destroys <see cref="NwPlaceable"/>.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDeath)]
     public sealed class OnDeath : IEvent

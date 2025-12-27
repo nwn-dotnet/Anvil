@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="Spell"/> has been casted on <see cref="NwPlaceable"/>.
+    /// Triggered when <see cref="Spell"/> is cast at <see cref="NwPlaceable"/>.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnSpellCastAt)]
     public sealed class OnSpellCastAt : IEvent
