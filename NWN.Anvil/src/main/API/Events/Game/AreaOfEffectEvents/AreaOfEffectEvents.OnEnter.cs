@@ -15,10 +15,19 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
     public sealed class OnEnter : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwAreaOfEffect"/> associated with this event.
+      /// </summary>
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that entered the area of effect.
+      /// </summary>
       public NwGameObject Entering { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
 
+      /// <summary>
+      /// Gets the spell saving throw DC associated with this effect.
+      /// </summary>
       public int SpellSaveDC { get; } = NWScript.GetSpellSaveDC();
 
       NwObject IEvent.Context => Effect;

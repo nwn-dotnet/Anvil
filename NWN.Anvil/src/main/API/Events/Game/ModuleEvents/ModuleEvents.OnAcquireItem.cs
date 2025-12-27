@@ -10,11 +10,11 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered whenever an <see cref="NwItem"/> is added to <see cref="NwGameObject"/> inventory.
+    /// Triggered whenever an <see cref="NwItem"/> is added to a <see cref="NwGameObject"/>'s inventory.
     /// </summary>
     /// <remarks>
-    /// This event fires for all items when a player connects to the server, in addition to item/inventory interactions while playing.<br/>
-    /// It will also fire for characters failing ELC. In this case, it is recommended to do an early return in your event handler by checking if <see cref="Item"/> is null.
+    /// This event triggers for all items when a player connects to the server, in addition to item/inventory interactions while playing.<br/>
+    /// It will also be triggered for characters failing ELC. In this case, it is recommended to do an early return in your event handler by checking if <see cref="Item"/> is null.
     /// </remarks>
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent

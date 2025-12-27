@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when a trap on the door is disarmed.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnDisarm)]
     public sealed class OnDisarm : IEvent
     {

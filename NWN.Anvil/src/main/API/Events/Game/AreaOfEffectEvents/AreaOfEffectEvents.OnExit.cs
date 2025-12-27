@@ -15,10 +15,19 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnObjectExit)]
     public sealed class OnExit : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwAreaOfEffect"/> associated with this event.
+      /// </summary>
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that exited the area of effect.
+      /// </summary>
       public NwGameObject Exiting { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>()!;
 
+      /// <summary>
+      /// Gets the spell saving throw DC associated with this effect.
+      /// </summary>
       public int SpellSaveDC { get; } = NWScript.GetSpellSaveDC();
 
       NwObject IEvent.Context => Effect;

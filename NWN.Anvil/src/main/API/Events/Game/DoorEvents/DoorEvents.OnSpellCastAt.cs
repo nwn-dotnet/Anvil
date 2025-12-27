@@ -9,11 +9,14 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when a spell is cast at the door.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnSpellCastAt)]
     public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
-      /// Gets the caster of this <see cref="Spell"/> (<see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwDoor"/>). Returns null from an <see cref="NwAreaOfEffect"/>.
+      /// Gets the caster of the <see cref="Spell"/> that hit the door.
       /// </summary>
       public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>()!;
 
@@ -34,6 +37,13 @@ namespace Anvil.API.Events
 
       NwObject IEvent.Context => Door;
 
+      /// <summary>
+      /// Signals a spell-cast-at event on the target door.
+      /// </summary>
+      /// <param name="caster">The source of the spell. May be an area-of-effect object.</param>
+      /// <param name="target">The door receiving the event.</param>
+      /// <param name="spell">The spell to report as cast.</param>
+      /// <param name="harmful">Whether the spell is considered harmful by AI.</param>
       public static void Signal(NwObject caster, NwDoor target, NwSpell spell, bool harmful = true)
       {
         Event nwEvent = NWScript.EventSpellCastAt(caster, spell.Id, harmful.ToInt())!;

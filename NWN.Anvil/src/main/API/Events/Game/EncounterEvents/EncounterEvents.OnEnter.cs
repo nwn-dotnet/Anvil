@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class EncounterEvents
   {
+    /// <summary>
+    /// Triggered when an object enters the encounter.
+    /// </summary>
     [GameEvent(EventScriptType.EncounterOnObjectEnter)]
     public sealed class OnEnter : IEvent
     {

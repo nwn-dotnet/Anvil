@@ -9,11 +9,14 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered at a regular interval for the door.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwDoor"/> that had a heartbeat.
+      /// Gets the <see cref="NwDoor"/> associated with the heartbeat event.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 

@@ -8,6 +8,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class ModuleEvents
   {
+    /// <summary>
+    /// Triggered when the module starts (after load).
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnModuleStart)]
     public sealed class OnModuleStart : IEvent
     {

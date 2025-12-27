@@ -15,8 +15,14 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwAreaOfEffect"/> associated with this heartbeat.
+      /// </summary>
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
+      /// <summary>
+      /// Gets the spell saving throw DC associated with this effect.
+      /// </summary>
       public int SpellSaveDC { get; } = NWScript.GetSpellSaveDC();
 
       NwObject IEvent.Context => Effect;
@@ -28,7 +34,7 @@ namespace Anvil.API
 {
   public sealed partial class NwAreaOfEffect
   {
-    /// <inheritdoc cref="AreaEvents.OnHeartbeat"/>
+    /// <inheritdoc cref="AreaOfEffectEvents.OnHeartbeat"/>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);

@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when an attempt to open the door fails (e.g., door is locked).
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnFailToOpen)]
     public sealed class OnFailToOpen : IEvent
     {
@@ -18,7 +21,7 @@ namespace Anvil.API.Events
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that failed to unlock this <see cref="NwDoor"/>.
+      /// Gets the creature that failed to open the door.
       /// </summary>
       public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>()!;
 

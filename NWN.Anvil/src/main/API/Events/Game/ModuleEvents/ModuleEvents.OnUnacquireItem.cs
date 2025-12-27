@@ -11,7 +11,7 @@ namespace Anvil.API.Events
   {
     /// <summary>
     /// Triggered when a <see cref="NwItem"/> is removed from a <see cref="NwCreature"/>'s inventory.<br/>
-    /// This event is also fired when an item stack is destroyed when combining with another item stack.
+    /// This event is also triggered when an item stack is destroyed when combining with another item stack.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnLoseItem)]
     public sealed class OnUnacquireItem : IEvent

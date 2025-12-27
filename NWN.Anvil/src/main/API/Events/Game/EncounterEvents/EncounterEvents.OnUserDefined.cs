@@ -9,6 +9,10 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class EncounterEvents
   {
+    /// <summary>
+    /// Triggered for an encounter when the associated <see cref="Signal"/> method is called.
+    /// </summary>
+    /// <seealso cref="Signal"/>
     [GameEvent(EventScriptType.EncounterOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
@@ -19,6 +23,11 @@ namespace Anvil.API.Events
 
       NwObject IEvent.Context => Encounter;
 
+      /// <summary>
+      /// Signals a user-defined event with the given ID to an encounter.
+      /// </summary>
+      /// <param name="encounter">The encounter to receive the event.</param>
+      /// <param name="eventId">The integer event identifier to deliver.</param>
       public static void Signal(NwEncounter encounter, int eventId)
       {
         Event nwEvent = NWScript.EventUserDefined(eventId)!;

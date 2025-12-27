@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered by <see cref="NwCreature"/> upon spawning into the game.
+    /// Triggered when the creature spawns into the game.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnSpawnIn)]
     public sealed class OnSpawn : IEvent

@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class DoorEvents
   {
     /// <summary>
-    /// Called when this door starts a conversation, or hears a message they are listening for.
+    /// Triggered when the door starts dialogue, or hears a listen pattern.
     /// </summary>
     [GameEvent(EventScriptType.DoorOnDialogue)]
     public sealed class OnConversation : IEvent
@@ -21,12 +21,14 @@ namespace Anvil.API.Events
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
-      /// Gets the last <see cref="NwGameObject"/> that spoke in this conversation.
+      /// Gets the last <see cref="NwGameObject"/> that spoke to this door.
+      /// Returns null if there is no last speaker.
       /// </summary>
       public NwGameObject? LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the <see cref="NwPlayer"/> speaker in this conversation.
+      /// Gets the <see cref="NwPlayer"/> currently speaking, if any.
+      /// Returns null if the speaker is not a player.
       /// </summary>
       public NwPlayer? PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
@@ -37,17 +39,27 @@ namespace Anvil.API.Events
 
       NwObject IEvent.Context => Door;
 
+      /// <summary>
+      /// Signals a conversation event on the specified door.
+      /// </summary>
+      /// <param name="door">The door to receive the conversation event.</param>
       public static void Signal(NwDoor door)
       {
         Event nwEvent = NWScript.EventConversation()!;
         NWScript.SignalEvent(door, nwEvent);
       }
 
+      /// <summary>
+      /// Pauses the current conversation for this door.
+      /// </summary>
       public void PauseConversation()
       {
         NWScript.ActionPauseConversation();
       }
 
+      /// <summary>
+      /// Resumes a paused conversation for this door.
+      /// </summary>
       public void ResumeConversation()
       {
         NWScript.ActionResumeConversation();

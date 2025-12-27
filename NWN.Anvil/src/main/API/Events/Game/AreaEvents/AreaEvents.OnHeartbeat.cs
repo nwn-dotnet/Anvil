@@ -15,6 +15,9 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwArea"/> associated with this heartbeat event.
+      /// </summary>
       public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>()!;
 
       NwObject IEvent.Context => Area;

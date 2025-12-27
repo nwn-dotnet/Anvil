@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class EncounterEvents
   {
+    /// <summary>
+    /// Triggered at a regular interval for the encounter (approx. 6 seconds).
+    /// </summary>
     [GameEvent(EventScriptType.EncounterOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {

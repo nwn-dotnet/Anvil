@@ -9,7 +9,8 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered when the module is initially loaded. This event must be hooked in your service constructor, otherwise it will be missed.
+    /// Triggered when the module is initially loaded.<br/>
+    /// This event must be hooked in your service constructor, otherwise it will be missed.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnModuleLoad)]
     public sealed class OnModuleLoad : IEvent
