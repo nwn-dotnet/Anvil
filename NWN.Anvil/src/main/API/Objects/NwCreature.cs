@@ -1493,7 +1493,18 @@ namespace Anvil.API
       creature.BroadcastSkillData(data);
     }
 
-    [Obsolete("Use SpellResistanceCheck instead.")]
+    /// <summary>
+    /// Performs a spell resistance check between this creature (caster) and the specified target.
+    /// </summary>
+    /// <param name="target">The target object to perform the spell resist check.</param>
+    /// <returns>
+    /// <see cref="ResistSpellResult.NonPlayerSpell"/> if spell cast is not a player spell.<br/>
+    /// <see cref="ResistSpellResult.Resisted"/> if spell is resisted.<br/>
+    /// <see cref="ResistSpellResult.ResistedMagicImmune"/> if spell is resisted via magic immunity.<br/>
+    /// <see cref="ResistSpellResult.ResistedSpellAbsorbed"/> if spell is resisted via spell absorption.
+    /// </returns>
+    /// <remarks>For more nuanced control on spell resistance checks, consider using <see cref="SpellResistanceCheck"/>.</remarks>
+    /// <seealso cref="SpellResistanceCheck"/>
     public ResistSpellResult CheckResistSpell(NwGameObject target)
     {
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
