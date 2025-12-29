@@ -7,11 +7,29 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when damage is applied to a creature or placeable.
+  /// </summary>
   public sealed class OnCreatureDamage : IEvent
   {
+    /// <summary>
+    /// Gets the damage data associated with this event.
+    /// </summary>
     public DamageData<int> DamageData { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the object that applied the damage.
+    /// </summary>
     public NwObject DamagedBy { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the damaged creature or placeable.
+    /// </summary>
     public NwGameObject Target { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the spell responsible for the damage, if any.
+    /// </summary>
     public NwSpell? Spell { get; private init; }
 
     NwObject IEvent.Context => DamagedBy;

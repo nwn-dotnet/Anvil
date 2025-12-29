@@ -7,13 +7,29 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature pays a store to identify an item.
+  /// </summary>
   public sealed class OnItemPayToIdentify : IEvent
   {
+    /// <summary>
+    /// Gets the creature requesting item identification.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the item being identified.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
+
+    /// <summary>
+    /// Set to true to prevent paying to identify the item.
+    /// </summary>
     public bool PreventPayToIdentify { get; set; }
 
+    /// <summary>
+    /// Gets the store performing the identification.
+    /// </summary>
     public NwStore Store { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;

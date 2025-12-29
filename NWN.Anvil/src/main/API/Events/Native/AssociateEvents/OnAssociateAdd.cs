@@ -7,12 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when an associate is added to a creature.
+  /// </summary>
   public sealed class OnAssociateAdd : IEvent
   {
+    /// <summary>
+    /// Gets the associate creature that was added.
+    /// </summary>
     public NwCreature Associate { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the type of associate being added.
+    /// </summary>
     public AssociateType AssociateType { get; private init; }
 
+    /// <summary>
+    /// Gets the creature that owns the associate.
+    /// </summary>
     public NwCreature Owner { get; private init; } = null!;
 
     NwObject IEvent.Context => Owner;

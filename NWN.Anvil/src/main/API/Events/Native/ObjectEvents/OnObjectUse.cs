@@ -8,22 +8,22 @@ using NWN.Native.API;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a creature is about to use an object.
+  /// Triggered when a creature is about to use an object.
   /// </summary>
   public sealed class OnObjectUse : IEvent
   {
     /// <summary>
-    /// The object that is being used.
+    /// Gets the object that is being used.
     /// </summary>
     public NwGameObject Object { get; private init; } = null!;
 
     /// <summary>
-    /// The creature using the object.
+    /// Gets the creature using the object.
     /// </summary>
     public NwCreature UsedBy { get; private init; } = null!;
 
     /// <summary>
-    /// Gets or sets if usage of the object should be prevented.
+    /// Set to true to prevent usage of the object.
     /// </summary>
     public bool PreventObjectUse { get; set; }
 

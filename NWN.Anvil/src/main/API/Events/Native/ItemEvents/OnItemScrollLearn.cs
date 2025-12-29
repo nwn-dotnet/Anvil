@@ -8,7 +8,7 @@ using NWN.Native.API;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a creature is about to learn a spell from a scroll.
+  /// Triggered when a creature is about to learn a spell from a scroll.
   /// </summary>
   public sealed class OnItemScrollLearn : IEvent
   {
@@ -18,12 +18,12 @@ namespace Anvil.API.Events
     public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
-    /// Gets or sets whether this scroll should be prevented from being learned.
+    /// Set to true to prevent this scroll from being learned.
     /// </summary>
     public bool PreventLearnScroll { get; set; }
 
     /// <summary>
-    /// Gets the scroll that is being learnt.
+    /// Gets the scroll item that is being learned.
     /// </summary>
     public NwItem Scroll { get; private init; } = null!;
 

@@ -3,12 +3,24 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM adjusts a target's alignment.
+  /// </summary>
   public sealed class OnDMGiveAlignment : DMEvent
   {
+    /// <summary>
+    /// Gets the alignment axis being adjusted.
+    /// </summary>
     public Alignment Alignment { get; internal init; }
 
+    /// <summary>
+    /// Gets the amount to adjust along the alignment axis.
+    /// </summary>
     public int Amount { get; internal init; }
 
+    /// <summary>
+    /// Gets the object whose alignment is being adjusted.
+    /// </summary>
     public NwObject Target { get; internal init; } = null!;
   }
 }

@@ -8,7 +8,7 @@ using NWN.Native.API;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a game object enters a trap trigger.
+  /// Triggered when a game object enters a trap trigger.
   /// </summary>
   public sealed class OnTrapEnter : IEvent
   {
@@ -23,12 +23,12 @@ namespace Anvil.API.Events
     public NwTrigger Trigger { get; private init; } = null!;
 
     /// <summary>
-    /// Gets if this trap was force set.
+    /// Gets whether this trap was force set.
     /// </summary>
     public bool ForceSet { get; private init; }
 
     /// <summary>
-    /// Gets or sets if the trap trigger event should be skipped.
+    /// Set to true to skip the trap trigger event.
     /// </summary>
     public bool Skip { get; set; }
 

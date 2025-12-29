@@ -7,15 +7,34 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a player performs a party-related action (invite, kick, transfer leadership, etc.).
+  /// </summary>
   public sealed class OnPartyEvent : IEvent
   {
+    /// <summary>
+    /// Gets the party event type.
+    /// </summary>
     public PartyEventType EventType { get; private init; }
 
+    /// <summary>
+    /// Gets the player initiating the party action.
+    /// </summary>
     public NwPlayer Player { get; private init; } = null!;
+
+    /// <summary>
+    /// Set to true to prevent the party action.
+    /// </summary>
     public bool PreventEvent { get; set; }
 
+    /// <summary>
+    /// Gets the result of the party action.
+    /// </summary>
     public Lazy<bool> Result { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets the target creature of the party action, if applicable.
+    /// </summary>
     public NwCreature Target { get; private init; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;

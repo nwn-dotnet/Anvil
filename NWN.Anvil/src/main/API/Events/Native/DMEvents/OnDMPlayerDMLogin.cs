@@ -3,8 +3,14 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a player attempts to log in as DM.
+  /// </summary>
   public sealed class OnDMPlayerDMLogin : DMEvent
   {
+    /// <summary>
+    /// Gets the DM password supplied by the player.
+    /// </summary>
     public string Password { get; internal init; } = null!;
   }
 }

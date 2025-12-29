@@ -8,19 +8,44 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature attempts to use a feat.
+  /// </summary>
   public sealed class OnUseFeat : IEvent
   {
+    /// <summary>
+    /// Gets the creature attempting to use the feat.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the feat being used.
+    /// </summary>
     public NwFeat Feat { get; private init; } = null!;
+
+    /// <summary>
+    /// Set to true to prevent the feat from being used.
+    /// </summary>
     public bool PreventFeatUse { get; set; }
 
+    /// <summary>
+    /// Gets the sub-feat id, if applicable.
+    /// </summary>
     public int SubFeatId { get; private init; }
 
-    public NwArea TargetArea { get; private init; } = null!;
+    /// <summary>
+    /// Gets the targeted area, if applicable.
+    /// </summary>
+    public NwArea? TargetArea { get; private init; }
 
-    public NwGameObject TargetObject { get; private init; } = null!;
+    /// <summary>
+    /// Gets the targeted object, if applicable.
+    /// </summary>
+    public NwGameObject? TargetObject { get; private init; }
 
+    /// <summary>
+    /// Gets the targeted position, if applicable.
+    /// </summary>
     public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Creature;
@@ -46,8 +71,8 @@ namespace Anvil.API.Events
           Creature = creature.ToNwObject<NwCreature>()!,
           Feat = NwFeat.FromFeatId(nFeat)!,
           SubFeatId = nSubFeat,
-          TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
-          TargetArea = oidArea.ToNwObject<NwArea>()!,
+          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+          TargetArea = oidArea.ToNwObject<NwArea>(),
           TargetPosition = pTargetPos != null ? Marshal.PtrToStructure<Vector3>((IntPtr)pTargetPos) : Vector3.Zero,
         });
 

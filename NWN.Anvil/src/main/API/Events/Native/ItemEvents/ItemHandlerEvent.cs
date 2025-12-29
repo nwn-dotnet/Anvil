@@ -3,10 +3,13 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base class for simple item handler events.
+  /// </summary>
   public abstract class ItemHandlerEvent : IEvent
   {
     /// <summary>
-    /// Gets or sets if this event should be skipped.
+    /// Set to true to skip this event.
     /// </summary>
     public bool Skip { get; set; }
 
@@ -19,12 +22,12 @@ namespace Anvil.API.Events
   }
 
   /// <summary>
-  /// Called when an item is destroyed, reducing the stack size of an item.
+  /// Triggered when an item is destroyed, reducing the stack size of an item.
   /// </summary>
   public sealed class OnItemDecrementStackSize : ItemHandlerEvent;
 
   /// <summary>
-  /// Called when an item is destroyed, deleting the item.
+  /// Triggered when an item is destroyed, deleting the item.
   /// </summary>
   public sealed class OnItemDestroy : ItemHandlerEvent;
 }

@@ -7,10 +7,19 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature starts a new combat round.
+  /// </summary>
   public sealed class OnCombatRoundStart : IEvent
   {
+    /// <summary>
+    /// Gets the creature starting the combat round.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the current combat target for the creature.
+    /// </summary>
     public NwGameObject Target { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;

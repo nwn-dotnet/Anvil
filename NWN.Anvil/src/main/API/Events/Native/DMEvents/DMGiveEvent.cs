@@ -3,17 +3,35 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base event for DM actions that grant XP, levels, or gold to a target.
+  /// </summary>
   public abstract class DMGiveEvent : DMEvent
   {
+    /// <summary>
+    /// Gets the amount to grant (XP, levels, or gold depending on context).
+    /// </summary>
     public int Amount { get; internal init; }
 
+    /// <summary>
+    /// Gets the target that will receive the grant.
+    /// </summary>
     public NwGameObject Target { get; internal init; } = null!;
   }
 
+  /// <summary>
+  /// Triggered when a DM gives XP to a player.
+  /// </summary>
   public sealed class OnDMGiveXP : DMGiveEvent;
 
+  /// <summary>
+  /// Triggered when a DM gives a level to a player.
+  /// </summary>
   public sealed class OnDMGiveLevel : DMGiveEvent;
 
+  /// <summary>
+  /// Triggered when a DM gives gold to a player.
+  /// </summary>
   public sealed class OnDMGiveGold : DMGiveEvent;
 }
 

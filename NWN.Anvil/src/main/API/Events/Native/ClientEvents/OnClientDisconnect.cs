@@ -8,7 +8,7 @@ using NWN.Native.API;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when the player disconnects from the server.<br/>
+  /// Triggered when a player disconnects from the server.<br/>
   /// This event is also called if the player connects, and then disconnects on the character select screen.
   /// </summary>
   public sealed class OnClientDisconnect : IEvent

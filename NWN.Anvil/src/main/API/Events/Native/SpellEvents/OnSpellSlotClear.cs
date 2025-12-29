@@ -7,15 +7,34 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a memorized spell slot is cleared.
+  /// </summary>
   public sealed class OnSpellSlotClear : IEvent
   {
+    /// <summary>
+    /// Gets the caster's class index for the slot.
+    /// </summary>
     public int ClassIndex { get; private init; }
 
+    /// <summary>
+    /// Gets the creature whose slot is being cleared.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
+
+    /// <summary>
+    /// Set to true to prevent clearing the memorized slot.
+    /// </summary>
     public bool PreventClear { get; set; }
 
+    /// <summary>
+    /// Gets the spell slot index.
+    /// </summary>
     public int SlotIndex { get; private init; }
 
+    /// <summary>
+    /// Gets the spell level for the slot.
+    /// </summary>
     public int SpellLevel { get; private init; }
 
     NwObject IEvent.Context => Creature;

@@ -7,11 +7,26 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when the module calendar/time changes.
+  /// </summary>
   public sealed class OnCalendarTimeChange : IEvent
   {
+    /// <summary>
+    /// Gets the new value for the changed unit.
+    /// For <see cref="TimeChangeType.TimeOfDay"/>, compare against the <see cref="TimeOfDayState"/> constants.
+    /// </summary>
     public uint NewValue { get; private init; }
 
+    /// <summary>
+    /// Gets the previous value for the changed unit.
+    /// For <see cref="TimeChangeType.TimeOfDay"/>, compare against the <see cref="TimeOfDayState"/> constants.
+    /// </summary>
     public uint OldValue { get; private init; }
+
+    /// <summary>
+    /// Gets the type of time change (hour, day, month, year, or time-of-day state).
+    /// </summary>
     public TimeChangeType TimeChangeType { get; private init; }
 
     NwObject? IEvent.Context => null;

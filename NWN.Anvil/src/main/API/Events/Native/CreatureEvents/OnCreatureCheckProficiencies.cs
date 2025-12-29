@@ -8,27 +8,27 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when an item is tested against a creature's proficiencies to determine if the creature may attempt to equip the item.
+  /// Triggered when an item is tested against a creature's proficiencies to determine if it may be equipped.
   /// </summary>
   public sealed class OnCreatureCheckProficiencies : IEvent
   {
     /// <summary>
-    /// The creature whose proficiencies are being checked for the item to be equipped.
+    /// Gets the creature whose proficiencies are being checked.
     /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
-    /// The item attempting to be equipped.
+    /// Gets the item attempting to be equipped.
     /// </summary>
     public NwItem Item { get; private init; } = null!;
 
     /// <summary>
-    /// Gets or sets an override result to use for this proficiency check.
+    /// Gets or sets an override to use for this proficiency check.
     /// </summary>
     public CheckProficiencyOverride ResultOverride { get; set; }
 
     /// <summary>
-    /// The inventory slot the item is attempting to be equipped to.
+    /// Gets the inventory slot the item is attempting to be equipped to.
     /// </summary>
     public EquipmentSlots TargetSlot { get; private init; }
 

@@ -5,7 +5,7 @@ using Anvil.API.Events;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a client attempts to spawn a visual effect.
+  /// Triggered when a DM/player in debug mode attempts to spawn a visual effect.
   /// </summary>
   public sealed class OnDebugPlayVisualEffect : IEvent
   {
@@ -35,7 +35,7 @@ namespace Anvil.API.Events
     public TimeSpan Duration { get; internal init; }
 
     /// <summary>
-    /// Gets or sets if execution of the script should be skipped.
+    /// Set to true to skip execution.
     /// </summary>
     public bool Skip { get; set; }
 

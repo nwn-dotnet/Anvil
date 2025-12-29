@@ -9,32 +9,32 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a player is about to change an existing map pin.
+  /// Triggered when a player is about to change an existing map pin.
   /// </summary>
   public sealed class OnMapPinChangePin : IEvent
   {
     /// <summary>
-    /// Gets the unique identifier for this map pin.
+    /// Gets the unique identifier for the map pin.
     /// </summary>
     public int Id { get; private init; }
 
     /// <summary>
-    /// Gets the note that was set on the map pin.
+    /// Gets the note set on the map pin.
     /// </summary>
     public string? Note { get; private init; }
 
     /// <summary>
-    /// Gets the player that is changing the map pin.
+    /// Gets the player changing the map pin.
     /// </summary>
     public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
-    /// Gets the position that the pin was placed at.
+    /// Gets the position where the pin is placed.
     /// </summary>
     public Vector3 Position { get; private init; }
 
     /// <summary>
-    /// Gets or sets if this pin change event should be prevented.
+    /// Set to true to prevent the map pin change.
     /// </summary>
     public bool PreventPinChange { get; set; }
 

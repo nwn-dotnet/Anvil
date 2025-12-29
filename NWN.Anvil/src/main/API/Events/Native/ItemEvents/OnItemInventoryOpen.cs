@@ -7,6 +7,9 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature opens a container item.
+  /// </summary>
   public sealed class OnItemInventoryOpen : IEvent
   {
     /// <summary>
@@ -19,6 +22,9 @@ namespace Anvil.API.Events
     /// </summary>
     public NwCreature OpenedBy { get; private init; } = null!;
 
+    /// <summary>
+    /// Set to true to prevent the container from being opened.
+    /// </summary>
     public bool PreventOpen { get; set; }
 
     NwObject IEvent.Context => OpenedBy;

@@ -7,42 +7,93 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered for each individual melee or ranged attack in a flurry.
+  /// </summary>
   public sealed class OnCreatureAttack : IEvent
   {
+    /// <summary>
+    /// Gets the attacking creature.
+    /// </summary>
     public NwCreature Attacker { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the attack roll modifier applied to this attack.
+    /// </summary>
     public int AttackModifier { get; private init; }
 
+    /// <summary>
+    /// Gets the 1-based index of this attack within the current flurry.
+    /// </summary>
     public int AttackNumber { get; private init; }
 
+    /// <summary>
+    /// Gets or sets the resolved outcome for this attack.
+    /// </summary>
     public AttackResult AttackResult
     {
       get => (AttackResult)CombatAttackData.m_nAttackResult;
       set => CombatAttackData.m_nAttackResult = (byte)value;
     }
 
+    /// <summary>
+    /// Gets the raw d20 attack roll value.
+    /// </summary>
     public byte AttackRoll { get; private init; }
 
+    /// <summary>
+    /// Gets the internal attack type for this strike.
+    /// </summary>
     public int AttackType { get; private init; }
 
+    /// <summary>
+    /// Gets the mutable damage data for this attack.
+    /// </summary>
     public DamageData<short> DamageData { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets a value indicating whether the attack was deflected.
+    /// </summary>
     public bool IsAttackDeflected { get; private init; }
 
+    /// <summary>
+    /// Gets a value indicating whether the attack is a coup de grâce.
+    /// </summary>
     public bool IsCoupDeGrace { get; private init; }
 
+    /// <summary>
+    /// Gets a value indicating whether the attack threatens a critical hit.
+    /// </summary>
     public bool IsCriticalThreat { get; private init; }
 
+    /// <summary>
+    /// Gets a value indicating whether the attack is ranged.
+    /// </summary>
     public bool IsRangedAttack { get; private init; }
 
+    /// <summary>
+    /// Gets a value indicating whether this attack is a killing blow.
+    /// </summary>
     public bool KillingBlow { get; private init; }
 
+    /// <summary>
+    /// Gets the sneak/death attack state for this strike.
+    /// </summary>
     public SneakAttack SneakAttack { get; private init; }
 
+    /// <summary>
+    /// Gets the target of the attack.
+    /// </summary>
     public NwGameObject Target { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the total damage value for this attack.
+    /// </summary>
     public int TotalDamage { get; private init; }
 
+    /// <summary>
+    /// Gets the weapon attack type for this strike.
+    /// </summary>
     public WeaponAttackType WeaponAttackType { get; private init; }
 
     NwObject IEvent.Context => Attacker;

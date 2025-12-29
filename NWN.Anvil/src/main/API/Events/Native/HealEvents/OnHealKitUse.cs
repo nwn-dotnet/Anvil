@@ -8,7 +8,7 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a heal kit is used by a creature.
+  /// Triggered when a heal kit is used by a creature.
   /// </summary>
   public sealed class OnHealKitUse : IEvent
   {
@@ -28,17 +28,17 @@ namespace Anvil.API.Events
     public bool MoveToTarget { get; private init; }
 
     /// <summary>
-    /// Gets or sets whether the heal kit should be prevented from being used.
+    /// Set to true to prevent the heal kit from being used.
     /// </summary>
     public bool PreventUse { get; set; }
 
     /// <summary>
-    /// Gets if the creature successfully used this healing kit.
+    /// Gets the action result of using the healing kit.
     /// </summary>
     public Lazy<ActionState> Result { get; private set; } = null!;
 
     /// <summary>
-    /// Gets the object that was targetted with this healing item.
+    /// Gets the object that was targeted with this healing item.
     /// </summary>
     public NwGameObject Target { get; private init; } = null!;
 

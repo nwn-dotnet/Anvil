@@ -7,16 +7,34 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature attempts to equip an item.
+  /// </summary>
   public sealed class OnItemEquip : IEvent
   {
+    /// <summary>
+    /// Gets the creature equipping the item.
+    /// </summary>
     public NwCreature EquippedBy { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the item being equipped.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
 
+    /// <summary>
+    /// Set to true to prevent the item from being equipped.
+    /// </summary>
     public bool PreventEquip { get; set; }
 
+    /// <summary>
+    /// Gets the equip operation result.
+    /// </summary>
     public Lazy<bool> Result { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets the inventory slot the item is being equipped to.
+    /// </summary>
     public InventorySlot Slot { get; private init; }
 
     NwObject IEvent.Context => EquippedBy;

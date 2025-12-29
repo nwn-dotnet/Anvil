@@ -4,16 +4,34 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM spawns an object.
+  /// </summary>
   public sealed class OnDMSpawnObject : DMEvent
   {
+    /// <summary>
+    /// Gets the area where the object will be spawned.
+    /// </summary>
     public NwArea Area { get; internal init; } = null!;
 
+    /// <summary>
+    /// Gets the type of object that will be spawned.
+    /// </summary>
     public ObjectTypes ObjectType { get; internal init; }
 
+    /// <summary>
+    /// Gets the spawn position.
+    /// </summary>
     public Vector3 Position { get; internal init; }
 
+    /// <summary>
+    /// Gets the resource reference that will be spawned.
+    /// </summary>
     public string ResRef { get; internal init; } = null!;
 
+    /// <summary>
+    /// Gets the spawned object.
+    /// </summary>
     public NwGameObject? SpawnedObject { get; internal set; }
   }
 }

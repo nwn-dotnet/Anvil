@@ -7,7 +7,7 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a creature attempts to disarm a trap.
+  /// Triggered when a creature attempts to disarm a trap.
   /// </summary>
   public sealed class OnTrapDisarm : TrapEvent
   {

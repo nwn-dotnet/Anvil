@@ -1,9 +1,12 @@
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base class for DM-related native events.
+  /// </summary>
   public abstract class DMEvent : IEvent
   {
     /// <summary>
-    /// Gets or sets if this event should be skipped.
+    /// Set to true to skip execution.
     /// </summary>
     public bool Skip { get; set; }
 

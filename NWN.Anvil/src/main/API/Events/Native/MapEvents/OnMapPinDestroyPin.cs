@@ -8,22 +8,22 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a player is about to delete an existing map pin.
+  /// Triggered when a player is about to delete an existing map pin.
   /// </summary>
   public sealed class OnMapPinDestroyPin : IEvent
   {
     /// <summary>
-    /// Gets the unique identifier for the pin being destroyed.
+    /// Gets the unique identifier for the map pin being deleted.
     /// </summary>
     public int Id { get; private init; }
 
     /// <summary>
-    /// Gets the player that is changing the map pin.
+    /// Gets the player deleting the map pin.
     /// </summary>
     public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
-    /// Gets or sets if this pin destroy event should be prevented.
+    /// Set to true to prevent the map pin from being deleted.
     /// </summary>
     public bool PreventPinDestroy { get; set; }
 

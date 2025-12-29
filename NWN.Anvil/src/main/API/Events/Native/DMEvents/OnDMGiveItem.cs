@@ -3,9 +3,19 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM gives an item to a target.
+  /// </summary>
   public sealed class OnDMGiveItem : DMEvent
   {
+    /// <summary>
+    /// Gets the target that will receive the item.
+    /// </summary>
     public NwGameObject Target { get; internal init; } = null!;
+
+    /// <summary>
+    /// Gets or sets the item to give. Set to null to cancel.
+    /// </summary>
     public NwItem? Item { get; internal set; }
   }
 }

@@ -7,10 +7,19 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a barter is initiated between two players.
+  /// </summary>
   public sealed class OnBarterStart : IEvent
   {
+    /// <summary>
+    /// Gets the player who initiated the barter.
+    /// </summary>
     public NwPlayer Initiator { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the player targeted by the barter request.
+    /// </summary>
     public NwPlayer Target { get; private init; } = null!;
 
     NwObject? IEvent.Context => Initiator.ControlledCreature;

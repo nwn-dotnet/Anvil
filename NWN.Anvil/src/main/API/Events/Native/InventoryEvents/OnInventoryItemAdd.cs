@@ -7,14 +7,29 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when an item is added to an inventory of an item or placeable.
+  /// </summary>
   public sealed class OnInventoryItemAdd : IEvent
   {
+    /// <summary>
+    /// Gets the item or placeable that is receiving the item.
+    /// </summary>
     public NwGameObject AcquiredBy { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the item being added.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
 
+    /// <summary>
+    /// Set to true to prevent the item from being added.
+    /// </summary>
     public bool PreventItemAdd { get; set; }
 
+    /// <summary>
+    /// Gets the result of the add operation.
+    /// </summary>
     public Lazy<bool> Result { get; private set; } = null!;
 
     NwObject IEvent.Context => AcquiredBy;

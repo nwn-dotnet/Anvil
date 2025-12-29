@@ -4,6 +4,10 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Represents the typed damage data used to apply damage to a game object.
+  /// </summary>
+  /// <typeparam name="T">The underlying native type used to represent damage values.</typeparam>
   public sealed unsafe class DamageData<T> where T : unmanaged
   {
     private const int DamageArrayLength = 32;
@@ -110,12 +114,22 @@ namespace Anvil.API.Events
       set => source[11] = value;
     }
 
+    /// <summary>
+    /// Gets the damage value for the specified <see cref="DamageType"/>.
+    /// </summary>
+    /// <param name="damageType">The damage type to query.</param>
+    /// <returns>The damage value for the given type.</returns>
     public T GetDamageByType(DamageType damageType)
     {
       int index = BitOperations.Log2((uint)damageType);
       return source[index];
     }
 
+    /// <summary>
+    /// Sets the damage value for the specified <see cref="DamageType"/>.
+    /// </summary>
+    /// <param name="damageType">The damage type to update.</param>
+    /// <param name="value">The new damage value.</param>
     public void SetDamageByType(DamageType damageType, T value)
     {
       int index = BitOperations.Log2((uint)damageType);

@@ -7,12 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a player initiates the level-up process.
+  /// </summary>
   public sealed class OnClientLevelUpBegin : IEvent
   {
+    /// <summary>
+    /// Gets the player beginning the level-up.
+    /// </summary>
     public NwPlayer Player { get; private init; } = null!;
 
+    /// <summary>
+    /// Set to true to prevent the level-up from proceeding.
+    /// </summary>
     public bool PreventLevelUp { get; set; }
 
+    /// <summary>
+    /// Gets if the player was able to successfully trigger the level-up UI.
+    /// </summary>
     public Lazy<bool> Result { get; private set; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;

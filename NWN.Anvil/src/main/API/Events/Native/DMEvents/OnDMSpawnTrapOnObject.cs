@@ -3,8 +3,14 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM spawns a trap on a target object.
+  /// </summary>
   public sealed class OnDMSpawnTrapOnObject : DMEvent
   {
+    /// <summary>
+    /// Gets the target object where the trap will be added.
+    /// </summary>
     public NwStationary Target { get; internal init; } = null!;
   }
 }

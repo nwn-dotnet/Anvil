@@ -7,9 +7,19 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when an item is removed from an inventory of an item or placeable.
+  /// </summary>
   public sealed class OnInventoryItemRemove : IEvent
   {
+    /// <summary>
+    /// Gets the item being removed.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the item or placeable the item is being removed from.
+    /// </summary>
     public NwGameObject RemovedFrom { get; private init; } = null!;
 
     NwObject IEvent.Context => RemovedFrom;

@@ -7,20 +7,44 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a casting creature is interrupted and the spell fails.
+  /// </summary>
   public sealed class OnSpellInterrupt : IEvent
   {
+    /// <summary>
+    /// Gets the caster's class index used for the interrupted spell.
+    /// </summary>
     public int ClassIndex { get; private init; }
 
+    /// <summary>
+    /// Gets the domain level for the interrupted spell, if applicable.
+    /// </summary>
     public NwDomain? Domain { get; private init; }
 
+    /// <summary>
+    /// Gets the feat associated with the interrupted spell, if applicable.
+    /// </summary>
     public NwFeat? Feat { get; private init; }
 
+    /// <summary>
+    /// Gets the game object whose casting was interrupted.
+    /// </summary>
     public NwGameObject InterruptedCaster { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the metamagic applied to the interrupted spell.
+    /// </summary>
     public MetaMagic MetaMagic { get; private init; }
 
+    /// <summary>
+    /// Gets the interrupted spell.
+    /// </summary>
     public NwSpell Spell { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets whether the interrupted spell was cast spontaneously.
+    /// </summary>
     public bool Spontaneous { get; private init; }
 
     NwObject IEvent.Context => InterruptedCaster;

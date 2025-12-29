@@ -7,16 +7,34 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature toggles a combat mode.
+  /// </summary>
   public sealed class OnCombatModeToggle : IEvent
   {
+    /// <summary>
+    /// Gets the creature toggling the combat mode.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets a value indicating whether the engine is forcibly requesting the mode to change.
+    /// </summary>
     public bool ForceNewMode { get; private init; }
 
+    /// <summary>
+    /// Overrides the force behavior when applying the new mode.
+    /// </summary>
     public ForceNewModeOverride ForceNewModeOverride { get; set; }
 
+    /// <summary>
+    /// Gets or sets the new combat mode to apply.
+    /// </summary>
     public CombatMode NewMode { get; set; }
 
+    /// <summary>
+    /// Gets or sets if the new combat mode state should be skipped/prevented.
+    /// </summary>
     public bool PreventToggle { get; set; }
 
     NwObject IEvent.Context => Creature;
