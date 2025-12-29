@@ -8,20 +8,40 @@ using System.Text.RegularExpressions;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// String helpers for script names, object ID parsing, color tokens, and common conversions.
+  /// </summary>
   public static class StringExtensions
   {
     private static readonly Regex StripColorsRegex = new Regex("<c.+?(?=>)>|<\\/c>");
 
+    /// <summary>
+    /// Appends the specified text wrapped in a NWN color token.
+    /// </summary>
+    /// <param name="stringBuilder">The string builder to append to.</param>
+    /// <param name="text">The text to append.</param>
+    /// <param name="color">The color to apply via token.</param>
     public static void AppendColored(this StringBuilder stringBuilder, string text, Color color)
     {
       stringBuilder.Append(ColorString(text, color));
     }
 
+    /// <summary>
+    /// Wraps the specified text in a NWN color token string.
+    /// </summary>
+    /// <param name="input">The text to wrap.</param>
+    /// <param name="color">The color to apply via token.</param>
+    /// <returns>The formatted color token string.</returns>
     public static string ColorString(this string input, Color color)
     {
       return $"<c{color.ToColorToken()}>{input}</c>";
     }
 
+    /// <summary>
+    /// Gets whether the specified script name is reserved by Anvil.
+    /// </summary>
+    /// <param name="scriptName">The script name to check.</param>
+    /// <returns>True if the name is reserved, otherwise false.</returns>
     public static bool IsReservedScriptName(this string scriptName)
     {
       if (string.IsNullOrEmpty(scriptName))
@@ -33,6 +53,18 @@ namespace Anvil.API
       return lowerName is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
     }
 
+    /// <summary>
+    /// Validates a script name against engine constraints.
+    /// </summary>
+    /// <remarks>
+    /// The following constraints apply to script names:<br/>
+    /// - Script must be &lt;=16 characters.<br/>
+    /// - Scripts must only use alphanumeric characters (Aa-Zz, 0-9), underscores (_), or hyphens (-).<br/>
+    /// - Scripts must not use reserved names: <see cref="ScriptConstants.GameEventScriptName"/> or <see cref="ScriptConstants.NWNXEventScriptName"/>.
+    /// </remarks>
+    /// <param name="scriptName">The script name to validate.</param>
+    /// <param name="allowEmpty">If true, an empty or null name is allowed.</param>
+    /// <returns>True if the name is valid, otherwise false.</returns>
     public static bool IsValidScriptName(this string? scriptName, bool allowEmpty)
     {
       if (string.IsNullOrEmpty(scriptName))
@@ -63,7 +95,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Parses the specified string as an float.
+    /// Parses the specified string as a float.
     /// </summary>
     /// <param name="floatString">The float string to parse.</param>
     /// <param name="defaultValue">If parsing fails, the value to return instead.</param>
@@ -157,6 +189,12 @@ namespace Anvil.API
       return false;
     }
 
+    /// <summary>
+    /// Reads up to the specified number of characters from the reader.
+    /// </summary>
+    /// <param name="stringReader">The reader to read from.</param>
+    /// <param name="length">The maximum number of characters to read.</param>
+    /// <returns>A string containing the characters read, which may be shorter than <paramref name="length"/> if the end is reached.</returns>
     public static string ReadBlock(this StringReader stringReader, int length)
     {
       char[] retVal = new char[length];
@@ -173,6 +211,12 @@ namespace Anvil.API
       return new string(retVal, 0, i);
     }
 
+    /// <summary>
+    /// Reads characters until the specified character is encountered, without consuming it.
+    /// </summary>
+    /// <param name="stringReader">The reader to read from.</param>
+    /// <param name="character">The delimiter character to stop at.</param>
+    /// <returns>The characters read as a string.</returns>
     public static string ReadUntilChar(this StringReader stringReader, char character)
     {
       List<char> retVal = [];
@@ -193,6 +237,11 @@ namespace Anvil.API
       return new string(retVal.ToArray());
     }
 
+    /// <summary>
+    /// Advances the reader by the specified number of characters.
+    /// </summary>
+    /// <param name="stringReader">The reader to advance.</param>
+    /// <param name="count">The number of characters to skip.</param>
     public static void Skip(this StringReader stringReader, int count)
     {
       for (int i = 0; i < count; i++)
@@ -211,26 +260,54 @@ namespace Anvil.API
       return StripColorsRegex.Replace(input, string.Empty);
     }
 
+    /// <summary>
+    /// Encodes the specified byte array as a base64 string.
+    /// </summary>
+    /// <param name="data">The data to encode.</param>
+    /// <returns>The base64-encoded string.</returns>
     public static string ToBase64EncodedString(this byte[] data)
     {
       return Convert.ToBase64String(data);
     }
 
+    /// <summary>
+    /// Converts a base64 string to a byte array.
+    /// </summary>
+    /// <param name="base64String">The base64-encoded string.</param>
+    /// <returns>The decoded byte array.</returns>
     public static byte[] ToByteArray(this string base64String)
     {
       return Convert.FromBase64String(base64String);
     }
 
+    /// <summary>
+    /// Tries to parse a float from the provided string.
+    /// </summary>
+    /// <param name="floatString">The input string.</param>
+    /// <param name="result">The parsed float value if successful.</param>
+    /// <returns>True if parsing succeeded; otherwise false.</returns>
     public static bool TryParseFloat(this string floatString, out float result)
     {
       return float.TryParse(floatString, out result);
     }
 
+    /// <summary>
+    /// Tries to parse an integer from the provided string.
+    /// </summary>
+    /// <param name="intString">The input string.</param>
+    /// <param name="result">The parsed integer value if successful.</param>
+    /// <returns>True if parsing succeeded; otherwise false.</returns>
     public static bool TryParseInt(this string intString, out int result)
     {
       return int.TryParse(intString, out result);
     }
 
+    /// <summary>
+    /// Tries to parse an integer-based boolean (1/0) and convert to a managed boolean using NWScript semantics.
+    /// </summary>
+    /// <param name="intBoolString">The integer string to parse.</param>
+    /// <param name="result">Outputs true for non-zero values, false for zero.</param>
+    /// <returns>True if parsing succeeded; otherwise false.</returns>
     public static bool TryParseIntBool(this string intBoolString, out bool result)
     {
       bool retVal = int.TryParse(intBoolString, out int intResult);

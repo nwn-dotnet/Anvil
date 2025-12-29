@@ -13,7 +13,7 @@ namespace Anvil.API
     /// <param name="random">The random instance.</param>
     /// <param name="minValue">The minimum value (inclusive).</param>
     /// <param name="maxValue">The maximum value (exclusive).</param>
-    /// <returns>A random double in the specified range.</returns>
+    /// <returns>A random double in the specified range [minValue, maxValue).</returns>
     public static double NextDouble(this Random random, double minValue, double maxValue)
     {
       double next = random.NextDouble();
@@ -24,7 +24,7 @@ namespace Anvil.API
     /// Returns a random floating-point number that is greater than or equal to 0.0f, and less than 1.0f.
     /// </summary>
     /// <param name="random">The random instance.</param>
-    /// <returns>A random floating-point number that is greater than or equal to 0.0f, and less than 1.0f.</returns>
+    /// <returns>A random floating-point number in the range [0.0f, 1.0f).</returns>
     public static float NextFloat(this Random random)
     {
       return (float)random.NextDouble();
@@ -36,7 +36,7 @@ namespace Anvil.API
     /// <param name="random">The random instance.</param>
     /// <param name="minValue">The minimum value (inclusive).</param>
     /// <param name="maxValue">The maximum value (exclusive).</param>
-    /// <returns>A random float in the specified range.</returns>
+    /// <returns>A random float in the specified range [minValue, maxValue).</returns>
     public static float NextFloat(this Random random, float minValue, float maxValue)
     {
       return (float)random.NextDouble(minValue, maxValue);

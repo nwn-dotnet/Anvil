@@ -60,6 +60,10 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Disposes all non-null items in the provided collection.
+    /// </summary>
+    /// <param name="disposables">The collection of disposables to clean up.</param>
     public static void DisposeAll(this IEnumerable<IDisposable?>? disposables)
     {
       if (disposables == null)
@@ -112,6 +116,14 @@ namespace Anvil.API
       return retVal;
     }
 
+    /// <summary>
+    /// Safely gets a value from a dictionary, or the default if the key does not exist.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to query.</param>
+    /// <param name="key">The key to look up.</param>
+    /// <typeparam name="TKey">The dictionary key type.</typeparam>
+    /// <typeparam name="TValue">The dictionary value type.</typeparam>
+    /// <returns>The value for the key if present; otherwise the default value for <typeparamref name="TValue"/>.</returns>
     public static TValue? SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
     {
       return dictionary.TryGetValue(key, out TValue? retVal) ? retVal : default;
