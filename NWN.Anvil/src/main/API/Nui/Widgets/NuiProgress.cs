@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -8,12 +8,13 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiProgress(NuiProperty<float> value) : NuiWidget
   {
+    [JsonPropertyName("type")]
     public override string Type => "progress";
 
     /// <summary>
     /// The current value of this progress bar (0-1).
     /// </summary>
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<float> Value { get; set; } = value;
   }
 }

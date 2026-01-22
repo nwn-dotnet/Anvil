@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 using Anvil.API;
 using NUnit.Framework;
 
@@ -20,8 +21,8 @@ namespace Anvil.Tests.API
         Selected = 1,
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"elements":[["Entry 1",1],["Entry 2",2],["Entry 3",3]],"value":1,"type":"combo"}"""), JsonUtility.ToJson(element));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"elements":[["Entry 1",1],["Entry 2",2],["Entry 3",3]],"value":1,"type":"combo"}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"elements":[["Entry 1",1],["Entry 2",2],["Entry 3",3]],"value":1,"type":"combo"}"""), JsonSerializer.Serialize(element));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"elements":[["Entry 1",1],["Entry 2",2],["Entry 3",3]],"value":1,"type":"combo"}"""));
     }
   }
 }

@@ -1,5 +1,5 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using NWNX.NET.Native;
 
 namespace Anvil.API
@@ -12,25 +12,29 @@ namespace Anvil.API
     /// <summary>
     /// Gets the alpha value of this color as a byte (0-255).
     /// </summary>
-    [JsonProperty("a")]
+    [JsonPropertyName("a")]
+    [JsonInclude]
     public readonly byte Alpha;
 
     /// <summary>
     /// Gets the blue value of this color as a byte (0-255).
     /// </summary>
-    [JsonProperty("b")]
+    [JsonPropertyName("b")]
+    [JsonInclude]
     public readonly byte Blue;
 
     /// <summary>
     /// Gets the green value of this color as a byte (0-255).
     /// </summary>
-    [JsonProperty("g")]
+    [JsonPropertyName("g")]
+    [JsonInclude]
     public readonly byte Green;
 
     /// <summary>
     /// Gets the red value of this color as a byte (0-255).
     /// </summary>
-    [JsonProperty("r")]
+    [JsonPropertyName("r")]
+    [JsonInclude]
     public readonly byte Red;
 
     /// <summary>

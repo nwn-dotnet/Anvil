@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -14,8 +15,8 @@ namespace Anvil.Tests.API
         Enabled = true,
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"label":"btn_resref","type":"button_image","enabled":true}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"label":"btn_resref","type":"button_image","enabled":true}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"label":"btn_resref","type":"button_image","enabled":true}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"label":"btn_resref","type":"button_image","enabled":true}"""));
     }
   }
 }

@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -13,8 +14,8 @@ namespace Anvil.Tests.API
         Step = 2,
       };
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"max":10,"min":0,"step":2,"type":"slider","value":{"bind":"value"}}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"max":10,"min":0,"step":2,"type":"slider","value":{"bind":"value"}}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"max":10,"min":0,"step":2,"type":"slider","value":{"bind":"value"}}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"max":10,"min":0,"step":2,"type":"slider","value":{"bind":"value"}}"""));
     }
   }
 }

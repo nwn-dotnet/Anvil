@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -8,15 +8,16 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiText(NuiProperty<string> text) : NuiWidget
   {
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<string> Text { get; set; } = text;
 
-    [JsonProperty("border")]
+    [JsonPropertyName("border")]
     public bool Border { get; set; } = true;
 
-    [JsonProperty("scrollbars")]
+    [JsonPropertyName("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
+    [JsonPropertyName("type")]
     public override string Type => "text";
   }
 }

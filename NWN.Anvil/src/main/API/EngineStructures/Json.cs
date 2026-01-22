@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using NWN.Core;
 
 namespace Anvil.API
@@ -7,7 +8,7 @@ namespace Anvil.API
   /// Represents a json engine structure.
   /// </summary>
   /// <remarks>This class is specifically for compatibility with the base game.<br/>
-  /// It is recommended to use <see cref="JsonUtility"/> and <see cref="System.Text.Json"/> for all json-related problems in C#.</remarks>
+  /// It is recommended to use <see cref="JsonSerializer"/> for all json-related problems in C#.</remarks>
   public sealed class Json : EngineStructure
   {
     internal Json(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
@@ -60,6 +61,28 @@ namespace Anvil.API
     public T? ToNwObject<T>(Location location, NwGameObject? owner = null, bool loadObjectState = true) where T : NwObject
     {
       return NWScript.JsonToObject(this, location, owner, loadObjectState.ToInt()).ToNwObject<T>();
+    }
+
+    /// <summary>
+    /// Deserializes a Json game engine structure.
+    /// </summary>
+    /// <typeparam name="T">The type to deserialize to.</typeparam>
+    /// <returns>The deserialized object.</returns>
+    public T? Deserialize<T>()
+    {
+      return JsonSerializer.Deserialize<T>(Dump());
+    }
+
+    /// <summary>
+    /// Serializes a value as a JSON engine structure.
+    /// </summary>
+    /// <param name="value">The value to serialize.</param>
+    /// <typeparam name="T">The type of the value to serialize.</typeparam>
+    /// <returns>A JSON engine structure representing the value.</returns>
+    public static Json Serialize<T>(T value)
+    {
+      string serialized = JsonSerializer.Serialize(value);
+      return Parse(serialized);
     }
   }
 }

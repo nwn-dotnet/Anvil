@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Anvil.API
 {
   /// <summary>
@@ -6,6 +8,7 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiSpacer : NuiWidget
   {
+    [JsonPropertyName("type")]
     public override string Type => "spacer";
   }
 }

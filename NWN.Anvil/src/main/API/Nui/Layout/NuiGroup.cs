@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using NWN.Core;
 
 namespace Anvil.API
@@ -11,7 +11,7 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiGroup : NuiLayout
   {
-    [JsonProperty("border")]
+    [JsonPropertyName("border")]
     public bool Border { get; set; } = true;
 
     [JsonIgnore]
@@ -24,11 +24,13 @@ namespace Anvil.API
     [JsonIgnore]
     public NuiElement? Element { get; set; }
 
-    [JsonProperty("scrollbars")]
+    [JsonPropertyName("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
+    [JsonPropertyName("type")]
     public override string Type => "group";
 
+    [JsonPropertyName("children")]
     protected override IEnumerable<NuiElement> SerializedChildren => Element.SafeYield();
 
     /// <summary>
@@ -45,7 +47,7 @@ namespace Anvil.API
         throw new InvalidOperationException("Layout cannot be updated as the NuiGroup does not have an ID.");
       }
 
-      NWScript.NuiSetGroupLayout(player.ControlledCreature, token, Id, JsonUtility.ToJsonStructure(newLayout));
+      NWScript.NuiSetGroupLayout(player.ControlledCreature, token, Id, Json.Serialize(newLayout));
     }
   }
 }

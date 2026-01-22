@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Anvil.API
 {
@@ -8,18 +8,19 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiSlider(NuiProperty<int> value, NuiProperty<int> min, NuiProperty<int> max) : NuiWidget
   {
-    [JsonProperty("max")]
+    [JsonPropertyName("max")]
     public NuiProperty<int> Max { get; set; } = max;
 
-    [JsonProperty("min")]
+    [JsonPropertyName("min")]
     public NuiProperty<int> Min { get; set; } = min;
 
-    [JsonProperty("step")]
+    [JsonPropertyName("step")]
     public NuiProperty<int> Step { get; set; } = 1;
 
+    [JsonPropertyName("type")]
     public override string Type => "slider";
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public NuiProperty<int> Value { get; set; } = value;
   }
 }

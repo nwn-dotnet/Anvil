@@ -1,4 +1,5 @@
-﻿using Anvil.API;
+﻿using System.Text.Json;
+using Anvil.API;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -10,8 +11,8 @@ namespace Anvil.Tests.API
     {
       NuiToggles element = new NuiToggles(NuiDirection.Vertical, ["Tab 1", "Tab 2", "Tab 3"]);
 
-      Assert.That(JsonUtility.ToJson(element), Is.EqualTo("""{"type":"tabbar","direction":1,"elements":["Tab 1","Tab 2","Tab 3"]}"""));
-      Assert.That(JsonUtility.ToJson<NuiElement>(element), Is.EqualTo("""{"type":"tabbar","direction":1,"elements":["Tab 1","Tab 2","Tab 3"]}"""));
+      Assert.That(JsonSerializer.Serialize(element), Is.EqualTo("""{"type":"tabbar","direction":1,"elements":["Tab 1","Tab 2","Tab 3"]}"""));
+      Assert.That(JsonSerializer.Serialize((NuiElement)element), Is.EqualTo("""{"type":"tabbar","direction":1,"elements":["Tab 1","Tab 2","Tab 3"]}"""));
     }
   }
 }
