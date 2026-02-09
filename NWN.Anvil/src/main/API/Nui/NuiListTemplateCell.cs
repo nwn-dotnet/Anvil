@@ -5,6 +5,7 @@ namespace Anvil.API
   /// <summary>
   /// A cell template for use in <see cref="NuiList"/>.
   /// </summary>
+  /// <param name="element">The element to render inside this cell.</param>
   [JsonConverter(typeof(ObjectToArrayConverter<NuiListTemplateCell>))]
   [method: JsonConstructor]
   public sealed class NuiListTemplateCell(NuiElement element)
@@ -16,7 +17,7 @@ namespace Anvil.API
     public NuiElement Element { get; set; } = element;
 
     /// <summary>
-    /// Gets or sets if this cell can grow if space is available (true), or if it is static (false)
+    /// Gets or sets if this cell can grow if space is available (true), or if it is static (false).
     /// </summary>
     [JsonProperty(Order = 3)]
     public bool VariableSize { get; set; }

@@ -10,6 +10,9 @@ namespace Anvil.API
   /// </summary>
   public readonly partial struct NuiWindowToken : IEquatable<NuiWindowToken>
   {
+    /// <summary>
+    /// Represents an invalid window token.
+    /// </summary>
     public static NuiWindowToken Invalid = new NuiWindowToken(null!, -1);
 
     [Inject]
@@ -37,11 +40,17 @@ namespace Anvil.API
     /// </summary>
     public string WindowId => NWScript.NuiGetWindowId(Player.ControlledCreature, Token);
 
+    /// <summary>
+    /// Determines whether two <see cref="NuiWindowToken"/> values are equal.
+    /// </summary>
     public static bool operator ==(NuiWindowToken left, NuiWindowToken right)
     {
       return left.Equals(right);
     }
 
+    /// <summary>
+    /// Determines whether two <see cref="NuiWindowToken"/> values are not equal.
+    /// </summary>
     public static bool operator !=(NuiWindowToken left, NuiWindowToken right)
     {
       return !left.Equals(right);
@@ -55,6 +64,10 @@ namespace Anvil.API
       Dispose();
     }
 
+    /// <summary>
+    /// Disposes this token by destroying the underlying NUI window if valid.
+    /// Invokes <see cref="NWScript.NuiDestroy(uint,int)"/>.
+    /// </summary>
     public void Dispose()
     {
       if (Player != null && Player.IsValid)
@@ -63,11 +76,17 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Indicates whether this token is equal to another.
+    /// </summary>
     public bool Equals(NuiWindowToken other)
     {
       return Player.Equals(other.Player) && Token == other.Token;
     }
 
+    /// <summary>
+    /// Indicates whether this instance is equal to a specified object.
+    /// </summary>
     public override bool Equals(object? obj)
     {
       return obj is NuiWindowToken other && Equals(other);
@@ -95,6 +114,9 @@ namespace Anvil.API
       return bind.GetBindValues(Player, Token);
     }
 
+    /// <summary>
+    /// Returns a hash code for this token.
+    /// </summary>
     public override int GetHashCode()
     {
       return HashCode.Combine(Player, Token);
@@ -105,6 +127,9 @@ namespace Anvil.API
     /// </summary>
     /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
+    /// <summary>
+    /// Gets the userdata associated with this window token by calling <see cref="NWScript.NuiGetUserData(uint,int)"/>.
+    /// </summary>
     public T? GetUserData<T>()
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(Player.ControlledCreature, Token));

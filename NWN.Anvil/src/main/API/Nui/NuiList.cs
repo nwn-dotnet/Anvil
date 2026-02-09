@@ -6,6 +6,8 @@ namespace Anvil.API
   /// <summary>
   /// A list view of elements.
   /// </summary>
+  /// <param name="rowTemplate">The cell template that defines the layout for each row.</param>
+  /// <param name="rowCount">A bind controlling the number of rows in the list.</param>
   [method: JsonConstructor]
   public sealed class NuiList(IReadOnlyCollection<NuiListTemplateCell> rowTemplate, NuiProperty<int> rowCount) : NuiElement
   {
@@ -41,6 +43,9 @@ namespace Anvil.API
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Y;
 
+    /// <summary>
+    /// Gets the NUI element type identifier for serialization.
+    /// </summary>
     public override string Type => "list";
   }
 }

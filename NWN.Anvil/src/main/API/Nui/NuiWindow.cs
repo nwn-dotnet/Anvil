@@ -5,6 +5,8 @@ namespace Anvil.API
   /// <summary>
   /// Represents a NUI scriptable window container.
   /// </summary>
+  /// <param name="root">The root layout containing the window content.</param>
+  /// <param name="title">The bind that controls the window title.</param>
   [method: JsonConstructor]
   public sealed class NuiWindow(NuiLayout root, NuiProperty<string> title)
   {

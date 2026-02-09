@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A text label rendered within a draw list.
+  /// </summary>
   public sealed class NuiDrawListText : NuiDrawListItem
   {
     [JsonConstructor]
@@ -12,9 +15,15 @@ namespace Anvil.API
       Text = text;
     }
 
+    /// <summary>
+    /// Gets or sets the bounding rectangle where the text is rendered.
+    /// </summary>
     [JsonProperty("rect")]
     public NuiProperty<NuiRect> Rect { get; set; }
 
+    /// <summary>
+    /// Gets or sets the text to render.
+    /// </summary>
     [JsonProperty("text")]
     public NuiProperty<string> Text { get; set; }
 

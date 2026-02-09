@@ -58,6 +58,9 @@ namespace Anvil.API
     [JsonProperty("tooltip", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<string>? Tooltip { get; set; }
 
+    /// <summary>
+    /// Gets the NUI element type identifier used during JSON serialization.
+    /// </summary>
     [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
     public abstract string Type { get; }
 
@@ -73,9 +76,15 @@ namespace Anvil.API
     [JsonProperty("width", NullValueHandling = NullValueHandling.Ignore)]
     public float? Width { get; set; }
 
+    /// <summary>
+    /// Gets or sets an optional list of draw commands to render within this element.
+    /// </summary>
     [JsonProperty("draw_list", NullValueHandling = NullValueHandling.Ignore)]
     public List<NuiDrawListItem>? DrawList { get; set; }
 
+    /// <summary>
+    /// Gets or sets whether draw list items are clipped to the element's bounds.
+    /// </summary>
     [JsonProperty("draw_list_scissor", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<bool>? Scissor { get; set; }
 

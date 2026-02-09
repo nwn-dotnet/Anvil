@@ -17,15 +17,20 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a readonly Nui variable that cannot be changed at runtime.
+    /// Creates a readonly NUI variable that cannot be changed at runtime.
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">The value to assign to the property.</param>
+    /// <returns>A readonly <see cref="NuiValue{T}"/> instance wrapping the value.</returns>
     public static NuiValue<T> CreateValue(T value)
     {
       return new NuiValue<T>(value);
     }
 
+    /// <summary>
+    /// Implicitly converts a value to a readonly NUI property.
+    /// </summary>
+    /// <param name="value">The value to wrap.</param>
+    /// <returns>A <see cref="NuiValue{T}"/> representing the value.</returns>
     public static implicit operator NuiProperty<T>(T value)
     {
       return CreateValue(value);

@@ -4,13 +4,22 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// JSON converter for <see cref="NuiValue{T}"/> that serializes/deserializes only the wrapped value.
+  /// </summary>
   public sealed class NuiValueConverter : JsonConverter
   {
+    /// <summary>
+    /// Determines whether this converter can handle the specified type.
+    /// </summary>
     public override bool CanConvert(Type objectType)
     {
       return objectType.GetGenericTypeDefinition() == typeof(NuiValue<>);
     }
 
+    /// <summary>
+    /// Reads a JSON value into a <see cref="NuiValue{T}"/> instance.
+    /// </summary>
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
       object? retVal = Activator.CreateInstance(objectType, true);
@@ -31,6 +40,9 @@ namespace Anvil.API
       return retVal;
     }
 
+    /// <summary>
+    /// Writes the wrapped value from a <see cref="NuiValue{T}"/> to JSON.
+    /// </summary>
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
       if (value == null)

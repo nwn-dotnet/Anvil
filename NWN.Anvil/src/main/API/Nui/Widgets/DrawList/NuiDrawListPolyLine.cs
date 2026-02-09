@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A sequence of connected straight line segments rendered within a draw list.
+  /// </summary>
   public sealed class NuiDrawListPolyLine : NuiDrawListItem
   {
     [JsonConstructor]
@@ -14,6 +17,9 @@ namespace Anvil.API
       Points = points;
     }
 
+    /// <summary>
+    /// Gets or sets the flattened list of points (x,y pairs).
+    /// </summary>
     [JsonProperty("points")]
     public List<float> Points { get; set; }
 
