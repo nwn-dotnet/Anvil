@@ -23,12 +23,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<Functions.CNWSItem.ItemSplit> Hook { get; set; } = null!;
+      private static FunctionHook<Functions.CNWSItem.SplitItem> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, void> pHook = &OnItemSplit;
-        Hook = HookService.RequestHook<Functions.CNWSItem.ItemSplit>(pHook, HookOrder.Early);
+        Hook = HookService.RequestHook<Functions.CNWSItem.SplitItem>(pHook, HookOrder.Early);
         return [Hook];
       }
 
@@ -40,6 +40,9 @@ namespace Anvil.API.Events
           NumberToSplitOff = splitOff,
           ItemToSplit = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
         });
+
+        Hook.CallOriginal(pItem, splitOff);
+
         ProcessEvent(EventCallbackType.After, eventData);
       }
     }
@@ -48,7 +51,7 @@ namespace Anvil.API.Events
 
 namespace Anvil.API
 {
-  public sealed partial class NwCreature
+  public sealed partial class NwItem
   {
     /// <inheritdoc cref="Events.OnItemSplit"/>
     public event Action<OnItemSplit> OnItemSplit
