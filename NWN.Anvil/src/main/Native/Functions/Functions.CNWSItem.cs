@@ -18,6 +18,9 @@ namespace Anvil.Native
 
       [NativeFunction("_ZN8CNWSItem13OpenInventoryEj", "?OpenInventory@CNWSItem@@QEAAXI@Z")]
       public delegate void OpenInventory(void* pItem, uint oidOpener);
+
+      [NativeFunction("_ZN8CNWSItem9SplitItemEi", "?SplitItem@CNWSItem@@QEAAXH@Z")]
+      public delegate void SplitItem(void* pItemToSplit, int nNumberToSplitOff);
     }
   }
 }
