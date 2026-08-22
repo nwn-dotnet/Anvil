@@ -10,7 +10,7 @@ namespace Anvil.Services
 {
   internal static class AnvilContainerExtensions
   {
-    private static readonly Logger Log = LogManager.GetLogger(typeof(AnvilServiceManager).FullName);
+    private static readonly Logger Log = LogManager.GetLogger(typeof(AnvilServiceManager).FullName!);
 
     public static void RegisterCoreService<T>(this IServiceContainer container) where T : ICoreService
     {

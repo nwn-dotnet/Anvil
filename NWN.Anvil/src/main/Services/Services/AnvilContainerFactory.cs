@@ -46,7 +46,7 @@ namespace Anvil.Services
 
     private static Action<LogEntry> CreateLogHandler(Type type)
     {
-      Logger logger = LogManager.GetLogger(type.FullName);
+      Logger logger = LogManager.GetLogger(type.FullName!);
       return entry =>
       {
         switch (entry.Level)
