@@ -2265,7 +2265,7 @@ namespace Anvil.API
     /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
     public int LevelUpHenchman(NwClass nwClass, PackageType package, bool spellsReady = false)
     {
-      return NWScript.LevelUpHenchman(this, nwClass.Id, (int)package, spellsReady.ToInt());
+      return NWScript.LevelUpHenchman(this, nwClass.Id, spellsReady.ToInt(), (int)package);
     }
 
     /// <summary>
@@ -2779,6 +2779,16 @@ namespace Anvil.API
     {
       Creature.SummonAssociate(new CResRef(resRef), Creature.m_pStats.m_sFamiliarName, (ushort)AssociateType.Familiar);
       Creature.m_bSummonedFamiliar = 1;
+    }
+
+    /// <summary>
+    /// Use this on an NPC to cause all nearby creatures to stop what they are doing and sets the NPC's enemies within this range to be neutral towards the NPC with nearby enemies.
+    /// If this command is run on a PC or an object that is not a creature, nothing will happen.
+    /// </summary>
+    public async Task SurrenderToEnemies()
+    {
+      await WaitForObjectContext();
+      NWScript.SurrenderToEnemies();
     }
 
     /// <summary>
