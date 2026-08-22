@@ -69,7 +69,6 @@ namespace Anvil.Services
         CreateDirs = false,
         KeepFileOpen = true,
         OpenFileCacheTimeout = 30,
-        ConcurrentWrites = false,
       };
 
       config.AddTarget(consoleTarget);
