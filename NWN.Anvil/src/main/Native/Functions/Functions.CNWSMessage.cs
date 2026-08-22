@@ -10,6 +10,9 @@ namespace Anvil.Native
       [NativeFunction("_ZN11CNWSMessage32ComputeGameObjectUpdateForObjectEP10CNWSPlayerP10CNWSObjectP16CGameObjectArrayj", "?ComputeGameObjectUpdateForObject@CNWSMessage@@QEAAXPEAVCNWSPlayer@@PEAVCNWSObject@@PEAVCGameObjectArray@@I@Z")]
       public delegate void ComputeGameObjectUpdateForObject(void* pMessage, void* pPlayer, void* pPlayerGameObject, void* pGameObjectArray, uint oidObjectToUpdate);
 
+      [NativeFunction("_ZN11CNWSMessage34HandlePlayerToServerBarter_AddItemEP10CNWSPlayer", "?HandlePlayerToServerBarter_AddItem@CNWSMessage@@QEAAHPEAVCNWSPlayer@@@Z")]
+      public delegate int HandlePlayerToServerBarter_AddItem(void* pMessage, void* pPlayer);
+
       [NativeFunction("_ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer", "?HandlePlayerToServerBarter_StartBarter@CNWSMessage@@QEAAHPEAVCNWSPlayer@@@Z")]
       public delegate int HandlePlayerToServerBarter_StartBarter(void* pMessage, void* pPlayer);
 
