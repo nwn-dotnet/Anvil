@@ -2265,7 +2265,7 @@ namespace Anvil.API
     /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
     public int LevelUpHenchman(NwClass nwClass, PackageType package, bool spellsReady = false)
     {
-      return NWScript.LevelUpHenchman(this, nwClass.Id, (int)package, spellsReady.ToInt());
+      return NWScript.LevelUpHenchman(this, nwClass.Id, spellsReady.ToInt(), (int)package);
     }
 
     /// <summary>
