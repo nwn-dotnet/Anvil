@@ -2782,6 +2782,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Use this on an NPC to cause all nearby creatures to stop what they are doing and sets the NPC's enemies within this range to be neutral towards the NPC with nearby enemies.
+    /// If this command is run on a PC or an object that is not a creature, nothing will happen.
+    /// </summary>
+    public async Task SurrenderToEnemies()
+    {
+      await WaitForObjectContext();
+      NWScript.SurrenderToEnemies();
+    }
+
+    /// <summary>
     /// Forces this creature to unsummon their familiar.<br/>
     /// Does nothing if this creature has no familiar summoned.
     /// </summary>
