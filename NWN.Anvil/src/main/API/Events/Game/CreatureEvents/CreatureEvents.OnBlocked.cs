@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered when the <see cref="NwCreature"/> is blocked by a <see cref="NwDoor"/>.
+    /// Triggered when a <see cref="NwCreature"/> is blocked by a door during movement or AI pathing.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnBlockedByDoor)]
     public sealed class OnBlocked : IEvent

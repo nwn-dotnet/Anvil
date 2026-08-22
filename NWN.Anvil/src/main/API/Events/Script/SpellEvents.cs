@@ -4,6 +4,27 @@ namespace Anvil.API.Events
 {
   public static class SpellEvents
   {
+    /// <summary>
+    /// Triggered as the spell "impact script" when a spell is successfully cast.
+    /// </summary>
+    /// <remarks>
+    /// This event class should be constructed manually as a part of a script handler.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// <![CDATA[
+    /// [ScriptHandler("my_fire_spell")]
+    /// public void MyFireSpell(CallInfo callInfo)
+    /// {
+    ///   SpellEvents.OnSpellCast eventData = new SpellEvents.OnSpellCast();
+    ///   if (eventData.TargetObject is NwCreature creature)
+    ///   {
+    ///     creature.ApplyEffect(EffectDuration.Instant, Effect.Damage(5, DamageType.Fire));
+    ///   }
+    /// }
+    /// ]]>
+    /// </code>
+    /// </example>
     public sealed class OnSpellCast : IEvent
     {
       /// <summary>

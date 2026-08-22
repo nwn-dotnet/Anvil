@@ -4,6 +4,13 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Provides inventory access for an object, including item enumeration and fit checks against the repository grid.
+  /// </summary>
+  /// <remarks>
+  /// Use <see cref="Items"/> to iterate the current contents. Fit checks validate whether a base item size can be placed within
+  /// the available grid dimensions; they do not move items or account for stacking rules.
+  /// </remarks>
   public sealed class Inventory
   {
     private readonly NwGameObject owner;
@@ -16,8 +23,11 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets all items belonging to this inventory.
+    /// Gets all items currently contained in this inventory repository.
     /// </summary>
+    /// <remarks>
+    /// Enumeration is lazy and reflects live state; items added or removed during iteration may affect the sequence.
+    /// </remarks>
     public IEnumerable<NwItem> Items
     {
       get
@@ -30,20 +40,24 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets if the specified item will fit in this inventory.
+    /// Returns whether the specified item can fit within this inventory's grid.
     /// </summary>
     /// <param name="item">The item to check.</param>
-    /// <returns>True if the item will fit, otherwise false.</returns>
+    /// <returns>True if the item fits within the available dimensions; otherwise, false.</returns>
     public bool CheckFit(NwItem item)
     {
       return CheckFit(item.BaseItem);
     }
 
     /// <summary>
-    /// Gets if the specified base item type will fit in this inventory.
+    /// Returns whether the specified base item type can fit within this inventory's grid.
     /// </summary>
     /// <param name="baseItem">The base item type to check.</param>
-    /// <returns>True if the item will fit, otherwise false.</returns>
+    /// <returns>True if a placement exists that accommodates the item's slot size; otherwise, false.</returns>
+    /// <remarks>
+    /// This check tests all possible top-left positions against the repository width and height and the base item slot size.
+    /// It does not consider weight, stack counts, or scripted placement constraints.
+    /// </remarks>
     public bool CheckFit(NwBaseItem baseItem)
     {
       Vector2Int itemSize = baseItem.InventorySlotSize;

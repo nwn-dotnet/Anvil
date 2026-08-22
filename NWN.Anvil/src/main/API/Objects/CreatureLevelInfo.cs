@@ -6,6 +6,14 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Provides level-specific data for a creature, including the chosen class,
+  /// feats gained, hit die result, skill points, ability increase, and spellbook changes.
+  /// </summary>
+  /// <remarks>
+  /// Use the per-level containers (feats, skill ranks, known spells added/removed) to inspect or adjust what was taken on this level.
+  /// The known spell arrays are indexed by spell level (0 for cantrips, 1–9 for spell levels) and each entry is a mutable list.
+  /// </remarks>
   public sealed unsafe class CreatureLevelInfo
   {
     private const int KnownSpellArraySize = 10; // Cantrips + 9 spell levels
@@ -49,9 +57,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets a mutable list of known spells added at this level.<br/>
-    /// The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.
+    /// Gets a mutable list of known spells added at this level.
     /// </summary>
+    /// <remarks>
+    /// The returned array has 10 entries indexed by spell level: 0 = cantrips, 1–9 = spell levels.
+    /// Each entry contains a list of spells added on this level; lists may be empty when no changes were made for that level.
+    /// </remarks>
     public IReadOnlyList<IList<NwSpell>> AddedKnownSpells
     {
       get
@@ -70,9 +81,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets a mutable list of known spells removed at this level.<br/>
-    /// The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.
+    /// Gets a mutable list of known spells removed at this level.
     /// </summary>
+    /// <remarks>
+    /// The returned array has 10 entries indexed by spell level: 0 = cantrips, 1–9 = spell levels.
+    /// Each entry contains a list of spells removed on this level; lists may be empty when no changes were made for that level.
+    /// </remarks>
     public IReadOnlyList<IList<NwSpell>> RemovedKnownSpells
     {
       get
@@ -93,6 +107,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the hitpoints gained by this creature for this level.
     /// </summary>
+    /// <remarks>
+    /// This is the raw hit die result stored for the level and does not auto-recalculate.
+    /// </remarks>
     public byte HitDie
     {
       get => levelStats.m_nHitDie;
@@ -102,6 +119,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the amount of skill points unspent at this level.
     /// </summary>
+    /// <remarks>
+    /// Adjusting this value affects only this level's allocation and does not change ranks directly.
+    /// </remarks>
     public ushort SkillPointsRemaining
     {
       get => levelStats.m_nSkillPointsRemaining;
@@ -111,6 +131,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the ability increased at this level.
     /// </summary>
+    /// <remarks>
+    /// Set to <see langword="null"/> when no ability increase was taken on this level.
+    /// </remarks>
     public Ability? AbilityGained
     {
       get => levelStats.m_nAbilityGain <= 5 ? (Ability)levelStats.m_nAbilityGain : null;

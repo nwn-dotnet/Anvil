@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="NwGameObject"/> has damaged <see cref="NwPlaceable"/>.
+    /// Triggered when <see cref="NwGameObject"/> damages <see cref="NwPlaceable"/>.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDamaged)]
     public sealed class OnDamaged : IEvent

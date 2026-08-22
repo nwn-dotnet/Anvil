@@ -3,10 +3,19 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM opens or closes a target's inventory.
+  /// </summary>
   public sealed class OnDMViewInventory : DMEvent
   {
+    /// <summary>
+    /// Gets a value indicating whether the inventory is opening (true) or closing (false).
+    /// </summary>
     public bool IsOpening { get; internal init; }
 
+    /// <summary>
+    /// Gets the target whose inventory is viewed.
+    /// </summary>
     public NwGameObject Target { get; internal init; } = null!;
   }
 }

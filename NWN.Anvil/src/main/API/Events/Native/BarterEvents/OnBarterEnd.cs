@@ -10,15 +10,34 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a barter ends between 2 players.
+  /// </summary>
   public sealed class OnBarterEnd : IEvent
   {
+    /// <summary>
+    /// Gets a value indicating whether the barter completed successfully.
+    /// </summary>
     public bool Complete { get; private init; }
+
+    /// <summary>
+    /// Gets the player who initiated the barter.
+    /// </summary>
     public NwPlayer Initiator { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the items offered by the initiator when the barter ended. Empty if canceled.
+    /// </summary>
     public IReadOnlyList<NwItem> InitiatorItems { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the player targeted by the barter.
+    /// </summary>
     public NwPlayer Target { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the items offered by the target when the barter ended. Empty if canceled.
+    /// </summary>
     public IReadOnlyList<NwItem> TargetItems { get; private init; } = null!;
 
     NwObject? IEvent.Context => Initiator.ControlledCreature;

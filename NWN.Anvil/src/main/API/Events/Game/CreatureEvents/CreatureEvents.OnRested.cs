@@ -10,13 +10,13 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered by <see cref="NwCreature"/> when resting.
+    /// Triggered when the creature finishes resting.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnRested)]
     public sealed class OnRested : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> is resting.
+      /// Gets the <see cref="NwCreature"/> that rested.
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 

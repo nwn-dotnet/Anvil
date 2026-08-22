@@ -1,9 +1,12 @@
 ﻿namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base event type for trap actions.
+  /// </summary>
   public abstract class TrapEvent : IEvent
   {
     /// <summary>
-    /// Gets if the creature is in range of the trap.
+    /// Gets whether the creature is in range of the trap.
     /// </summary>
     public bool InRange { get; internal init; }
 
@@ -18,8 +21,7 @@
     public NwGameObject Trap { get; internal init; } = null!;
 
     /// <summary>
-    /// Gets or sets a value to override the trap action result, skipping the default game behaviour.<br/>
-    /// Supported values: <see cref="ActionState.Complete"/>, <see cref="ActionState.Failed"/>.
+    /// Set to <see cref="ActionState.Complete"/> or <see cref="ActionState.Failed"/> to override the trap action result and skip default game behavior.
     /// </summary>
     public ActionState? ResultOverride { get; set; }
 

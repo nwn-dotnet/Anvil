@@ -3,9 +3,19 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM requests a dump/output of local variables.
+  /// </summary>
   public sealed class OnDMDumpLocals : DMEvent
   {
+    /// <summary>
+    /// Gets the object to dump locals for.
+    /// </summary>
     public NwObject Target { get; internal init; } = null!;
+
+    /// <summary>
+    /// Gets the dump mode to use.
+    /// </summary>
     public DumpLocalsType Type { get; internal init; }
   }
 }

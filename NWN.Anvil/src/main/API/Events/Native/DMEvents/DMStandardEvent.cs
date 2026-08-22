@@ -3,28 +3,65 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM appears in the game world, becoming visible to all other players.
+  /// </summary>
   public sealed class OnDMAppear : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM disappears from the game world, becoming invisible to all other players.
+  /// </summary>
   public sealed class OnDMDisappear : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM sets an object's faction.
+  /// </summary>
   public sealed class OnDMSetFaction : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM takes an item from an object.
+  /// </summary>
   public sealed class OnDMTakeItem : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM sets an ability score on a creature.
+  /// </summary>
   public sealed class OnDMSetStat : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM reads a variable from an object.
+  /// </summary>
   public sealed class OnDMGetVariable : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM sets a variable on an object.
+  /// </summary>
   public sealed class OnDMSetVariable : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM modifies the module time.
+  /// </summary>
   public sealed class OnDMSetTime : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM modifies the module date.
+  /// </summary>
   public sealed class OnDMSetDate : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM sets module-wide faction reputation values.
+  /// </summary>
   public sealed class OnDMSetFactionReputation : DMEvent;
 
+  /// <summary>
+  /// Triggered when a DM queries module-wide faction reputation values.
+  /// </summary>
   public sealed class OnDMGetFactionReputation : DMEvent;
 
+  /// <summary>
+  /// Triggered when a temporary player DM logs out, and becomes a regular player.
+  /// </summary>
+  /// <seealso cref="NwPlayer.IsPlayerDM"/>
   public sealed class OnDMPlayerDMLogout : DMEvent;
 }
 

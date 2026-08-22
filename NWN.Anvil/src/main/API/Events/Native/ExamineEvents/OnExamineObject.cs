@@ -7,10 +7,19 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a player examines an object.
+  /// </summary>
   public sealed class OnExamineObject : IEvent
   {
+    /// <summary>
+    /// Gets the player who triggered the examine action.
+    /// </summary>
     public NwPlayer ExaminedBy { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the object being examined.
+    /// </summary>
     public NwGameObject ExaminedObject { get; private init; } = null!;
 
     NwObject? IEvent.Context => ExaminedBy.ControlledCreature;

@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Called at a regular interval (approx. 6 seconds).
+    /// Triggered at a regular interval (approx. 6 seconds).
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent

@@ -4,9 +4,15 @@ using NWN.Core;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A NUI property binding for localized strings (StrRef) that can be updated after being sent to the client.
+  /// </summary>
   [method: JsonConstructor]
   public sealed class NuiBindStrRef(string key) : NuiProperty<string>
   {
+    /// <summary>
+    /// Gets the bind key identifier used to reference this property in NUI.
+    /// </summary>
     [JsonProperty("bind")]
     public string Key { get; init; } = key;
 

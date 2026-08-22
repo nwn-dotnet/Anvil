@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="NwPlaceable"/> has been locked.
+    /// Triggered when <see cref="NwPlaceable"/> is locked.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnLock)]
     public sealed class OnLock : IEvent

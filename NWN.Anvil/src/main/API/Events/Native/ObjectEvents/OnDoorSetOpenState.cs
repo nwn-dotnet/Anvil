@@ -8,22 +8,22 @@ using NWN.Native.API;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a door's open state is changed (open/closed/destroyed).
+  /// Triggered when a door's open state is changed (open/closed/destroyed).
   /// </summary>
   public sealed class OnDoorSetOpenState : IEvent
   {
     /// <summary>
-    /// The door that is being open/closed.
+    /// Gets the door that is being opened or closed.
     /// </summary>
     public NwDoor Door { get; private init; } = null!;
 
     /// <summary>
-    /// The new open state of the door.
+    /// Gets or sets the new open state of the door.
     /// </summary>
     public DoorOpenState OpenState { get; set; }
 
     /// <summary>
-    /// Gets or sets if the door state should not be changed.
+    /// Set to true to prevent the door state from changing.
     /// </summary>
     public bool PreventStateChange { get; set; }
 

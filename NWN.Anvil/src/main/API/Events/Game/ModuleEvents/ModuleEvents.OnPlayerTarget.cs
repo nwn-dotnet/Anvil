@@ -11,7 +11,7 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered when a <see cref="NwPlayer"/> that has targeted something.
+    /// Triggered when a <see cref="NwPlayer"/> targets something.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerTarget)]
     public sealed class OnPlayerTarget : IEvent

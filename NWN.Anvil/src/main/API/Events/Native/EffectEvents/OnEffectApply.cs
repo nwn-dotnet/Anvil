@@ -8,7 +8,7 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when an effect is about to be applied to a creature.
+  /// Triggered when an effect is about to be applied to a creature.
   /// </summary>
   public sealed class OnEffectApply : IEvent
   {
@@ -23,7 +23,7 @@ namespace Anvil.API.Events
     public NwObject Object { get; private init; } = null!;
 
     /// <summary>
-    /// Gets or sets whether this effect should be prevented from being applied.
+    /// Set to true to prevent this effect from being applied.
     /// </summary>
     public bool PreventApply { get; set; }
 

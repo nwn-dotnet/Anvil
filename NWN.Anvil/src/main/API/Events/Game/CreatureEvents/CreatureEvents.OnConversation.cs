@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Called when this creature starts a conversation, or hears a message they are listening for.
+    /// Triggered when the creature starts dialogue, or hears a listen pattern.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnDialogue)]
     public sealed class OnConversation : IEvent
@@ -21,12 +21,14 @@ namespace Anvil.API.Events
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       /// <summary>
-      /// Gets the last <see cref="NwGameObject"/> that spoke in this conversation.
+      /// Gets the last <see cref="NwGameObject"/> that spoke to this creature.
+      /// Returns null if there is no last speaker.
       /// </summary>
       public NwGameObject? LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the <see cref="NwPlayer"/> speaker in this conversation.
+      /// Gets the <see cref="NwPlayer"/> currently speaking, if any.
+      /// Returns null if the speaker is not a player.
       /// </summary>
       public NwPlayer? PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
@@ -42,17 +44,27 @@ namespace Anvil.API.Events
 
       NwObject IEvent.Context => Creature;
 
+      /// <summary>
+      /// Signals a conversation event on the specified creature.
+      /// </summary>
+      /// <param name="creature">The creature to receive the conversation event.</param>
       public static void Signal(NwCreature creature)
       {
         Event nwEvent = NWScript.EventConversation()!;
         NWScript.SignalEvent(creature, nwEvent);
       }
 
+      /// <summary>
+      /// Pauses the current conversation for this creature.
+      /// </summary>
       public void PauseConversation()
       {
         NWScript.ActionPauseConversation();
       }
 
+      /// <summary>
+      /// Resumes a paused conversation for this creature.
+      /// </summary>
       public void ResumeConversation()
       {
         NWScript.ActionResumeConversation();

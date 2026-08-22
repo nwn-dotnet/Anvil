@@ -3,23 +3,50 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base event for DM actions targeting one or more objects.
+  /// </summary>
   public abstract class DMGroupTargetEvent : DMEvent
   {
+    /// <summary>
+    /// Gets the targets affected by the action.
+    /// </summary>
     public NwObject[] Targets { get; internal init; } = null!;
   }
 
+  /// <summary>
+  /// Triggered when a DM heals their current selection of creatures.
+  /// </summary>
   public sealed class OnDMHeal : DMGroupTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM kills their current selection of creatures.
+  /// </summary>
   public sealed class OnDMKill : DMGroupTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM forces their current selection of creatures to rest.
+  /// </summary>
   public sealed class OnDMForceRest : DMGroupTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM toggles the invulnerability state of their current selection of creatures.
+  /// </summary>
   public sealed class OnDMToggleInvulnerable : DMGroupTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM moves their current selection of creatures to limbo.
+  /// </summary>
   public sealed class OnDMLimbo : DMGroupTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM toggles the AI state of their current selection of creatures.
+  /// </summary>
   public sealed class OnDMToggleAI : DMGroupTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM toggles the Immortal state of their current selection of creatures.
+  /// </summary>
   public sealed class OnDMToggleImmortal : DMGroupTargetEvent;
 }
 

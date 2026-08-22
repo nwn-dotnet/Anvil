@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class StoreEvents
   {
+    /// <summary>
+    /// Triggered when a <see cref="NwStore"/> is closed.
+    /// </summary>
     [GameEvent(EventScriptType.StoreOnClose)]
     public sealed class OnClose : IEvent
     {

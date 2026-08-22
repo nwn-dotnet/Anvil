@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered when a <see cref="NwCreature"/> leaves the server.
+    /// Triggered when a <see cref="NwPlayer"/> leaves the server.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientExit)]
     public sealed class OnClientLeave : IEvent

@@ -7,8 +7,14 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature levels up automatically using a class package.
+  /// </summary>
   public sealed class OnLevelUpAutomatic : IEvent
   {
+    /// <summary>
+    /// Gets the creature that is leveling up automatically.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;

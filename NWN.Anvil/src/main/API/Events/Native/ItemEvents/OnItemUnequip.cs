@@ -8,12 +8,12 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a creature attempts to unequip an item.
+  /// Triggered when a creature attempts to unequip an item.
   /// </summary>
   public sealed class OnItemUnequip : IEvent
   {
     /// <summary>
-    /// Gets the creature who is uneqipping an item.
+    /// Gets the creature who is unequipping an item.
     /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
@@ -23,7 +23,7 @@ namespace Anvil.API.Events
     public NwItem Item { get; private init; } = null!;
 
     /// <summary>
-    /// Gets or sets whether this item should be prevented from being unequipped.
+    /// Set to true to prevent this item from being unequipped.
     /// </summary>
     public bool PreventUnequip { get; set; }
 

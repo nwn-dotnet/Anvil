@@ -101,7 +101,7 @@ namespace Anvil.API
       }
     }
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
     /// <summary>
     /// Create a new location from the specified area, position and orientation
@@ -116,6 +116,11 @@ namespace Anvil.API
       return NWScript.Location(area, position, orientation);
     }
 
+    /// <summary>
+    /// Converts a native pointer to a <see cref="Location"/>.
+    /// </summary>
+    /// <param name="intPtr">The native pointer to the location engine structure.</param>
+    /// <returns>The wrapped location when <paramref name="intPtr"/> is non-zero; otherwise null.</returns>
     public static implicit operator Location?(IntPtr intPtr)
     {
       return intPtr != IntPtr.Zero ? new Location(intPtr, true) : null;
@@ -245,6 +250,8 @@ namespace Anvil.API
     /// <summary>
     /// Gets all objects near this location, ordered by distance.
     /// </summary>
+    /// <typeparam name="T">The game object type to filter and return.</typeparam>
+    /// <returns>Objects of type <typeparamref name="T"/> ordered by distance.</returns>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
       int typeFilter = (int)NwObject.GetObjectFilter<T>();
@@ -263,6 +270,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets all objects in a shape at this location.
     /// </summary>
+    /// <param name="shape">The search shape to use.</param>
+    /// <param name="size">The size of the shape (e.g., radius for spheres).</param>
+    /// <param name="losCheck">Whether to enforce line of sight.</param>
+    /// <param name="objTypes">Bitmask of object types to include.</param>
+    /// <param name="origin">Optional origin offset for the shape.</param>
+    /// <returns>All matching objects found within the shape.</returns>
     public IEnumerable<NwGameObject> GetObjectsInShape(Shape shape, float size, bool losCheck, ObjectTypes objTypes = ObjectTypes.Creature, Vector3 origin = default)
     {
       int typeFilter = (int)objTypes;
@@ -283,6 +296,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets all objects in a shape at this location of the specified type.
     /// </summary>
+    /// <param name="shape">The search shape to use.</param>
+    /// <param name="size">The size of the shape (e.g., radius for spheres).</param>
+    /// <param name="losCheck">Whether to enforce line of sight.</param>
+    /// <param name="origin">Optional origin offset for the shape.</param>
+    /// <typeparam name="T">The game object type to return.</typeparam>
+    /// <returns>All matching objects of type <typeparamref name="T"/> found within the shape.</returns>
     public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
       int typeFilter = (int)NwObject.GetObjectFilter<T>();
@@ -315,6 +334,9 @@ namespace Anvil.API
     /// <summary>
     /// Sets the state of the animation loops of the tile at this location.
     /// </summary>
+    /// <param name="animLoop1">Enable or disable animation loop 1.</param>
+    /// <param name="animLoop2">Enable or disable animation loop 2.</param>
+    /// <param name="animLoop3">Enable or disable animation loop 3.</param>
     public void SetTileAnimationLoops(bool animLoop1, bool animLoop2, bool animLoop3)
     {
       NWScript.SetTileAnimationLoops(this, animLoop1.ToInt(), animLoop2.ToInt(), animLoop3.ToInt());

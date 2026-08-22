@@ -9,11 +9,14 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when the door closes.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnClose)]
     public sealed class OnClose : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that closed the <see cref="NwDoor"/>.
+      /// Gets the game object that closed the door.
       /// </summary>
       public NwGameObject ClosedBy { get; }
 

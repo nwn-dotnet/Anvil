@@ -7,12 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a player examines a trap.
+  /// </summary>
   public sealed class OnExamineTrap : IEvent
   {
+    /// <summary>
+    /// Gets the player performing the trap examine action.
+    /// </summary>
     public NwPlayer ExaminedBy { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the trap object being examined.
+    /// </summary>
     public NwGameObject ExaminedObject { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets whether the trap examine action succeeded.
+    /// </summary>
     public bool Success { get; private init; }
 
     NwObject? IEvent.Context => ExaminedBy.ControlledCreature;

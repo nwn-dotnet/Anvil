@@ -9,30 +9,69 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a game object casts a spell.
+  /// </summary>
   public sealed class OnSpellCast : IEvent
   {
+    /// <summary>
+    /// Gets the object casting the spell.
+    /// </summary>
     public NwObject Caster { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the caster's class index used for this spell.
+    /// </summary>
     public int ClassIndex { get; private init; }
 
+    /// <summary>
+    /// Gets whether this cast is countering another spell.
+    /// </summary>
     public bool CounteringSpell { get; private init; }
 
+    /// <summary>
+    /// Gets whether the spell is an instant spell.
+    /// </summary>
     public bool IsInstantSpell { get; private init; }
 
+    /// <summary>
+    /// Gets the item used to cast the spell, if any.
+    /// </summary>
     public NwItem? Item { get; private init; }
 
+    /// <summary>
+    /// Gets the metamagic applied to the spell.
+    /// </summary>
     public MetaMagic MetaMagic { get; private init; }
 
+    /// <summary>
+    /// Set to true to prevent the spell from being cast.
+    /// </summary>
     public bool PreventSpellCast { get; set; }
 
+    /// <summary>
+    /// Gets the projectile path type used by the spell, if applicable.
+    /// </summary>
     public ProjectilePathType ProjectilePathType { get; private init; }
 
+    /// <summary>
+    /// Gets the spell being cast.
+    /// </summary>
     public NwSpell? Spell { get; private init; }
 
+    /// <summary>
+    /// Gets whether the spell was countered.
+    /// </summary>
     public bool SpellCountered { get; private init; }
 
+    /// <summary>
+    /// Gets the target object of the spell, if any.
+    /// </summary>
     public NwObject? TargetObject { get; private init; }
 
+    /// <summary>
+    /// Gets the targeted position of the spell.
+    /// </summary>
     public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Caster;

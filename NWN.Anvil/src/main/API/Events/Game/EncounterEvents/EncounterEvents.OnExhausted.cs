@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class EncounterEvents
   {
+    /// <summary>
+    /// Triggered when the encounter becomes exhausted (no further spawns).
+    /// </summary>
     [GameEvent(EventScriptType.EncounterOnEncounterExhausted)]
     public sealed class OnExhausted : IEvent
     {

@@ -25,6 +25,12 @@ namespace Anvil.API
     /// </summary>
     public int Count { get; }
 
+    /// <summary>
+    /// Gets or sets the effect parameter value at the specified index.
+    /// </summary>
+    /// <param name="index">Zero-based parameter index.</param>
+    /// <returns>The parameter value at <paramref name="index"/>.</returns>
+    /// <exception cref="IndexOutOfRangeException">Thrown if <paramref name="index"/> is out of range [0, <see cref="Count"/>).</exception>
     public T? this[int index]
     {
       get
@@ -47,6 +53,7 @@ namespace Anvil.API
       }
     }
 
+    /// <inheritdoc/>
     public IEnumerator<T?> GetEnumerator()
     {
       for (int i = 0; i < Count; i++)
@@ -55,6 +62,7 @@ namespace Anvil.API
       }
     }
 
+    /// <inheritdoc/>
     IEnumerator IEnumerable.GetEnumerator()
     {
       return GetEnumerator();

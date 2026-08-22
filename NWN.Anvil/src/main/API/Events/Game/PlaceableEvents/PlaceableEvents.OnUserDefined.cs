@@ -9,6 +9,10 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class PlaceableEvents
   {
+    /// <summary>
+    /// Triggered for a placeable when the associated <see cref="Signal"/> method is called.
+    /// </summary>
+    /// <seealso cref="Signal"/>
     [GameEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
@@ -24,6 +28,11 @@ namespace Anvil.API.Events
 
       NwObject IEvent.Context => Placeable;
 
+      /// <summary>
+      /// Signals a user-defined event on the specified placeable.
+      /// </summary>
+      /// <param name="placeable">The placeable to receive the event.</param>
+      /// <param name="eventId">The user-defined event number to trigger.</param>
       public static void Signal(NwPlaceable placeable, int eventId)
       {
         Event nwEvent = NWScript.EventUserDefined(eventId)!;

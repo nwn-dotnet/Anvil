@@ -7,11 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature attempts to detect a target via Listen.
+  /// </summary>
   public sealed class OnDoListenDetection : IEvent
   {
+    /// <summary>
+    /// Gets the creature performing the Listen detection.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the creature being detected.
+    /// </summary>
     public NwCreature Target { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets or sets the visibility override.
+    /// </summary>
     public VisibilityOverride VisibilityOverride { get; set; }
 
     NwObject IEvent.Context => Creature;

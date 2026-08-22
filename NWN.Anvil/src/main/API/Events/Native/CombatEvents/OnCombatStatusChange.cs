@@ -7,12 +7,21 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a player's combat status changes.
+  /// </summary>
   public sealed class OnCombatStatusChange : IEvent
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
+    /// <summary>
+    /// Gets the new combat status for the player.
+    /// </summary>
     public CombatStatus CombatStatus { get; private init; }
 
+    /// <summary>
+    /// Gets the player whose status changed.
+    /// </summary>
     public NwPlayer Player { get; private init; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;

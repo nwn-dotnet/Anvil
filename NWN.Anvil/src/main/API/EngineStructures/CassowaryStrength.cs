@@ -2,6 +2,9 @@ using NWN.Core;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Strength constants for Cassowary solver constraints.
+  /// </summary>
   public static class CassowaryStrength
   {
     public const float Medium = NWScript.CASSOWARY_STRENGTH_MEDIUM;

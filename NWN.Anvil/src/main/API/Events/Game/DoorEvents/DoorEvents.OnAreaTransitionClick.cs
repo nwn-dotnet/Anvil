@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when a player clicks a door used for an area transition.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnClicked)]
     public sealed class OnAreaTransitionClick : IEvent
     {

@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when the door is physically attacked by a creature.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent
     {
@@ -18,7 +21,7 @@ namespace Anvil.API.Events
       public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>()!;
 
       /// <summary>
-      /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwDoor"/>.
+      /// Gets the <see cref="SpecialAttack"/> used to damage the door.
       /// </summary>
       public SpecialAttack AttackType { get; } = (SpecialAttack)NWScript.GetLastAttackType();
 
@@ -30,7 +33,7 @@ namespace Anvil.API.Events
       NwObject IEvent.Context => Door;
 
       /// <summary>
-      /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwDoor"/>.
+      /// Gets the <see cref="ActionMode"/> used to damage the door.
       /// </summary>
       public ActionMode AttackMode(NwCreature attacker)
       {
@@ -38,7 +41,7 @@ namespace Anvil.API.Events
       }
 
       /// <summary>
-      /// Gets the <see cref="NwItem"/> used to damage <see cref="NwDoor"/>.
+      /// Gets the <see cref="NwItem"/> used to damage the door.
       /// </summary>
       public NwItem WeaponUsed(NwCreature attacker)
       {

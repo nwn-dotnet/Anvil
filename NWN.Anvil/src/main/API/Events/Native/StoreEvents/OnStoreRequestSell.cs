@@ -7,17 +7,39 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature requests to sell an item to a store.
+  /// </summary>
   public sealed class OnStoreRequestSell : IEvent
   {
+    /// <summary>
+    /// Gets the creature requesting the sale.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the item to be sold, if available.
+    /// </summary>
     public NwItem? Item { get; private init; }
+
+    /// <summary>
+    /// Set to true to prevent the sale.
+    /// </summary>
     public bool PreventSell { get; set; }
 
+    /// <summary>
+    /// Gets the calculated sale price.
+    /// </summary>
     public int Price { get; private init; }
 
+    /// <summary>
+    /// Gets the result of the sale request.
+    /// </summary>
     public Lazy<bool> Result { get; private set; } = null!;
 
+    /// <summary>
+    /// Gets the target store handling the sale, if available.
+    /// </summary>
     public NwStore? Store { get; private init; }
 
     NwObject IEvent.Context => Creature;

@@ -8,25 +8,59 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature attempts to use an item.
+  /// </summary>
   public sealed class OnItemUse : IEvent
   {
+    /// <summary>
+    /// Gets the item being used.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the active item property index.
+    /// </summary>
     public int ItemPropertyIndex { get; private init; }
 
+    /// <summary>
+    /// Gets the active item sub-property index.
+    /// </summary>
     public int ItemSubPropertyIndex { get; private init; }
 
+    /// <summary>
+    /// Set to true to prevent the item from being used.
+    /// </summary>
     public bool PreventUseItem { get; set; }
 
+    /// <summary>
+    /// Set to true to suppress the "Cannot Use" feedback when use fails.
+    /// </summary>
     public bool SuppressCannotUseFeedback { get; set; }
 
+    /// <summary>
+    /// Gets the targeted area, if applicable.
+    /// </summary>
     public NwArea TargetArea { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the targeted object, if applicable.
+    /// </summary>
     public NwGameObject TargetObject { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the targeted position, if applicable.
+    /// </summary>
     public Vector3 TargetPosition { get; private init; }
 
+    /// <summary>
+    /// Gets or sets whether using the item should consume charges.
+    /// </summary>
     public bool UseCharges { get; set; }
+
+    /// <summary>
+    /// Gets the creature using the item.
+    /// </summary>
     public NwCreature UsedBy { get; private init; } = null!;
 
     NwObject IEvent.Context => UsedBy;

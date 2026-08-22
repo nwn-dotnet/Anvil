@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered by <see cref="NwCreature"/> when a spell is cast upon it.
+    /// Triggered when a spell is cast at the creature.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnSpellCastAt)]
     public sealed class OnSpellCastAt : IEvent
@@ -31,12 +31,19 @@ namespace Anvil.API.Events
       public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
 
       /// <summary>
-      /// Gets the <see cref="Spell"/>  that was cast.
+      /// Gets the <see cref="Spell"/> that was cast.
       /// </summary>
       public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell())!;
 
       NwObject IEvent.Context => Creature;
 
+      /// <summary>
+      /// Signals a spell-cast-at event on the target creature.
+      /// </summary>
+      /// <param name="caster">The source of the spell.</param>
+      /// <param name="target">The creature receiving the event.</param>
+      /// <param name="spell">The spell to report as cast.</param>
+      /// <param name="harmful">Whether the spell is considered harmful by AI.</param>
       public static void Signal(NwObject caster, NwCreature target, NwSpell spell, bool harmful = true)
       {
         Event nwEvent = NWScript.EventSpellCastAt(caster, spell.Id, harmful.ToInt())!;

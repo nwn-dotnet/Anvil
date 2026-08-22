@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class EncounterEvents
   {
+    /// <summary>
+    /// Triggered when an object exits the encounter.
+    /// </summary>
     [GameEvent(EventScriptType.EncounterOnObjectExit)]
     public sealed class OnExit : IEvent
     {

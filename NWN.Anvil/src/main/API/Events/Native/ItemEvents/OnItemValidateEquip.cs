@@ -7,13 +7,29 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when validating whether a creature can equip an item.
+  /// </summary>
   public sealed class OnItemValidateEquip : IEvent
   {
+    /// <summary>
+    /// Gets the item being validated for equip.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets or sets the equip validation result.
+    /// </summary>
     public EquipValidationResult Result { get; set; }
 
+    /// <summary>
+    /// Gets the target inventory slot.
+    /// </summary>
     public InventorySlot Slot { get; private init; }
+
+    /// <summary>
+    /// Gets the creature attempting to equip the item.
+    /// </summary>
     public NwCreature UsedBy { get; private init; } = null!;
 
     NwObject IEvent.Context => UsedBy;

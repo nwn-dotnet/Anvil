@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class TriggerEvents
   {
+    /// <summary>
+    /// Triggered when a trap on a <see cref="NwTrigger"/> is triggered.
+    /// </summary>
     [GameEvent(EventScriptType.TriggerOnTrapTriggered)]
     public sealed class OnTrapTriggered : IEvent
     {

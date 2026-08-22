@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered when <see cref="NwPlayer"/> presses the rest button and begins to rest, cancelled rest, or finished rest.
+    /// Triggered when <see cref="NwPlayer"/> presses the rest button and begins to rest, cancels rest, or finishes rest.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerRest)]
     public sealed class OnPlayerRest : IEvent

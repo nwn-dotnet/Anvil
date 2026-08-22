@@ -7,8 +7,14 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature levels down.
+  /// </summary>
   public sealed class OnLevelDown : IEvent
   {
+    /// <summary>
+    /// Gets the creature that is leveling down.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;

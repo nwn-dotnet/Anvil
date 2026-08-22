@@ -3,19 +3,40 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base event for DM actions targeting a single object.
+  /// </summary>
   public abstract class DMSingleTargetEvent : DMEvent
   {
+    /// <summary>
+    /// Gets the target affected by the action.
+    /// </summary>
     public NwObject Target { get; internal init; } = null!;
   }
 
+  /// <summary>
+  /// Triggered when a DM teleports/jumps to a specific object.
+  /// </summary>
   public sealed class OnDMGoTo : DMSingleTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM possesses a creature.
+  /// </summary>
   public sealed class OnDMPossess : DMSingleTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM possesses a creature with full DM powers.
+  /// </summary>
   public sealed class OnDMPossessFullPower : DMSingleTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM toggles the lock state of a door/placeable.
+  /// </summary>
   public sealed class OnDMToggleLock : DMSingleTargetEvent;
 
+  /// <summary>
+  /// Triggered when a DM toggles the trap state of a door/placeable/trigger.
+  /// </summary>
   public sealed class OnDMDisableTrap : DMSingleTargetEvent;
 }
 

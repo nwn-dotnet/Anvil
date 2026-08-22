@@ -8,18 +8,46 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a spell cast event is broadcast by a creature.
+  /// </summary>
   public sealed class OnSpellBroadcast : IEvent
   {
     private const int ActionIdCastSpell = 15;
+
+    /// <summary>
+    /// Gets the creature casting the spell.
+    /// </summary>
     public NwCreature Caster { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the caster's class index used for the spell.
+    /// </summary>
     public int ClassIndex { get; private init; }
 
+    /// <summary>
+    /// Gets the feat used to cast the spell, if applicable.
+    /// </summary>
     public NwFeat Feat { get; private init; } = null!;
+
+    /// <summary>
+    /// Set to true to prevent the spell cast.
+    /// </summary>
     public bool PreventSpellCast { get; set; }
 
+    /// <summary>
+    /// Gets the spell being cast.
+    /// </summary>
     public NwSpell Spell { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the target object of the spell, if applicable.
+    /// </summary>
     public NwObject TargetObject { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the targeted position.
+    /// </summary>
     public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context => Caster;

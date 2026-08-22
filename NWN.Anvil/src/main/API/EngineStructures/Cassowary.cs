@@ -22,8 +22,13 @@ namespace Anvil.API
     /// </summary>
     public string DebugState => NWScript.CassowaryDebug(this);
 
-    protected override int StructureId => NWScript.ENGINE_STRUCTURE_CASSOWARY;
+    private protected override int StructureId => NWScript.ENGINE_STRUCTURE_CASSOWARY;
 
+    /// <summary>
+    /// Converts an engine pointer to a <see cref="Cassowary"/> solver instance.
+    /// </summary>
+    /// <param name="intPtr">The native engine pointer to a cassowary solver.</param>
+    /// <returns>The associated <see cref="Cassowary"/> instance, or null for a null pointer.</returns>
     public static implicit operator Cassowary?(IntPtr intPtr)
     {
       return intPtr != IntPtr.Zero ? new Cassowary(intPtr, true) : null;

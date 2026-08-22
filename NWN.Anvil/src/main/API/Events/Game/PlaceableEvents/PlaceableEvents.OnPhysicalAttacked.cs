@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="NwPlaceable"/> has been physically attacked.
+    /// Triggered when <see cref="NwPlaceable"/> is physically attacked.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent

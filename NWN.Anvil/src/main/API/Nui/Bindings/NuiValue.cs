@@ -21,6 +21,11 @@ namespace Anvil.API
     /// </summary>
     public T? Value { get; init; }
 
+    /// <summary>
+    /// Implicitly converts a readonly NUI property to its underlying value.
+    /// </summary>
+    /// <param name="value">The NUI value wrapper.</param>
+    /// <returns>The underlying value, or default if null.</returns>
     public static implicit operator T?(NuiValue<T>? value)
     {
       return value != null ? value.Value : default;

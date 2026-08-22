@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called when <see cref="NwPlaceable"/> has been mousepad (left) clicked.
+    /// Triggered when <see cref="NwPlaceable"/> is left-clicked.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnLeftClick)]
     public sealed class OnLeftClick : IEvent

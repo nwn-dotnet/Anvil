@@ -16,7 +16,7 @@ namespace Anvil.API
     /// </summary>
     public bool IsValid => handle != IntPtr.Zero;
 
-    protected abstract int StructureId { get; }
+    private protected abstract int StructureId { get; }
 
     private protected EngineStructure(IntPtr handle, bool memoryOwn)
     {
@@ -29,6 +29,9 @@ namespace Anvil.API
       ReleaseUnmanagedResources();
     }
 
+    /// <summary>
+    /// Releases native resources associated with this engine structure. After dispose is called, this structure is considered invalid.
+    /// </summary>
     public void Dispose()
     {
       ReleaseUnmanagedResources();
@@ -45,6 +48,12 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Converts an <see cref="EngineStructure"/> to its native pointer handle.
+    /// </summary>
+    /// <param name="engineStructure">The engine structure to convert.</param>
+    /// <returns>The native <see cref="IntPtr"/> handle.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the structure is null or not valid.</exception>
     public static implicit operator IntPtr(EngineStructure engineStructure)
     {
       if (engineStructure == null || !engineStructure.IsValid)

@@ -7,12 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when gold is removed from a creature's inventory.
+  /// </summary>
   public sealed class OnInventoryGoldRemove : IEvent
   {
+    /// <summary>
+    /// Gets the creature losing the gold.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the amount of gold to remove.
+    /// </summary>
     public int Gold { get; private init; }
 
+    /// <summary>
+    /// Set to true to prevent the gold from being removed.
+    /// </summary>
     public bool PreventGoldRemove { get; set; }
 
     NwObject? IEvent.Context => null;

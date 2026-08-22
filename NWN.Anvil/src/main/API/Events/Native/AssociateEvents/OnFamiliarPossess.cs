@@ -7,9 +7,19 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature possesses its familiar.
+  /// </summary>
   public sealed class OnFamiliarPossess : IEvent
   {
+    /// <summary>
+    /// Gets the familiar that was possessed.
+    /// </summary>
     public NwCreature Familiar { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the creature that possesses the familiar.
+    /// </summary>
     public NwCreature Owner { get; private init; } = null!;
 
     NwObject IEvent.Context => Owner;

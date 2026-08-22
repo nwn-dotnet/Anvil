@@ -6,6 +6,9 @@ using Anvil.Services;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Reflection helpers for attributes, metadata, and member naming.
+  /// </summary>
   public static class ReflectionExtensions
   {
     /// <summary>
@@ -42,6 +45,13 @@ namespace Anvil.API
       return member.DeclaringType != null ? $"{member.DeclaringType.FullName}.{member.Name}" : member.Name;
     }
 
+    /// <summary>
+    /// Safely gets a custom attribute of type <typeparamref name="T"/> without triggering type resolution exceptions.
+    /// </summary>
+    /// <param name="memberInfo">The member to inspect for the attribute.</param>
+    /// <param name="inherit">True to include attributes inherited from base types.</param>
+    /// <typeparam name="T">The attribute type to resolve.</typeparam>
+    /// <returns>The attribute instance if found; otherwise null.</returns>
     public static T? SafeGetCustomAttribute<T>(this MemberInfo memberInfo, bool inherit = true)
     {
       // GetCustomAttribute(Type) or GetCustomAttribute<T>() will throw an exception on types with missing assembly references, as they navigate into the type.

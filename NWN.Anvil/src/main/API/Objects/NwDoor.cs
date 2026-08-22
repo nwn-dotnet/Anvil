@@ -34,6 +34,7 @@ namespace Anvil.API
       return door != null && door.Pointer != IntPtr.Zero ? new NwDoor(door) : null;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => NWNXUtils.AsNWSDoor(NWNXUtils.GetGameObject(ObjectId)) == door.Pointer;
 
     /// <summary>

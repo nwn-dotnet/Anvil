@@ -5,6 +5,10 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Class-specific information for a creature, including domains, spellbook, and level details.
+  /// Provides access to known spells and memorized slots for a single class progression.
+  /// </summary>
   public sealed unsafe class CreatureClassInfo
   {
     private const int KnownSpellArraySize = 10; // Cantrips + 9 spell levels
@@ -113,7 +117,7 @@ namespace Anvil.API
     /// Gets the number of remaining, unspent spell slots for the given spell level.
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
-    /// <returns></returns>
+    /// <returns>The number of unspent spell slots available.</returns>
     public byte GetRemainingSpellSlots(byte spellLevel)
     {
       return classInfo.GetSpellsPerDayLeft(spellLevel);

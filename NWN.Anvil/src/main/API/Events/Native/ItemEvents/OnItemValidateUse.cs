@@ -7,11 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when validating whether a creature can use an item.
+  /// </summary>
   public sealed class OnItemValidateUse : IEvent
   {
+    /// <summary>
+    /// Gets or sets whether the item can be used.
+    /// </summary>
     public bool CanUse { get; set; }
 
+    /// <summary>
+    /// Gets the item being validated for use.
+    /// </summary>
     public NwItem Item { get; private init; } = null!;
+
+    /// <summary>
+    /// Gets the creature attempting to use the item.
+    /// </summary>
     public NwCreature UsedBy { get; private init; } = null!;
 
     NwObject IEvent.Context => UsedBy;

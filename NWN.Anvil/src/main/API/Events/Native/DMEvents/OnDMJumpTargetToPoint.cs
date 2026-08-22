@@ -4,12 +4,24 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a DM jumps one or more targets to a point.
+  /// </summary>
   public sealed class OnDMJumpTargetToPoint : DMEvent
   {
+    /// <summary>
+    /// Gets the destination area.
+    /// </summary>
     public NwArea NewArea { get; init; } = null!;
 
+    /// <summary>
+    /// Gets the destination position.
+    /// </summary>
     public Vector3 NewPosition { get; init; }
 
+    /// <summary>
+    /// Gets the targets to be moved.
+    /// </summary>
     public NwGameObject[] Targets { get; init; } = null!;
   }
 }

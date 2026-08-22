@@ -7,8 +7,14 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when the server sends area data to a player.
+  /// </summary>
   public sealed class OnServerSendArea : IEvent
   {
+    /// <summary>
+    /// Gets the area being sent to the player.
+    /// </summary>
     public NwArea Area { get; private init; } = null!;
 
     /// <summary>
@@ -16,6 +22,9 @@ namespace Anvil.API.Events
     /// </summary>
     public bool IsPlayerNewToModule { get; private init; }
 
+    /// <summary>
+    /// Gets the player receiving the area data.
+    /// </summary>
     public NwPlayer Player { get; private init; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;

@@ -9,6 +9,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    /// <summary>
+    /// Triggered when a trap attached to the door is triggered.
+    /// </summary>
     [GameEvent(EventScriptType.DoorOnTrapTriggered)]
     public sealed class OnTrapTriggered : IEvent
     {

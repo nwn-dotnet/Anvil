@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class ModuleEvents
   {
     /// <summary>
-    /// Triggered when a <see cref="NwPlayer"/> selects a character and logged into the module.
+    /// Triggered when a <see cref="NwPlayer"/> selects a character and logs into the module.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientEnter)]
     public sealed class OnClientEnter : IEvent

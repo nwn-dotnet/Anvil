@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered by <see cref="NwCreature"/> when physically attacked by another <see cref="NwCreature"/>.
+    /// Triggered when the creature is physically attacked by another creature.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent

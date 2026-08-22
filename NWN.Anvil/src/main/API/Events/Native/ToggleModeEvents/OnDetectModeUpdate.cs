@@ -7,14 +7,23 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature enters or exits detect mode.
+  /// </summary>
   public sealed class OnDetectModeUpdate : IEvent
   {
+    /// <summary>
+    /// Gets the creature whose detect mode is being updated.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the event type indicating whether detect mode is being entered or exited.
+    /// </summary>
     public ToggleModeEventType EventType { get; private init; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether this creature should be prevented from entering/exiting detect mode.
+    /// Set to true to prevent entering or exiting detect mode, depending on <see cref="EventType"/>.
     /// </summary>
     public bool Prevent { get; set; }
 

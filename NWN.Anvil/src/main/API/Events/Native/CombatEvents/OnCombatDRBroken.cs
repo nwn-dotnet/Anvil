@@ -7,10 +7,19 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when a creature's damage resistance or damage reduction is broken/bypassed.
+  /// </summary>
   public sealed class OnCombatDRBroken : IEvent
   {
+    /// <summary>
+    /// Gets the creature whose damage reduction was broken.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the type of damage reduction that was broken.
+    /// </summary>
     public DRType Type { get; private init; }
 
     NwObject IEvent.Context => Creature;

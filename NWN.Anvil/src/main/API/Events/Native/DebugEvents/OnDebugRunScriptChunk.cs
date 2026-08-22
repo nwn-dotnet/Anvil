@@ -4,12 +4,12 @@ using Anvil.API.Events;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a client has requested a script chunk to be executed.
+  /// Triggered when a DM/player in debug mode has requested a script chunk to be executed.
   /// </summary>
   public sealed class OnDebugRunScriptChunk : IEvent
   {
     /// <summary>
-    /// Gets the player attempting to spawn the visual effect.
+    /// Gets the player attempting to execute the script chunk.
     /// </summary>
     public NwPlayer? Player { get; internal init; }
 
@@ -29,7 +29,7 @@ namespace Anvil.API.Events
     public bool WrapIntoMain { get; internal init; }
 
     /// <summary>
-    /// Gets or sets if execution of the script chunk should be skipped.
+    /// Set to true to skip execution.
     /// </summary>
     public bool Skip { get; set; }
 

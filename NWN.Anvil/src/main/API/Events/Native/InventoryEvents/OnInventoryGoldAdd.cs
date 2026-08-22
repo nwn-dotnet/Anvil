@@ -7,12 +7,24 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Triggered when gold is added to a creature's inventory.
+  /// </summary>
   public sealed class OnInventoryGoldAdd : IEvent
   {
+    /// <summary>
+    /// Gets the creature receiving the gold.
+    /// </summary>
     public NwCreature Creature { get; private init; } = null!;
 
+    /// <summary>
+    /// Gets the amount of gold to add.
+    /// </summary>
     public int Gold { get; private init; }
 
+    /// <summary>
+    /// Set to true to prevent the gold from being added.
+    /// </summary>
     public bool PreventGoldAdd { get; set; }
 
     NwObject? IEvent.Context => null;

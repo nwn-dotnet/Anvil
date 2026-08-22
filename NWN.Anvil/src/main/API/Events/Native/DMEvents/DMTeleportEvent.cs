@@ -4,15 +4,30 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Base event for DM teleport actions.
+  /// </summary>
   public abstract class DMTeleportEvent : DMEvent
   {
+    /// <summary>
+    /// Gets the destination area.
+    /// </summary>
     public NwArea TargetArea { get; internal init; } = null!;
 
+    /// <summary>
+    /// Gets the destination position.
+    /// </summary>
     public Vector3 TargetPosition { get; internal init; }
   }
 
+  /// <summary>
+  /// Triggered when a DM teleports to a specific location.
+  /// </summary>
   public sealed class OnDMJumpToPoint : DMTeleportEvent;
 
+  /// <summary>
+  /// Triggered when a DM teleports all online players in the module to a specific location.
+  /// </summary>
   public sealed class OnDMJumpAllPlayersToPoint : DMTeleportEvent;
 }
 

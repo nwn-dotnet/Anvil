@@ -9,12 +9,12 @@ using NWN.Native.API;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called when a creature attempts to set a trap.
+  /// Triggered when a creature attempts to set a trap.
   /// </summary>
   public sealed class OnTrapSet : IEvent
   {
     /// <summary>
-    /// Gets if the creature is in range of the trap.
+    /// Gets whether the creature is in range of the trap.
     /// </summary>
     public bool InRange { get; internal init; }
 
@@ -35,8 +35,7 @@ namespace Anvil.API.Events
     public Location TargetLocation { get; internal init; } = null!;
 
     /// <summary>
-    /// Gets or sets a value to override the trap action result, skipping the default game behaviour.<br/>
-    /// Supported values: <see cref="ActionState.Complete"/>, <see cref="ActionState.Failed"/>.
+    /// Set to <see cref="ActionState.Complete"/> or <see cref="ActionState.Failed"/> to override the trap action result and skip default game behavior.
     /// </summary>
     public ActionState? ResultOverride { get; set; }
 

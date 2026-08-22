@@ -5,15 +5,27 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiDrawListImage(NuiProperty<string> resRef, NuiProperty<NuiRect> rect) : NuiDrawListItem
   {
+    /// <summary>
+    /// Gets or sets how the image scales within its bounds.
+    /// </summary>
     [JsonProperty("image_aspect")]
     public NuiProperty<NuiAspect> Aspect { get; set; } = NuiAspect.Exact;
 
+    /// <summary>
+    /// Gets or sets the horizontal alignment of the image within its bounds.
+    /// </summary>
     [JsonProperty("image_halign")]
     public NuiProperty<NuiHAlign> HorizontalAlign { get; set; } = NuiHAlign.Left;
 
+    /// <summary>
+    /// Gets or sets the bounding rectangle where the image is rendered.
+    /// </summary>
     [JsonProperty("rect")]
     public NuiProperty<NuiRect> Rect { get; set; } = rect;
 
+    /// <summary>
+    /// Gets or sets the image resource reference.
+    /// </summary>
     [JsonProperty("image")]
     public NuiProperty<string> ResRef { get; set; } = resRef;
 
@@ -26,6 +38,9 @@ namespace Anvil.API
 
     public override NuiDrawListItemType Type => NuiDrawListItemType.Image;
 
+    /// <summary>
+    /// Gets or sets the vertical alignment of the image within its bounds.
+    /// </summary>
     [JsonProperty("image_valign")]
     public NuiProperty<NuiVAlign> VerticalAlign { get; set; } = NuiVAlign.Top;
   }

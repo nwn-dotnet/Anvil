@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered by <see cref="NwCreature"/> when its inventory has been disturbed.
+    /// Triggered when the creature's inventory is disturbed.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnDisturbed)]
     public sealed class OnDisturbed : IEvent
@@ -26,10 +26,13 @@ namespace Anvil.API.Events
       public NwItem DisturbedItem { get; }
 
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that disturbed another <see cref="NwCreature"/> inventory.
+      /// Gets the <see cref="NwCreature"/> that disturbed the inventory.
       /// </summary>
       public NwCreature Disturber { get; }
 
+      /// <summary>
+      /// Gets the type of inventory disturbance event.
+      /// </summary>
       public InventoryDisturbType DisturbType { get; }
 
       NwObject IEvent.Context => CreatureDisturbed;

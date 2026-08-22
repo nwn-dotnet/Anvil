@@ -11,6 +11,9 @@ namespace Anvil.API
   [method: JsonConstructor]
   public sealed class NuiBind<T>(string key) : NuiProperty<T>
   {
+    /// <summary>
+    /// Gets the bind key identifier used to reference this property in NUI.
+    /// </summary>
     [JsonProperty("bind")]
     public string Key { get; init; } = key;
 

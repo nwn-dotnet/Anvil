@@ -8,7 +8,7 @@ using Anvil.Services;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Called immediately after a player character is loaded by the server.
+  /// Triggered immediately after a player character is loaded by the server.
   /// </summary>
   public sealed class OnLoadCharacterFinish : IEvent
   {

@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Integer and object ID interop helpers for NWScript.
+  /// </summary>
   public static class IntegerExtensions
   {
     /// <summary>

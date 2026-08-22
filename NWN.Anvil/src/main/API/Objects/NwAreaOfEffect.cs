@@ -34,6 +34,7 @@ namespace Anvil.API
       return areaOfEffect != null && areaOfEffect.Pointer != IntPtr.Zero ? new NwAreaOfEffect(areaOfEffect) : null;
     }
 
+    /// <inheritdoc/>
     public override bool IsValid => NWNXUtils.AsNWSAreaOfEffectObject(NWNXUtils.GetGameObject(ObjectId)) == areaOfEffect.Pointer;
 
     /// <summary>

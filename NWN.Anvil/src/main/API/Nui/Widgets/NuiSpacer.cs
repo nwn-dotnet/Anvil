@@ -6,6 +6,9 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiSpacer : NuiWidget
   {
+    /// <summary>
+    /// Gets the NUI widget type identifier for this element.
+    /// </summary>
     public override string Type => "spacer";
   }
 }

@@ -11,6 +11,9 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiGroup : NuiLayout
   {
+    /// <summary>
+    /// Gets or sets whether a border should be rendered around the group.
+    /// </summary>
     [JsonProperty("border")]
     public bool Border { get; set; } = true;
 
@@ -21,14 +24,26 @@ namespace Anvil.API
       set => Element = value;
     }
 
+    /// <summary>
+    /// Gets or sets the single child element contained by this group.
+    /// </summary>
     [JsonIgnore]
     public NuiElement? Element { get; set; }
 
+    /// <summary>
+    /// Gets or sets the scrollbars for this group container.
+    /// </summary>
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
+    /// <summary>
+    /// Gets the NUI layout type identifier for this element.
+    /// </summary>
     public override string Type => "group";
 
+    /// <summary>
+    /// Gets the sequence of child elements serialized as the JSON "children" array.
+    /// </summary>
     protected override IEnumerable<NuiElement> SerializedChildren => Element.SafeYield();
 
     /// <summary>

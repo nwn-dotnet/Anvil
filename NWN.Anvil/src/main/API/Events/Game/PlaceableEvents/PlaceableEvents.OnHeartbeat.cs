@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   public static partial class PlaceableEvents
   {
     /// <summary>
-    /// Called every 6 seconds on <see cref="NwPlaceable"/>.
+    /// Triggered every 6 seconds for <see cref="NwPlaceable"/>.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
