@@ -1,10 +1,9 @@
 # Load nwnx image to import nwserver + nwnx plugins
-FROM nwnxee/unified:73cf6ab as nwnx
+FROM nwnxee/unified:3d4c4e1 as nwnx
 
 # Remove incompatible plugins
 RUN rm -rf /nwn/nwnx/NWNX_Ruby.so \
-    /nwn/nwnx/NWNX_SpellChecker.so \
-    /nwn/nwnx/NWNX_Redis.so
+    /nwn/nwnx/NWNX_SpellChecker.so
 
 FROM debian:trixie-slim
 
