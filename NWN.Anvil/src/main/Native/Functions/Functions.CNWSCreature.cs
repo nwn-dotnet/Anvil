@@ -115,6 +115,9 @@ namespace Anvil.Native
       [NativeFunction("_ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti", "?SignalRangedDamage@CNWSCreature@@IEAAXPEAVCNWSObject@@H@Z")]
       public delegate void SignalRangedDamage(void* pCreature, void* pTarget, int nAttacks);
 
+      [NativeFunction("_ZN12CNWSCreature9SplitItemEP8CNWSItemi", "?SplitItem@CNWSCreature@@QEAAXPEAVCNWSItem@@H@Z")]
+      public delegate void SplitItem(void* pCreature, void* pItemToSplit, int nNumberToSplitOff);
+
       [NativeFunction("_ZN12CNWSCreature17UnpossessFamiliarEv", "?UnpossessFamiliar@CNWSCreature@@QEAAXXZ")]
       public delegate void UnpossessFamiliar(void* pCreature);
 

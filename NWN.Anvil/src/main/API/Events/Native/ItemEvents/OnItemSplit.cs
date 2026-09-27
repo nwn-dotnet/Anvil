@@ -23,25 +23,24 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<Functions.CNWSItem.SplitItem> Hook { get; set; } = null!;
+      private static FunctionHook<Functions.CNWSCreature.SplitItem> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
-        delegate* unmanaged<void*, int, void> pHook = &OnItemSplit;
-        Hook = HookService.RequestHook<Functions.CNWSItem.SplitItem>(pHook, HookOrder.Early);
+        delegate* unmanaged<void*, void*, int, void> pHook = &OnItemSplit;
+        Hook = HookService.RequestHook<Functions.CNWSCreature.SplitItem>(pHook, HookOrder.Early);
         return [Hook];
       }
 
       [UnmanagedCallersOnly]
-      private static void OnItemSplit(void* pItem, int splitOff)
+      private static void OnItemSplit(void* pCreature, void* pItem, int splitOff)
       {
         OnItemSplit eventData = ProcessEvent(EventCallbackType.Before, new OnItemSplit
         {
           NumberToSplitOff = splitOff,
           ItemToSplit = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
         });
-
-        Hook.CallOriginal(pItem, splitOff);
+        Hook.CallOriginal(pCreature, pItem, splitOff);
 
         ProcessEvent(EventCallbackType.After, eventData);
       }
