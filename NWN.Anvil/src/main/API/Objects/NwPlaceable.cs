@@ -158,7 +158,7 @@ namespace Anvil.API
       }
 
       void* pItem = item.Item;
-      Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
+      Placeable.AcquireItem(&pItem, item.Possessor, 0xFF, 0xFF, displayFeedback.ToInt());
     }
 
     public override NwPlaceable Clone(Location location, string? newTag = null, bool copyLocalState = true)
