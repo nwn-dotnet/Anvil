@@ -1,13 +1,15 @@
+using NWN.Core;
+
 namespace Anvil.API
 {
   public enum ProjectilePathType : uint
   {
-    Default = 0,
-    Homing = 1,
-    Ballistic = 2,
-    HighBallistic = 3,
-    BurstUp = 4,
-    Accelerating = 5,
+    Default = NWScript.PROJECTILE_PATH_TYPE_DEFAULT,
+    Homing = NWScript.PROJECTILE_PATH_TYPE_HOMING,
+    Ballistic = NWScript.PROJECTILE_PATH_TYPE_BALLISTIC,
+    HighBallistic = NWScript.PROJECTILE_PATH_TYPE_HIGH_BALLISTIC,
+    Accelerating = NWScript.PROJECTILE_PATH_TYPE_ACCELERATING,
+    BurstUp = 5,
     Spiral = 6,
     Linked = 7,
     Bounce = 8,
