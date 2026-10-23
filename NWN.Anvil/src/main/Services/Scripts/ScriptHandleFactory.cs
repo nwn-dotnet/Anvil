@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Anvil.API;
+using Anvil.Plugins;
+using LightInject;
+using NLog;
 
 namespace Anvil.Services
 {
@@ -9,10 +13,24 @@ namespace Anvil.Services
   /// </summary>
   [ServiceBinding(typeof(ScriptHandleFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed class ScriptHandleFactory : IScriptDispatcher
+  public sealed class ScriptHandleFactory : IScriptDispatcher, IDisposable
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private readonly IServiceManager serviceManager;
     private readonly Dictionary<string, ScriptCallbackHandle> activeHandlers = new Dictionary<string, ScriptCallbackHandle>();
     public int ExecutionOrder => 0;
+
+    public ScriptHandleFactory(IServiceManager serviceManager)
+    {
+      this.serviceManager = serviceManager;
+      serviceManager.OnContainerPostDispose += OnContainerPostDispose;
+    }
+
+    void IDisposable.Dispose()
+    {
+      serviceManager.OnContainerPostDispose -= OnContainerPostDispose;
+    }
 
     /// <summary>
     /// Creates a unique script callback handle for the specified callback method.<br/>
@@ -96,6 +114,27 @@ namespace Anvil.Services
       }
 
       return ScriptHandleResult.NotHandled;
+    }
+
+    // Isolated plugins may leave handlers behind when unloaded. They keep the plugin loaded, keep invoking its old code,
+    // and make the next load of the plugin fail when it registers the same script names again.
+    private void OnContainerPostDispose(IServiceContainer container, Plugin? plugin)
+    {
+      if (plugin == null)
+      {
+        return;
+      }
+
+      List<string> scriptNames = activeHandlers.Values.Where(handle => handle.IsOwnedBy(plugin)).Select(handle => handle.ScriptName).ToList();
+      foreach (string scriptName in scriptNames)
+      {
+        UnregisterScriptHandler(scriptName);
+      }
+
+      if (scriptNames.Count > 0)
+      {
+        Log.Debug("Removed {Count} script handlers left by unloaded plugin {PluginName}", scriptNames.Count, plugin.Name.Name);
+      }
     }
   }
 }

@@ -187,7 +187,13 @@ namespace Anvil.Plugins
 
     void ICoreService.Shutdown() {}
 
-    void ICoreService.Start()
+    void ICoreService.Start() {}
+
+    /// <summary>
+    /// Loads the isolated plugins found at startup.<br/>
+    /// Called once the anvil service container is constructed, as isolated plugins depend on its services and static injections.
+    /// </summary>
+    internal void LoadIsolatedPlugins()
     {
       LoadPlugins(true);
     }

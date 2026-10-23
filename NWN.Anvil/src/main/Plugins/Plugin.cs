@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
@@ -108,6 +109,14 @@ namespace Anvil.Plugins
       }
     }
 
+    /// <summary>
+    /// Gets if the specified delegate runs code loaded by this plugin, or is bound to an object of a type loaded by this plugin.
+    /// </summary>
+    internal bool IsOwnerOf(Delegate callback)
+    {
+      return IsLoadedByPlugin(callback.Method.DeclaringType) || IsLoadedByPlugin(callback.Target?.GetType());
+    }
+
     internal WeakReference Unload(bool immediateDispose)
     {
       RemoveResourceDirectory();
@@ -141,6 +150,11 @@ namespace Anvil.Plugins
         Log.Error(e, $"Loading metadata for plugin '{Name.Name}' failed.");
         return null;
       }
+    }
+
+    private bool IsLoadedByPlugin(Type? type)
+    {
+      return type != null && pluginLoadContext != null && AssemblyLoadContext.GetLoadContext(type.Assembly) == pluginLoadContext;
     }
 
     private IReadOnlyList<Type> GetPluginTypes()

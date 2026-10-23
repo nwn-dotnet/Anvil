@@ -14,11 +14,31 @@ namespace Anvil.Tests.Plugins
   [TestFixture]
   public sealed class PluginTests
   {
+    private const string CoreScriptName = "anvtest_core";
+
+    [ServiceBinding(typeof(CoreScriptHandlerTestService))]
+    private sealed class CoreScriptHandlerTestService
+    {
+      public static int CallCount;
+
+      [ScriptHandler(CoreScriptName)]
+      private void OnScript()
+      {
+        CallCount++;
+      }
+    }
+
     [Inject]
     private static PluginManager PluginManager { get; set; } = null!;
 
     [Inject]
     private static PluginStorageService PluginStorageService { get; set; } = null!;
+
+    [Inject]
+    private static VirtualMachine VirtualMachine { get; set; } = null!;
+
+    [Inject]
+    private static ScriptHandleFactory ScriptHandleFactory { get; set; } = null!;
 
     // Test Dependencies
     [Inject]
@@ -142,6 +162,155 @@ namespace Anvil.Tests.Plugins
       Assert.That(moduleNameField.GetValue(null), Is.EqualTo(NwModule.Instance.Name));
       Assert.That(serverInstanceField.GetValue(null), Is.EqualTo(NwServer.Instance));
 
+      return PluginManager.UnloadPlugin(plugin, false);
+    }
+
+    [Test]
+    public void PluginEventSubscriptionsRemovedOnUnloadTest()
+    {
+      const string pluginName = "EventSubscriptionTestPlugin";
+      const string serviceName = "EventSubscriptionTestService";
+
+      // Subscriptions are intentionally never removed: Anvil must remove them when the plugin unloads.
+      const string implementation =
+        """
+          public void Init()
+          {
+            NwModule.Instance.OnHeartbeat += OnModuleHeartbeat;
+            NwModule.Instance.Areas.First().OnHeartbeat += _ => {};
+          }
+
+          private void OnModuleHeartbeat(ModuleEvents.OnHeartbeat eventData) {}
+        """;
+
+      string source = PluginTestUtils.GenerateServiceClass(serviceName,
+        [nameof(System), "System.Linq", $"{nameof(Anvil)}.{nameof(Anvil.Services)}", $"{nameof(Anvil)}.{nameof(Anvil.API)}", $"{nameof(Anvil)}.{nameof(Anvil.API)}.{nameof(Anvil.API.Events)}"],
+        [],
+        [nameof(IInitializable)],
+        implementation);
+
+      string pluginPath = CreatePlugin(pluginName, source);
+      WeakReference pluginRef = RunPluginLoadAndUnload(pluginPath, serviceName);
+
+      WaitAndCheckForPluginUnload(pluginRef);
+    }
+
+    [Test]
+    public void PluginScriptHandlersRemovedOnUnloadTest()
+    {
+      const string pluginName = "ScriptHandleTestPlugin";
+      const string serviceName = "ScriptHandleTestService";
+      const string scriptName = "anvtest_handle";
+
+      // The handle is intentionally never disposed: Anvil must remove it when the plugin unloads.
+      const string implementation =
+        $$"""
+          public ScriptHandleTestService(ScriptHandleFactory scriptHandleFactory)
+          {
+            scriptHandleFactory.RegisterScriptHandler("{{scriptName}}", _ => ScriptHandleResult.Handled);
+          }
+        """;
+
+      string source = PluginTestUtils.GenerateServiceClass(serviceName,
+        [nameof(System), $"{nameof(Anvil)}.{nameof(Anvil.Services)}", $"{nameof(Anvil)}.{nameof(Anvil.API)}"],
+        [],
+        [],
+        implementation);
+
+      string pluginPath = CreatePlugin(pluginName, source);
+      WeakReference pluginRef = RunPluginLoadAndUnload(pluginPath, serviceName);
+
+      Assert.That(ScriptHandleFactory.IsScriptRegistered(scriptName), Is.False);
+      WaitAndCheckForPluginUnload(pluginRef);
+    }
+
+    [Test]
+    public void PluginScriptHandlerAttributeTest()
+    {
+      const string pluginName = "ScriptHandlerAttributeTestPlugin";
+      const string serviceName = "ScriptHandlerAttributeTestService";
+      const string scriptName = "anvtest_attr";
+
+      const string implementation =
+        $$"""
+          public static int CallCount;
+
+          [ScriptHandler("{{scriptName}}")]
+          private void OnScript()
+          {
+            CallCount++;
+          }
+        """;
+
+      string source = PluginTestUtils.GenerateServiceClass(serviceName,
+        [nameof(System), $"{nameof(Anvil)}.{nameof(Anvil.Services)}"],
+        [],
+        [],
+        implementation);
+
+      string pluginPath = CreatePlugin(pluginName, source);
+      WeakReference pluginRef = RunPluginScriptHandlerAttributeTest(pluginPath, serviceName, scriptName);
+
+      WaitAndCheckForPluginUnload(pluginRef);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private WeakReference RunPluginScriptHandlerAttributeTest(string pluginPath, string serviceName, string scriptName)
+    {
+      (Plugin plugin, Type pluginServiceType) = LoadPlugin(pluginPath, serviceName);
+      FieldInfo callCountField = pluginServiceType.GetField("CallCount", BindingFlags.Public | BindingFlags.Static)!;
+
+      VirtualMachine.Execute(scriptName);
+      Assert.That(callCountField.GetValue(null), Is.EqualTo(1));
+
+      int coreCallsBeforeUnload = CoreScriptHandlerTestService.CallCount;
+      WeakReference pluginRef = PluginManager.UnloadPlugin(plugin, false);
+
+      // Unloading a plugin must not strip the script handlers of core services.
+      VirtualMachine.Execute(CoreScriptName);
+      Assert.That(CoreScriptHandlerTestService.CallCount, Is.EqualTo(coreCallsBeforeUnload + 1));
+
+      return pluginRef;
+    }
+
+    [Test]
+    public void PluginStaticInjectionTest()
+    {
+      const string pluginName = "StaticInjectionTestPlugin";
+      const string serviceName = "StaticInjectionTestService";
+
+      const string implementation =
+        """
+          [Inject]
+          public static ScriptHandleFactory ScriptHandleFactory { get; set; }
+        """;
+
+      string source = PluginTestUtils.GenerateServiceClass(serviceName,
+        [nameof(System), $"{nameof(Anvil)}.{nameof(Anvil.Services)}"],
+        [],
+        [],
+        implementation);
+
+      string pluginPath = CreatePlugin(pluginName, source);
+      WeakReference pluginRef = RunPluginStaticInjectionTest(pluginPath, serviceName);
+
+      WaitAndCheckForPluginUnload(pluginRef);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private WeakReference RunPluginStaticInjectionTest(string pluginPath, string serviceName)
+    {
+      (Plugin plugin, Type pluginServiceType) = LoadPlugin(pluginPath, serviceName);
+      PropertyInfo property = pluginServiceType.GetProperty("ScriptHandleFactory", BindingFlags.Public | BindingFlags.Static)!;
+      Assert.That(property.GetValue(null), Is.Not.Null);
+
+      return PluginManager.UnloadPlugin(plugin, false);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private WeakReference RunPluginLoadAndUnload(string pluginPath, string serviceName)
+    {
+      (Plugin plugin, Type _) = LoadPlugin(pluginPath, serviceName);
       return PluginManager.UnloadPlugin(plugin, false);
     }
 

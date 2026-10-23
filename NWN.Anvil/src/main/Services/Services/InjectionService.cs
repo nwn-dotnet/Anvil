@@ -84,22 +84,10 @@ namespace Anvil.Services
       InjectStaticProperties(ServiceManager.AnvilServiceContainer, injectedStaticProperties, Assemblies.AllTypes);
       foreach (Plugin plugin in PluginManager.Value.Plugins)
       {
-        if (plugin.PluginTypes == null)
-        {
-          continue;
-        }
-
-        if (plugin.Container == null)
+        // Isolated plugins are not loaded yet. Their static properties are injected in OnContainerCreate.
+        if (plugin.PluginTypes != null)
         {
           InjectStaticProperties(ServiceManager.AnvilServiceContainer, injectedStaticProperties, plugin.PluginTypes);
-        }
-        else
-        {
-          pluginInjectedProperties.TryGetValue(plugin, out List<PropertyInfo>? propertyList);
-          propertyList ??= [];
-          pluginInjectedProperties[plugin] = propertyList;
-
-          InjectStaticProperties(plugin.Container, propertyList, plugin.PluginTypes);
         }
       }
     }

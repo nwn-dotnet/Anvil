@@ -1,27 +1,39 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Anvil.API;
 using Anvil.API.Events;
+using Anvil.Plugins;
+using LightInject;
 using NLog;
 
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(EventService))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed partial class EventService
+  public sealed partial class EventService : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    private readonly IServiceManager serviceManager;
     private readonly Dictionary<Type, IEventFactory> eventFactories = new Dictionary<Type, IEventFactory>();
     private readonly Dictionary<Type, EventHandler> eventHandlers = new Dictionary<Type, EventHandler>();
 
-    public EventService(IEnumerable<IEventFactory> eventFactories)
+    public EventService(IEnumerable<IEventFactory> eventFactories, IServiceManager serviceManager)
     {
       foreach (IEventFactory eventFactory in eventFactories)
       {
         this.eventFactories[eventFactory.GetType()] = eventFactory;
       }
+
+      this.serviceManager = serviceManager;
+      serviceManager.OnContainerPostDispose += OnContainerPostDispose;
+    }
+
+    void IDisposable.Dispose()
+    {
+      serviceManager.OnContainerPostDispose -= OnContainerPostDispose;
     }
 
     public void ClearObjectSubscriptions(NwObject? nwObject)
@@ -65,8 +77,8 @@ namespace Anvil.Services
         return;
       }
 
-      AddObjectHandler(nwObject, handler, eventCallbackType);
       TFactory? factory = GetEventFactory<TFactory>();
+      AddObjectHandler(nwObject, handler, eventCallbackType, factory);
       factory?.Register<TEvent>(registrationData);
     }
 
@@ -81,8 +93,8 @@ namespace Anvil.Services
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<TRegData>
     {
-      AddGlobalHandler(handler, eventCallbackType);
       TFactory? factory = GetEventFactory<TFactory>();
+      AddGlobalHandler(handler, eventCallbackType, factory);
       factory?.Register<TEvent>(registrationData);
     }
 
@@ -107,18 +119,18 @@ namespace Anvil.Services
       TryCleanupHandler<TEvent, TFactory>();
     }
 
-    private void AddGlobalHandler<TEvent>(Action<TEvent> handler, EventCallbackType eventCallbackType)
-      where TEvent : IEvent
+    private void AddGlobalHandler<TEvent>(Action<TEvent> handler, EventCallbackType eventCallbackType, IEventFactory? factory)
+      where TEvent : IEvent, new()
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
-      eventHandler.SubscribeAll(handler, eventCallbackType);
+      eventHandler.SubscribeAll(handler, eventCallbackType, factory);
     }
 
-    private void AddObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType)
-      where TEvent : IEvent
+    private void AddObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType, IEventFactory? factory)
+      where TEvent : IEvent, new()
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
-      eventHandler.Subscribe(nwObject, handler, eventCallbackType);
+      eventHandler.Subscribe(nwObject, handler, eventCallbackType, factory);
     }
 
     private TFactory? GetEventFactory<TFactory>() where TFactory : IEventFactory
@@ -134,7 +146,7 @@ namespace Anvil.Services
       return (TFactory)factory;
     }
 
-    private EventHandler<TEvent>? GetEventHandler<TEvent>([DoesNotReturnIf(true)] bool createMissing) where TEvent : IEvent
+    private EventHandler<TEvent>? GetEventHandler<TEvent>([DoesNotReturnIf(true)] bool createMissing) where TEvent : IEvent, new()
     {
       if (!eventHandlers.TryGetValue(typeof(TEvent), out EventHandler? handler) && createMissing)
       {
@@ -145,15 +157,40 @@ namespace Anvil.Services
       return (EventHandler<TEvent>?)handler;
     }
 
+    // Isolated plugins may leave subscriptions behind when unloaded. They keep the plugin loaded, and would keep invoking its old code.
+    private void OnContainerPostDispose(IServiceContainer container, Plugin? plugin)
+    {
+      if (plugin == null)
+      {
+        return;
+      }
+
+      int removed = 0;
+      foreach ((Type eventType, EventHandler eventHandler) in eventHandlers.ToList())
+      {
+        removed += eventHandler.ClearPluginSubscriptions(plugin);
+        if (!eventHandler.HasSubscribers)
+        {
+          eventHandlers.Remove(eventType);
+          eventHandler.UnregisterFactories();
+        }
+      }
+
+      if (removed > 0)
+      {
+        Log.Debug("Removed {Count} event subscriptions left by unloaded plugin {PluginName}", removed, plugin.Name.Name);
+      }
+    }
+
     private void RemoveGlobalHandler<TEvent>(Action<TEvent> handler, EventCallbackType eventCallbackType)
-      where TEvent : IEvent
+      where TEvent : IEvent, new()
     {
       EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
       eventHandler?.UnsubscribeAll(handler, eventCallbackType);
     }
 
     private void RemoveObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType)
-      where TEvent : IEvent
+      where TEvent : IEvent, new()
     {
       EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
       eventHandler?.Unsubscribe(nwObject, handler, eventCallbackType);
